@@ -1,5 +1,10 @@
-<app-top-menu></app-top-menu>
-<div id="body">
-    <app-left-menu></app-left-menu>
-    <app-login></app-login>
-</div>
+<!-- Toolbar -->
+<mat-toolbar color="primary" class="app-header">
+    <div>Cebu Council BSP</div>
+    <span class="nav-tool-items">
+        <a mat-button routerLink="login" routerLinkActive="active">Log in</a>
+        <a mat-button mat-raised-button routerLink="profile" routerLinkActive="active">Sign Up</a>
+    </span>
+</mat-toolbar>
+  
+<router-outlet></router-outlet>

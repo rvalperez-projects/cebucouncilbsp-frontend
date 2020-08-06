@@ -1,19 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { ProfileComponent } from './profile/profile.component';
-import { FormsListComponent } from './forms-list/forms-list.component';
-import { FormRegistrationComponent } from './form-registration/form-registration.component';
-import { UsersListComponent } from './users-list/users-list.component';
-import { PaymentComponent } from './payment/payment.component';
-import { LeftMenuComponent } from './left-menu/left-menu.component';
-import { TopMenuComponent } from './top-menu/top-menu.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
+import { LoginComponent } from './component/login/login.component';
+import { ProfileComponent } from './component/profile/profile.component';
+import { FormsListComponent } from './component/forms-list/forms-list.component';
+import { FormRegistrationComponent } from './component/form-registration/form-registration.component';
+import { UsersListComponent } from './component/users-list/users-list.component';
+import { PaymentComponent } from './component/payment/payment.component';
+import { LeftMenuComponent } from './component/left-menu/left-menu.component';
 
 @NgModule({
   declarations: [
@@ -24,15 +24,16 @@ import { AngularMaterialModule } from './angular-material.module';
     FormRegistrationComponent,
     UsersListComponent,
     PaymentComponent,
-    LeftMenuComponent,
-    TopMenuComponent
+    LeftMenuComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    FlexLayoutModule, 
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
