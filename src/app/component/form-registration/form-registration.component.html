@@ -283,14 +283,15 @@
                             <option *ngFor="let unitNumberOption of unitNumbersBox" [value]="unitNumberOption">{{unitNumberOption}}</option>
                         </select>
                     </td>
-                    <td style="width: 30%;" class="font-condensed">  (
+                    <td style="width: 21%;" class="font-condensed">  (
                         <span name="sectionCodes" (click)="setSectionCode($event.target.id)" id="Langkay">Langkay</span> /
                         <span name="sectionCodes" (click)="setSectionCode($event.target.id)" id="Kawan">Kawan</span> /
                         <span name="sectionCodes" (click)="setSectionCode($event.target.id)" id="Troop">Troop</span> /
                         <span name="sectionCodes" (click)="setSectionCode($event.target.id)" id="Outfit">Outfit</span> /
                         <span name="sectionCodes" (click)="setSectionCode($event.target.id)" id="Circle">Circle</span>
-                    ) Date Applied: </td>
-                    <td style="width: 15%;" class="bottom-underline">{{aurFormObj.dateApplied | date:'yyyy-MM-dd'}}</td>
+                    )</td>
+                    <td style="width: 10%;">Date Applied: </td>
+                    <td style="width: 12%;" class="bottom-underline">{{aurFormObj.dateApplied | date:'yyyy-MM-dd'}}</td>
                 </tr>
             </table>
         </table>
