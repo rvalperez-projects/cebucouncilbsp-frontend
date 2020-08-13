@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import { ProfileValidator } from '../../validator/ProfileValidator';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -11,19 +12,20 @@ export class ProfileComponent implements OnInit {
   selectedDistrict: string;
   selectedArea: string;
   selectedCategory: string;
+  passwordHide = true;
+  confirmPasswordHide = true;
+  profileValidator: ProfileValidator;
   
   Categories: any = ['Primary', 'Secondary'];
   Districts: any = ['North 1', 'North 2'];
   Areas: any = ['I', 'II', 'III'];
 
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
   
-  constructor() { }
+  constructor() { 
+    this.profileValidator = new ProfileValidator();}
 
   ngOnInit(): void {
   }
+
 
 }
