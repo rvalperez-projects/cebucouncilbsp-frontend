@@ -27,7 +27,9 @@ input[type="checkbox"] {margin: 0px;}
 
 select {width:100%;}
 span[name="sectionCodes"] {text-decoration:none;color:black;}
-span[name="sectionCodes"]:hover, span[name="sectionCodes"]:active {font-weight:bold;text-decoration:underline;}
+span[name="sectionCodes"]:hover, span[name="sectionCodes"]:active {font-weight:bold;text-decoration:underline;cursor: pointer;}
+
+
 
 @page {size: 8.5in 13in;margin: 2cm;}
 @media print {

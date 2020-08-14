@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { FormRegistrationComponent } from './component/form-registration/form-re
 import { UsersListComponent } from './component/users-list/users-list.component';
 import { PaymentComponent } from './component/payment/payment.component';
 import { LeftMenuComponent } from './component/left-menu/left-menu.component';
+import { ErrorDialog } from './component/dialog/error-dialog.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { LeftMenuComponent } from './component/left-menu/left-menu.component';
     FormRegistrationComponent,
     UsersListComponent,
     PaymentComponent,
-    LeftMenuComponent
+    LeftMenuComponent,
+    ErrorDialog
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ import { LeftMenuComponent } from './component/left-menu/left-menu.component';
     BrowserAnimationsModule,
     AngularMaterialModule,
     FlexLayoutModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

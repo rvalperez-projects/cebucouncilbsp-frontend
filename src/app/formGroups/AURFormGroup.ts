@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, FormControl, Validators, ValidationErrors } from '@angular/forms';
 import { RosterHeaderLabels } from '../constant/RosterHeaderLabels';
+import { AURFormErrorMessages } from '../constant/Messages';
 
 @Injectable({
     providedIn: 'root'
@@ -60,9 +61,9 @@ export class AURFormGroup {
                     givenName: [null, [Validators.required]],
                     middleInitial: [null, [Validators.required]],
                     signature: [{value: null, disabled: true}, []],
-                    age: [null, [Validators.required, Validators.min]],
+                    age: [null, [Validators.required]],
                     membershipCertNo: [{value: null, disabled: true}, []],
-                    highestTraining: [null, [Validators.required]],
+                    highestTraining: [null],
                     tenure: [null, [Validators.required]],
                     religion: [null, [Validators.required]]
                 })
@@ -83,11 +84,64 @@ export class AURFormGroup {
                     registrationStatusCode: [null, [Validators.required]],
                     age: [null, [Validators.required]],
                     membershipCertNo: [{value: null, disabled: true}, []],
-                    highestBadge: [null, [Validators.required]],
+                    highestBadge: [null],
                     tenure: [null, [Validators.required]],
                     religion: [null, [Validators.required]]
                 })
             );
+        }
+    }
+
+    checkInputData(errorMessages: Array<string>) {
+
+        // Get ISCom Members Errors
+        for (let formGroup in this.iSComMembersList.value) {
+            let missingFields: Array<string> = new Array<string>();
+            let surname = this.iSComMembersList.controls[formGroup].controls['surname'].value;
+            if (!surname) {
+                continue;
+            }
+            for (let property in this.iSComMembersList.controls[formGroup].controls) {
+                let controlErrors: ValidationErrors = this.iSComMembersList.controls[formGroup].controls[property].errors;
+                if (controlErrors != null) {
+                    for (let error in controlErrors) {
+                        // All Validators are Required only.
+                        let errorMessage = "Sctr. " + surname + "'s " + property + " is required.";
+                        console.info(errorMessage);
+                        missingFields.push(property);
+                    }
+                }
+            }
+            errorMessages.push("Sctr. " + surname + ":\n[" + missingFields.join(", ") + "]");
+        }
+
+        // Get Unit Members Errors
+        for (let formGroup in this.unitMembersList.value) {
+            let missingFields: Array<string> = new Array<string>();
+            let surname = this.unitMembersList.controls[formGroup].controls['surname'].value;
+            if (!surname) {
+                continue;
+            }
+            for (let property in this.unitMembersList.controls[formGroup].controls) {
+                let controlErrors: ValidationErrors = this.unitMembersList.controls[formGroup].controls[property].errors;
+                if (controlErrors != null) {
+                    for (let error in controlErrors) {
+                        // All Validators are Required only.
+                        let errorMessage = "Sctr. " + surname + "'s " + property + " is required.";
+                        console.info(errorMessage);
+                        missingFields.push(property);
+                    }
+                }
+            }
+            errorMessages.push("Sct. " + surname + ":\n[" + missingFields.join(", ") + "]");
+        }
+
+        // Check Unit Number and Section Code
+        if (!this.unitNumber.value) {
+            errorMessages.push(AURFormErrorMessages.UNIT_NUMBER_NOT_SET);
+        }
+        if (!this.sectionCode.value) {
+            errorMessages.push(AURFormErrorMessages.SECTION_CODE_NOT_SET);
         }
     }
 

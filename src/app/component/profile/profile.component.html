@@ -1,7 +1,7 @@
 <div class="profile-wrapper" fxLayout="row" fxLayoutAlign="end start">
   <mat-card class="box">
 
-    <form class="form">
+    <form class="form" [formGroup]="profileFormGroup.form">
   
       <mat-card-content>
         
@@ -13,8 +13,8 @@
           <tr>
             <td>Username</td>
             <td><mat-form-field class="full-width">
-              <input matInput #username [formControl]="profileValidator.usernameFormControl" placeholder="Input your username" required>
-              <mat-error *ngIf="profileValidator.usernameFormControl.invalid">{{profileValidator.getErrorMessage()}}</mat-error>
+              <input matInput #username formControlName="username" placeholder="" required>
+              <mat-error *ngIf="profileFormGroup.form.controls['username'].invalid">{{getErrorMessage()}}</mat-error>
               <mat-hint align="start">Small Characters only; Length: 6-8 characters;</mat-hint>
               <mat-hint align="end">{{username.value.length}} / 8</mat-hint>
             </mat-form-field></td>
@@ -22,11 +22,11 @@
           <tr>
             <td>Password</td>
             <td><mat-form-field class="full-width">
-              <input matInput #password [formControl]="profileValidator.passwordFormControl" [type]="passwordHide ? 'password' : 'text'" placeholder="Input your password" required>
+              <input matInput #password formControlName="password" [type]="passwordHide ? 'password' : 'text'" placeholder="" required>
               <button mat-icon-button matSuffix (click)="passwordHide = !passwordHide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="passwordHide">
                 <mat-icon>{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
               </button>
-              <mat-error *ngIf="profileValidator.passwordFormControl.invalid">{{profileValidator.getErrorMessage()}}</mat-error>
+              <mat-error *ngIf="profileFormGroup.form.controls['password'].invalid">{{getErrorMessage()}}</mat-error>
               <mat-hint align="start">Alphanumeric; Length: 6-8 characters;</mat-hint>
               <mat-hint align="end">{{password.value.length}} / 8</mat-hint>
             </mat-form-field></td>
@@ -34,11 +34,11 @@
           <tr>
             <td>Confirm Password</td>
             <td><mat-form-field class="full-width">
-              <input matInput #confirmPassword [formControl]="profileValidator.confirmPasswordFormControl" [type]="confirmPasswordHide ? 'password' : 'text'" placeholder="Input again password" required>
+              <input matInput #confirmPassword formControlName="confirmPassword" [type]="confirmPasswordHide ? 'password' : 'text'" placeholder="" required>
               <button mat-icon-button matSuffix (click)="confirmPasswordHide = !confirmPasswordHide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="confirmPasswordHide">
                 <mat-icon>{{confirmPasswordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
               </button>
-              <mat-error *ngIf="profileValidator.confirmPasswordFormControl.invalid">{{profileValidator.getErrorMessage()}}</mat-error>
+              <mat-error *ngIf="profileFormGroup.form.controls['confirmPassword'].invalid">{{getErrorMessage()}}</mat-error>
               <mat-hint align="start">Alphanumeric; Length: 6-8 characters;</mat-hint>
               <mat-hint align="end">{{confirmPassword.value.length}} / 8</mat-hint>
             </mat-form-field></td>
@@ -53,19 +53,19 @@
         <table class="full-width" cellspacing="0"><tr>
           <td><mat-form-field class="">
             <mat-label>Surname</mat-label>
-            <input matInput [formControl]="profileValidator.surnameFormControl" placeholder="" required>
-            <mat-error *ngIf="profileValidator.surnameFormControl.invalid">{{profileValidator.getErrorMessage()}}</mat-error>
+            <input matInput formControlName="surname" placeholder="" required>
+            <mat-error *ngIf="profileFormGroup.form.controls['surname'].invalid">{{getErrorMessage()}}</mat-error>
           </mat-form-field></td>
           
           <td><mat-form-field class="">
             <mat-label>Given Name</mat-label>
-            <input matInput [formControl]="profileValidator.givenNameFormControl" placeholder="" required>
-            <mat-error *ngIf="profileValidator.givenNameFormControl.invalid">{{profileValidator.getErrorMessage()}}</mat-error>
+            <input matInput formControlName="givenName" placeholder="" required>
+            <mat-error *ngIf="profileFormGroup.form.controls['givenName'].invalid">{{getErrorMessage()}}</mat-error>
           </mat-form-field></td>
           
           <td><mat-form-field class="one-digit">
             <mat-label>M.I.</mat-label>
-            <input matInput placeholder="">
+            <input matInput formControlName="middleInitial" placeholder="">
           </mat-form-field></td>
         </tr></table>
         
@@ -74,15 +74,15 @@
             <td>Mobile Number</td>
             <td><mat-form-field class="full-width">
                 <span matPrefix>09 &nbsp;</span>
-                <input matInput [formControl]="profileValidator.mobileNumberFormControl" placeholder="xx-xxx-xxxx">
-                <mat-error *ngIf="profileValidator.mobileNumberFormControl.invalid">{{profileValidator.getErrorMessage()}}</mat-error>
+                <input matInput formControlName="mobileNumber" placeholder="xx-xxx-xxxx">
+                <mat-error *ngIf="profileFormGroup.form.controls['mobileNumber'].invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field></td>
           </tr>
           <tr>
             <td>Email Address</td>
             <td><mat-form-field class="full-width">
-              <input matInput [formControl]="profileValidator.emailFormControl" placeholder="Ex. pat@example.com" required>
-              <mat-error *ngIf="profileValidator.emailFormControl.invalid">{{profileValidator.getErrorMessage()}}</mat-error>
+              <input matInput formControlName="email" placeholder="Ex. pat@example.com" required>
+              <mat-error *ngIf="profileFormGroup.form.controls['email'].invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field></td>
           </tr>
         </table>
@@ -96,8 +96,8 @@
           <tr>
             <td>Sponsoring Institution</td>
             <td><mat-form-field class="full-width">
-                <input matInput [formControl]="profileValidator.institutionFormControl" placeholder="Name of School / Organization" required>
-                <mat-error *ngIf="profileValidator.institutionFormControl.invalid">{{profileValidator.getErrorMessage()}}</mat-error>
+                <input matInput formControlName="institution" placeholder="Name of School / Organization" required>
+                <mat-error *ngIf="profileFormGroup.form.controls['institution'].invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field></td>
           </tr>
           <tr>
@@ -110,33 +110,33 @@
             <td>Category</td>
             <td><mat-form-field class="full-width">
               <mat-label>Choose a Category</mat-label>
-              <mat-select [(value)]="selectedCategory" [formControl]="profileValidator.categoryFormControl" required>
+              <mat-select [(value)]="selectedCategory" formControlName="category" required>
               <mat-option [value]="category" *ngFor="let category of Categories">{{category}}
               </mat-option>
               </mat-select>
-              <mat-error *ngIf="profileValidator.categoryFormControl.invalid">{{profileValidator.getErrorMessage()}}</mat-error>
+              <mat-error *ngIf="profileFormGroup.form.controls['category'].invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field></td>
           </tr>
           <tr>
             <td>District</td>
             <td><mat-form-field class="full-width">
               <mat-label>Choose a District</mat-label>
-              <mat-select [(value)]="selectedDistrict" [formControl]="profileValidator.districtFormControl" required>
+              <mat-select [(value)]="selectedDistrict" formControlName="district" required>
                 <mat-option [value]="district" *ngFor="let district of Districts">{{district}}
                 </mat-option>
               </mat-select>
-              <mat-error *ngIf="profileValidator.districtFormControl.invalid">{{profileValidator.getErrorMessage()}}</mat-error>
+              <mat-error *ngIf="profileFormGroup.form.controls['district'].invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field></td>
           </tr>
           <tr>
             <td>Area</td>          
             <td><mat-form-field class="full-width">
               <mat-label>Automatically Set</mat-label>
-              <mat-select [(value)]="selectedArea" [formControl]="profileValidator.areaFormControl" required disabled>
+              <mat-select [(value)]="selectedArea" formControlName="area" required>
                 <mat-option [value]="area" *ngFor="let area of Areas">{{area}}
                 </mat-option>
               </mat-select>
-              <mat-error *ngIf="profileValidator.areaFormControl.invalid">{{profileValidator.getErrorMessage()}}</mat-error>
+              <mat-error *ngIf="profileFormGroup.form.controls['area.invalid']">{{getErrorMessage()}}</mat-error>
             </mat-form-field></td>
           </tr>
           <tr>

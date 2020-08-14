@@ -1,8 +1,11 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { RosterHeaderLabels } from '../../constant/RosterHeaderLabels';
 import { AURFormRegistration, RegistrationFees } from '../../model/AURFormRegistration';
 import { FormRegistrationService } from '../../service/form-registration.service';
 import { AURFormGroup } from '../../formGroups/AURFormGroup';
+import { AURFormErrorMessages } from '../../constant/Messages';
+import { CouncilDialog } from '../dialog/create-dialog-util';
 
 @Component({
   selector: 'app-form-registration',
@@ -13,7 +16,7 @@ import { AURFormGroup } from '../../formGroups/AURFormGroup';
 export class FormRegistrationComponent implements OnInit {
 
   // Declare object
-  public aurFormObj: AURFormRegistration;
+  aurFormObj: AURFormRegistration;
 
   // Declare labels
   iSComPositions: Array<string> = RosterHeaderLabels.iSComPositions;
@@ -28,17 +31,43 @@ export class FormRegistrationComponent implements OnInit {
   // Registration Fee Counters
   registrationFee: RegistrationFees;
 
-  constructor(private elementRef : ElementRef, 
-    private service : FormRegistrationService, public aubFormGroup: AURFormGroup) {
+  // Error Messages
+  errorMessages: Array<string>;
+
+  // Dialog Box
+  councilDialog: CouncilDialog;
+
+  constructor(
+    private elementRef : ElementRef, 
+    public dialog: MatDialog, 
+    private service : FormRegistrationService, 
+    public aubFormGroup: AURFormGroup ) {
+
     this.aurFormObj = new AURFormRegistration();
     this.registrationFee = new RegistrationFees();
+    this.errorMessages = new Array<string>();
+    this.councilDialog = new CouncilDialog(dialog);
   }
 
   ngOnInit(): void {
     this.service.initializeAUR(this.aurFormObj, this.aubFormGroup);
   }
 
+  calculateFees() {
+    this.service.populateAurFormObj(this.aurFormObj, this.aubFormGroup);
+    this.service.calculateFees(this.aurFormObj, this.registrationFee);
+  }
+
   onFormSubmit() {
+    this.errorMessages = [];
+    if (this.registrationFee.totalAmount == 0) {
+      this.errorMessages.push(AURFormErrorMessages.REGISTRATION_FEE_NOT_CALCULATED);
+    }
+    this.aubFormGroup.checkInputData(this.errorMessages);
+
+    if (this.errorMessages.length > 0) {      
+      this.councilDialog.openDialog(AURFormErrorMessages.SUBMISSION_ERROR, this.errorMessages);
+    }
   }
 
   onUnitNumberChange(selectedUnitNumber: string) {
@@ -73,8 +102,8 @@ export class FormRegistrationComponent implements OnInit {
   }
 
   setSectionCode(selectedSection: string) {
-    this.resetSectionStyles();
     if (this.aubFormGroup.unitNumber.value == 'New') {
+      this.resetSectionStyles();
       RosterHeaderLabels.sectionCodes.forEach((value: string, key: string) => {
         if (value == selectedSection) {
           this.aubFormGroup.sectionCode.setValue(key);
@@ -83,13 +112,10 @@ export class FormRegistrationComponent implements OnInit {
         }
       });
     } else {
-      alert("Section Category can only be set when Unit No. [New] is selected.");
+      this.errorMessages = [];
+      this.errorMessages.push(AURFormErrorMessages.SECTION_CODE_NOT_NEW);
+      this.councilDialog.openDialog(AURFormErrorMessages.INVALID_PROCESS, this.errorMessages);
     }
-  }
-
-  calculateFees() {
-    this.service.populateAurFormObj(this.aurFormObj, this.aubFormGroup);
-    this.service.calculateFees(this.aurFormObj, this.registrationFee);
   }
 
   addCharterFee(checkbox) {

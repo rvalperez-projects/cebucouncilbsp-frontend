@@ -1,30 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { ProfileValidator } from '../../validator/ProfileValidator';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ProfileFormGroup } from '../../formGroups/ProfileFormGroup';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
+  providers:  [ ProfileFormGroup ]
 })
 export class ProfileComponent implements OnInit {
+
+  // Declare object
 
   selectedDistrict: string;
   selectedArea: string;
   selectedCategory: string;
   passwordHide = true;
   confirmPasswordHide = true;
-  profileValidator: ProfileValidator;
+  profileValidator: ProfileFormGroup;
   
+  // Combo box values
   Categories: any = ['Primary', 'Secondary'];
   Districts: any = ['North 1', 'North 2'];
   Areas: any = ['I', 'II', 'III'];
 
   
-  constructor() { 
-    this.profileValidator = new ProfileValidator();}
+  constructor(
+    public profileFormGroup: ProfileFormGroup) { 
+  }
 
   ngOnInit(): void {
+  }
+
+  getErrorMessage() {
+    return this.profileFormGroup.getErrorMessage();
   }
 
 

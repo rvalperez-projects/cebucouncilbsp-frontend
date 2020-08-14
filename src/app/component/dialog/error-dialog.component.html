@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+
+<ul>
+  <div mat-dialog-content class="mat-typography">
+      <li *ngFor="let error of data.errorMessages">{{error}}</li>
+  </div>
+</ul>
+
+<div mat-dialog-actions align="end">
+  <button mat-raised-button color="warn" (click)="close()">Close</button>
+</div>

@@ -6,7 +6,7 @@
             <div class="font-emphasize">APPLICATION FOR UNIT REGISTRATION (AUR)</div>
         </div>
 
-        <form [formGroup]="aubFormGroup.form" (submit)="onFormSubmit()">
+        <form [formGroup]="aubFormGroup.form">
         <table cellspacing="0">
             <colgroup>
                 <col style="width: 20%;"><!--Position-->
@@ -284,11 +284,11 @@
                         </select>
                     </td>
                     <td style="width: 21%;" class="font-condensed">  (
-                        <span name="sectionCodes" (click)="setSectionCode($event.target.id)" id="Langkay">Langkay</span> /
-                        <span name="sectionCodes" (click)="setSectionCode($event.target.id)" id="Kawan">Kawan</span> /
-                        <span name="sectionCodes" (click)="setSectionCode($event.target.id)" id="Troop">Troop</span> /
-                        <span name="sectionCodes" (click)="setSectionCode($event.target.id)" id="Outfit">Outfit</span> /
-                        <span name="sectionCodes" (click)="setSectionCode($event.target.id)" id="Circle">Circle</span>
+                        <span (click)="setSectionCode($event.target.id)" id="Langkay">Langkay</span> /
+                        <span (click)="setSectionCode($event.target.id)" id="Kawan">Kawan</span> /
+                        <span (click)="setSectionCode($event.target.id)" id="Troop">Troop</span> /
+                        <span (click)="setSectionCode($event.target.id)" id="Outfit">Outfit</span> /
+                        <span (click)="setSectionCode($event.target.id)" id="Circle">Circle</span>
                     )</td>
                     <td style="width: 10%;">Date Applied: </td>
                     <td style="width: 12%;" class="bottom-underline">{{aurFormObj.dateApplied | date:'yyyy-MM-dd'}}</td>
@@ -297,8 +297,8 @@
         </table>
 
         <br>
-        <button class="font-emphasize" (click)="calculateFees()">Calculate Fees</button>
-        <button type="submit" class="font-emphasize">Submit</button>
+        <button id="calculateBtnId" mat-raised-button color="accent" class="" (click)="calculateFees()">Calculate Fees</button>
+        <button id="submitBtnId" mat-raised-button color="primary" class="" (click)="onFormSubmit()">Submit</button>
 
         </form>
 

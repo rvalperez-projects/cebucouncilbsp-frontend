@@ -36,6 +36,7 @@ export abstract class RosterHeaderLabels {
     ]);
 
     public static highestBadge: Map<string, string> = new Map([
+        ["", ""],
         ["00", "Membership"],
         ["10", "Young USA"],
         ["11", "Growing USA"],
