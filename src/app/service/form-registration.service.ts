@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AURFormGroup } from '../formGroups/AURFormGroup';
-import { AURFormRegistration, ISComMemberDetails, UnitMemberDetails, RegistrationFees } from '../model/AURFormRegistration';
+import { AURFormRegistration, ISComMemberDetails, UnitMemberDetails, RegistrationFees } from '../model/aur-form-registration.model';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +36,7 @@ export class FormRegistrationService {
   }
 
   public populateAurFormObj(aurFormObj: AURFormRegistration, aurForm: AURFormGroup) {
-    aurFormObj.iSComMembersList = [];
+    aurFormObj.iscomMembersList = [];
     aurFormObj.unitMembersList = [];
     
     // Set values that can be changed from Form
@@ -44,7 +44,7 @@ export class FormRegistrationService {
     aurFormObj.sectionCode = aurForm.sectionCode.value;
     
     // Populate ISCom Officers
-    for (let member of aurForm.iSComMembersList.value) {
+    for (let member of aurForm.iscomMembersList.value) {
       // Add only when there is value in Surname
       if (member.surname) {
         let iSComMember = new ISComMemberDetails();
@@ -61,10 +61,10 @@ export class FormRegistrationService {
         iSComMember.signature = member.signature == undefined ? null : member.signature;
         iSComMember.age = member.age;
         iSComMember.membershipCertNo = member.membershipCertNo == undefined ? null : member.membershipCertNo;
-        iSComMember.highestTraining = member.highestTraining;
+        iSComMember.highestTrainingCode = member.highestTrainingCode;
         iSComMember.tenure = member.tenure;
         iSComMember.religion = member.religion;
-        aurFormObj.iSComMembersList.push(iSComMember);
+        aurFormObj.iscomMembersList.push(iSComMember);
       }
     }
     
@@ -86,21 +86,19 @@ export class FormRegistrationService {
         unitMember.registrationStatusCode = member.registrationStatusCode;
         unitMember.age = member.age;
         unitMember.membershipCertNo = member.membershipCertNo == undefined ? null : member.membershipCertNo;
-        unitMember.highestBadge = member.highestBadge;
+        unitMember.highestBadgeCode = member.highestBadgeCode;
         unitMember.tenure = member.tenure;
         unitMember.religion = member.religion;
         aurFormObj.unitMembersList.push(unitMember);
       }
     }
-    console.log(aurFormObj.iSComMembersList);
-    console.log(aurFormObj.unitMembersList);
   }
   
   public calculateFees(aurFormObj: AURFormRegistration, registrationFee: RegistrationFees) {
     registrationFee.resetCounters();
 
     // Count number of registrants
-    for (let member of aurFormObj.iSComMembersList) {
+    for (let member of aurFormObj.iscomMembersList) {
       switch(member.positionCode) {
         case "00": registrationFee.iSCRepsCount++; break;
         case "01": registrationFee.iSCRepsCount++; break;

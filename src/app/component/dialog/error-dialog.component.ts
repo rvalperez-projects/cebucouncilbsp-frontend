@@ -1,6 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
+/**
+ * @title Error Dialog Box
+ */
 @Component({
     selector: 'error-dialog.component',
     templateUrl: 'error-dialog.component.html',

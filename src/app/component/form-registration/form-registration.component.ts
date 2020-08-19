@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { RosterHeaderLabels } from '../../constant/RosterHeaderLabels';
-import { AURFormRegistration, RegistrationFees } from '../../model/AURFormRegistration';
+import { AURFormRegistration, RegistrationFees } from '../../model/aur-form-registration.model';
 import { FormRegistrationService } from '../../service/form-registration.service';
 import { AURFormGroup } from '../../formGroups/AURFormGroup';
 import { AURFormErrorMessages } from '../../constant/Messages';
@@ -19,8 +19,8 @@ export class FormRegistrationComponent implements OnInit {
   aurFormObj: AURFormRegistration;
 
   // Declare labels
-  iSComPositions: Array<string> = RosterHeaderLabels.iSComPositions;
-  memberPositions: Array<string> = RosterHeaderLabels.memberPositions;
+  iSComPositions = RosterHeaderLabels.iSComPositions;
+  memberPositions = RosterHeaderLabels.memberPositions;
 
   // Combo box values
   highestTrainingBox: Map<string,string> = RosterHeaderLabels.highestTraining;
@@ -34,19 +34,16 @@ export class FormRegistrationComponent implements OnInit {
   // Error Messages
   errorMessages: Array<string>;
 
-  // Dialog Box
-  councilDialog: CouncilDialog;
-
   constructor(
     private elementRef : ElementRef, 
-    public dialog: MatDialog, 
-    private service : FormRegistrationService, 
+    public  router: Router,
+    private service : FormRegistrationService,
+    private councilDialog: CouncilDialog, 
     public aubFormGroup: AURFormGroup ) {
 
     this.aurFormObj = new AURFormRegistration();
     this.registrationFee = new RegistrationFees();
     this.errorMessages = new Array<string>();
-    this.councilDialog = new CouncilDialog(dialog);
   }
 
   ngOnInit(): void {
@@ -67,6 +64,10 @@ export class FormRegistrationComponent implements OnInit {
 
     if (this.errorMessages.length > 0) {      
       this.councilDialog.openDialog(AURFormErrorMessages.SUBMISSION_ERROR, this.errorMessages);
+    } else {
+      this.errorMessages = [];
+      this.errorMessages.push("AUR Form Submission successful.");
+      this.councilDialog.openDialog("Submission Successful", this.errorMessages);
     }
   }
 

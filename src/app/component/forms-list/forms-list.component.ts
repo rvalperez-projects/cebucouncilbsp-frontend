@@ -1,21 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-
-export interface FormListInfo {
-  dateApplied: string;
-  aurNumber: string;
-  district: string;
-  institution: string;
-  status: string;
-  lastUpdatedDate: string;
-}
-
-const ELEMENT_DATA: FormListInfo[] = [
-  {dateApplied: '2020-08-08', aurNumber: '', district: 'North 1', institution: 'Tejero', status: 'H', lastUpdatedDate: '2020-08-08'},
-  {dateApplied: '2020-08-08', aurNumber: '', district: 'North 2', institution: 'Hipodromo', status: 'H', lastUpdatedDate: '2020-08-08'},
-  {dateApplied: '2020-08-08', aurNumber: '029182', district: 'North 3', institution: 'School 3', status: 'H', lastUpdatedDate: '2020-08-08'},
-  {dateApplied: '2020-08-08', aurNumber: '892131', district: 'North 4', institution: 'School 4', status: 'H', lastUpdatedDate: '2020-08-08'}
-];
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormsListService } from '../../service/forms-list.service';
+import { SearchFormModel } from '../../model/search-form.model';
+import { AURFormListFormGroup } from '../../formGroups/FormListGroup';
+import { FormListSearchResultsModel } from '../../model/form-list.model';
 
 @Component({
   selector: 'app-forms-list',
@@ -25,9 +13,7 @@ const ELEMENT_DATA: FormListInfo[] = [
 export class FormsListComponent implements OnInit {
 
   // Declare combo box data
-  Districts: any = ['North 1', 'North 2'];
-  Areas: any = ['I', 'II', 'III'];
-  Institutions: any = ['Tejero', 'Carreta', 'Central'];
+  searchFormData: SearchFormModel;
 
   // Set destination value
   selectedDistrict: string;
@@ -35,18 +21,52 @@ export class FormsListComponent implements OnInit {
   selectedInstitution: string;
 
   // Set table data
-  dataSource = ELEMENT_DATA;
-  displayedColumns: string[] = ['dateApplied', 'aurNumber', 'district', 'institution', 'status', 'lastUpdatedDate'];
-
+  dataSource: Array<FormListSearchResultsModel>;
+  displayedColumns: string[] = ['dateApplied', 'district', 'institution', 'aurNumber', 'status', 'lastUpdatedDate'];
 
   constructor(
-    public  route: ActivatedRoute
-  ) {}
+    public  route: ActivatedRoute,
+    public  router: Router,
+    private service: FormsListService,
+    public aurFormListFormGroup: AURFormListFormGroup
+  ) {
+    this.dataSource = new Array<FormListSearchResultsModel>();
+    let blankForm = new FormListSearchResultsModel();
+    this.dataSource.push(blankForm);
+  }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       // this.name = params['name'];
     }); 
+
+    // Populate Search Boxes
+    this.searchFormData = this.service.initializeSearchBoxes();
+
+    // Set Default Values
+    this.selectedArea = this.searchFormData.areaList[0];
+    this.selectedDistrict = this.searchFormData.districtList[0];
+    this.selectedInstitution = Object.keys(this.searchFormData.institutionMap).find(() => {});
   }
 
+  repopulateInstitutions() {
+    this.service.populateSearchBoxes(this.searchFormData, this.selectedArea, this.selectedDistrict);
+  }
+
+  repopulateDistrictAndInstitutions() {
+    this.service.populateSearchBoxes(this.searchFormData, this.selectedArea, null);
+  }
+
+  searchAURForms() {
+    this.service.searchAURForm(this.aurFormListFormGroup).then((data: Array<FormListSearchResultsModel>) => {
+      this.dataSource = data;
+    });
+  }
+
+  selectForm(id: any) {
+    // Navigate to Form
+    if (id) {
+      this.router.navigateByUrl('/forms/'+id);
+    }
+  }
 }

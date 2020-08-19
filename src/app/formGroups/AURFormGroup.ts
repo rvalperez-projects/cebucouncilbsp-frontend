@@ -22,8 +22,8 @@ export class AURFormGroup {
     get dateApplied() {
         return this._aurForm.get('dateApplied') as FormControl;
     }
-    get iSComMembersList() {
-        return this._aurForm.get('iSComMembersList') as FormArray;
+    get iscomMembersList() {
+        return this._aurForm.get('iscomMembersList') as FormArray;
     }
     get unitMembersList() {
         return this._aurForm.get('unitMembersList') as FormArray;
@@ -39,12 +39,13 @@ export class AURFormGroup {
             institutionId: [null, [Validators.required]],
             unitRegistrationNo: [null, [Validators.required]],
             unitNumber: [null, [Validators.required]],
+            charterFlag: [false],
             sectionCode: [null, [Validators.required]],
             dateApplied: [new Date()],
             officialReceiptNo: [null],
             officialReceiptDate: [null],
             expirationDate: [null, [Validators.required]],
-            iSComMembersList: this.formBuild.array([]),
+            iscomMembersList: this.formBuild.array([]),
             unitMembersList: this.formBuild.array([])
         });
         this.addISComControls();
@@ -54,7 +55,7 @@ export class AURFormGroup {
     private addISComControls() {
         let maxUnitMembers = RosterHeaderLabels.iSComPositions.length;
         for(let i=0; i < maxUnitMembers; i++) {
-            this.iSComMembersList.push(
+            this.iscomMembersList.push(
                 this.formBuild.group({
                     positionCode: [i, [Validators.required]],
                     surname: [null, [Validators.required]],
@@ -73,7 +74,7 @@ export class AURFormGroup {
 
     private addUnitMembersControls() {
         // Member Positions: 7; Unit Members: 32; Blank Rows: 3;
-        let maxUnitMembers = RosterHeaderLabels.memberPositions.length+32+3;
+        let maxUnitMembers = RosterHeaderLabels.memberPositions.length;
         for(let i=0; i < maxUnitMembers; i++) {
             this.unitMembersList.push(
                 this.formBuild.group({
@@ -95,14 +96,14 @@ export class AURFormGroup {
     checkInputData(errorMessages: Array<string>) {
 
         // Get ISCom Members Errors
-        for (let formGroup in this.iSComMembersList.value) {
+        for (let formGroup in this.iscomMembersList.value) {
             let missingFields: Array<string> = new Array<string>();
-            let surname = this.iSComMembersList.controls[formGroup].controls['surname'].value;
+            let surname = this.iscomMembersList.controls[formGroup].controls['surname'].value;
             if (!surname) {
                 continue;
             }
-            for (let property in this.iSComMembersList.controls[formGroup].controls) {
-                let controlErrors: ValidationErrors = this.iSComMembersList.controls[formGroup].controls[property].errors;
+            for (let property in this.iscomMembersList.controls[formGroup].controls) {
+                let controlErrors: ValidationErrors = this.iscomMembersList.controls[formGroup].controls[property].errors;
                 if (controlErrors != null) {
                     for (let error in controlErrors) {
                         // All Validators are Required only.
@@ -112,7 +113,9 @@ export class AURFormGroup {
                     }
                 }
             }
-            errorMessages.push("Sctr. " + surname + ":\n[" + missingFields.join(", ") + "]");
+            if (missingFields.length > 0) {
+                errorMessages.push("Sctr. " + surname + ":\n[" + missingFields.join(", ") + "]");
+            }
         }
 
         // Get Unit Members Errors
@@ -133,7 +136,9 @@ export class AURFormGroup {
                     }
                 }
             }
-            errorMessages.push("Sct. " + surname + ":\n[" + missingFields.join(", ") + "]");
+            if (missingFields.length > 0) {
+                errorMessages.push("Sctr. " + surname + ":\n[" + missingFields.join(", ") + "]");
+            }
         }
 
         // Check Unit Number and Section Code

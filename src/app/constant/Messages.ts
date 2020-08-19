@@ -13,5 +13,19 @@ export abstract class AURFormErrorMessages {
 export abstract class ProfileErrorMessages {
     
     static REQUIRED = "Required Field";
-    static INVALID_EMAIL_FORMAT = "Please enter a valid email address";
+    static INVALID_EMAIL_FORMAT = "Please enter a valid email address.";
+}
+
+export abstract class LoginErrorMessages {
+
+    static INCOMPLETE_DATA = "Incomplete Data";
+    static REQUIRED = "Username and Password inputs are required.";
+    
+    static INCORRECT_DATA = "Incorrect Input Data";
+}
+
+export abstract class ResponseErrorMessages {
+
+    static ACCESS_FORBIDDEN = "Access Forbidden";
+    static REDIRECT_LOGIN = "Redirecting to Login screen.";
 }

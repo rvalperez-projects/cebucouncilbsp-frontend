@@ -1,27 +1,39 @@
 export abstract class RosterHeaderLabels {
     
-    public static iSComPositions: Array<string> = [
-        "-Inst’l Scouting Rep.",
-        "-Parent Representative",
-        "-ISC Chair/Coor./Memb.",
-        "-Inst’l Sctng. Coordinator",
-        "Unit Leader/Circle Adviser",
-        "Asst. Unit Leader/ACA",
-        "Asst. Unit Leader/ACA"
+    public static iSComPositions: Position[] = [
+        {code: "00", title: "-Inst’l Scouting Rep."},
+        {code: "01", title: "-Parent Representative"},
+        {code: "02", title: "-ISC Chair/Coor./Memb."},
+        {code: "03", title: "-Inst’l Sctng. Coordinator"},
+        {code: "04", title: "Unit Leader/Circle Adviser"},
+        {code: "05", title: "Asst. Unit Leader/ACA"},
+        {code: "05", title: "Asst. Unit Leader/ACA"}
     ];
     
-    public static memberPositions: Array<string> = [
-        "SPL/SCL/RL:",
-        "ARL (Circle):",
-        "ARL (Circle):",
-        "AUDITOR (Circle):",
-        "SCRIBE/SECRETARY:",
-        "TREASURER:",
-        "QUARTERMASTER:",
-        "1.","2.","3.","4.","5.","6.","7.","8.","",
-        "1.","2.","3.","4.","5.","6.","7.","8.","",
-        "1.","2.","3.","4.","5.","6.","7.","8.","",
-        "1.","2.","3.","4.","5.","6.","7.","8.",""
+    public static memberPositions: Position[] = [
+        {code: "00", title: "SPL/SCL/RL:"},
+        {code: "01", title: "ARL (Circle):"},
+        {code: "02", title: "ARL (Circle):"},
+        {code: "03", title: "AUDITOR (Circle):"},
+        {code: "04", title: "SCRIBE/SECRETARY:"},
+        {code: "05", title: "TREASURER:"},
+        {code: "06", title: "QUARTERMASTER:"},
+        {code: "07", title: "1."},{code: "07", title: "2."},
+        {code: "07", title: "3."},{code: "07", title: "4."},
+        {code: "07", title: "5."},{code: "07", title: "6."},
+        {code: "07", title: "7."},{code: "07", title: "8."},{code: "x", title: ""},
+        {code: "07", title: "1."},{code: "07", title: "2."},
+        {code: "07", title: "3."},{code: "07", title: "4."},
+        {code: "07", title: "5."},{code: "07", title: "6."},
+        {code: "07", title: "7."},{code: "07", title: "8."},{code: "x", title: ""},
+        {code: "07", title: "1."},{code: "07", title: "2."},
+        {code: "07", title: "3."},{code: "07", title: "4."},
+        {code: "07", title: "5."},{code: "07", title: "6."},
+        {code: "07", title: "7."},{code: "07", title: "8."},{code: "x", title: ""},
+        {code: "07", title: "1."},{code: "07", title: "2."},
+        {code: "07", title: "3."},{code: "07", title: "4."},
+        {code: "07", title: "5."},{code: "07", title: "6."},
+        {code: "07", title: "7."},{code: "07", title: "8."}
     ];
 
     public static registrationStatusCode: Array<string> = ["N","RR"];
@@ -66,4 +78,9 @@ export abstract class RosterHeaderLabels {
 
     // TODO: Temporary only
     public static unitNumbers: Array<string> = ["", "L-011","K-109","T-327","T-191","S-190","R-33","New"];
+}
+
+interface Position {
+    code: string,
+    title: string
 }

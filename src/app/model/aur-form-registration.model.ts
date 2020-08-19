@@ -1,4 +1,6 @@
-export class AURFormRegistration {
+import { BaseModel } from '../model/entities.model';
+
+export class AURFormRegistration extends BaseModel {
     formId: number;
     institutionId: number;
     institutionName: string;
@@ -6,22 +8,27 @@ export class AURFormRegistration {
     area: string;
     council: string;
     unitNumber: string;
+    charterFlag: boolean;
     sectionCode: string;
     dateApplied: Date;
     unitRegistrationNo: string;
     officialReceiptNo: string;
     officialReceiptDate: Date;
     expirationDate: Date;
-    iSComMembersList: Array<ISComMemberDetails>;
+    statusCode: string;
+    iscomMembersList: Array<ISComMemberDetails>;
     unitMembersList: Array<UnitMemberDetails>;
 
     constructor() {
-        this.iSComMembersList = new Array<ISComMemberDetails>();
+        super();
+        this.iscomMembersList = new Array<ISComMemberDetails>();
         this.unitMembersList = new Array<UnitMemberDetails>();
     }
 }
 
-export class ISComMemberDetails {
+export class ISComMemberDetails extends BaseModel {
+    iSComId:number;
+    formId:number;
     positionCode:string;
     surname:string;
     givenName:string
@@ -29,12 +36,14 @@ export class ISComMemberDetails {
     signature:string;
     age:number;
     membershipCertNo:string;
-    highestTraining:string;
+    highestTrainingCode:string;
     tenure:number;
     religion:string;
 }
 
-export class UnitMemberDetails {
+export class UnitMemberDetails extends BaseModel {
+    memberId:number;
+    formId:number;
     positionCode:string;
     surname:string;
     givenName:string
@@ -42,7 +51,7 @@ export class UnitMemberDetails {
     registrationStatusCode:string;
     age:number;
     membershipCertNo:string;
-    highestBadge:string;
+    highestBadgeCode:string;
     tenure:number;
     religion:string;
 }

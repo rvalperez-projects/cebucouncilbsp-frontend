@@ -1,10 +1,14 @@
+import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ErrorDialog } from '../dialog/error-dialog.component';
-import { AURFormErrorMessages } from '../../constant/Messages';
+import { ErrorDialog } from './error-dialog.component';
 
+@Injectable({
+    providedIn: 'root'
+})
 export class CouncilDialog {
 
-    constructor(private dialog: MatDialog) {}
+    constructor(private dialog: MatDialog) {
+    }
 
     public openDialog(title: string, errorMessages: Array<string>) {
         const dialogRef = this.dialog.open(ErrorDialog, {
