@@ -35,8 +35,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         }
 
         return next.handle(request).pipe(catchError(error => {
-            console.log("Interceptor Error");
-            console.log(error);
+            console.info("Interceptor Error");
+            console.info(error);
             if ([401, 403].indexOf(error.status) !== -1) {
                 // auto logout if 401 Unauthorized or 403 Forbidden response returned from api
                 let message: Array<string> = [ResponseErrorMessages.REDIRECT_LOGIN];

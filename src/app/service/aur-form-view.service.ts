@@ -3,10 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { RosterHeaderLabels } from '../constant/RosterHeaderLabels';
 import { ResourceURL } from '../constant/ResourceURL';
 import { BaseResponse } from '../model/base-response.model';
-import { SessionConstant, Roles, EnumUtil, FormStatus } from '../constant/Constants';
 import { AURFormRegistration, ISComMemberDetails, UnitMemberDetails, RegistrationFees } from '../model/aur-form-registration.model';
 import { Observable } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -58,9 +57,9 @@ export class AURFormViewService {
     let maxUnitMembers = RosterHeaderLabels.iSComPositions.length;
     let positionCodes = this.getAllPositionCodes(data.iscomMembersList);
     for(let i=0, dataCount=0; i < maxUnitMembers; i++) {
-      
-      if (positionCodes.includes(RosterHeaderLabels.iSComPositions[i].code)) {
-        aurFormObj.iscomMembersList.push(data.iscomMembersList[dataCount]);
+      let member = data.iscomMembersList[dataCount];
+      if (member && positionCodes.includes(RosterHeaderLabels.iSComPositions[i].code)) {
+        aurFormObj.iscomMembersList.push(member);
         dataCount++;
         continue;
       }
@@ -72,9 +71,9 @@ export class AURFormViewService {
     maxUnitMembers = RosterHeaderLabels.memberPositions.length;
     positionCodes = this.getAllPositionCodes(data.unitMembersList);
     for(let i=0, dataCount=0; i < maxUnitMembers; i++) {
-      
-      if (positionCodes.includes(RosterHeaderLabels.memberPositions[i].code)) {
-        aurFormObj.unitMembersList.push(data.unitMembersList[dataCount]);
+      let member = data.unitMembersList[dataCount];
+      if (member && positionCodes.includes(RosterHeaderLabels.memberPositions[i].code)) {
+        aurFormObj.unitMembersList.push(member);
         dataCount++;
         continue;
       }
@@ -97,7 +96,7 @@ export class AURFormViewService {
       }
     }
     for (let member of aurFormObj.unitMembersList) {
-      if (member.surname) {
+      if (member && member.surname) {
         registrationFee.scoutsCount++;
       }
     }
@@ -124,17 +123,6 @@ export class AURFormViewService {
     let result = [];
     for (let item of list) {
       result.push(item.positionCode);
-    }
-    return result;
-  }
-
-  private findByCode(list: Iterable<any>, code: string) {
-    let result = null;
-    for (let item of list) {
-      if (item.positionCode == code) {
-        result = item;
-        break;
-      }
     }
     return result;
   }

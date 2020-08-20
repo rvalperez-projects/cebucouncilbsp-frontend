@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators, ValidationErrors } from '@angular/forms';
 import { RosterHeaderLabels } from '../constant/RosterHeaderLabels';
 import { AURFormErrorMessages } from '../constant/Messages';
+import { SessionConstant, FormStatus } from '../constant/Constants';
 
 @Injectable({
     providedIn: 'root'
@@ -12,6 +13,15 @@ export class AURFormGroup {
 
     get form(): FormGroup {
         return this._aurForm;
+    }
+    get institutionId() {
+        return this._aurForm.get('institutionId') as FormControl;
+    }
+    get charterFlag() {
+        return this._aurForm.get('charterFlag') as FormControl;
+    }
+    get statusCode() {
+        return this._aurForm.get('statusCode') as FormControl;
     }
     get unitNumber() {
         return this._aurForm.get('unitNumber') as FormControl;
@@ -34,17 +44,21 @@ export class AURFormGroup {
     }
 
     private createForm() {
+        let institutionId = window.sessionStorage.getItem(SessionConstant.USER_INSTITUTION_ID_KEY); 
+        let now = new Date();
+        let expiryDate = (new Date(now.getFullYear() + 1)).getDate() - 1;
         this._aurForm = this.formBuild.group({
             formId: [null, [Validators.required]],
-            institutionId: [null, [Validators.required]],
+            institutionId: [institutionId, [Validators.required]],
             unitRegistrationNo: [null, [Validators.required]],
             unitNumber: [null, [Validators.required]],
             charterFlag: [false],
             sectionCode: [null, [Validators.required]],
-            dateApplied: [new Date()],
+            statusCode: [FormStatus.SUBMITTED],
+            dateApplied: [now],
             officialReceiptNo: [null],
             officialReceiptDate: [null],
-            expirationDate: [null, [Validators.required]],
+            expirationDate: [expiryDate, [Validators.required]],
             iscomMembersList: this.formBuild.array([]),
             unitMembersList: this.formBuild.array([])
         });

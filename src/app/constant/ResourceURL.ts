@@ -14,6 +14,7 @@ export abstract class ResourceURL {
     static FORM_UPDATE_STATUS = "/form/update-status";
     static INSTITUTION_ALL = "/institution/all";
     static INSTITUTION_ID = "/institution/{institutionId}";
+    static INSTITUTION_UNIT_NUMBERS = "/institution/unitNumbers/{institutionId}";
     static AREA_ALL = "/area/all";
     static AREA_DISTRICTS_INSTITUTIONS = "/area/districts/institutions";
     static AREA_CODE = "/area/{areaCode}";

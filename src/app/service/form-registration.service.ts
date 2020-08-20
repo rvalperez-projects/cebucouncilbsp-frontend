@@ -1,34 +1,42 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { SessionConstant, FormStatus } from '../constant/Constants';
 import { AURFormGroup } from '../formGroups/AURFormGroup';
+import { BaseResponse } from '../model/base-response.model';
 import { AURFormRegistration, ISComMemberDetails, UnitMemberDetails, RegistrationFees } from '../model/aur-form-registration.model';
+import { ResourceURL } from '../constant/ResourceURL';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError, timeout } from 'rxjs/operators';
+import { InstitutionModel, UnitNumberModel } from '../model/entities.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormRegistrationService {
 
-  constructor() { 
+  constructor(
+    private http: HttpClient
+  ) { 
     
   }
 
   public initializeAUR(aurFormObj: AURFormRegistration, aurForm: AURFormGroup) {
     // Initialize AUR Form DTO
     aurFormObj.formId = null;
-    aurFormObj.institutionId = 0;
     aurFormObj.unitNumber = aurForm.unitNumber.value;
     aurFormObj.unitRegistrationNo = null;
     aurFormObj.sectionCode = aurForm.sectionCode.value;
+    aurFormObj.statusCode = aurForm.statusCode.value;
     aurFormObj.dateApplied = aurForm.dateApplied.value;
     aurFormObj.officialReceiptNo = null;
     aurFormObj.officialReceiptDate = null;
 
-    aurFormObj.institutionName = "School Name";
-    aurFormObj.district = "North 1";
+    aurFormObj.institutionId = Number.parseInt(aurForm.institutionId.value);
+    this.getInstitutionById(aurForm.institutionId.value).subscribe((institution: InstitutionModel) => {
+      aurFormObj.institutionName = institution.institutionName;
+      aurFormObj.district = institution.district;
+    })
     aurFormObj.council = "Cebu Council";
-
-    aurFormObj.unitNumber = aurForm.unitNumber.value;
-    aurFormObj.sectionCode = aurForm.sectionCode.value;
-    aurFormObj.dateApplied = aurForm.dateApplied.value;
 
     let expirationDate = new Date();
     expirationDate.setFullYear(expirationDate.getFullYear() + 1)
@@ -38,10 +46,6 @@ export class FormRegistrationService {
   public populateAurFormObj(aurFormObj: AURFormRegistration, aurForm: AURFormGroup) {
     aurFormObj.iscomMembersList = [];
     aurFormObj.unitMembersList = [];
-    
-    // Set values that can be changed from Form
-    aurFormObj.unitNumber = aurForm.unitNumber.value;
-    aurFormObj.sectionCode = aurForm.sectionCode.value;
     
     // Populate ISCom Officers
     for (let member of aurForm.iscomMembersList.value) {
@@ -92,6 +96,11 @@ export class FormRegistrationService {
         aurFormObj.unitMembersList.push(unitMember);
       }
     }
+
+    // Set values that can be changed from Form
+    aurFormObj.unitNumber = aurForm.unitNumber.value;
+    aurFormObj.sectionCode = aurForm.sectionCode.value;
+    aurFormObj.charterFlag = aurForm.charterFlag.value;
   }
   
   public calculateFees(aurFormObj: AURFormRegistration, registrationFee: RegistrationFees) {
@@ -116,6 +125,42 @@ export class FormRegistrationService {
     registrationFee.unitLeadersTotal = registrationFee.unitLeadersCount * 60;
     registrationFee.scoutsTotal = registrationFee.scoutsCount * 50;
     registrationFee.calculateTotalAmount();
+  }
+
+  public submitAURForm(aurFormObj: AURFormRegistration): Observable<BaseResponse> {
+    console.log(JSON.stringify(aurFormObj));
+    return this.http.post<BaseResponse>(ResourceURL.HOST + ResourceURL.FORM_SUBMIT, JSON.stringify(aurFormObj))
+      .pipe(
+        catchError(error => {
+          return throwError(error);
+        })
+      );
+  }
+
+  private getInstitutionById(institutionId: string): Observable<InstitutionModel> {
+    return this.http.get<BaseResponse>(ResourceURL.HOST + 
+      ResourceURL.INSTITUTION_ID.replace("{institutionId}", institutionId))
+        .pipe(
+          map(data => {
+            let institution = data.result as InstitutionModel;
+            return institution;
+          })
+        );
+  }
+
+  public getInstitutionUnitNumbers(unitNumbersBox: Array<string>, institutionId: string) {
+    return this.http.get<BaseResponse>(ResourceURL.HOST + 
+      ResourceURL.INSTITUTION_UNIT_NUMBERS.replace("{institutionId}", institutionId))
+        .pipe(
+          map(data => {
+            return data.result;
+          })
+        ).subscribe((unitNumbers : UnitNumberModel[]) => {
+          for (let unitNum of unitNumbers) {
+            unitNumbersBox.push(unitNum.unitNumber);
+          }
+          unitNumbersBox.push("New");
+        });
   }
 
 }

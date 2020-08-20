@@ -8,6 +8,11 @@ export abstract class AURFormErrorMessages {
 
     static UNIT_NUMBER_NOT_SET = "Unit Number not set.";
     static SECTION_CODE_NOT_SET = "Please select any of the following: \n\tLangkay / Kawan / Troop / Outfit / Circle.";
+
+    static SUBMISSION_SUCCESSFUL_TITLE = "Submission Successful";
+    static SUBMISSION_SUCCESSFUL_TEXT = "AUR Form Submission successful."
+    
+    static SUBMISSION_FAILED = "Submission Failed";
 }
 
 export abstract class ProfileErrorMessages {
@@ -28,4 +33,5 @@ export abstract class ResponseErrorMessages {
 
     static ACCESS_FORBIDDEN = "Access Forbidden";
     static REDIRECT_LOGIN = "Redirecting to Login screen.";
+    static CONTACT_ADMIN = "Please contact Systems Administrator.";
 }

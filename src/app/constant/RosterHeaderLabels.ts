@@ -75,9 +75,6 @@ export abstract class RosterHeaderLabels {
         ["03", "Outfit"],
         ["04", "Circle"]
     ]);
-
-    // TODO: Temporary only
-    public static unitNumbers: Array<string> = ["", "L-011","K-109","T-327","T-191","S-190","R-33","New"];
 }
 
 interface Position {

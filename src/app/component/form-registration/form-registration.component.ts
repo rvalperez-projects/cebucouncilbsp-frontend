@@ -4,8 +4,9 @@ import { RosterHeaderLabels } from '../../constant/RosterHeaderLabels';
 import { AURFormRegistration, RegistrationFees } from '../../model/aur-form-registration.model';
 import { FormRegistrationService } from '../../service/form-registration.service';
 import { AURFormGroup } from '../../formGroups/AURFormGroup';
-import { AURFormErrorMessages } from '../../constant/Messages';
+import { AURFormErrorMessages, ResponseErrorMessages } from '../../constant/Messages';
 import { CouncilDialog } from '../dialog/create-dialog-util';
+import { SessionConstant } from 'src/app/constant/Constants';
 
 @Component({
   selector: 'app-form-registration',
@@ -26,7 +27,7 @@ export class FormRegistrationComponent implements OnInit {
   highestTrainingBox: Map<string,string> = RosterHeaderLabels.highestTraining;
   highestBadgeBox: Map<string,string> = RosterHeaderLabels.highestBadge;
   registrationStatusBox: Array<string> = RosterHeaderLabels.registrationStatusCode;
-  unitNumbersBox: Array<string> = RosterHeaderLabels.unitNumbers;
+  unitNumbersBox: Array<string>;
 
   // Registration Fee Counters
   registrationFee: RegistrationFees;
@@ -44,10 +45,14 @@ export class FormRegistrationComponent implements OnInit {
     this.aurFormObj = new AURFormRegistration();
     this.registrationFee = new RegistrationFees();
     this.errorMessages = new Array<string>();
+    this.unitNumbersBox = new Array<string>();
   }
 
   ngOnInit(): void {
+    let institutionId = window.sessionStorage[SessionConstant.USER_INSTITUTION_ID_KEY];
+    this.aubFormGroup.institutionId.setValue(institutionId);
     this.service.initializeAUR(this.aurFormObj, this.aubFormGroup);
+    this.service.getInstitutionUnitNumbers(this.unitNumbersBox, institutionId);
   }
 
   calculateFees() {
@@ -56,19 +61,34 @@ export class FormRegistrationComponent implements OnInit {
   }
 
   onFormSubmit() {
+    if(!this.hasErrors()) {
+      this.service.submitAURForm(this.aurFormObj).subscribe(
+        () => {
+          let messages = [AURFormErrorMessages.SUBMISSION_SUCCESSFUL_TEXT];
+          this.councilDialog.openDialog(AURFormErrorMessages.SUBMISSION_SUCCESSFUL_TITLE, messages);
+        },
+        error => {
+          let messages = [ResponseErrorMessages.CONTACT_ADMIN];
+          this.councilDialog.openDialog(AURFormErrorMessages.SUBMISSION_FAILED, messages);
+        }
+      );
+    }
+  }
+
+  private hasErrors(): boolean {
     this.errorMessages = [];
+    // Check Total Amount
     if (this.registrationFee.totalAmount == 0) {
       this.errorMessages.push(AURFormErrorMessages.REGISTRATION_FEE_NOT_CALCULATED);
     }
+    
+    // Check Input Data
     this.aubFormGroup.checkInputData(this.errorMessages);
-
     if (this.errorMessages.length > 0) {      
       this.councilDialog.openDialog(AURFormErrorMessages.SUBMISSION_ERROR, this.errorMessages);
-    } else {
-      this.errorMessages = [];
-      this.errorMessages.push("AUR Form Submission successful.");
-      this.councilDialog.openDialog("Submission Successful", this.errorMessages);
+      return true;
     }
+    return false;
   }
 
   onUnitNumberChange(selectedUnitNumber: string) {

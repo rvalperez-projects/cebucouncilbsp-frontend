@@ -13,6 +13,7 @@ export class InstitutionModel extends BaseModel {
     district: string;
     area: string;
     categoryCode: string;
+    unitNumbers: Array<string>;
 }
 
 export class AreaModel extends BaseModel {
@@ -37,6 +38,7 @@ export class UserModel extends BaseModel {
 
 export class UnitNumberModel extends BaseModel {
     unitNumber: string;
+    institutionId: number;
     sectionCode: string;
     lastUsedYear: number;
 }
