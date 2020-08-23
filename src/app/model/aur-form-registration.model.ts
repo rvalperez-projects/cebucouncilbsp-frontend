@@ -27,7 +27,7 @@ export class AURFormRegistration extends BaseModel {
 }
 
 export class ISComMemberDetails extends BaseModel {
-    iSComId:number;
+    iscomId:number;
     formId:number;
     positionCode:string;
     surname:string;

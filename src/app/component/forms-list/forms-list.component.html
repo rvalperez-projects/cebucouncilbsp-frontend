@@ -15,19 +15,19 @@
             <table class="search-table" cellspacing="0">
                 <tr><td style="width: 20%;">
                         <mat-label>Area</mat-label>
-                        <mat-select class="areaBox" [(value)]="selectedArea" formControlName="area" (selectionChange)="repopulateDistrictAndInstitutions()">
+                        <mat-select class="areaBox" formControlName="area" (selectionChange)="repopulateDistrictAndInstitutions()">
                             <mat-option [value]="area" *ngFor="let area of searchFormData.areaList">{{area}}</mat-option>
                         </mat-select>
                     </td>
                     <td style="width: 20%;">
                         <mat-label>District</mat-label>
-                        <mat-select class="districtBox" [(value)]="selectedDistrict" formControlName="district" (selectionChange)="repopulateInstitutions()">
+                        <mat-select class="districtBox" formControlName="district" (selectionChange)="repopulateInstitutions()">
                             <mat-option [value]="district" *ngFor="let district of searchFormData.districtList">{{district}}</mat-option>
                         </mat-select>
                     </td>
                     <td style="width: 60%;">
                         <mat-label>Institution</mat-label>
-                        <mat-select classid="institutionBox" [(value)]="selectedInstitution" formControlName="institution">
+                        <mat-select classid="institutionBox" formControlName="institution">
                             <mat-option [value]="institution.key" *ngFor="let institution of searchFormData.institutionMap | keyvalue">{{institution.value}}</mat-option>
                         </mat-select>
                     </td>
@@ -38,7 +38,7 @@
                     </td>
                     <td style="text-align:right;">
                         <a mat-button mat-raised-button color="accent" (click)="searchAURForms()">Search</a>&nbsp;&nbsp;
-                        <a mat-button mat-raised-button color="primary" routerLink="new" routerLinkActive="active">New</a>
+                        <a mat-button mat-raised-button color="primary" routerLink="new" routerLinkActive="active" *ngIf="userRole=='00'">New</a>
                     </td>
                 </tr>
             </table>
@@ -51,11 +51,12 @@
                 matSort matSortActive="created" matSortDisableClear matSortDirection="desc">
             <colgroup>
                 <col style="width: 10%;">
+                <col style="width: 12%;">
+                <col style="width: 34%;">
                 <col style="width: 10%;">
-                <col style="width: 35%;">
-                <col style="width: 10%;">
-                <col style="width: 15%;">
-                <col style="width: 20%;">
+                <col style="width: 11%;">
+                <col style="width: 16%;">
+                <col style="width: 8%;">
             </colgroup>
 
             <!-- AUR Number Column -->
@@ -93,9 +94,17 @@
                 <th mat-header-cell *matHeaderCellDef>Last Updated</th>
                 <td mat-cell *matCellDef="let row">{{row.lastUpdatedDate | date:'yyyy/MM/dd HH:mm:ss'}}</td>
             </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                <td mat-cell *matCellDef="let row">
+                    <mat-icon *ngIf="userRole!='00'" style="padding-right:5px;" (click)="updateAURForm(row.formId)">create</mat-icon>
+                    <mat-icon color="primary" (click)="viewAURForm(row.formId)">pageview</mat-icon>
+                </td>
+            </ng-container>
             
             <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectForm(row.formId)"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
         </div>
     </mat-card>

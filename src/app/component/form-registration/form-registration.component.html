@@ -44,18 +44,18 @@
             <tbody formArrayName="iscomMembersList">
             <tr *ngFor="let label of iSComPositions; let isComMember = index" [formGroupName]="isComMember">
                 <td>{{label.title}}</td>
-                <td><input type="text" formControlName="surname" class="name">, 
-                    <input type="text" formControlName="givenName" class="name">&nbsp;
-                    <input type="text" formControlName="middleInitial" class="mi">
+                <td><input type="text" formControlName="surname" class="name" (focus)="disableSubmit()" maxlength="32">, 
+                    <input type="text" formControlName="givenName" class="name" (focus)="disableSubmit()" maxlength="32">&nbsp;
+                    <input type="text" formControlName="middleInitial" class="mi" (focus)="disableSubmit()" maxlength="1">
                 </td>
-                <td><input type="text" formControlName="signature" class=""></td>
-                <td><input type="number" formControlName="age" class="" min="0"></td>
-                <td><input type="text" formControlName="membershipCertNo" class=""></td>
-                <td><select formControlName="highestTraining" class="">
+                <td><input type="text" formControlName="signature" class="" (focus)="disableSubmit()"></td>
+                <td><input type="number" formControlName="age" class="" min="0" (focus)="disableSubmit()" min="18" max="80"></td>
+                <td><input type="text" formControlName="membershipCertNo" class="" (focus)="disableSubmit()" maxlength="32"></td>
+                <td><select formControlName="highestTrainingCode" class="" (focus)="disableSubmit()">
                     <option *ngFor="let trainingMap of highestTrainingBox | keyvalue" [value]="trainingMap.key">{{trainingMap.value}}</option>
                 </select></td>
-                <td><input type="number" formControlName="tenure" class="" min="0"></td>
-                <td><input type="text" formControlName="religion" class=""></td>
+                <td><input type="number" formControlName="tenure" class="" min="0" (focus)="disableSubmit()"></td>
+                <td><input type="text" formControlName="religion" class="" (focus)="disableSubmit()" maxlength="32"></td>
             </tr>
             </tbody>
         </table>
@@ -102,20 +102,20 @@
                         <ng-template #officerBlock>{{unitMember.title}}</ng-template>
                     </td>
                     <td style="border-left-style:none;">             
-                        <input type="text" formControlName="surname" class="name">, 
-                        <input type="text" formControlName="givenName" class="name">&nbsp;
-                        <input type="text" formControlName="middleInitial" class="mi">
+                        <input type="text" formControlName="surname" class="name" (focus)="disableSubmit()" maxlength="32">, 
+                        <input type="text" formControlName="givenName" class="name" (focus)="disableSubmit()" maxlength="32">&nbsp;
+                        <input type="text" formControlName="middleInitial" class="mi" (focus)="disableSubmit()" maxlength="1">
                     </td>
-                    <td><select formControlName="registrationStatusCode" class="">
+                    <td><select formControlName="registrationStatusCode" class="" (focus)="disableSubmit()">
                         <option *ngFor="let statusCode of registrationStatusBox" [value]="statusCode">{{statusCode}}</option>
                     </select></td>
-                    <td><input type="number" formControlName="age" class="" min="0"></td>
-                    <td><input type="text" formControlName="membershipCertNo" class=""></td>
-                    <td><select formControlName="highestBadge" class="">
+                    <td><input type="number" formControlName="age" class="" min="0" (focus)="disableSubmit()" max="80"></td>
+                    <td><input type="text" formControlName="membershipCertNo" class="" (focus)="disableSubmit()"maxlength="32"></td>
+                    <td><select formControlName="highestBadgeCode" class="" (focus)="disableSubmit()">
                         <option *ngFor="let badgeMap of highestBadgeBox | keyvalue" [value]="badgeMap.key">{{badgeMap.value}}</option>
                     </select></td>
-                    <td><input type="number" formControlName="tenure" class="" min="0"></td>
-                    <td><input type="text" formControlName="religion" class=""></td>
+                    <td><input type="number" formControlName="tenure" class="" min="0" (focus)="disableSubmit()"></td>
+                    <td><input type="text" formControlName="religion" class="" (focus)="disableSubmit()" maxlength="32"></td>
                 </ng-template>
             </tr>
             </tbody>
@@ -293,11 +293,11 @@
                         </select>
                     </td>
                     <td style="width: 21%;" class="font-condensed">  (
-                        <span (click)="setSectionCode($event.target.id)" id="Langkay">Langkay</span> /
-                        <span (click)="setSectionCode($event.target.id)" id="Kawan">Kawan</span> /
-                        <span (click)="setSectionCode($event.target.id)" id="Troop">Troop</span> /
-                        <span (click)="setSectionCode($event.target.id)" id="Outfit">Outfit</span> /
-                        <span (click)="setSectionCode($event.target.id)" id="Circle">Circle</span>
+                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Langkay">Langkay</span> /
+                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Kawan">Kawan</span> /
+                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Troop">Troop</span> /
+                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Outfit">Outfit</span> /
+                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Circle">Circle</span>
                     )</td>
                     <td style="width: 10%;">Date Applied: </td>
                     <td style="width: 12%;" class="bottom-underline">{{aurFormObj.dateApplied | date:'yyyy/MM/dd'}}</td>
@@ -308,7 +308,7 @@
         <br>
         <button mat-raised-button color="basic" class="" style="float:left" routerLink="/forms">Back</button>
 
-        <button [disabled]="registrationFee.totalAmount<=0" mat-raised-button color="primary" class="" style="float:right" (click)="onFormSubmit()">Submit</button>
+        <button [disabled]="submitDisabled" mat-raised-button color="primary" class="" style="float:right" (click)="onFormSubmit()">Submit</button>
         <button mat-raised-button color="accent" class="" style="float:right" (click)="calculateFees()">Calculate Fees</button>
 
         </form>

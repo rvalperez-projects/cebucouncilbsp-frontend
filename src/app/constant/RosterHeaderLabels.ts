@@ -75,6 +75,13 @@ export abstract class RosterHeaderLabels {
         ["03", "Outfit"],
         ["04", "Circle"]
     ]);
+
+    public static getByValue(map: Map<any, any>, searchValue: string) {
+        for (let [key, value] of map.entries()) {
+            if (value === searchValue)
+            return key;
+        }
+    }
 }
 
 interface Position {

@@ -9,6 +9,7 @@
             <div class="font-emphasize">APPLICATION FOR UNIT REGISTRATION (AUR)</div>
         </div>
 
+        <form [formGroup]="aubFormGroup.form">
         <table cellspacing="0">
             <colgroup>
                 <col style="width: 18%;"><!--Position-->
@@ -43,7 +44,8 @@
             <tr>
                 <td>ISCOM:</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
             </tr>
-            <tr class="table-row" *ngFor="let label of iSComPositions; let i = index">
+            <tbody formArrayName="iscomMembersList">
+            <tr class="table-row" *ngFor="let label of iSComPositions; let i = index" [formGroupName]="i">
                 <td>{{label.title}}</td>
                 <td><ng-container *ngIf="aurFormObj.iscomMembersList[i].surname; else blankName">
                         {{aurFormObj.iscomMembersList[i].surname}},&nbsp;
@@ -54,11 +56,16 @@
                 </td>
                 <td>{{aurFormObj.iscomMembersList[i].signature}}</td>
                 <td>{{aurFormObj.iscomMembersList[i].age}}</td>
-                <td>{{aurFormObj.iscomMembersList[i].membershipCertNo}}</td>
+                <td><ng-container *ngIf="aurFormObj.iscomMembersList[i].surname; else blankName">
+                        <input type="number" formControlName="membershipCertNo">
+                    </ng-container>
+                    <ng-template #blankName></ng-template>
+                </td>
                 <td>{{highestTrainingBox.get(aurFormObj.iscomMembersList[i].highestTrainingCode)}}</td>
                 <td>{{aurFormObj.iscomMembersList[i].tenure}}</td>
                 <td>{{aurFormObj.iscomMembersList[i].religion}}</td>
             </tr>
+            </tbody>
         </table>
 
         <!--Unit Members-->
@@ -92,7 +99,8 @@
                 <td>Scouting</td>
             </tr>
             <!--Unit Members -->
-            <tr class="table-row" *ngFor="let unitMember of memberPositions; let i = index">
+            <tbody formArrayName="unitMembersList">
+            <tr class="table-row" *ngFor="let unitMember of memberPositions; let i = index" [formGroupName]="i">
                 <ng-container *ngIf="unitMember.code == 'x'; else notBlank">
                     <td colspan="2" style="height:2px;"></td><td></td><td></td><td></td><td></td><td></td><td></td>
                 </ng-container>
@@ -110,12 +118,17 @@
                     </td>
                     <td>{{aurFormObj.unitMembersList[i].registrationStatusCode}}</td>
                     <td>{{aurFormObj.unitMembersList[i].age}}</td>
-                    <td>{{aurFormObj.unitMembersList[i].membershipCertNo}}</td>
+                    <td><ng-container *ngIf="aurFormObj.unitMembersList[i].surname; else blankName">
+                            <input type="number" formControlName="membershipCertNo">
+                        </ng-container>
+                        <ng-template #blankName></ng-template>
+                    </td>
                     <td>{{highestBadgeBox.get(aurFormObj.unitMembersList[i].highestBadgeCode)}}</td>
                     <td>{{aurFormObj.unitMembersList[i].tenure}}</td>
                     <td>{{aurFormObj.unitMembersList[i].religion}}</td>
                 </ng-template>
             </tr>
+            </tbody>
         </table>
         <div class="text-center">
             Registration Status: N – New; RR – Reregistering.
@@ -181,9 +194,14 @@
                     </table>
                     <table class="summary" cellspacing="0">
                         <tr><td style="width: 35%;" class="font-condensed">Paid Under O.R. No.</td>
-                            <td style="width: 35%;" class="bottom-underline">{{aurFormObj.officialReceiptNo}}</td>
+                            <td style="width: 35%;" class="bottom-underline">
+                                <input type="text" formControlName="officialReceiptNo" class="" maxlength="10" value="{{aurFormObj.officialReceiptNo}}">
+                                </td>
                             <td style="width: 10%;">  Date</td>
-                            <td style="width: 25%;" class="bottom-underline">{{aurFormObj.officialReceiptDate | date:'yyyy/MM/dd'}}</td>
+                            <td style="width: 25%;" class="bottom-underline" style="padding:0px;">
+                                <input type="date" formControlName="officialReceiptDate" class="" value="{{aurFormObj.officialReceiptDate}}">
+                            </td>
+                            <!-- {{aurFormObj.officialReceiptDate | date:'yyyy/MM/dd'}} -->
                         </tr>
                     </table>
                     <table class="summary" cellspacing="0">
@@ -277,7 +295,9 @@
                     <td style="width: 5%;">  District</td>
                     <td style="width: 20%;" class="bottom-underline">{{aurFormObj.district}}</td>
                     <td style="width: 10%;">  AUR No.</td>
-                    <td style="width: 20%;" class="bottom-underline">{{aurFormObj.unitRegistrationNo}}</td>
+                    <td style="width: 20%;" class="bottom-underline">
+                        <input type="text" formControlName="unitRegistrationNo" class="" maxlength="10" value="{{aurFormObj.unitRegistrationNo}}">
+                        </td>
                 </tr>
             </table>
             <table class="summary" cellspacing="0">
@@ -300,11 +320,12 @@
                 </tr>
             </table>
         </table>
+        </form>
 
         <br>
         <button id="submitBtnId" mat-raised-button color="basic" class="" style="float:left" routerLink="/forms">Back</button>
-
-        <button mat-raised-button color="warn" class="" style="float:right" (click)="print()">Print</button>
+        <button mat-raised-button color="primary" class="" style="float:right" (click)="processAURForm()">Process</button>
+        <button mat-raised-button color="accent" class="" style="float:right" (click)="populateMembershipCertNo()">Populate Nos.</button>
 
     </mat-card>
 </div>

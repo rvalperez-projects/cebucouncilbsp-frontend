@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators, ValidationErrors } from '@angular/forms';
 import { RosterHeaderLabels } from '../constant/RosterHeaderLabels';
-import { AURFormErrorMessages } from '../constant/Messages';
+import { AURFormMessages } from '../constant/Messages';
 import { SessionConstant, FormStatus } from '../constant/Constants';
 
 @Injectable({
@@ -13,6 +13,9 @@ export class AURFormGroup {
 
     get form(): FormGroup {
         return this._aurForm;
+    }
+    get formId() {
+        return this._aurForm.get('formId') as FormControl;
     }
     get institutionId() {
         return this._aurForm.get('institutionId') as FormControl;
@@ -26,11 +29,20 @@ export class AURFormGroup {
     get unitNumber() {
         return this._aurForm.get('unitNumber') as FormControl;
     }
+    get unitRegistrationNo() {
+        return this._aurForm.get('unitRegistrationNo') as FormControl;
+    }
     get sectionCode() {
         return this._aurForm.get('sectionCode') as FormControl;
     }
     get dateApplied() {
         return this._aurForm.get('dateApplied') as FormControl;
+    }
+    get officialReceiptNo() {
+        return this._aurForm.get('officialReceiptNo') as FormControl;
+    }
+    get officialReceiptDate() {
+        return this._aurForm.get('officialReceiptDate') as FormControl;
     }
     get iscomMembersList() {
         return this._aurForm.get('iscomMembersList') as FormArray;
@@ -46,16 +58,16 @@ export class AURFormGroup {
     private createForm() {
         let institutionId = window.sessionStorage.getItem(SessionConstant.USER_INSTITUTION_ID_KEY); 
         let now = new Date();
-        let expiryDate = (new Date(now.getFullYear() + 1)).getDate() - 1;
+        let expiryDate: Date = new Date(new Date(now.getFullYear() + 1).getDate() - 1);
         this._aurForm = this.formBuild.group({
-            formId: [null, [Validators.required]],
+            formId: [null],
             institutionId: [institutionId, [Validators.required]],
-            unitRegistrationNo: [null, [Validators.required]],
+            unitRegistrationNo: [null],
             unitNumber: [null, [Validators.required]],
-            charterFlag: [false],
+            charterFlag: [false, [Validators.required]],
             sectionCode: [null, [Validators.required]],
             statusCode: [FormStatus.SUBMITTED],
-            dateApplied: [now],
+            dateApplied: [now, [Validators.required]],
             officialReceiptNo: [null],
             officialReceiptDate: [null],
             expirationDate: [expiryDate, [Validators.required]],
@@ -71,14 +83,16 @@ export class AURFormGroup {
         for(let i=0; i < maxUnitMembers; i++) {
             this.iscomMembersList.push(
                 this.formBuild.group({
+                    iSComId: [null],
+                    formId: [null],
                     positionCode: [i, [Validators.required]],
                     surname: [null, [Validators.required]],
                     givenName: [null, [Validators.required]],
                     middleInitial: [null, [Validators.required]],
                     signature: [{value: null, disabled: true}, []],
-                    age: [null, [Validators.required]],
+                    age: [null, [Validators.required, Validators.min(18)]],
                     membershipCertNo: [{value: null, disabled: true}, []],
-                    highestTraining: [null],
+                    highestTrainingCode: [null],
                     tenure: [null, [Validators.required]],
                     religion: [null, [Validators.required]]
                 })
@@ -92,6 +106,8 @@ export class AURFormGroup {
         for(let i=0; i < maxUnitMembers; i++) {
             this.unitMembersList.push(
                 this.formBuild.group({
+                    memberId: [null],
+                    formId: [null],
                     positionCode: [i, [Validators.required]],
                     surname: [null, [Validators.required]],
                     givenName: [null, [Validators.required]],
@@ -99,7 +115,7 @@ export class AURFormGroup {
                     registrationStatusCode: [null, [Validators.required]],
                     age: [null, [Validators.required]],
                     membershipCertNo: [{value: null, disabled: true}, []],
-                    highestBadge: [null],
+                    highestBadgeCode: [null],
                     tenure: [null, [Validators.required]],
                     religion: [null, [Validators.required]]
                 })
@@ -108,6 +124,21 @@ export class AURFormGroup {
     }
 
     checkInputData(errorMessages: Array<string>) {
+
+        let missingFields = new Array<string>();
+        for (let item in this._aurForm.controls) {
+            let controlErrors: ValidationErrors = this._aurForm.controls[item].errors;
+            if (!controlErrors) {
+                continue;
+            }
+            for (let error in controlErrors) {
+                // All Validators are Required only.
+                missingFields.push(item);
+            }
+        }
+        if (missingFields.length > 0) {
+            errorMessages.push("Missing required fields:\n[" + missingFields.join(", ") + "]");
+        }
 
         // Get ISCom Members Errors
         for (let formGroup in this.iscomMembersList.value) {
@@ -157,10 +188,10 @@ export class AURFormGroup {
 
         // Check Unit Number and Section Code
         if (!this.unitNumber.value) {
-            errorMessages.push(AURFormErrorMessages.UNIT_NUMBER_NOT_SET);
+            errorMessages.push(AURFormMessages.UNIT_NUMBER_NOT_SET);
         }
         if (!this.sectionCode.value) {
-            errorMessages.push(AURFormErrorMessages.SECTION_CODE_NOT_SET);
+            errorMessages.push(AURFormMessages.SECTION_CODE_NOT_SET);
         }
     }
 

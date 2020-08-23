@@ -7,6 +7,8 @@ import { InstitutionModel } from '../model/entities.model';
 import { BaseResponse } from '../model/base-response.model';
 import { AURFormListFormGroup } from '../formGroups/FormListGroup';
 import { FormListSearchResultsModel } from '../model/form-list.model';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -23,39 +25,30 @@ export class FormsListService {
      this.boxValues = new Map<string, Map<string, Map<number, string>>>();
   }
 
-  public initializeSearchBoxes() {
+  public initializeSearchBoxes(): Observable<any> {
 
-    let searchFormModel: SearchFormModel = new SearchFormModel();
+    // Get info from session
+    let roleCode = window.sessionStorage.getItem(SessionConstant.USER_ROLE_CODE_KEY);
+    this.role = EnumUtil.getEnumValueByValue(Roles, roleCode);
+    this.institutionId = window.sessionStorage.getItem(SessionConstant.USER_INSTITUTION_ID_KEY);
 
-    let promise = new Promise(() => {
-
-      // Get info from session
-      let roleCode = window.sessionStorage.getItem(SessionConstant.USER_ROLE_CODE_KEY);
-      this.role = EnumUtil.getEnumValueByValue(Roles, roleCode);
-      this.institutionId = window.sessionStorage.getItem(SessionConstant.USER_INSTITUTION_ID_KEY);
-
-      // Determine API to call
-      switch(this.role) {
-        case Roles.GENERAL_USER: 
-          this.populateInstitutionBox().then((institution: InstitutionModel) => {
-            searchFormModel.institutionMap.set(institution.institutionId, institution.institutionName);
-            searchFormModel.areaList = [institution.area];
-            searchFormModel.districtList = [institution.district];
-          });
-          break;
-        case Roles.COUNCIL:
-        case Roles.ADMIN:
-          this.populateAreaDistrictInstitutionBoxes().then((result: Map<string, Map<string, Map<number, string>>>) => {
+    // Determine API to call
+    switch(this.role) {
+      case Roles.GENERAL_USER: 
+        return this.populateInstitutionBox().pipe(
+          map((institution: InstitutionModel) => {
+            return institution;
+          })
+        );
+      case Roles.COUNCIL:
+      case Roles.ADMIN:
+        return this.populateAreaDistrictInstitutionBoxes().pipe(
+          map((result: Map<string, Map<string, Map<number, string>>>) => {
             this.boxValues = result;
-
-            let area: string = Object.keys(this.boxValues)[0];
-            let district: string = Object.keys(this.boxValues[area])[0];
-            this.populateSearchBoxes(searchFormModel, area, district);
-          });
-          break;
-      }
-    });
-    return searchFormModel;
+            return result;
+          })
+        );
+    }
   }
 
   public populateSearchBoxes(searchFormModel: SearchFormModel, areaInput: string, districtInput: string) {
@@ -86,46 +79,31 @@ export class FormsListService {
     searchFormModel.districtList = districts;
   }
 
-  private populateInstitutionBox() {
-    let promise = new Promise ((resolve, reject) => {
-
-      // Call API
-      return this.http.get<BaseResponse>(ResourceURL.HOST + 
-        ResourceURL.INSTITUTION_ID.replace('{institutionId}', this.institutionId))
-        .toPromise()
-        .then(data => {
-            resolve(data.result);
-        });
-    });
-    return promise;
+  private populateInstitutionBox(): Observable<InstitutionModel> {
+    return this.http.get<BaseResponse>(ResourceURL.HOST + 
+      ResourceURL.INSTITUTION_ID.replace('{institutionId}', this.institutionId))
+      .pipe(
+        map(data => {
+          return data.result;
+        })
+      );
   }
 
-  private populateAreaDistrictInstitutionBoxes() {
-    
-    let promise = new Promise((resolve, reject) => {
+  private populateAreaDistrictInstitutionBoxes(): Observable<Map<string, Map<string, Map<number, string>>>> {
       // Call API
-      this.http.get<BaseResponse>(ResourceURL.HOST + ResourceURL.AREA_DISTRICTS_INSTITUTIONS)
-        .toPromise()
-        .then(data => {
-          resolve(data.result);
-        });
-    });
-    return promise;
+    return this.http.get<BaseResponse>(ResourceURL.HOST + ResourceURL.AREA_DISTRICTS_INSTITUTIONS)
+      .pipe(
+        map((data) => {
+          return data.result;
+        })
+      );
   }
 
   public searchAURForm(searchFormGroup: AURFormListFormGroup) {
-
-    let promise = new Promise((resolve) => {
-
-      let body = {
-        "area": searchFormGroup.area.value,
-        "district": searchFormGroup.district.value,
-        "institution": searchFormGroup.institution.value,
-        "name": searchFormGroup.name.value
-      };
-      this.http.post<BaseResponse>(ResourceURL.HOST + ResourceURL.FORM_SEARCH, JSON.stringify(body))
-        .toPromise()
-        .then( data => {
+    let body = JSON.stringify(searchFormGroup.form.getRawValue());
+    return this.http.post<BaseResponse>(ResourceURL.HOST + ResourceURL.FORM_SEARCH, body)
+      .pipe( 
+        map(data => {
           let tableData = new Array<FormListSearchResultsModel>();
           for (let obj of data.result) {
             let data = new FormListSearchResultsModel();
@@ -138,10 +116,9 @@ export class FormsListService {
             data.status = EnumUtil.getEnumTextByValue(FormStatus, obj.statusCode);
             tableData.push(data);
           }
-          resolve(tableData);
-        });
-    });
-    return promise;
+          return tableData;
+        })
+      );
   }
   
 }

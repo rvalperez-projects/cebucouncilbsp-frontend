@@ -19,6 +19,7 @@ import { LeftMenuComponent } from './component/left-menu/left-menu.component';
 import { ErrorDialog } from './component/dialog/error-dialog.component';
 import { HttpErrorInterceptor } from './utils/http-interceptor.utils';
 import { AurFormViewComponent } from './component/aur-form-view/aur-form-view.component';
+import { AurFormUpdateComponent } from './component/aur-form-update/aur-form-update.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AurFormViewComponent } from './component/aur-form-view/aur-form-view.co
     PaymentComponent,
     LeftMenuComponent,
     ErrorDialog,
-    AurFormViewComponent
+    AurFormViewComponent,
+    AurFormUpdateComponent
   ],
   imports: [
     BrowserModule,

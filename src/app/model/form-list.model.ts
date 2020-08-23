@@ -6,4 +6,5 @@ export class FormListSearchResultsModel {
     institution: string;
     status: string;
     lastUpdatedDate: string;
+    actions: any = '';
 }

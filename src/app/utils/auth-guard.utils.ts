@@ -20,13 +20,13 @@ export class AuthorizeGuard implements CanActivate {
         }
 
         // Allow routing when user role is specified in the route
-        let userRole = window.sessionStorage.getItem('user-role');
+        let userRole = window.sessionStorage.getItem(SessionConstant.USER_ROLE_CODE_KEY);
         if (route.data.roles && route.data.roles.contains(userRole)) {
             return true;
         }
 
         // Disallow routing
-        this.router.navigate(['/'], { queryParams: { returnUrl: state.url }});
+        this.router.navigate([state.url]);
         return false;
     }
 

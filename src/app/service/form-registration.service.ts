@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SessionConstant, FormStatus } from '../constant/Constants';
 import { AURFormGroup } from '../formGroups/AURFormGroup';
 import { BaseResponse } from '../model/base-response.model';
 import { AURFormRegistration, ISComMemberDetails, UnitMemberDetails, RegistrationFees } from '../model/aur-form-registration.model';
 import { ResourceURL } from '../constant/ResourceURL';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError, timeout } from 'rxjs/operators';
-import { InstitutionModel, UnitNumberModel } from '../model/entities.model';
+import { InstitutionModel } from '../model/entities.model';
 
 @Injectable({
   providedIn: 'root'
@@ -128,7 +127,6 @@ export class FormRegistrationService {
   }
 
   public submitAURForm(aurFormObj: AURFormRegistration): Observable<BaseResponse> {
-    console.log(JSON.stringify(aurFormObj));
     return this.http.post<BaseResponse>(ResourceURL.HOST + ResourceURL.FORM_SUBMIT, JSON.stringify(aurFormObj))
       .pipe(
         catchError(error => {
@@ -148,19 +146,14 @@ export class FormRegistrationService {
         );
   }
 
-  public getInstitutionUnitNumbers(unitNumbersBox: Array<string>, institutionId: string) {
+  public getInstitutionUnitNumbers(institutionId: string) {
     return this.http.get<BaseResponse>(ResourceURL.HOST + 
       ResourceURL.INSTITUTION_UNIT_NUMBERS.replace("{institutionId}", institutionId))
         .pipe(
           map(data => {
             return data.result;
           })
-        ).subscribe((unitNumbers : UnitNumberModel[]) => {
-          for (let unitNum of unitNumbers) {
-            unitNumbersBox.push(unitNum.unitNumber);
-          }
-          unitNumbersBox.push("New");
-        });
+        );
   }
 
 }

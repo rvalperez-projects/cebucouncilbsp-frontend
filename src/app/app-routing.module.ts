@@ -5,6 +5,7 @@ import { ProfileComponent } from './component/profile/profile.component';
 import { FormsListComponent } from './component/forms-list/forms-list.component';
 import { FormRegistrationComponent } from './component/form-registration/form-registration.component';
 import { AurFormViewComponent } from './component/aur-form-view/aur-form-view.component';
+import { AurFormUpdateComponent } from './component/aur-form-update/aur-form-update.component';
 import { UsersListComponent } from './component/users-list/users-list.component';
 import { PaymentComponent } from './component/payment/payment.component';
 import { Roles } from './constant/Constants';
@@ -38,12 +39,23 @@ const routes: Routes = [
       { 
         path: 'new', 
         component: FormRegistrationComponent, 
-        canActivate: [AuthorizeGuard] 
+        canActivate: [AuthorizeGuard],
+        data: { 
+          roles : [Roles.GENERAL_USER] 
+        }
       },
       { 
         path: ':id', 
         component: AurFormViewComponent, 
         canActivate: [AuthorizeGuard] 
+      },
+      { 
+        path: 'update/:id', 
+        component: AurFormUpdateComponent, 
+        canActivate: [AuthorizeGuard],
+        data: { 
+          roles : [Roles.COUNCIL, Roles.ADMIN] 
+        } 
       }
     ]
   },

@@ -1,10 +1,9 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { RosterHeaderLabels } from '../../constant/RosterHeaderLabels';
 import { AURFormRegistration, RegistrationFees } from '../../model/aur-form-registration.model';
 import { AURFormViewService } from '../../service/aur-form-view.service';
 import { AURFormGroup } from '../../formGroups/AURFormGroup';
-import { CouncilDialog } from '../dialog/create-dialog-util';
 
 @Component({
   selector: 'app-aur-form-view',
@@ -30,9 +29,7 @@ export class AurFormViewComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private elementRef : ElementRef, 
     private service : AURFormViewService,
-    private councilDialog: CouncilDialog, 
     public aubFormGroup: AURFormGroup ) {
 
     this.aurFormObj = new AURFormRegistration();
@@ -45,14 +42,6 @@ export class AurFormViewComponent implements OnInit {
     this.service.initializeAUR(this.aurFormObj, this.registrationFee).subscribe(() => {
       this.loading = false;
     });
-  }
-
-  updateStatus() {
-
-  }
-  
-  processAURForm() {
-
   }
 
   print() {

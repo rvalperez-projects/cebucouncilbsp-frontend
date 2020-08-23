@@ -4,6 +4,8 @@ import { FormsListService } from '../../service/forms-list.service';
 import { SearchFormModel } from '../../model/search-form.model';
 import { AURFormListFormGroup } from '../../formGroups/FormListGroup';
 import { FormListSearchResultsModel } from '../../model/form-list.model';
+import { SessionConstant, Roles, EnumUtil } from '../../constant/Constants';
+import { InstitutionModel } from 'src/app/model/entities.model';
 
 @Component({
   selector: 'app-forms-list',
@@ -14,15 +16,11 @@ export class FormsListComponent implements OnInit {
 
   // Declare combo box data
   searchFormData: SearchFormModel;
-
-  // Set destination value
-  selectedDistrict: string;
-  selectedArea: string;
-  selectedInstitution: string;
+  userRole: string;
 
   // Set table data
   dataSource: Array<FormListSearchResultsModel>;
-  displayedColumns: string[] = ['dateApplied', 'district', 'institution', 'aurNumber', 'status', 'lastUpdatedDate'];
+  displayedColumns: string[] = ['dateApplied', 'district', 'institution', 'aurNumber', 'status', 'lastUpdatedDate', 'actions'];
 
   constructor(
     public  route: ActivatedRoute,
@@ -30,43 +28,79 @@ export class FormsListComponent implements OnInit {
     private service: FormsListService,
     public aurFormListFormGroup: AURFormListFormGroup
   ) {
+    this.searchFormData = new SearchFormModel();
     this.dataSource = new Array<FormListSearchResultsModel>();
     let blankForm = new FormListSearchResultsModel();
     this.dataSource.push(blankForm);
+    this.userRole = window.sessionStorage[SessionConstant.USER_ROLE_CODE_KEY];
   }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       // this.name = params['name'];
     }); 
+    
+    let roleCode = window.sessionStorage.getItem(SessionConstant.USER_ROLE_CODE_KEY);
+    let role = EnumUtil.getEnumValueByValue(Roles, roleCode);
 
     // Populate Search Boxes
-    this.searchFormData = this.service.initializeSearchBoxes();
+     this.service.initializeSearchBoxes().subscribe((result: any) => {
+       
+       switch(role) {
+        case Roles.GENERAL_USER: 
+          let institution = result as InstitutionModel;
+          this.searchFormData.institutionMap.set(institution.institutionId, institution.institutionName);
+          this.searchFormData.areaList = [institution.area];
+          this.searchFormData.districtList = [institution.district];
+    
+          this.aurFormListFormGroup.area.setValue(institution.area);
+          this.aurFormListFormGroup.district.setValue(institution.district);
+          this.aurFormListFormGroup.institution.setValue(institution.institutionId);
+          break;
+        case Roles.COUNCIL:
+        case Roles.ADMIN:
+          let mapResult = result as Map<string, Map<string, Map<number, string>>>;
+          let area: string = Object.keys(mapResult)[0];
+          let district: string = Object.keys(mapResult[area])[0];
 
-    // Set Default Values
-    this.selectedArea = this.searchFormData.areaList[0];
-    this.selectedDistrict = this.searchFormData.districtList[0];
-    this.selectedInstitution = Object.keys(this.searchFormData.institutionMap).find(() => {});
+          this.aurFormListFormGroup.area.setValue(area);
+          this.aurFormListFormGroup.district.setValue(district);
+          this.aurFormListFormGroup.institution.setValue('');
+          this.service.populateSearchBoxes(this.searchFormData, area, district);
+          break;
+       }
+     });
   }
 
   repopulateInstitutions() {
-    this.service.populateSearchBoxes(this.searchFormData, this.selectedArea, this.selectedDistrict);
+    this.service.populateSearchBoxes(this.searchFormData, 
+      this.aurFormListFormGroup.area.value, 
+      this.aurFormListFormGroup.district.value);
   }
 
   repopulateDistrictAndInstitutions() {
-    this.service.populateSearchBoxes(this.searchFormData, this.selectedArea, null);
+    this.service.populateSearchBoxes(this.searchFormData, 
+      this.aurFormListFormGroup.area.value, 
+      null);
   }
 
   searchAURForms() {
-    this.service.searchAURForm(this.aurFormListFormGroup).then((data: Array<FormListSearchResultsModel>) => {
+    this.service.searchAURForm(this.aurFormListFormGroup).subscribe((data: Array<FormListSearchResultsModel>) => {
       this.dataSource = data;
     });
   }
 
-  selectForm(id: any) {
+  viewAURForm(id: any) {
     // Navigate to Form
     if (id) {
       this.router.navigateByUrl('/forms/'+id);
+    }
+  }
+
+  updateAURForm(id: any) {
+    // Navigate to Form
+    if (id) {
+      this.router.navigateByUrl('/forms/update/'+id);
     }
   }
 }

@@ -8,6 +8,21 @@ export enum FormStatus {
     PAID = "01",
     PROCESSED = "02"
 }
+export enum SectionCode {
+    LANGKAY = "00",
+    KAWAN = "01",
+    TROOP = "02",
+    OUTFIT = "03",
+    CIRCLE = "04"
+}
+export enum InstitutionCategory {
+    PRESCHOOL = "00",
+    PRIMARY = "01",
+    SECONDARY = "02",
+    SENIOR_HIGH = "03",
+    COLLEGE = "04",
+    COMMUNITY = "05"
+}
 
 export abstract class EnumUtil {
     static getEnumValueByValue(enumObj: any, value: string) {
