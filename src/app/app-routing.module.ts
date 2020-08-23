@@ -28,8 +28,7 @@ const routes: Routes = [
   },
   { 
     path: 'profile', 
-    component: ProfileComponent, 
-    canActivate: [AuthorizeGuard] 
+    component: ProfileComponent
   },
   { 
     path: 'forms', 
