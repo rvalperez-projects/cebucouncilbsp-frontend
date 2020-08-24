@@ -1,7 +1,8 @@
 export abstract class ResourceURL {
 
     // TODO Set to Environment Properties
-    static HOST = "http://localhost:8080";
+    // static HOST = "http://localhost:8080";
+    static HOST = "https://cebucouncilbsp.herokuapp.com";
 
     static LOGIN = "/auth/login";
     static LOGOUT = "/auth/logout";
