@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../app/service/auth.service';
+import { SessionConstant } from '../app/constant/Constants';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'cebucouncilbsp-frontend';
+
+  constructor(
+    private authService: AuthService) {
+  }
+
+  logout() {
+    this.authService.logout();
+  }
+
+  get isLoggedIn(): boolean {
+    return window.sessionStorage[SessionConstant.LOGIN_TOKEN_KEY];
+  }
 }
