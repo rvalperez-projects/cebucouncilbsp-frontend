@@ -34,5 +34,7 @@ input[type="checkbox"] {margin: 0px;}
 
 @page {size: 8.5in 13in;margin: 2cm;}
 @media print {
-
+    table {
+        font-size:10px;
+    }
 }

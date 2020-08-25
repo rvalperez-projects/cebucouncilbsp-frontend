@@ -1,4 +1,4 @@
-.box{position:relative;top:0;opacity:1;float:left;padding:60px 50px 40px 50px;width:100%;background:#fff;border-radius:10px;transform:scale(1);-webkit-transform:scale(1);-ms-transform:scale(1);z-index:5;max-width:330px;}
+.box{position:relative;top:0;opacity:1;float:left;padding:60px 50px 40px 50px;width:80%;background:#fff;border-radius:10px;transform:scale(1);-webkit-transform:scale(1);-ms-transform:scale(1);z-index:5;max-width:330px;}
 .login-wrapper{height:100%;}
 .login-wrapper .example-form{min-width:100%;max-width:300px;width:100%;}
 .login-wrapper .example-full-width,.login-wrapper .btn-block{width:100%;}

@@ -6,4 +6,5 @@
         <a *ngIf="!isLoggedIn" mat-button mat-raised-button routerLink="profile" routerLinkActive="active">Sign Up</a>
     </span>
 </mat-toolbar>
+<app-mat-spinner-overlay *ngIf="spinner.isLoading" overlay="true"></app-mat-spinner-overlay>
 <router-outlet></router-outlet>

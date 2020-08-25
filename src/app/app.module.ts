@@ -20,6 +20,7 @@ import { ErrorDialog } from './component/dialog/error-dialog.component';
 import { HttpErrorInterceptor } from './utils/http-interceptor.utils';
 import { AurFormViewComponent } from './component/aur-form-view/aur-form-view.component';
 import { AurFormUpdateComponent } from './component/aur-form-update/aur-form-update.component';
+import { MatSpinnerOverlayComponent } from './utils/mat-spinner-overlay/mat-spinner-overlay.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AurFormUpdateComponent } from './component/aur-form-update/aur-form-upd
     LeftMenuComponent,
     ErrorDialog,
     AurFormViewComponent,
-    AurFormUpdateComponent
+    AurFormUpdateComponent,
+    MatSpinnerOverlayComponent
   ],
   imports: [
     BrowserModule,
@@ -46,11 +48,14 @@ import { AurFormUpdateComponent } from './component/aur-form-update/aur-form-upd
     ReactiveFormsModule,
     MatDialogModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: HttpErrorInterceptor,
-    multi: true
-  }],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    },
+    MatSpinnerOverlayComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

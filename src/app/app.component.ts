@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../app/service/auth.service';
 import { SessionConstant } from '../app/constant/Constants';
+import { MatSpinnerOverlayComponent } from '../app/utils/mat-spinner-overlay/mat-spinner-overlay.component';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,8 @@ import { SessionConstant } from '../app/constant/Constants';
 export class AppComponent {
 
   constructor(
-    private authService: AuthService) {
+    private authService: AuthService,
+    public spinner: MatSpinnerOverlayComponent) {
   }
 
   logout() {

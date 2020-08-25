@@ -6,6 +6,7 @@ import { SessionConstant } from '../constant/Constants';
 import { LoginErrorMessages } from '../constant/Messages';
 import { LoginFormGroup } from '../formGroups/LoginFormGroup';
 import { CouncilDialog } from '../component/dialog/create-dialog-util';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,35 +21,25 @@ export class AuthService {
   }
   
   public login(loginFormGroup: LoginFormGroup) {
-    // const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' };
-    let promise = new Promise((resolve, reject) => {
-      let body = {
-        username : loginFormGroup.username.value,
-        password : loginFormGroup.password.value
-      };
+    let body = JSON.stringify(loginFormGroup.form.getRawValue());
 
-      this.http.post<string>(ResourceURL.HOST + ResourceURL.LOGIN, 
-        JSON.stringify(body))
-        .toPromise()
-        .then(
-          data => {
-            // Add to local storage
-            this.decodeJwtToken(data);    
+    return this.http.post<string>(ResourceURL.HOST + ResourceURL.LOGIN, body)
+      .pipe(
+        map(data => {
+          // Add to local storage
+          this.decodeJwtToken(data);    
 
-            // Navigate to Home
-            this.router.navigateByUrl('/forms');
-            resolve();
-          },
-          error => {
-            if (error.error) {
-              let errorResponse = JSON.parse(error.error);
-              this.councilDialog.openDialog(LoginErrorMessages.INCORRECT_DATA, errorResponse.errorMessages);
-            }
-            reject();
+          // Navigate to Home
+          this.router.navigateByUrl('/forms');
+        }),
+        catchError(error => {
+          if (error.error) {
+            let errorResponse = JSON.parse(error.error);
+            this.councilDialog.openDialog(LoginErrorMessages.INCORRECT_DATA, errorResponse.errorMessages);
           }
-        );
-    });
-    return promise;
+          throw error;
+        })
+      );
   }
   
   public logout() {
