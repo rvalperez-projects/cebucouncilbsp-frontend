@@ -14,9 +14,6 @@ export class LoginComponent implements OnInit {
   // Error Messages
   errorMessages: Array<string>;
 
-  // Progress Bar
-  loading: boolean;
-
   constructor(
     private service: AuthService,
     public loginFormGroup: LoginFormGroup
@@ -32,9 +29,8 @@ export class LoginComponent implements OnInit {
       console.error("Validation Error");
       return;
     }
-    this.loading = true;
     this.service.login(this.loginFormGroup)
-      .then(() => this.loading = false);
+      .subscribe(() => {});
   }
 
   private hasValidationError(): boolean {
