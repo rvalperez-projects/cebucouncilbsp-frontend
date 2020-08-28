@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ResourceURL } from '../constant/ResourceURL';
-import { SessionConstant } from '../constant/Constants';
+import { SessionConstant } from '../constant/Enums';
 import { LoginErrorMessages } from '../constant/Messages';
 import { LoginFormGroup } from '../formGroups/LoginFormGroup';
 import { CouncilDialog } from '../component/dialog/create-dialog-util';

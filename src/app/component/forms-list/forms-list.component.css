@@ -7,12 +7,9 @@
 .formsList-wrapper .btn-block {width:100%;}
 .formsList-wrapper .one-digit {width:30%;}
 
-.formsList-wrapper mat-card-content {margin:30px;}
 .formsList-wrapper mat-card-header {text-align:left;width:100%;display:block;font-weight:700;position: relative;left:-10;}
 .formsList-wrapper mat-card-header-text {margin:0px;}
 .formsList-wrapper mat-card-header mat-card-title{font-size:20px;margin:0;padding-left: 0%;}
-
-.formsList-wrapper .mat-stroked-button{border:1px solid currentColor;line-height:54px;background:#FFF7FA;}
 
 .formsList-wrapper table.search-table {width:100%;}
 .formsList-wrapper table.search-table tr {line-height:30px;}

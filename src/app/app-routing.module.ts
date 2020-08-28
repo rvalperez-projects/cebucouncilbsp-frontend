@@ -8,7 +8,7 @@ import { AurFormViewComponent } from './component/aur-form-view/aur-form-view.co
 import { AurFormUpdateComponent } from './component/aur-form-update/aur-form-update.component';
 import { UsersListComponent } from './component/users-list/users-list.component';
 import { PaymentComponent } from './component/payment/payment.component';
-import { Roles } from './constant/Constants';
+import { Roles } from './constant/Enums';
 import { AuthorizeGuard } from './utils/auth-guard.utils';
 
 const routes: Routes = [

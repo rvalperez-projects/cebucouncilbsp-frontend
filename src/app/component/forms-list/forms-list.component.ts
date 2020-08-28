@@ -4,7 +4,7 @@ import { FormsListService } from '../../service/forms-list.service';
 import { SearchFormModel } from '../../model/search-form.model';
 import { AURFormListFormGroup } from '../../formGroups/FormListGroup';
 import { FormListSearchResultsModel } from '../../model/form-list.model';
-import { SessionConstant, Roles, EnumUtil } from '../../constant/Constants';
+import { SessionConstant, Roles, EnumUtil } from '../../constant/Enums';
 import { InstitutionModel } from 'src/app/model/entities.model';
 
 @Component({

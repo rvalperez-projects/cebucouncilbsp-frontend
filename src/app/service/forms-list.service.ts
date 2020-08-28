@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SessionConstant, Roles, EnumUtil, FormStatus } from '../constant/Constants';
+import { SessionConstant, Roles, EnumUtil, FormStatus } from '../constant/Enums';
 import { ResourceURL } from '../constant/ResourceURL';
 import { SearchFormModel } from '../model/search-form.model';
 import { InstitutionModel } from '../model/entities.model';

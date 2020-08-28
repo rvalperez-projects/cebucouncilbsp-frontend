@@ -31,7 +31,7 @@ export abstract class AURFormMessages {
 
 export abstract class ProfileErrorMessages {
     
-    static REQUIRED = "Required Field";
+    static SUBMISSION_ERROR = "Incomplete Data";
     static INVALID_EMAIL_FORMAT = "Please enter a valid email address.";
 }
 

@@ -6,7 +6,8 @@ export abstract class ResourceURL {
 
     static LOGIN = "/auth/login";
     static LOGOUT = "/auth/logout";
-    static SIGN_UP = "/user/sign-up";
+    static SIGN_UP = "/auth/sign-up";
+    static AREA_DISTRICTS = "/auth/areaDistricts";
     static USER_SEARCH = "/user/search";
     static FORM_SUBMIT = "/form/submit";
     static FORM_DISPLAY = "/form/{formId}";

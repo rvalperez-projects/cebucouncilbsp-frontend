@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getErrorMessage() {
-    return this.profileFormGroup.getErrorMessage();
+    // return this.profileFormGroup.getErrorMessage();
   }
 
 
