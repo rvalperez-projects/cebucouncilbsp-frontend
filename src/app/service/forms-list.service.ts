@@ -116,6 +116,9 @@ export class FormsListService {
             data.status = EnumUtil.getEnumTextByValue(FormStatus, obj.statusCode);
             tableData.push(data);
           }
+          if (tableData.length < 1) {
+            tableData.push(new FormListSearchResultsModel());
+          }
           return tableData;
         })
       );

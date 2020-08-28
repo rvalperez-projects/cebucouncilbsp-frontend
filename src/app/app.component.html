@@ -1,11 +1,7 @@
 <!-- Toolbar -->
 <mat-toolbar color="primary" class="app-header">
     <div>Cebu Council BSP</div>
-    <!-- <span class="nav-tool-items">
-        <a *ngIf="isLoggedIn" mat-button mat-raised-button (click)="logout()">Logout</a>
-        <a *ngIf="!isLoggedIn" mat-button mat-raised-button routerLink="profile" routerLinkActive="active">Sign Up</a>
-    </span> -->
-    <button mat-icon-button class="" (click)="logout()">
+    <button *ngIf="isLoggedIn" mat-icon-button class="" (click)="logout()">
         <mat-icon>account_circle</mat-icon>
     </button>
 </mat-toolbar>

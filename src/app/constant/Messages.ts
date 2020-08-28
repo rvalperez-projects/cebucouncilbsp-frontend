@@ -29,8 +29,11 @@ export abstract class AURFormMessages {
     static MISSING_MEMBERSHIP_CERT_NO = " missing [Membership Cert. No.].";
 }
 
-export abstract class ProfileErrorMessages {
+export abstract class ProfileFormMessages {
     
+    static SUBMISSION_SUCCESSFUL = "Submission Successful";
+    static WELCOME_MESSAGE_1 = "Welcome to the Cebu Council BSP Portal.";
+    static WELCOME_MESSAGE_2 = "Login to register your unit.";
     static SUBMISSION_ERROR = "Incomplete Data";
     static INVALID_EMAIL_FORMAT = "Please enter a valid email address.";
 }

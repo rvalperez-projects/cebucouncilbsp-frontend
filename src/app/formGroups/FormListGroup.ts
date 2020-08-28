@@ -17,8 +17,8 @@ export class AURFormListFormGroup {
     get district() {
         return this._aurFormListForm.get('district') as FormControl;
     }
-    get institution() {
-        return this._aurFormListForm.get('institution') as FormControl;
+    get institutionId() {
+        return this._aurFormListForm.get('institutionId') as FormControl;
     }
     get name() {
         return this._aurFormListForm.get('name') as FormControl;
@@ -31,7 +31,7 @@ export class AURFormListFormGroup {
         this._aurFormListForm = this.formBuild.group({
             area: [null],
             district: [null],
-            institution: [null],
+            institutionId: [null],
             name: ['']
         });
     }

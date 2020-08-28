@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation, Output, EventEmitter } from '@ang
 import { SignUpService } from '../../service/sign-up.service';
 import { ProfileFormGroup } from '../../formGroups/ProfileFormGroup';
 import { ProfileLabels, AreaDistrictsInterface } from '../../constant/Constants';
-import { ProfileErrorMessages } from '../../constant/Messages';
+import { ProfileFormMessages } from '../../constant/Messages';
 import { CouncilDialog } from '../dialog/create-dialog-util';
 
 @Component({
@@ -51,7 +51,9 @@ export class SignUpComponent implements OnInit {
     this.profileFormGroup.district.setValue(this.selectedDistrict.district);
     if (!this.hasErrors()) {
       this.service.registerUser(this.profileFormGroup).subscribe(() => {
-        console.log("Successfully registered!");
+        let messages = [ProfileFormMessages.WELCOME_MESSAGE_1, ProfileFormMessages.WELCOME_MESSAGE_2];
+        this.councilDialog.openDialog(ProfileFormMessages.SUBMISSION_SUCCESSFUL, messages);
+        this.closeSignUp();
       });
     }
   }
@@ -61,7 +63,7 @@ export class SignUpComponent implements OnInit {
     this.errorMessages = [];
     this.profileFormGroup.getErrorMessage(this.errorMessages);
     if (this.errorMessages.length > 0) {      
-      this.councilDialog.openDialog(ProfileErrorMessages.SUBMISSION_ERROR, this.errorMessages);
+      this.councilDialog.openDialog(ProfileFormMessages.SUBMISSION_ERROR, this.errorMessages);
       return true;
     }
     return false;
