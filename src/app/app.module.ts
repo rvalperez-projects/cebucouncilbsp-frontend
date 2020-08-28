@@ -21,6 +21,7 @@ import { HttpErrorInterceptor } from './utils/http-interceptor.utils';
 import { AurFormViewComponent } from './component/aur-form-view/aur-form-view.component';
 import { AurFormUpdateComponent } from './component/aur-form-update/aur-form-update.component';
 import { MatSpinnerOverlayComponent } from './utils/mat-spinner-overlay/mat-spinner-overlay.component';
+import { SignUpComponent } from './component/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MatSpinnerOverlayComponent } from './utils/mat-spinner-overlay/mat-spin
     ErrorDialog,
     AurFormViewComponent,
     AurFormUpdateComponent,
-    MatSpinnerOverlayComponent
+    MatSpinnerOverlayComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

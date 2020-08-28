@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef  } from '@angular/core';
 import { LoginFormGroup } from '../../formGroups/LoginFormGroup';
 import { LoginErrorMessages } from '../../constant/Messages';
 import { AuthService } from '../../service/auth.service';
@@ -9,19 +9,23 @@ import { AuthService } from '../../service/auth.service';
   styleUrls: ['./login.component.css'],
   providers:  [ LoginFormGroup, AuthService ]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit  {
 
   // Error Messages
   errorMessages: Array<string>;
 
+  isSignUpClicked: boolean;
+
   constructor(
     private service: AuthService,
-    public loginFormGroup: LoginFormGroup
+    public loginFormGroup: LoginFormGroup,
+    private cdRef : ChangeDetectorRef
   ) { 
     this.errorMessages = new Array<string>();
   }
 
   ngOnInit(): void {
+    this.isSignUpClicked = false;
   }
 
   login() {
@@ -30,7 +34,8 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.service.login(this.loginFormGroup)
-      .subscribe(() => {});
+      .subscribe(() => {
+    });
   }
 
   private hasValidationError(): boolean {
@@ -45,6 +50,11 @@ export class LoginComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  openSignUp() {
+    this.isSignUpClicked = true;
+    this.cdRef.detectChanges();
   }
 
 }

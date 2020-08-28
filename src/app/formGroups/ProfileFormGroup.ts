@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators, ValidationErrors } from '@angular/forms';
-import { ProfileErrorMessages } from '../constant/Messages';
+import { Roles } from '../constant/Enums';
 
 @Injectable({
   providedIn: 'root'
@@ -34,14 +34,17 @@ export class ProfileFormGroup {
   get mobileNumber(): FormControl {
     return this._profileForm.controls['mobileNumber'] as FormControl;
   }
-  get email(): FormControl {
-    return this._profileForm.controls['email'] as FormControl;
+  get emailAddress(): FormControl {
+    return this._profileForm.controls['emailAddress'] as FormControl;
   }
-  get institution(): FormControl {
-    return this._profileForm.controls['institution'] as FormControl;
+  get institutionName(): FormControl {
+    return this._profileForm.controls['institutionName'] as FormControl;
   }
-  get category(): FormControl {
-    return this._profileForm.controls['category'] as FormControl;
+  get address(): FormControl {
+    return this._profileForm.controls['address'] as FormControl;
+  }
+  get categoryCode(): FormControl {
+    return this._profileForm.controls['categoryCode'] as FormControl;
   }
   get district(): FormControl {
     return this._profileForm.controls['district'] as FormControl;
@@ -52,62 +55,37 @@ export class ProfileFormGroup {
 
   private createForm() {
     this._profileForm = this.formBuild.group({
-      username: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      confirmPassword: [null, [Validators.required]],
+      username: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(8)]],
+      password: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(8)]],
+      confirmPassword: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(8)]],
       surname: [null, [Validators.required]],
       givenName: [null, [Validators.required]],
       middleInitial: [null],
       mobileNumber: [null],
-      email: [null, [Validators.required, Validators.email]],
-      institution: [null, [Validators.required]],
-      category: [null, [Validators.required]],
+      emailAddress: [null, [Validators.required, Validators.email]],
+      institutionName: [null, [Validators.required]],
+      address: [null, [Validators.required]],
+      categoryCode: [null, [Validators.required]],
       district: [null, [Validators.required]],
-      area: [{value: null, disabled: true}, [Validators.required]]
+      area: [null, [Validators.required]],
+      authorityCode: [Roles.GENERAL_USER]
     });
   }
   
-  getErrorMessage() {
-
-    if (this.username.hasError('required')) {
-      return ProfileErrorMessages.REQUIRED;
+  getErrorMessage(errorMessages: Array<string>) {
+    let missingFields = new Array<string>();
+    for (let item in this._profileForm.controls) {
+        let controlErrors: ValidationErrors = this._profileForm.controls[item].errors;
+        if (!controlErrors) {
+            continue;
+        }
+        for (let error in controlErrors) {
+            missingFields.push(item);
+        }
     }
-    if (this.password.hasError('required')) {
-      return ProfileErrorMessages.REQUIRED;
+    if (missingFields.length > 0) {
+        errorMessages.push("Please input correct value of the following fields:\n[" + missingFields.join(", ") + "]");
     }
-    if (this.confirmPassword.hasError('required')) {
-      return ProfileErrorMessages.REQUIRED;
-    }
-    if (this.surname.hasError('required')) {
-      return ProfileErrorMessages.REQUIRED;
-    }
-    if (this.username.hasError('required')) {
-      return ProfileErrorMessages.REQUIRED;
-    }
-    if (this.givenName.hasError('required')) {
-      return ProfileErrorMessages.REQUIRED;
-    }
-    if (this.mobileNumber.hasError('required')) {
-      return ProfileErrorMessages.REQUIRED;
-    }
-    if (this.email.hasError('email') && !this.email.hasError('required')) {
-      return ProfileErrorMessages.INVALID_EMAIL_FORMAT;
-    }
-    if (this.email.hasError('required')) {
-      return ProfileErrorMessages.REQUIRED;
-    }
-    if (this.institution.hasError('required')) {
-      return ProfileErrorMessages.REQUIRED;
-    }
-    if (this.category.hasError('required')) {
-      return ProfileErrorMessages.REQUIRED;
-    }
-    if (this.district.hasError('required')) {
-      return ProfileErrorMessages.REQUIRED;
-    }
-    if (this.area.hasError('required')) {
-      return ProfileErrorMessages.REQUIRED;
-    }
-    return '';
   }
+
 }

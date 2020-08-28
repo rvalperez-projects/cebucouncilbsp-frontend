@@ -1,10 +1,13 @@
 <!-- Toolbar -->
 <mat-toolbar color="primary" class="app-header">
     <div>Cebu Council BSP</div>
-    <span class="nav-tool-items">
+    <!-- <span class="nav-tool-items">
         <a *ngIf="isLoggedIn" mat-button mat-raised-button (click)="logout()">Logout</a>
         <a *ngIf="!isLoggedIn" mat-button mat-raised-button routerLink="profile" routerLinkActive="active">Sign Up</a>
-    </span>
+    </span> -->
+    <button mat-icon-button class="" (click)="logout()">
+        <mat-icon>account_circle</mat-icon>
+    </button>
 </mat-toolbar>
 <app-mat-spinner-overlay *ngIf="spinner.isLoading" overlay="true"></app-mat-spinner-overlay>
 <router-outlet></router-outlet>

@@ -1,0 +1,132 @@
+<div class="profile-wrapper overlay" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+  
+      <form class="form" [formGroup]="profileFormGroup.form">
+    
+        <table cellspacing="0" class="full-width">
+            <colgroup>
+                <col style="width: 10%;">
+                <col style="width: 30%;">
+                <col style="width: 60%;">
+            </colgroup>
+            <!--Login Details-->
+            <tr>
+                <td><mat-icon>lock</mat-icon></td>
+                <td colspan="2"><h1>Login Details</h1></td>
+            </tr>
+            <tr><td></td>
+                <td>Username</td>
+                <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
+                    <input matInput #username formControlName="username"
+                        placeholder="6-8 characters" required minlength="6" maxlength="8">
+                  </mat-form-field>
+                </td>
+            </tr>
+            <tr><td></td>
+                <td>Password</td>
+                <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
+                    <input matInput #password formControlName="password" [type]="passwordHide ? 'password' : 'text'"
+                        placeholder="6-8 characters" required minlength="6" maxlength="8">
+                    <button mat-icon-button matSuffix (click)="passwordHide = !passwordHide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="passwordHide">
+                      <mat-icon>{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                  </mat-form-field>
+                </td>
+            </tr>
+            <tr><td></td>
+                <td>Confirm Password</td>
+                <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
+                    <input matInput #confirmPassword formControlName="confirmPassword" [type]="confirmPasswordHide ? 'password' : 'text'"
+                        placeholder="6-8 characters" required minlength="6" maxlength="8">
+                    <button mat-icon-button matSuffix (click)="confirmPasswordHide = !confirmPasswordHide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="confirmPasswordHide">
+                      <mat-icon>{{confirmPasswordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                  </mat-form-field>
+                </td>
+            </tr>
+            <!--Personal Information-->
+            <tr style>
+                <td><br><mat-icon>account_box</mat-icon></td>
+                <td colspan="2"><br><h1>Personal Information</h1></td>
+            </tr>
+            <tr><td></td>
+                <td colspan="2">
+                <table cellspacing="0"><tr>
+                    <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
+                      <input matInput formControlName="surname" placeholder="Surname" required maxlength="32">
+                    </mat-form-field></td>
+                    
+                    <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
+                      <input matInput formControlName="givenName" placeholder="Given Name" required maxlength="32">
+                    </mat-form-field></td>
+                    
+                    <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
+                      <input matInput formControlName="middleInitial" placeholder="M.I." maxlength="1">
+                    </mat-form-field></td>
+                  </tr></table>
+            </td>
+            <tr><td></td>
+                <td>Mobile Number</td>
+                <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
+                    <input matInput formControlName="mobileNumber" placeholder="09xxxxxxxxx" maxlength="11">
+                </mat-form-field></td>
+            </tr>
+            <tr><td></td>
+                <td>Email Address</td>
+              <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
+                <input matInput formControlName="emailAddress" placeholder="Ex. pat@example.com" required>
+              </mat-form-field></td>
+            </tr>
+            <!--Scouting Participation-->
+            <tr style>
+                <td><br><mat-icon>school</mat-icon></td>
+                <td colspan="2"><br><h1>Scouting Participation</h1></td>
+            </tr>
+            <tr><td></td>
+                <td>Sponsoring Institution</td>
+                <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
+                    <input matInput formControlName="institutionName" placeholder="Name of School / Organization" required maxlength="64">
+                </mat-form-field></td>
+            </tr>
+            <tr><td></td>
+                <td>Address</td>
+                <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
+                    <textarea matInput formControlName="address" placeholder="Full Address" required maxlength="256"></textarea>
+                </mat-form-field></td>
+            </tr>
+            <tr><td></td>
+                <td>Category</td>
+                <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
+                    <mat-select formControlName="categoryCode" required>
+                        <mat-option [value]="" selected [disabled]="true">Select one category</mat-option>
+                        <mat-option [value]="category.code" *ngFor="let category of Categories">{{category.text}}</mat-option>
+                    </mat-select>
+                  </mat-form-field></td>
+            </tr>
+            <tr><td></td>
+                <td>Area / District</td>
+                <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
+                    <mat-select [(value)]="selectedDistrict" formControlName="district" required>
+                        <mat-option [value]="" selected [disabled]="true">Select Area & District</mat-option>
+                        <mat-option [value]="item" *ngFor="let item of AreaDistricts">Area {{item.area}} : {{item.district}}</mat-option>
+                    </mat-select>
+                  </mat-form-field></td>
+            </tr>
+            <tr><td></td>
+                <td>Contact Number</td>
+                <td><mat-form-field class="full-width" class="full-width" appearance="outline" [floatLabel]="'never'">
+                    <input matInput placeholder="Telephone / Mobile Number" maxlength="32">
+                  </mat-form-field></td>
+            </tr>
+        </table>
+
+        <br>
+        <table class="full-width">
+            <tr><td style="text-align:center;"><button mat-raised-button color="primary" class="btn-block" (click)="register()">Register</button></td>
+                <td style="text-align:center;"><button mat-raised-button color="warn" class="btn-block" (click)="closeSignUp()">Cancel</button></td>
+            </tr>
+        </table>
+    
+      </form>
+    </mat-card>
+  </div>

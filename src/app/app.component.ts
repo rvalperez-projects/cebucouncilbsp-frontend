@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef, AfterContentChecked } from '@angular/core';
 import { AuthService } from '../app/service/auth.service';
-import { SessionConstant } from '../app/constant/Constants';
+import { SessionConstant } from './constant/Enums';
 import { MatSpinnerOverlayComponent } from '../app/utils/mat-spinner-overlay/mat-spinner-overlay.component';
 
 @Component({
@@ -8,11 +8,16 @@ import { MatSpinnerOverlayComponent } from '../app/utils/mat-spinner-overlay/mat
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements AfterContentChecked  {
 
   constructor(
     private authService: AuthService,
-    public spinner: MatSpinnerOverlayComponent) {
+    public spinner: MatSpinnerOverlayComponent,
+    private cdRef: ChangeDetectorRef) {
+  }
+
+  ngAfterContentChecked() {
+    this.cdRef.detectChanges();
   }
 
   logout() {

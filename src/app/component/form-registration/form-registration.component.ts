@@ -1,7 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
-import { SessionConstant, SectionCode, EnumUtil } from 'src/app/constant/Constants';
+import { SessionConstant, SectionCode, EnumUtil } from 'src/app/constant/Enums';
 import { AURFormRegistration, RegistrationFees } from '../../model/aur-form-registration.model';
 import { AURFormMessages, ResponseErrorMessages } from '../../constant/Messages';
 import { UnitNumberModel } from '../../model/entities.model';
@@ -41,7 +40,6 @@ export class FormRegistrationComponent implements OnInit {
 
   constructor(
     private elementRef : ElementRef, 
-    public  router: Router,
     private service : FormRegistrationService,
     private councilDialog: CouncilDialog, 
     public aubFormGroup: AURFormGroup ) {

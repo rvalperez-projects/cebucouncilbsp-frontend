@@ -7,7 +7,7 @@ import { AURFormUpdateService } from '../../service/aur-form-update.service';
 import { AURFormGroup } from '../../formGroups/AURFormGroup';
 import { CouncilDialog } from '../dialog/create-dialog-util';
 import { AURFormMessages } from '../../constant/Messages';
-import { FormStatus } from '../../constant/Constants';
+import { FormStatus } from '../../constant/Enums';
 import { ResourceURL } from 'src/app/constant/ResourceURL';
 
 @Component({
