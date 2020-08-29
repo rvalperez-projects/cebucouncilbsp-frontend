@@ -1,9 +1,57 @@
-<!-- Toolbar -->
+<!-- Header Toolbar -->
 <mat-toolbar color="primary" class="app-header">
-    <div>Cebu Council BSP</div>
-    <button *ngIf="isLoggedIn" mat-icon-button class="" (click)="logout()">
-        <mat-icon>account_circle</mat-icon>
-    </button>
+    <mat-toolbar-row class="mainbar">
+        <button mat-icon-button fxShow="true" fxHide.gt-sm>
+            <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+            <!-- <mat-icon >menu</mat-icon> -->
+        </button>&nbsp;&nbsp;
+        <div><a mat-button [routerLink]="'/home'"><h1>Cebu Council BSP</h1></a></div>
+        <div *ngIf="isLoggedIn" fxShow="true" fxHide.lt-md>
+            <a mat-button [matMenuTriggerFor]="formsMenu">Forms&nbsp;<mat-icon>keyboard_arrow_down</mat-icon></a>
+            <a mat-button [matMenuTriggerFor]="usersMenu">Users&nbsp;<mat-icon>keyboard_arrow_down</mat-icon></a>
+        </div>
+        <div *ngIf="isLoggedIn" fxFlex fxLayoutAlign="flex-end center">
+            <button mat-icon-button [matMenuTriggerFor]="logout">
+                <mat-icon>account_circle</mat-icon>
+            </button>
+            <span class="userStyle" fxShow="true" fxHide.lt-md>{{loggedInUser}}</span>
+        </div>
+    </mat-toolbar-row>
 </mat-toolbar>
+
+<!-- Spinner -->
 <app-mat-spinner-overlay *ngIf="spinner.isLoading" overlay="true"></app-mat-spinner-overlay>
-<router-outlet></router-outlet>
+
+<!-- Side Navigation Toolbar -->
+<mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav [mode]="'push'">
+        <mat-nav-list>
+            <mat-list-item></mat-list-item>
+            <button mat-list-item [routerLink]="'/home'" class="shadow">Home</button>
+            <button mat-list-item [matMenuTriggerFor]="formsMenu" class="shadow">Forms&nbsp;<mat-icon fxFlex fxLayoutAlign="flex-end center">keyboard_arrow_down</mat-icon></button>
+            <button mat-list-item [matMenuTriggerFor]="usersMenu" class="shadow">Users&nbsp;<mat-icon fxFlex fxLayoutAlign="flex-end center">keyboard_arrow_down</mat-icon></button>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+<mat-menu #formsMenu="matMenu">
+    <button mat-menu-item [routerLink]="'/forms'">
+        <span>Appication for Unit Registration</span>
+    </button>
+</mat-menu>
+<mat-menu #usersMenu="matMenu">
+    <button mat-menu-item [routerLink]="'/users'">
+        <span>Users List</span>
+    </button>
+</mat-menu>
+<mat-menu #logout="matMenu">
+    <button mat-menu-item (click)="processLogout()">
+        <span>Logout</span>
+    </button>
+</mat-menu>
+
+<!-- <router-outlet></router-outlet> -->
+

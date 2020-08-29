@@ -36,5 +36,6 @@ input[type="checkbox"] {margin: 0px;}
 @media print {
     table {
         font-size:10px;
+        border-color:red;
     }
 }

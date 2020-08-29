@@ -4,8 +4,10 @@ import { FormsListService } from '../../service/forms-list.service';
 import { SearchFormModel } from '../../model/search-form.model';
 import { AURFormListFormGroup } from '../../formGroups/FormListGroup';
 import { FormListSearchResultsModel } from '../../model/form-list.model';
-import { SessionConstant, Roles, EnumUtil, FormStatus } from '../../constant/Enums';
+import { SessionConstant } from '../../constant/Constants';
+import { Roles, EnumUtil, FormStatus } from '../../constant/Enums';
 import { InstitutionModel } from 'src/app/model/entities.model';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-forms-list',
@@ -30,6 +32,7 @@ export class FormsListComponent implements OnInit {
     public  route: ActivatedRoute,
     public  router: Router,
     private service: FormsListService,
+    private header: AppComponent,
     public aurFormListFormGroup: AURFormListFormGroup
   ) {
     this.searchFormData = new SearchFormModel();
@@ -40,6 +43,7 @@ export class FormsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.header.initLoggedInUser();
     this.route.queryParams.subscribe(params => {
       // this.name = params['name'];
     }); 
@@ -113,14 +117,14 @@ export class FormsListComponent implements OnInit {
   private viewAURForm(id: any) {
     // Navigate to Form
     if (id) {
-      this.router.navigateByUrl('/forms/'+id);
+      this.router.navigateByUrl('/forms/view', {state:{formId:id}});
     }
   }
 
   private updateAURForm(id: any) {
     // Navigate to Form
     if (id) {
-      this.router.navigateByUrl('/forms/update/'+id);
+      this.router.navigateByUrl('/forms/update', {state:{formId:id}});
     }
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
+import { AppComponent } from 'src/app/app.component';
 import { FormGroup, Validators, FormControl} from '@angular/forms';
 import { RosterHeaderLabels } from '../../constant/RosterHeaderLabels';
 import { AURFormRegistration, RegistrationFees } from '../../model/aur-form-registration.model';
@@ -8,7 +9,6 @@ import { AURFormGroup } from '../../formGroups/AURFormGroup';
 import { CouncilDialog } from '../dialog/create-dialog-util';
 import { AURFormMessages } from '../../constant/Messages';
 import { FormStatus } from '../../constant/Enums';
-import { ResourceURL } from 'src/app/constant/ResourceURL';
 
 @Component({
   selector: 'app-aur-form-update',
@@ -37,6 +37,7 @@ export class AurFormUpdateComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private header: AppComponent,
     public  router: Router,
     private service : AURFormUpdateService,
     private councilDialog: CouncilDialog, 
@@ -48,8 +49,11 @@ export class AurFormUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.header.initLoggedInUser();
+    
     this.loading = true;
-    this.aurFormObj.formId = Number.parseInt(this.route.snapshot.paramMap.get("id"));
+    // this.aurFormObj.formId = Number.parseInt(this.route.snapshot.paramMap.get("id"));
+    this.aurFormObj.formId = history.state.formId;
     this.service.initializeAUR(this.aurFormObj, this.registrationFee).subscribe(() => {
       this.loading = false;
       this.enableMembershipCertNo();
@@ -78,7 +82,7 @@ export class AurFormUpdateComponent implements OnInit {
         this.councilDialog.openDialog(AURFormMessages.PROCESSING_SUCCESSFUL_TITLE, [AURFormMessages.PROCESSING_SUCCESSFUL_TEXT]);
 
         // Route to AUR Form View
-        this.router.navigateByUrl('/forms/' + this.aurFormObj.formId);
+        this.router.navigateByUrl('/forms/view', {state:{formId:this.aurFormObj.formId}});
       });
     }
   }

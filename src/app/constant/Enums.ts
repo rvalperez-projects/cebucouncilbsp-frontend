@@ -23,10 +23,3 @@ export abstract class EnumUtil {
         return Object.keys(enumObj).find(key => enumObj[key] == value);
     }
 }
-
-export abstract class SessionConstant {
-    static LOGIN_TOKEN_KEY = 'login-token';
-    static USER_ID_KEY = 'user-id';
-    static USER_INSTITUTION_ID_KEY = 'user-institutionId';
-    static USER_ROLE_CODE_KEY = 'user-roleCode';
-}

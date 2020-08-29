@@ -22,6 +22,7 @@ import { AurFormViewComponent } from './component/aur-form-view/aur-form-view.co
 import { AurFormUpdateComponent } from './component/aur-form-update/aur-form-update.component';
 import { MatSpinnerOverlayComponent } from './utils/mat-spinner-overlay/mat-spinner-overlay.component';
 import { SignUpComponent } from './component/sign-up/sign-up.component';
+import { HomeComponent } from './component/home/home.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { SignUpComponent } from './component/sign-up/sign-up.component';
     AurFormViewComponent,
     AurFormUpdateComponent,
     MatSpinnerOverlayComponent,
-    SignUpComponent
+    SignUpComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
