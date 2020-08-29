@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef  } from '@angular/core';
 import { LoginFormGroup } from '../../formGroups/LoginFormGroup';
 import { LoginErrorMessages } from '../../constant/Messages';
 import { AuthService } from '../../service/auth.service';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit  {
   constructor(
     private service: AuthService,
     public loginFormGroup: LoginFormGroup,
-    private cdRef : ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private header: AppComponent
   ) { 
     this.errorMessages = new Array<string>();
   }
@@ -35,6 +37,7 @@ export class LoginComponent implements OnInit  {
     }
     this.service.login(this.loginFormGroup)
       .subscribe(() => {
+        this.header.initLoggedInUser();
     });
   }
 

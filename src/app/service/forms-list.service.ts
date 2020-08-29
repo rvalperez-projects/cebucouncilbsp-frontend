@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SessionConstant, Roles, EnumUtil, FormStatus } from '../constant/Enums';
+import { Roles, EnumUtil, FormStatus } from '../constant/Enums';
+import { SessionConstant } from '../constant/Constants';
 import { ResourceURL } from '../constant/ResourceURL';
 import { SearchFormModel } from '../model/search-form.model';
 import { InstitutionModel } from '../model/entities.model';
@@ -115,6 +116,9 @@ export class FormsListService {
             data.lastUpdatedDate = obj.updatedDateTime;
             data.status = EnumUtil.getEnumTextByValue(FormStatus, obj.statusCode);
             tableData.push(data);
+          }
+          if (tableData.length < 1) {
+            tableData.push(new FormListSearchResultsModel());
           }
           return tableData;
         })

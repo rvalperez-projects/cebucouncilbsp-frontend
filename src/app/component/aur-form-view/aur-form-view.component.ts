@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
+import { AppComponent } from 'src/app/app.component';
 import { RosterHeaderLabels } from '../../constant/RosterHeaderLabels';
 import { AURFormRegistration, RegistrationFees } from '../../model/aur-form-registration.model';
 import { AURFormViewService } from '../../service/aur-form-view.service';
@@ -30,6 +31,7 @@ export class AurFormViewComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private service : AURFormViewService,
+    private header: AppComponent,
     public aubFormGroup: AURFormGroup ) {
 
     this.aurFormObj = new AURFormRegistration();
@@ -37,8 +39,11 @@ export class AurFormViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.header.initLoggedInUser();
+    
     this.loading = true;
-    this.aurFormObj.formId = Number.parseInt(this.route.snapshot.paramMap.get("id"));
+    // this.aurFormObj.formId = Number.parseInt(this.route.snapshot.paramMap.get("id"));
+    this.aurFormObj.formId = history.state.formId;
     this.service.initializeAUR(this.aurFormObj, this.registrationFee).subscribe(() => {
       this.loading = false;
     });

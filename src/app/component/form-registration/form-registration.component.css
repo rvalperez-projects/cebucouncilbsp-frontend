@@ -1,4 +1,4 @@
-.box {position:relative;top:80px;width:8.5in;background:#fff;max-width:1100px;font-family: Arial, Helvetica, sans-serif;}
+.box {position:relative;top:80px;min-width:8.5in;max-width:8.5in;background:#fff;font-family: Arial, Helvetica, sans-serif;}
 
 .formDisplay-wrapper {height:100%;}
 

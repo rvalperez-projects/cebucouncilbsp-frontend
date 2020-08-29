@@ -1,19 +1,33 @@
 /* Application-wide Styles */
 h1 {
-  color: #369;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 200%;
+  font-weight: bold;
 }
-h2, h3 {
-  color: #444;
-  font-family: Arial, Helvetica, sans-serif;
+.userStyle {
   font-weight: lighter;
+  font-size: smaller;
 }
 .app-header{
+  max-height:50px;
   justify-content:space-between;
   position:fixed;
   top:0;left:0;right:0;
   z-index:2;
   box-shadow:0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
 }
-  
+::ng-deep .mat-menu-content {padding-top:0px !important;padding-bottom:0px !important;}
+::ng-deep .mat-menu-panel {min-height:45px !important;}
+button.mat-menu-item:hover {background-color: #9580b9;color: white !important;}
+
+mat-sidenav {
+  min-width: 30%;
+}
+mat-sidenav mat-nav-list button.mat-list-item {font-size:small;border: 0.5px solid;padding-left:10px;padding-right:10px;}
+mat-sidenav mat-nav-list button.mat-list-item:hover {background-color: #9580b9;color: white !important;}
+
+mat-sidenav-content {
+  background-image:url(https://scontent.fceb2-2.fna.fbcdn.net/v/t1.0-9/116720094_1334730020205534_329732359687626176_n.png?_nc_cat=111&_nc_sid=8024bb&_nc_ohc=Gy7k3T1lQ9sAX-8OmAk&_nc_ht=scontent.fceb2-2.fna&oh=671e3fa8813603773458f50227431fa1&oe=5F532BBE);
+  background-position-y:60px;
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-attachment: fixed;
+}

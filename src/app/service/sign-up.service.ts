@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ResourceURL } from '../constant/ResourceURL';
 import { BaseResponse } from '../model/base-response.model';
-import { InstitutionModel } from '../model/entities.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AreaDistrictsInterface } from '../constant/Constants';
@@ -13,8 +12,7 @@ import { ProfileFormGroup } from '../formGroups/ProfileFormGroup';
 })
 export class SignUpService {
 
-  constructor(
-    private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   public getDistricts(): Observable<AreaDistrictsInterface[]> {
     return this.http.get<BaseResponse>(ResourceURL.HOST + ResourceURL.AREA_DISTRICTS)

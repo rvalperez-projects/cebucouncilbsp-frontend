@@ -4,8 +4,10 @@ import { FormsListService } from '../../service/forms-list.service';
 import { SearchFormModel } from '../../model/search-form.model';
 import { AURFormListFormGroup } from '../../formGroups/FormListGroup';
 import { FormListSearchResultsModel } from '../../model/form-list.model';
-import { SessionConstant, Roles, EnumUtil } from '../../constant/Enums';
+import { SessionConstant } from '../../constant/Constants';
+import { Roles, EnumUtil, FormStatus } from '../../constant/Enums';
 import { InstitutionModel } from 'src/app/model/entities.model';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-forms-list',
@@ -20,12 +22,17 @@ export class FormsListComponent implements OnInit {
 
   // Set table data
   dataSource: Array<FormListSearchResultsModel>;
-  displayedColumns: string[] = ['dateApplied', 'district', 'institution', 'aurNumber', 'status', 'lastUpdatedDate', 'actions'];
+  displayedColumns: string[] = ['dateApplied', 'district', 'institution', 'aurNumber', 'status', 'lastUpdatedDate'];
+
+  // User role
+  private roleCode: string;
+  private role: string;
 
   constructor(
     public  route: ActivatedRoute,
     public  router: Router,
     private service: FormsListService,
+    private header: AppComponent,
     public aurFormListFormGroup: AURFormListFormGroup
   ) {
     this.searchFormData = new SearchFormModel();
@@ -36,17 +43,18 @@ export class FormsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.header.initLoggedInUser();
     this.route.queryParams.subscribe(params => {
       // this.name = params['name'];
     }); 
     
-    let roleCode = window.sessionStorage.getItem(SessionConstant.USER_ROLE_CODE_KEY);
-    let role = EnumUtil.getEnumValueByValue(Roles, roleCode);
+    this.roleCode = window.sessionStorage.getItem(SessionConstant.USER_ROLE_CODE_KEY);
+    this.role = EnumUtil.getEnumValueByValue(Roles, this.roleCode);
 
     // Populate Search Boxes
      this.service.initializeSearchBoxes().subscribe((result: any) => {
        
-       switch(role) {
+       switch(this.role) {
         case Roles.GENERAL_USER: 
           let institution = result as InstitutionModel;
           this.searchFormData.institutionMap.set(institution.institutionId, institution.institutionName);
@@ -55,7 +63,7 @@ export class FormsListComponent implements OnInit {
     
           this.aurFormListFormGroup.area.setValue(institution.area);
           this.aurFormListFormGroup.district.setValue(institution.district);
-          this.aurFormListFormGroup.institution.setValue(institution.institutionId);
+          this.aurFormListFormGroup.institutionId.setValue(institution.institutionId);
           break;
         case Roles.COUNCIL:
         case Roles.ADMIN:
@@ -65,7 +73,7 @@ export class FormsListComponent implements OnInit {
 
           this.aurFormListFormGroup.area.setValue(area);
           this.aurFormListFormGroup.district.setValue(district);
-          this.aurFormListFormGroup.institution.setValue('');
+          this.aurFormListFormGroup.institutionId.setValue('');
           this.service.populateSearchBoxes(this.searchFormData, area, district);
           break;
        }
@@ -76,12 +84,28 @@ export class FormsListComponent implements OnInit {
     this.service.populateSearchBoxes(this.searchFormData, 
       this.aurFormListFormGroup.area.value, 
       this.aurFormListFormGroup.district.value);
+    this.aurFormListFormGroup.institutionId.setValue(null);
   }
 
   repopulateDistrictAndInstitutions() {
     this.service.populateSearchBoxes(this.searchFormData, 
       this.aurFormListFormGroup.area.value, 
       null);
+      this.aurFormListFormGroup.district.setValue(null);
+      this.aurFormListFormGroup.institutionId.setValue(null);
+  }
+
+  processAURForm(formId: any, status: string) {
+    // Exit if no AUR form selected
+    if (!status) {
+      return;
+    }
+
+    if (this.roleCode != Roles.GENERAL_USER && status == EnumUtil.getEnumTextByValue(FormStatus, FormStatus.SUBMITTED)) {
+      this.updateAURForm(formId);
+    } else {
+      this.viewAURForm(formId);
+    }
   }
 
   searchAURForms() {
@@ -90,17 +114,17 @@ export class FormsListComponent implements OnInit {
     });
   }
 
-  viewAURForm(id: any) {
+  private viewAURForm(id: any) {
     // Navigate to Form
     if (id) {
-      this.router.navigateByUrl('/forms/'+id);
+      this.router.navigateByUrl('/forms/view', {state:{formId:id}});
     }
   }
 
-  updateAURForm(id: any) {
+  private updateAURForm(id: any) {
     // Navigate to Form
     if (id) {
-      this.router.navigateByUrl('/forms/update/'+id);
+      this.router.navigateByUrl('/forms/update', {state:{formId:id}});
     }
   }
 }

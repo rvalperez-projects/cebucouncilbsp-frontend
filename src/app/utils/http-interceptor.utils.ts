@@ -3,7 +3,7 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable, throwError } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 import { AuthService } from '../service/auth.service';
-import { SessionConstant } from '../constant/Enums';
+import { SessionConstant } from '../constant/Constants';
 import { CouncilDialog } from '../component/dialog/create-dialog-util';
 import { ResponseErrorMessages } from '../constant/Messages';
 import { MatSpinnerOverlayComponent } from '../utils/mat-spinner-overlay/mat-spinner-overlay.component';
@@ -48,6 +48,11 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                     this.authService.logout();
                     location.reload(true);
                 }
+                
+                // if (error.error) {
+                //     let errorResponse = JSON.parse(error.error);
+                //     this.councilDialog.openDialog(LoginErrorMessages.INCORRECT_DATA, errorResponse.errorMessages);
+                // }
                 return throwError(error);
             }),
             finalize(() => {

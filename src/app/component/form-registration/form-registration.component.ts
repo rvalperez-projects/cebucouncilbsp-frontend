@@ -1,6 +1,8 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { SessionConstant, SectionCode, EnumUtil } from 'src/app/constant/Enums';
+import { AppComponent } from 'src/app/app.component';
+import { SectionCode, EnumUtil } from 'src/app/constant/Enums';
+import { SessionConstant } from 'src/app/constant/Constants';
 import { AURFormRegistration, RegistrationFees } from '../../model/aur-form-registration.model';
 import { AURFormMessages, ResponseErrorMessages } from '../../constant/Messages';
 import { UnitNumberModel } from '../../model/entities.model';
@@ -42,6 +44,7 @@ export class FormRegistrationComponent implements OnInit {
     private elementRef : ElementRef, 
     private service : FormRegistrationService,
     private councilDialog: CouncilDialog, 
+    private header: AppComponent,
     public aubFormGroup: AURFormGroup ) {
 
     this.aurFormObj = new AURFormRegistration();
@@ -58,6 +61,8 @@ export class FormRegistrationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.header.initLoggedInUser();
+    
     // Initialize Input Fields
     let institutionId = window.sessionStorage[SessionConstant.USER_INSTITUTION_ID_KEY];
     this.aubFormGroup.institutionId.setValue(institutionId);

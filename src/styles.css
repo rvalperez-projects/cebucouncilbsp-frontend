@@ -3,11 +3,6 @@
 html, body { height: 100%; margin:0; padding:0; }
 body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    background-image:url(https://scontent.fceb2-2.fna.fbcdn.net/v/t1.0-9/116720094_1334730020205534_329732359687626176_n.png?_nc_cat=111&_nc_sid=8024bb&_nc_ohc=Gy7k3T1lQ9sAX-8OmAk&_nc_ht=scontent.fceb2-2.fna&oh=671e3fa8813603773458f50227431fa1&oe=5F532BBE);
-    background-position-y:60px;
-    background-size:cover;
-    background-repeat:no-repeat;
-    background-attachment: fixed;
     min-height:100vh;
     font-family:'Roboto', sans-serif;
 }
@@ -21,3 +16,5 @@ body, input[type="text"], button {
 * {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.shadow {box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);}

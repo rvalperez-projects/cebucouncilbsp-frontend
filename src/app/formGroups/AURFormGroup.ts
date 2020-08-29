@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators, ValidationErrors } from '@angular/forms';
 import { RosterHeaderLabels } from '../constant/RosterHeaderLabels';
 import { AURFormMessages } from '../constant/Messages';
-import { SessionConstant, FormStatus } from '../constant/Enums';
+import { FormStatus } from '../constant/Enums';
+import { SessionConstant } from '../constant/Constants';
 
 @Injectable({
     providedIn: 'root'

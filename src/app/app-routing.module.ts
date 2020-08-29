@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'; 
 import { LoginComponent } from './component/login/login.component';
+import { HomeComponent } from './component/home/home.component';
 import { ProfileComponent } from './component/profile/profile.component';
 import { FormsListComponent } from './component/forms-list/forms-list.component';
 import { FormRegistrationComponent } from './component/form-registration/form-registration.component';
@@ -23,7 +24,7 @@ const routes: Routes = [
   },
   { 
     path: 'home', 
-    component: FormsListComponent, 
+    component: HomeComponent, 
     canActivate: [AuthorizeGuard] 
   },
   { 
@@ -44,12 +45,12 @@ const routes: Routes = [
         }
       },
       { 
-        path: ':id', 
+        path: 'view', 
         component: AurFormViewComponent, 
         canActivate: [AuthorizeGuard] 
       },
       { 
-        path: 'update/:id', 
+        path: 'update', 
         component: AurFormUpdateComponent, 
         canActivate: [AuthorizeGuard],
         data: { 

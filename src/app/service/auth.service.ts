@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ResourceURL } from '../constant/ResourceURL';
-import { SessionConstant } from '../constant/Enums';
+import { SessionConstant } from '../constant/Constants';
 import { LoginErrorMessages } from '../constant/Messages';
 import { LoginFormGroup } from '../formGroups/LoginFormGroup';
 import { CouncilDialog } from '../component/dialog/create-dialog-util';
@@ -30,7 +30,7 @@ export class AuthService {
           this.decodeJwtToken(data);    
 
           // Navigate to Home
-          this.router.navigateByUrl('/forms');
+          this.router.navigateByUrl('/home');
         }),
         catchError(error => {
           if (error.error) {
@@ -63,6 +63,7 @@ export class AuthService {
     if (decoded) {
       window.sessionStorage.setItem(SessionConstant.LOGIN_TOKEN_KEY, token);
       window.sessionStorage.setItem(SessionConstant.USER_ID_KEY, decoded.userDetails.userId);
+      window.sessionStorage.setItem(SessionConstant.USER_GIVEN_NAME, decoded.userDetails.givenName);
       window.sessionStorage.setItem(SessionConstant.USER_INSTITUTION_ID_KEY, decoded.userDetails.institutionId);
       window.sessionStorage.setItem(SessionConstant.USER_ROLE_CODE_KEY, decoded.userDetails.roleCode);
     }
