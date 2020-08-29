@@ -8,11 +8,19 @@ import { AppComponent } from 'src/app/app.component';
 })
 export class HomeComponent implements OnInit {
 
+  // Grid Columns
+  breakpoint: number;
+
   constructor(
     private header: AppComponent) { }
 
   ngOnInit(): void {
     this.header.initLoggedInUser();
+    this.breakpoint = (window.innerWidth <= 400) ? 1 : 2;
+  }
+
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 2;
   }
 
 }

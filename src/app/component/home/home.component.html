@@ -1,1 +1,33 @@
-<p>home works!</p>
+<div class="home-wrapper" fxLayout="row" fxLayoutAlign="center start">
+    
+    <mat-card class="box">
+        <mat-card-header>
+            <mat-card-title>Welcome to the Cebu Council BSP Web Portal!</mat-card-title>
+        </mat-card-header>
+
+        <mat-grid-list [cols]="breakpoint" gutterSize="10px" (window:resize)="onResize($event)">
+            <mat-grid-tile class="shadow">
+                <mat-grid-tile-header>Latest Updates</mat-grid-tile-header>
+                <mat-grid-tile-footer></mat-grid-tile-footer>
+                <div class="fb-page" 
+                    data-href="https://www.facebook.com/cebucouncilbsp/" 
+                    data-tabs="timeline,events,messages" 
+                    data-width="493" 
+                    data-height="397" 
+                    data-small-header="true" 
+                    data-adapt-container-width="true" 
+                    data-hide-cover="false" 
+                    data-show-facepile="true">
+                    <blockquote cite="https://www.facebook.com/cebucouncilbsp/" class="fb-xfbml-parse-ignore">
+                        <a href="https://www.facebook.com/cebucouncilbsp/">Cebu Council - Boy Scouts of the Philippines</a>
+                    </blockquote>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile class="shadow">
+                <mat-grid-tile-header></mat-grid-tile-header>
+                <mat-grid-tile-footer></mat-grid-tile-footer>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+    </mat-card>
+</div>
