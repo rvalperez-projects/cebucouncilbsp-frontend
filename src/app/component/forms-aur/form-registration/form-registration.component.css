@@ -1,0 +1,37 @@
+.box {position:relative;top:80px;min-width:8.5in;max-width:8.5in;background:#fff;font-family: Arial, Helvetica, sans-serif;margin-bottom:50px;}
+
+.formReg-wrapper {height:100%;margin-bottom:50px;}
+
+.formReg-wrapper .text-center {text-align:center;}
+.formReg-wrapper .text-right {text-align:right;}
+.formReg-wrapper .font-bold {font-weight:bold;} 
+.formReg-wrapper .font-emphasize {font-family:"Arial Black";font-style:italic;font-size:16px;} 
+.formReg-wrapper .font-condensed {font-stretch:semi-condensed;}
+
+.formReg-wrapper table {table-layout: fixed;width:100%;border-color: black;border-style:solid;border-width:3pt;margin-bottom:2px;}
+.formReg-wrapper table td {font-size:12px;border-style:solid;border-width:0.5px;overflow:hidden;white-space:nowrap;}
+.formReg-wrapper table .table-header td {text-align:center;border-left-style:solid;border-top-style:none;border-bottom-width:3pt;white-space:nowrap;}
+.formReg-wrapper table .table-header .roster {font-family:"Arial Black";border-bottom-style:none;}
+
+.formReg-wrapper table.registration table.summary {table-layout: fixed;text-align:left;font-size:12px;font-style:normal;padding-left:10px;padding-right:10px;border-style:none;}
+.formReg-wrapper table.registration table.summary td {margin:0px;border-style:none;}
+.formReg-wrapper table.registration table.summary .bottom-underline {text-align:left;padding-left:10px;padding-right:10px;border-bottom-style:solid;border-bottom-width:0.5px;}
+.formReg-wrapper table.registration table.summary .label {text-align:left;padding-left:10px;padding-right:10px;}
+.formReg-wrapper table.registration table.summary .amount {text-align:right;padding-left:10px;padding-right:10px;}
+
+.formReg-wrapper input {width:100%;font-family:Arial;font-size:12px;}
+.formReg-wrapper input.name {width:40%;}
+.formReg-wrapper input.mi {width:5%;}
+.formReg-wrapper input[type="number"] {text-align:center;}
+.formReg-wrapper input[type="checkbox"] {margin: 0px;}
+
+.formReg-wrapper select {width:100%;}
+.formReg-wrapper span.sectionCodes {text-decoration:none;color:black;}
+.formReg-wrapper span.sectionCodes:hover, .formReg-wrapper span.sectionCodes:active {font-weight:bold;text-decoration:underline;cursor: pointer;}
+
+
+
+@page {size: 8.5in 13in;margin: 2cm;}
+@media print {
+
+}

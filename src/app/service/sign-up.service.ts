@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ResourceURL } from '../constant/ResourceURL';
-import { BaseResponse } from '../model/base-response.model';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AreaDistrictsInterface } from '../constant/Constants';
+import { ResourceURL } from '../constant/ResourceURL';
 import { ProfileFormGroup } from '../formGroups/ProfileFormGroup';
+import { BaseResponse } from '../model/base-response.model';
 
 @Injectable({
   providedIn: 'root'

@@ -31,3 +31,6 @@ mat-sidenav-content {
   background-repeat:no-repeat;
   background-attachment: fixed;
 }
+
+.header-title {padding-left:6px !important;padding-right:6px !important;}
+.logo {max-height:40px;max-width:35px;float:left;}

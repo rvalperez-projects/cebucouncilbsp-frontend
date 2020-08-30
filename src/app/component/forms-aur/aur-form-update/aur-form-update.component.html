@@ -1,0 +1,331 @@
+<div class="formDisplay-wrapper" fxLayout="column" fxLayoutAlign.gt-sm="start center" fxLayoutAlign.lt-md="start start">    
+    
+    <mat-progress-bar mode="buffer" *ngIf="loading" fxLayoutAlign="center center"></mat-progress-bar>
+
+    <mat-card class="box" *ngIf="!loading">
+        <div class="text-center">
+            <div class="font-bold">BOY SCOUTS OF THE PHILIPPINES</div>
+            <div>181 Natividad Almeda-Lopez Street, Ermita, 1000 Manila</div>
+            <div class="font-emphasize">APPLICATION FOR UNIT REGISTRATION (AUR)</div>
+        </div>
+
+        <form [formGroup]="aubFormGroup.form">
+        <table cellspacing="0">
+            <colgroup>
+                <col style="width: 18%;"><!--Position-->
+                <col style="width: 33%;"><!--Name-->
+                <col style="width: 9%;"><!--Signature-->
+                <col style="width: 5%;"><!--Age-->
+                <col style="width: 10%;"><!--Membership Cert. No.-->
+                <col style="width: 10%;"><!--Highest Sct. Training-->
+                <col style="width: 7%;"><!--Tenure in Scouting-->
+                <col style="width: 8%;"><!--Religion-->
+            </colgroup>
+
+            <!--ISCOM Header Row 1-->
+            <tr class="table-header">
+                <td rowspan="2">Position</td>
+                <td style="border-bottom-style:none;"><b>ADULT LEADERS</b></td>
+                <td rowspan="2">Signature</td>
+                <td rowspan="2">Age</td>
+                <td style="border-bottom-style:none;">Membership</td>
+                <td style="border-bottom-style:none;">Highest Sct.</td>
+                <td style="border-bottom-style:none;">Tenure in</td>
+                <td rowspan="2">Religion</td>
+            </tr>
+            <!--ISCOM Header Row 2-->
+            <tr class="table-header">
+                <td>PRINT: Surname, Given Name, M.I.</td>
+                <td>Cert. No.</td>
+                <td>Training</td>
+                <td>Scouting</td>
+            </tr>
+            <!--ISCOM Member Roster -->
+            <tr>
+                <td>ISCOM:</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tbody formArrayName="iscomMembersList">
+            <tr class="table-row" *ngFor="let label of iSComPositions; let i = index" [formGroupName]="i">
+                <td>{{label.title}}</td>
+                <td><ng-container *ngIf="aurFormObj.iscomMembersList[i].surname; else blankName">
+                        {{aurFormObj.iscomMembersList[i].surname}},&nbsp;
+                        {{aurFormObj.iscomMembersList[i].givenName}},&nbsp;
+                        {{aurFormObj.iscomMembersList[i].middleInitial}}
+                    </ng-container>
+                    <ng-template #blankName></ng-template>
+                </td>
+                <td>{{aurFormObj.iscomMembersList[i].signature}}</td>
+                <td>{{aurFormObj.iscomMembersList[i].age}}</td>
+                <td><ng-container *ngIf="aurFormObj.iscomMembersList[i].surname; else blankName">
+                        <input type="number" formControlName="membershipCertNo">
+                    </ng-container>
+                    <ng-template #blankName></ng-template>
+                </td>
+                <td>{{highestTrainingBox.get(aurFormObj.iscomMembersList[i].highestTrainingCode)}}</td>
+                <td>{{aurFormObj.iscomMembersList[i].tenure}}</td>
+                <td>{{aurFormObj.iscomMembersList[i].religion}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!--Unit Members-->
+        <table cellspacing="0">
+            <colgroup>
+                <col style="width: 18%;"><!--Position-->
+                <col style="width: 33%;"><!--Name-->
+                <col style="width: 9%;"><!--Registration Status-->
+                <col style="width: 5%;"><!--Age-->
+                <col style="width: 10%;"><!--Membership Cert. No.-->
+                <col style="width: 10%;"><!--Highest Badge Earned-->
+                <col style="width: 7%;"><!--Tenure in Scouting-->
+                <col style="width: 8%;"><!--Religion-->
+            </colgroup>
+            <!--Members Header Row 1-->
+            <tr class="table-header">
+                <td colspan="2" class="roster">ROSTER OF SCOUT MEMBERSHIP</td>
+                <td style="border-bottom-style:none;">Registration</td>
+                <td rowspan="2">Age</td>
+                <td style="border-bottom-style:none;">Membership</td>
+                <td style="border-bottom-style:none;">Highest Badge</td>
+                <td style="border-bottom-style:none;">Tenure in</td>
+                <td rowspan="2">Religion</td>
+            </tr>
+            <!--Members Header Row 2-->
+            <tr class="table-header">
+                <td colspan="2">PRINT: Surname, Given Name, M.I.</td>
+                <td>Status</td>
+                <td>Cert. No.</td>
+                <td>Earned</td>
+                <td>Scouting</td>
+            </tr>
+            <!--Unit Members -->
+            <tbody formArrayName="unitMembersList">
+            <tr class="table-row" *ngFor="let unitMember of memberPositions; let i = index" [formGroupName]="i">
+                <ng-container *ngIf="unitMember.code == 'x'; else notBlank">
+                    <td colspan="2" style="height:2px;"></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </ng-container>
+                <ng-template #notBlank>
+                    <td style="border-right-style:none;">
+                        <b *ngIf="i > 6; else officerBlock">{{unitMember.title}}</b>
+                        <ng-template #officerBlock>{{unitMember.title}}</ng-template>
+                    </td>
+                    <td style="border-left-style:none;"><span *ngIf="aurFormObj.unitMembersList[i].surname; else blankName">
+                            {{aurFormObj.unitMembersList[i].surname}},&nbsp;
+                            {{aurFormObj.unitMembersList[i].givenName}},&nbsp;
+                            {{aurFormObj.unitMembersList[i].middleInitial}}
+                        </span>
+                        <ng-template #blankName></ng-template>
+                    </td>
+                    <td>{{aurFormObj.unitMembersList[i].registrationStatusCode}}</td>
+                    <td>{{aurFormObj.unitMembersList[i].age}}</td>
+                    <td><ng-container *ngIf="aurFormObj.unitMembersList[i].surname; else blankName">
+                            <input type="number" formControlName="membershipCertNo">
+                        </ng-container>
+                        <ng-template #blankName></ng-template>
+                    </td>
+                    <td>{{highestBadgeBox.get(aurFormObj.unitMembersList[i].highestBadgeCode)}}</td>
+                    <td>{{aurFormObj.unitMembersList[i].tenure}}</td>
+                    <td>{{aurFormObj.unitMembersList[i].religion}}</td>
+                </ng-template>
+            </tr>
+            </tbody>
+        </table>
+        <div class="text-center">
+            Registration Status: N – New; RR – Reregistering.
+        </div>
+        <table class="aurForm" cellspacing="0">
+            <colgroup>
+                <col style="width: 50%;">
+                <col style="width: 50%;">
+            </colgroup>
+            <tr>
+                <td rowspan="2" class="text-center font-emphasize" style="border-right-width:3pt;">REGISTRATION FEES<br>
+                    <table class="summary" cellspacing="0">
+                        <colgroup>
+                            <col style="width: 10%;">
+                            <col style="width: 47%;">
+                            <col style="width: 19%;">
+                            <col style="width: 16%;">
+                        </colgroup>
+                        <tr style="font-family: 'Arial Black';">
+                            <td></td>
+                            <td></td>
+                            <td style="font-family:'Arial Black';">RATE</td>
+                            <td style="font-family:'Arial Black';">AMOUNT</td>
+                        </tr>
+                        <tr>
+                            <td class="bottom-underline" style="text-align:center;">{{registrationFee.iSCRepsCount}}</td>
+                            <td class="label">Ins’tl Sctng. Representative</td>
+                            <td class="amount">P 100.00</td>
+                            <td class="bottom-underline" style="text-align:right;">{{registrationFee.iSCRepsTotal | currency: '': '' }}</td>
+                        </tr>
+                        <tr>
+                            <td class="bottom-underline" style="text-align:center;">{{registrationFee.iSCChairsCount}}</td>
+                            <td class="label">ISC Chair/Coordr/Memb</td>
+                            <td class="amount">100.00</td>
+                            <td class="bottom-underline" style="text-align:right;">{{registrationFee.iSCChairsTotal | currency: '': '' }}</td>
+                        </tr>
+                        <tr>
+                            <td class="bottom-underline" style="text-align:center;">{{registrationFee.unitLeadersCount}}</td>
+                            <td class="label">Unit Leaders.Asst. ULs/CA/ACA</td>
+                            <td class="amount">60.00</td>
+                            <td class="bottom-underline" style="text-align:right;">{{registrationFee.unitLeadersTotal | currency: '': '' }}</td>
+                        </tr>
+                        <tr>
+                            <td class="bottom-underline" style="text-align:center;">{{registrationFee.scoutsCount}}</td>
+                            <td class="label">Scouts</td>
+                            <td class="amount">50.00</td>
+                            <td class="bottom-underline" style="text-align:right;">{{registrationFee.scoutsTotal | currency: '': '' }}</td>
+                        </tr>
+                        <tr>
+                            <td class="bottom-underline" style="text-align:center;">
+                                <ng-container *ngIf="aurFormObj.charterFlag; else zero">1</ng-container>
+                                <ng-template #zero>0</ng-template>
+                            </td>
+                            <td class="label">Institutional Charter Fee</td>
+                            <td class="amount">10.00</td>
+                            <td class="bottom-underline" style="text-align:right;">{{registrationFee.iSCCharterFeeTotal | currency: '': '' }}</td>
+                        </tr>
+                        <tr>
+                            <td class="amount" colspan="2">Total Fees Remitted</td>
+                            <td class="amount">P</td>
+                            <td class="bottom-underline" style="text-align:right;">{{registrationFee.totalAmount | currency: '': '' }}</td>
+                        </tr>
+                    </table>
+                    <table class="summary" cellspacing="0">
+                        <tr><td style="width: 35%;" class="font-condensed">Paid Under O.R. No.</td>
+                            <td style="width: 35%;" class="bottom-underline">
+                                <input type="text" formControlName="officialReceiptNo" class="" maxlength="10" value="{{aurFormObj.officialReceiptNo}}">
+                                </td>
+                            <td style="width: 10%;">  Date</td>
+                            <td style="width: 25%;" class="bottom-underline" style="padding:0px;">
+                                <input type="date" formControlName="officialReceiptDate" class="" value="{{aurFormObj.officialReceiptDate}}">
+                            </td>
+                            <!-- {{aurFormObj.officialReceiptDate | date:'yyyy/MM/dd'}} -->
+                        </tr>
+                    </table>
+                    <table class="summary" cellspacing="0">
+                        <tr>
+                            <td style="width: 25%;" class="font-condensed">Expiration of Unit Registration</td>
+                            <td style="width: 22%;" class="bottom-underline"></td>
+                            <td style="width: 6%;">  Date</td>
+                            <td style="width: 18%;" class="bottom-underline">{{aurFormObj.expirationDate | date:'yyyy/MM/dd'}}</td>
+                        </tr>
+                    </table>
+                </td>
+                <td class="text-center font-emphasize" style="border-bottom-width:3pt;">LOCAL COUNCIL OFFICE ACTION
+                    <table class="summary" cellspacing="0">
+                        <colgroup>
+                            <col style="width: 20%;">
+                            <col style="width: 40%;">
+                            <col style="width: 10%;">
+                            <col style="width: 30%;">
+                        </colgroup>
+                        <tr>
+                            <td>Processed:</td>
+                            <td class="bottom-underline"></td>
+                            <td></td>
+                            <td class="bottom-underline"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="text-center">Registration Officer</td>
+                            <td></td>
+                            <td class="text-center">Date & Time</td>
+                        </tr>
+                        <tr><td></td><td></td><td></td><td></td></tr>
+                        <tr>
+                            <td>Approved:</td>
+                            <td class="bottom-underline"></td>
+                            <td></td>
+                            <td class="bottom-underline"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="text-center">Council Scout Executive</td>
+                            <td></td>
+                            <td class="text-center">Date</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center font-emphasize">REGIONAL OFFICE ACTION
+                    <table class="summary" cellspacing="0">
+                        <colgroup>
+                            <col style="width: 20%;">
+                            <col style="width: 40%;">
+                            <col style="width: 10%;">
+                            <col style="width: 30%;">
+                        </colgroup>
+                        <tr>
+                            <td>Processed:</td>
+                            <td class="bottom-underline"></td>
+                            <td></td>
+                            <td class="bottom-underline"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="text-center">Registration Officer</td>
+                            <td></td>
+                            <td class="text-center">Date & Time</td>
+                        </tr>
+                        <tr><td></td><td></td><td></td><td></td></tr>
+                        <tr>
+                            <td>Confirmed:</td>
+                            <td class="bottom-underline"></td>
+                            <td></td>
+                            <td class="bottom-underline"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="text-center">Regional Scout Executive</td>
+                            <td></td>
+                            <td class="text-center">Date</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table class="aurForm" cellspacing="0">
+            <table class="summary" cellspacing="0">
+                <tr>
+                    <td style="width: 15%;">Sponsoring Institution</td>
+                    <td style="width: 30%;" class="bottom-underline">{{aurFormObj.institutionName}}</td>
+                    <td style="width: 5%;">  District</td>
+                    <td style="width: 20%;" class="bottom-underline">{{aurFormObj.district}}</td>
+                    <td style="width: 10%;">  AUR No.</td>
+                    <td style="width: 20%;" class="bottom-underline">
+                        <input type="text" formControlName="unitRegistrationNo" class="" maxlength="10" value="{{aurFormObj.unitRegistrationNo}}">
+                        </td>
+                </tr>
+            </table>
+            <table class="summary" cellspacing="0">
+                <tr>
+                    <td style="width: 5%;">Council</td>
+                    <td style="width: 15%;" class="bottom-underline">{{aurFormObj.council}}</td>
+                    <td style="width: 6%;">  Unit No.</td>
+                    <td style="width: 15%;" class="bottom-underline">
+                        {{aurFormObj.unitNumber}}
+                    </td>
+                    <td style="width: 21%;" class="font-condensed">  (
+                        <span [ngClass]="{'highlight':aurFormObj.sectionCode=='00'}" id="Langkay">Langkay</span> /
+                        <span [ngClass]="{'highlight':aurFormObj.sectionCode=='01'}" id="Kawan">Kawan</span> /
+                        <span [ngClass]="{'highlight':aurFormObj.sectionCode=='02'}" id="Troop">Troop</span> /
+                        <span [ngClass]="{'highlight':aurFormObj.sectionCode=='03'}" id="Outfit">Outfit</span> /
+                        <span [ngClass]="{'highlight':aurFormObj.sectionCode=='04'}" id="Circle">Circle</span>
+                    )</td>
+                    <td style="width: 10%;">Date Applied: </td>
+                    <td style="width: 12%;" class="bottom-underline">{{aurFormObj.dateApplied | date:'yyyy/MM/dd'}}</td>
+                </tr>
+            </table>
+        </table>
+        </form>
+
+        <br>
+        <button id="submitBtnId" mat-raised-button color="basic" class="" style="float:left" routerLink="/forms">Back</button>
+        <button mat-raised-button color="primary" class="" style="float:right" (click)="processAURForm()">Process</button>
+        <button mat-raised-button color="accent" class="" style="float:right" (click)="populateMembershipCertNo()">Populate Nos.</button>
+
+    </mat-card>
+</div>

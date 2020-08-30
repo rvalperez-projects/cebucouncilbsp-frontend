@@ -1,11 +1,13 @@
 <!-- Header Toolbar -->
 <mat-toolbar color="primary" class="app-header">
     <mat-toolbar-row class="mainbar">
-        <button mat-icon-button fxShow="true" fxHide.gt-sm>
+        <button mat-icon-button *ngIf="isLoggedIn" fxShow="true" fxHide.gt-sm>
             <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
             <!-- <mat-icon >menu</mat-icon> -->
-        </button>&nbsp;&nbsp;
-        <div><a mat-button [routerLink]="'/home'"><h1>Cebu Council BSP</h1></a></div>
+        </button>
+        <div><a class="header-title" mat-button [routerLink]="'/home'"><h1>
+            <img class="logo" src="../assets/cebu-council-bsp-logo-transparent.png" alt="cebu-council-bsp-logo">&nbsp;Cebu Council BSP</h1></a>
+        </div>
         <div *ngIf="isLoggedIn" fxShow="true" fxHide.lt-md>
             <a mat-button [matMenuTriggerFor]="formsMenu">Forms&nbsp;<mat-icon>keyboard_arrow_down</mat-icon></a>
             <a mat-button [matMenuTriggerFor]="usersMenu">Users&nbsp;<mat-icon>keyboard_arrow_down</mat-icon></a>
@@ -24,7 +26,7 @@
 
 <!-- Side Navigation Toolbar -->
 <mat-sidenav-container fullscreen>
-    <mat-sidenav #sidenav [mode]="'push'">
+    <mat-sidenav #sidenav [mode]="'push'" fixedInViewport="true">
         <mat-nav-list>
             <mat-list-item></mat-list-item>
             <button mat-list-item [routerLink]="'/home'" class="shadow">Home</button>
@@ -32,14 +34,17 @@
             <button mat-list-item [matMenuTriggerFor]="usersMenu" class="shadow">Users&nbsp;<mat-icon fxFlex fxLayoutAlign="flex-end center">keyboard_arrow_down</mat-icon></button>
         </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content>
+
+    <!-- Main Content -->
+    <mat-sidenav-content fxLayout="column">
         <router-outlet></router-outlet>
+        <app-footer fxFlexOffset="auto"></app-footer>
     </mat-sidenav-content>
 </mat-sidenav-container>
 
 <mat-menu #formsMenu="matMenu">
     <button mat-menu-item [routerLink]="'/forms'">
-        <span>Appication for Unit Registration</span>
+        <span>Application for Unit Registration</span>
     </button>
 </mat-menu>
 <mat-menu #usersMenu="matMenu">
@@ -52,6 +57,4 @@
         <span>Logout</span>
     </button>
 </mat-menu>
-
-<!-- <router-outlet></router-outlet> -->
 

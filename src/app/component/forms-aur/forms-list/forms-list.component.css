@@ -1,0 +1,34 @@
+.box{position:relative;top:80px;width:100%;max-width:1000px;min-height:100vh;padding:30px 40px 30px 40px;background:#fff;margin-bottom:50px;}
+
+.formsList-wrapper {height:100%;width:100%;margin-bottom:50px;}
+.formsList-wrapper .form{min-width:100%;max-width:500px;width:100%;}
+.formsList-wrapper .full-width {width:70%;padding-left:20px;padding-right:20px;}
+.formsList-wrapper .btn-block {width:100%;}
+.formsList-wrapper .one-digit {width:30%;}
+
+.formsList-wrapper mat-card-header {text-align:left;width:100%;display:block;}
+.formsList-wrapper mat-card-header mat-card-header-text {margin:0px;}
+.formsList-wrapper mat-card-header mat-card-title {font-family:"Arial Black";}
+
+.formsList-wrapper table.search-table {width:100%;}
+.formsList-wrapper table.search-table tr {line-height:30px;}
+.formsList-wrapper table.search-table td {padding-left:10px;padding-right:10px;}
+.formsList-wrapper table.search-table mat-select {border-style:solid;border-width:1px;height:25px;padding-left:5px;padding-top:5px;padding-bottom:5px;}
+.formsList-wrapper table.search-table mat-label {padding-right:10px;font-weight:bold;}
+.formsList-wrapper table.search-table input {border-style:solid;border-width:1px;border-color:black;height:25px;width:100%;font-family:Arial;padding-left:5px;}
+
+.formsList-wrapper div.responsive-table {overflow-y:scroll;max-height:fit-content;}
+.formsList-wrapper table.forms-list {width:100%;border-style:solid;border-width:1px;}
+.formsList-wrapper table.forms-list th {
+  padding-left:10px;
+  padding-right:10px;
+  border:0.5px solid !important;
+  font-weight:bold;
+  font-size:13px;
+  color:black;
+  background-color: rgb(255, 215, 64);
+}
+.formsList-wrapper table.forms-list tr {height:40px;}
+.formsList-wrapper table.forms-list tr:hover {background-color: #9580b9 !important;cursor:pointer;}
+.formsList-wrapper table.forms-list tr:nth-child(even) {background-color: #f2f2f2;}
+.formsList-wrapper table.forms-list td {padding-left:10px;padding-right:10px;border:0.5px solid !important;white-space:nowrap;}

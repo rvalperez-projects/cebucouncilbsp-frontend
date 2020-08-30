@@ -1,15 +1,15 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Roles, EnumUtil, FormStatus } from '../constant/Enums';
-import { SessionConstant } from '../constant/Constants';
-import { ResourceURL } from '../constant/ResourceURL';
-import { SearchFormModel } from '../model/search-form.model';
-import { InstitutionModel } from '../model/entities.model';
-import { BaseResponse } from '../model/base-response.model';
-import { AURFormListFormGroup } from '../formGroups/FormListGroup';
-import { FormListSearchResultsModel } from '../model/form-list.model';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { SessionConstant } from '../constant/Constants';
+import { EnumUtil, FormStatus, Roles } from '../constant/Enums';
+import { ResourceURL } from '../constant/ResourceURL';
+import { AURFormListFormGroup } from '../formGroups/FormListGroup';
+import { BaseResponse } from '../model/base-response.model';
+import { InstitutionModel } from '../model/entities.model';
+import { FormListSearchResultsModel } from '../model/form-list.model';
+import { SearchFormModel } from '../model/search-form.model';
 
 @Injectable({
   providedIn: 'root'

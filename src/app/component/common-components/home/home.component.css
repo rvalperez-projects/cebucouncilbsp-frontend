@@ -1,0 +1,10 @@
+.box{position:relative;top:80px;width:100%;max-width:1000px;min-height:650px;padding:30px 40px 30px 40px;background:#fff;margin-bottom:50px;}
+.home-wrapper {min-height:800px;margin-bottom:50px;}
+
+.home-wrapper mat-card-header {text-align:left;width:100%;display:block;}
+.home-wrapper mat-card-header mat-card-header-text {margin:0px;}
+.home-wrapper mat-card-header mat-card-title {font-family:"Arial Black";}
+
+.home-wrapper mat-grid-tile {border:0.5px solid;}
+.home-wrapper mat-grid-tile-footer {border:0.5px solid;}
+.home-wrapper mat-grid-tile-header {border:0.5px solid;background-color: rgb(255, 215, 64); color:black;font-weight:bold;}

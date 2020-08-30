@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router'; 
-import { LoginComponent } from './component/login/login.component';
-import { HomeComponent } from './component/home/home.component';
-import { ProfileComponent } from './component/profile/profile.component';
-import { FormsListComponent } from './component/forms-list/forms-list.component';
-import { FormRegistrationComponent } from './component/form-registration/form-registration.component';
-import { AurFormViewComponent } from './component/aur-form-view/aur-form-view.component';
-import { AurFormUpdateComponent } from './component/aur-form-update/aur-form-update.component';
-import { UsersListComponent } from './component/users-list/users-list.component';
-import { PaymentComponent } from './component/payment/payment.component';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './component/common-components/home/home.component';
+import { LoginComponent } from './component/common-components/login/login.component';
+import { PaymentComponent } from './component/common-components/payment/payment.component';
+import { AurFormUpdateComponent } from './component/forms-aur/aur-form-update/aur-form-update.component';
+import { AurFormViewComponent } from './component/forms-aur/aur-form-view/aur-form-view.component';
+import { FormRegistrationComponent } from './component/forms-aur/form-registration/form-registration.component';
+import { FormsListComponent } from './component/forms-aur/forms-list/forms-list.component';
+import { ProfileComponent } from './component/user/profile/profile.component';
+import { UsersListComponent } from './component/user/users-list/users-list.component';
 import { Roles } from './constant/Enums';
-import { AuthorizeGuard } from './utils/auth-guard.utils';
+import { AuthorizeGuard, LoginGuard } from './utils/auth-guard.utils';
 
 const routes: Routes = [
   { 
@@ -20,7 +20,8 @@ const routes: Routes = [
   },
   { 
     path: 'login', 
-    component: LoginComponent 
+    component: LoginComponent,
+    canActivate: [LoginGuard] 
   },
   { 
     path: 'home', 
@@ -35,29 +36,27 @@ const routes: Routes = [
     path: 'forms', 
     component: FormsListComponent, 
     canActivate: [AuthorizeGuard],
-    children: [
-      { 
-        path: 'new', 
-        component: FormRegistrationComponent, 
-        canActivate: [AuthorizeGuard],
-        data: { 
-          roles : [Roles.GENERAL_USER] 
-        }
-      },
-      { 
-        path: 'view', 
-        component: AurFormViewComponent, 
-        canActivate: [AuthorizeGuard] 
-      },
-      { 
-        path: 'update', 
-        component: AurFormUpdateComponent, 
-        canActivate: [AuthorizeGuard],
-        data: { 
-          roles : [Roles.COUNCIL, Roles.ADMIN] 
-        } 
-      }
-    ]
+  },
+  { 
+    path: 'forms/new', 
+    component: FormRegistrationComponent, 
+    canActivate: [AuthorizeGuard],
+    data: { 
+      roles : [Roles.GENERAL_USER] 
+    }
+  },
+  { 
+    path: 'forms/view', 
+    component: AurFormViewComponent, 
+    canActivate: [AuthorizeGuard] 
+  },
+  { 
+    path: 'forms/update', 
+    component: AurFormUpdateComponent, 
+    canActivate: [AuthorizeGuard],
+    data: { 
+      roles : [Roles.COUNCIL, Roles.ADMIN] 
+    } 
   },
   { 
     path: 

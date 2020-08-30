@@ -1,0 +1,26 @@
+<div class="footer-wrapper" fxLayout="column" fxLayoutAlign="end stretch">
+    <div class="footer1">
+        
+        <mat-grid-list [cols]="breakpoint" gutterSize="40px" (window:resize)="onResize($event)" rowHeight="100px">
+            <mat-grid-tile>
+                <mat-grid-tile-header>ABOUT US</mat-grid-tile-header>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ullamcorper imperdiet augue, vitae faucibus eros ultrices vitae. Sed pulvinar lectus ante, a efficitur ex sodales eget. In hac habitasse platea dictumst. Nunc dignissim iaculis lorem, tempor ornare mi semper non. Phasellus fermentum ante non posuere imperdiet.</p>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-grid-tile-header>LINKS</mat-grid-tile-header>
+                <mat-list role = "list">
+                    <mat-list-item role = "listitem">Link 1</mat-list-item>
+                    <mat-list-item role = "listitem">Link 2</mat-list-item>
+                 </mat-list>
+            </mat-grid-tile><mat-grid-tile>
+                <mat-grid-tile-header>CONTACT US</mat-grid-tile-header>
+                <mat-list role = "list">
+                    <mat-list-item role = "listitem">Address 1</mat-list-item>
+                    <mat-list-item role = "listitem">Address 2</mat-list-item>
+                    <mat-list-item role = "listitem">Address 3</mat-list-item>
+                 </mat-list>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+    </div>
+</div>
