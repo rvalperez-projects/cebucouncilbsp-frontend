@@ -51,4 +51,5 @@ export abstract class ResponseErrorMessages {
     static ACCESS_FORBIDDEN = "Access Forbidden";
     static REDIRECT_LOGIN = "Redirecting to Login screen.";
     static CONTACT_ADMIN = "Please contact Systems Administrator.";
+    static NOT_ENOUGH_RIGHTS = "User does not have enough privileges to view this page.";
 }

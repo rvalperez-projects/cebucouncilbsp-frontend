@@ -10,7 +10,7 @@ import { FormsListComponent } from './component/forms-aur/forms-list/forms-list.
 import { ProfileComponent } from './component/user/profile/profile.component';
 import { UsersListComponent } from './component/user/users-list/users-list.component';
 import { Roles } from './constant/Enums';
-import { AuthorizeGuard } from './utils/auth-guard.utils';
+import { AuthorizeGuard, LoginGuard } from './utils/auth-guard.utils';
 
 const routes: Routes = [
   { 
@@ -20,7 +20,8 @@ const routes: Routes = [
   },
   { 
     path: 'login', 
-    component: LoginComponent 
+    component: LoginComponent,
+    canActivate: [LoginGuard] 
   },
   { 
     path: 'home', 

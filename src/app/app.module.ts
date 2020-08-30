@@ -9,28 +9,19 @@ import { AngularMaterialModule } from './angular-material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ErrorDialog } from './component/common-components/dialog/error-dialog.component';
+import { FooterComponent } from './component/common-components/footer/footer.component';
 import { HomeComponent } from './component/common-components/home/home.component';
-// Common Components
 import { LoginComponent } from './component/common-components/login/login.component';
 import { PaymentComponent } from './component/common-components/payment/payment.component';
 import { AurFormUpdateComponent } from './component/forms-aur/aur-form-update/aur-form-update.component';
 import { AurFormViewComponent } from './component/forms-aur/aur-form-view/aur-form-view.component';
 import { FormRegistrationComponent } from './component/forms-aur/form-registration/form-registration.component';
-// Forms AUR
 import { FormsListComponent } from './component/forms-aur/forms-list/forms-list.component';
-// User Components
 import { ProfileComponent } from './component/user/profile/profile.component';
 import { SignUpComponent } from './component/user/sign-up/sign-up.component';
 import { UsersListComponent } from './component/user/users-list/users-list.component';
 import { HttpErrorInterceptor } from './utils/http-interceptor.utils';
-// Utils Components
 import { MatSpinnerOverlayComponent } from './utils/mat-spinner-overlay/mat-spinner-overlay.component';
-
-
-
-
-
-
 
 @NgModule({
   declarations: [
@@ -46,7 +37,8 @@ import { MatSpinnerOverlayComponent } from './utils/mat-spinner-overlay/mat-spin
     AurFormUpdateComponent,
     MatSpinnerOverlayComponent,
     SignUpComponent,
-    HomeComponent
+    HomeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

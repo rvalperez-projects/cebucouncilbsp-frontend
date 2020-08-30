@@ -4,8 +4,10 @@
         <button mat-icon-button *ngIf="isLoggedIn" fxShow="true" fxHide.gt-sm>
             <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
             <!-- <mat-icon >menu</mat-icon> -->
-        </button>&nbsp;
-        <div><a mat-button [routerLink]="'/home'"><h1>Cebu Council BSP</h1></a></div>
+        </button>
+        <div><a class="header-title" mat-button [routerLink]="'/home'"><h1>
+            <img class="logo" src="../assets/cebu-council-bsp-logo-transparent.png" alt="cebu-council-bsp-logo">&nbsp;Cebu Council BSP</h1></a>
+        </div>
         <div *ngIf="isLoggedIn" fxShow="true" fxHide.lt-md>
             <a mat-button [matMenuTriggerFor]="formsMenu">Forms&nbsp;<mat-icon>keyboard_arrow_down</mat-icon></a>
             <a mat-button [matMenuTriggerFor]="usersMenu">Users&nbsp;<mat-icon>keyboard_arrow_down</mat-icon></a>
