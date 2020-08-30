@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { AppComponent } from 'src/app/app.component';
-import { RosterHeaderLabels } from '../../constant/RosterHeaderLabels';
-import { AURFormRegistration, RegistrationFees } from '../../model/aur-form-registration.model';
-import { AURFormViewService } from '../../service/aur-form-view.service';
-import { AURFormGroup } from '../../formGroups/AURFormGroup';
+import { RosterHeaderLabels } from '../../../constant/RosterHeaderLabels';
+import { AURFormGroup } from '../../../formGroups/AURFormGroup';
+import { AURFormRegistration, RegistrationFees } from '../../../model/aur-form-registration.model';
+import { AURFormViewService } from '../../../service/aur-form-view.service';
 
 @Component({
   selector: 'app-aur-form-view',

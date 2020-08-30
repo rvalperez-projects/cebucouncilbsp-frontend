@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormsListService } from '../../service/forms-list.service';
-import { SearchFormModel } from '../../model/search-form.model';
-import { AURFormListFormGroup } from '../../formGroups/FormListGroup';
-import { FormListSearchResultsModel } from '../../model/form-list.model';
-import { SessionConstant } from '../../constant/Constants';
-import { Roles, EnumUtil, FormStatus } from '../../constant/Enums';
-import { InstitutionModel } from 'src/app/model/entities.model';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
+import { InstitutionModel } from 'src/app/model/entities.model';
+import { SessionConstant } from '../../../constant/Constants';
+import { EnumUtil, FormStatus, Roles } from '../../../constant/Enums';
+import { AURFormListFormGroup } from '../../../formGroups/FormListGroup';
+import { FormListSearchResultsModel } from '../../../model/form-list.model';
+import { SearchFormModel } from '../../../model/search-form.model';
+import { FormsListService } from '../../../service/forms-list.service';
 
 @Component({
   selector: 'app-forms-list',

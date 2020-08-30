@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { RosterHeaderLabels } from '../constant/RosterHeaderLabels';
-import { ResourceURL } from '../constant/ResourceURL';
-import { BaseResponse } from '../model/base-response.model';
-import { AURFormRegistration, ISComMemberDetails, UnitMemberDetails, RegistrationFees } from '../model/aur-form-registration.model';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ResourceURL } from '../constant/ResourceURL';
+import { RosterHeaderLabels } from '../constant/RosterHeaderLabels';
+import { AURFormRegistration, ISComMemberDetails, RegistrationFees, UnitMemberDetails } from '../model/aur-form-registration.model';
+import { BaseResponse } from '../model/base-response.model';
 
 @Injectable({
   providedIn: 'root'

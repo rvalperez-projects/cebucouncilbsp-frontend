@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from "@angular/router";
 import { AppComponent } from 'src/app/app.component';
-import { FormGroup, Validators, FormControl} from '@angular/forms';
-import { RosterHeaderLabels } from '../../constant/RosterHeaderLabels';
-import { AURFormRegistration, RegistrationFees } from '../../model/aur-form-registration.model';
-import { AURFormUpdateService } from '../../service/aur-form-update.service';
-import { AURFormGroup } from '../../formGroups/AURFormGroup';
-import { CouncilDialog } from '../dialog/create-dialog-util';
-import { AURFormMessages } from '../../constant/Messages';
-import { FormStatus } from '../../constant/Enums';
+import { FormStatus } from '../../../constant/Enums';
+import { AURFormMessages } from '../../../constant/Messages';
+import { RosterHeaderLabels } from '../../../constant/RosterHeaderLabels';
+import { AURFormGroup } from '../../../formGroups/AURFormGroup';
+import { AURFormRegistration, RegistrationFees } from '../../../model/aur-form-registration.model';
+import { AURFormUpdateService } from '../../../service/aur-form-update.service';
+import { CouncilDialog } from '../../common-components/dialog/create-dialog-util';
 
 @Component({
   selector: 'app-aur-form-update',

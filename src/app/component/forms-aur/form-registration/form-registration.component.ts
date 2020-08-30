@@ -1,15 +1,15 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AppComponent } from 'src/app/app.component';
-import { SectionCode, EnumUtil } from 'src/app/constant/Enums';
 import { SessionConstant } from 'src/app/constant/Constants';
-import { AURFormRegistration, RegistrationFees } from '../../model/aur-form-registration.model';
-import { AURFormMessages, ResponseErrorMessages } from '../../constant/Messages';
-import { UnitNumberModel } from '../../model/entities.model';
-import { FormRegistrationService } from '../../service/form-registration.service';
-import { RosterHeaderLabels } from '../../constant/RosterHeaderLabels';
-import { AURFormGroup } from '../../formGroups/AURFormGroup';
-import { CouncilDialog } from '../dialog/create-dialog-util';
+import { EnumUtil, SectionCode } from 'src/app/constant/Enums';
+import { AURFormMessages, ResponseErrorMessages } from '../../../constant/Messages';
+import { RosterHeaderLabels } from '../../../constant/RosterHeaderLabels';
+import { AURFormGroup } from '../../../formGroups/AURFormGroup';
+import { AURFormRegistration, RegistrationFees } from '../../../model/aur-form-registration.model';
+import { UnitNumberModel } from '../../../model/entities.model';
+import { FormRegistrationService } from '../../../service/form-registration.service';
+import { CouncilDialog } from '../../common-components/dialog/create-dialog-util';
 
 @Component({
   selector: 'app-form-registration',

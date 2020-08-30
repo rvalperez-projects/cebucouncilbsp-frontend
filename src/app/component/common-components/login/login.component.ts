@@ -1,8 +1,8 @@
-import { Component, OnInit, ChangeDetectorRef  } from '@angular/core';
-import { LoginFormGroup } from '../../formGroups/LoginFormGroup';
-import { LoginErrorMessages } from '../../constant/Messages';
-import { AuthService } from '../../service/auth.service';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
+import { LoginErrorMessages } from '../../../constant/Messages';
+import { LoginFormGroup } from '../../../formGroups/LoginFormGroup';
+import { AuthService } from '../../../service/auth.service';
 
 @Component({
   selector: 'app-login',

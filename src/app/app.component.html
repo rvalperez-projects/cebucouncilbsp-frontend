@@ -1,10 +1,10 @@
 <!-- Header Toolbar -->
 <mat-toolbar color="primary" class="app-header">
     <mat-toolbar-row class="mainbar">
-        <button mat-icon-button fxShow="true" fxHide.gt-sm>
+        <button mat-icon-button *ngIf="isLoggedIn" fxShow="true" fxHide.gt-sm>
             <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
             <!-- <mat-icon >menu</mat-icon> -->
-        </button>&nbsp;&nbsp;
+        </button>&nbsp;
         <div><a mat-button [routerLink]="'/home'"><h1>Cebu Council BSP</h1></a></div>
         <div *ngIf="isLoggedIn" fxShow="true" fxHide.lt-md>
             <a mat-button [matMenuTriggerFor]="formsMenu">Forms&nbsp;<mat-icon>keyboard_arrow_down</mat-icon></a>
@@ -39,7 +39,7 @@
 
 <mat-menu #formsMenu="matMenu">
     <button mat-menu-item [routerLink]="'/forms'">
-        <span>Appication for Unit Registration</span>
+        <span>Application for Unit Registration</span>
     </button>
 </mat-menu>
 <mat-menu #usersMenu="matMenu">

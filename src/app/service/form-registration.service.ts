@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AURFormGroup } from '../formGroups/AURFormGroup';
-import { BaseResponse } from '../model/base-response.model';
-import { AURFormRegistration, ISComMemberDetails, UnitMemberDetails, RegistrationFees } from '../model/aur-form-registration.model';
-import { ResourceURL } from '../constant/ResourceURL';
+import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { map, catchError, timeout } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
+import { ResourceURL } from '../constant/ResourceURL';
+import { AURFormGroup } from '../formGroups/AURFormGroup';
+import { AURFormRegistration, ISComMemberDetails, RegistrationFees, UnitMemberDetails } from '../model/aur-form-registration.model';
+import { BaseResponse } from '../model/base-response.model';
 import { InstitutionModel } from '../model/entities.model';
 
 @Injectable({

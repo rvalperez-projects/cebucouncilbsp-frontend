@@ -1,12 +1,14 @@
-<div class="formDisplay-wrapper" fxLayout="row" fxLayoutAlign="center start">    
-    <mat-card class="box">
+<div class="formDisplay-wrapper" fxLayout="column" fxLayoutAlign.gt-sm="start center" fxLayoutAlign.lt-md="start start">    
+    
+    <mat-progress-bar mode="buffer" *ngIf="loading" fxLayoutAlign="center center"></mat-progress-bar>
+
+    <mat-card class="box" *ngIf="!loading">
         <div class="text-center">
             <div class="font-bold">BOY SCOUTS OF THE PHILIPPINES</div>
             <div>181 Natividad Almeda-Lopez Street, Ermita, 1000 Manila</div>
             <div class="font-emphasize">APPLICATION FOR UNIT REGISTRATION (AUR)</div>
         </div>
 
-        <form [formGroup]="aubFormGroup.form">
         <table cellspacing="0">
             <colgroup>
                 <col style="width: 18%;"><!--Position-->
@@ -41,23 +43,22 @@
             <tr>
                 <td>ISCOM:</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
             </tr>
-            <tbody formArrayName="iscomMembersList">
-            <tr *ngFor="let label of iSComPositions; let isComMember = index" [formGroupName]="isComMember">
+            <tr class="table-row" *ngFor="let label of iSComPositions; let i = index">
                 <td>{{label.title}}</td>
-                <td><input type="text" formControlName="surname" class="name" (focus)="disableSubmit()" maxlength="32">, 
-                    <input type="text" formControlName="givenName" class="name" (focus)="disableSubmit()" maxlength="32">&nbsp;
-                    <input type="text" formControlName="middleInitial" class="mi" (focus)="disableSubmit()" maxlength="1">
+                <td><ng-container *ngIf="aurFormObj.iscomMembersList[i].surname; else blankName">
+                        {{aurFormObj.iscomMembersList[i].surname}},&nbsp;
+                        {{aurFormObj.iscomMembersList[i].givenName}},&nbsp;
+                        {{aurFormObj.iscomMembersList[i].middleInitial}}
+                    </ng-container>
+                    <ng-template #blankName></ng-template>
                 </td>
-                <td><input type="text" formControlName="signature" class="" (focus)="disableSubmit()"></td>
-                <td><input type="number" formControlName="age" class="" min="0" (focus)="disableSubmit()" min="18" max="80"></td>
-                <td><input type="text" formControlName="membershipCertNo" class="" (focus)="disableSubmit()" maxlength="32"></td>
-                <td><select formControlName="highestTrainingCode" class="" (focus)="disableSubmit()">
-                    <option *ngFor="let trainingMap of highestTrainingBox | keyvalue" [value]="trainingMap.key">{{trainingMap.value}}</option>
-                </select></td>
-                <td><input type="number" formControlName="tenure" class="" min="0" (focus)="disableSubmit()"></td>
-                <td><input type="text" formControlName="religion" class="" (focus)="disableSubmit()" maxlength="32"></td>
+                <td>{{aurFormObj.iscomMembersList[i].signature}}</td>
+                <td>{{aurFormObj.iscomMembersList[i].age}}</td>
+                <td>{{aurFormObj.iscomMembersList[i].membershipCertNo}}</td>
+                <td>{{highestTrainingBox.get(aurFormObj.iscomMembersList[i].highestTrainingCode)}}</td>
+                <td>{{aurFormObj.iscomMembersList[i].tenure}}</td>
+                <td>{{aurFormObj.iscomMembersList[i].religion}}</td>
             </tr>
-            </tbody>
         </table>
 
         <!--Unit Members-->
@@ -90,40 +91,36 @@
                 <td>Earned</td>
                 <td>Scouting</td>
             </tr>
-            <tbody formArrayName="unitMembersList">
             <!--Unit Members -->
-            <tr *ngFor="let unitMember of memberPositions; let unitNum = index" [formGroupName]="unitNum">
+            <tr class="table-row" *ngFor="let unitMember of memberPositions; let i = index">
                 <ng-container *ngIf="unitMember.code == 'x'; else notBlank">
                     <td colspan="2" style="height:2px;"></td><td></td><td></td><td></td><td></td><td></td><td></td>
                 </ng-container>
                 <ng-template #notBlank>
                     <td style="border-right-style:none;">
-                        <b *ngIf="unitNum > 6; else officerBlock">{{unitMember.title}}</b>
+                        <b *ngIf="i > 6; else officerBlock">{{unitMember.title}}</b>
                         <ng-template #officerBlock>{{unitMember.title}}</ng-template>
                     </td>
-                    <td style="border-left-style:none;">             
-                        <input type="text" formControlName="surname" class="name" (focus)="disableSubmit()" maxlength="32">, 
-                        <input type="text" formControlName="givenName" class="name" (focus)="disableSubmit()" maxlength="32">&nbsp;
-                        <input type="text" formControlName="middleInitial" class="mi" (focus)="disableSubmit()" maxlength="1">
+                    <td style="border-left-style:none;"><span *ngIf="aurFormObj.unitMembersList[i].surname; else blankName">
+                            {{aurFormObj.unitMembersList[i].surname}},&nbsp;
+                            {{aurFormObj.unitMembersList[i].givenName}},&nbsp;
+                            {{aurFormObj.unitMembersList[i].middleInitial}}
+                        </span>
+                        <ng-template #blankName></ng-template>
                     </td>
-                    <td><select formControlName="registrationStatusCode" class="" (focus)="disableSubmit()">
-                        <option *ngFor="let statusCode of registrationStatusBox" [value]="statusCode">{{statusCode}}</option>
-                    </select></td>
-                    <td><input type="number" formControlName="age" class="" min="0" (focus)="disableSubmit()" max="80"></td>
-                    <td><input type="text" formControlName="membershipCertNo" class="" (focus)="disableSubmit()"maxlength="32"></td>
-                    <td><select formControlName="highestBadgeCode" class="" (focus)="disableSubmit()">
-                        <option *ngFor="let badgeMap of highestBadgeBox | keyvalue" [value]="badgeMap.key">{{badgeMap.value}}</option>
-                    </select></td>
-                    <td><input type="number" formControlName="tenure" class="" min="0" (focus)="disableSubmit()"></td>
-                    <td><input type="text" formControlName="religion" class="" (focus)="disableSubmit()" maxlength="32"></td>
+                    <td>{{aurFormObj.unitMembersList[i].registrationStatusCode}}</td>
+                    <td>{{aurFormObj.unitMembersList[i].age}}</td>
+                    <td>{{aurFormObj.unitMembersList[i].membershipCertNo}}</td>
+                    <td>{{highestBadgeBox.get(aurFormObj.unitMembersList[i].highestBadgeCode)}}</td>
+                    <td>{{aurFormObj.unitMembersList[i].tenure}}</td>
+                    <td>{{aurFormObj.unitMembersList[i].religion}}</td>
                 </ng-template>
             </tr>
-            </tbody>
         </table>
         <div class="text-center">
             Registration Status: N – New; RR – Reregistering.
         </div>
-        <table class="registration" cellspacing="0">
+        <table class="aurForm" cellspacing="0">
             <colgroup>
                 <col style="width: 50%;">
                 <col style="width: 50%;">
@@ -169,7 +166,8 @@
                         </tr>
                         <tr>
                             <td class="bottom-underline" style="text-align:center;">
-                                <input type="checkbox" id="iSCCharterFeeId" formControlName="charterFlag" (change)="addCharterFee($event.target)">
+                                <ng-container *ngIf="aurFormObj.charterFlag; else zero">1</ng-container>
+                                <ng-template #zero>0</ng-template>
                             </td>
                             <td class="label">Institutional Charter Fee</td>
                             <td class="amount">10.00</td>
@@ -271,7 +269,7 @@
                 </td>
             </tr>
         </table>
-        <table class="registration" cellspacing="0">
+        <table class="aurForm" cellspacing="0">
             <table class="summary" cellspacing="0">
                 <tr>
                     <td style="width: 15%;">Sponsoring Institution</td>
@@ -288,16 +286,14 @@
                     <td style="width: 15%;" class="bottom-underline">{{aurFormObj.council}}</td>
                     <td style="width: 6%;">  Unit No.</td>
                     <td style="width: 15%;" class="bottom-underline">
-                        <select formControlName="unitNumber" class="" (change)="onUnitNumberChange($event.target.value)">
-                            <option *ngFor="let unitNumberOption of unitNumbersBox" [value]="unitNumberOption">{{unitNumberOption}}</option>
-                        </select>
+                        {{aurFormObj.unitNumber}}
                     </td>
                     <td style="width: 21%;" class="font-condensed">  (
-                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Langkay">Langkay</span> /
-                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Kawan">Kawan</span> /
-                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Troop">Troop</span> /
-                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Outfit">Outfit</span> /
-                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Circle">Circle</span>
+                        <span [ngClass]="{'highlight':aurFormObj.sectionCode=='00'}" id="Langkay">Langkay</span> /
+                        <span [ngClass]="{'highlight':aurFormObj.sectionCode=='01'}" id="Kawan">Kawan</span> /
+                        <span [ngClass]="{'highlight':aurFormObj.sectionCode=='02'}" id="Troop">Troop</span> /
+                        <span [ngClass]="{'highlight':aurFormObj.sectionCode=='03'}" id="Outfit">Outfit</span> /
+                        <span [ngClass]="{'highlight':aurFormObj.sectionCode=='04'}" id="Circle">Circle</span>
                     )</td>
                     <td style="width: 10%;">Date Applied: </td>
                     <td style="width: 12%;" class="bottom-underline">{{aurFormObj.dateApplied | date:'yyyy/MM/dd'}}</td>
@@ -306,12 +302,9 @@
         </table>
 
         <br>
-        <button mat-raised-button color="basic" class="" style="float:left" routerLink="/forms">Back</button>
+        <button id="submitBtnId" mat-raised-button color="basic" class="" style="float:left" routerLink="/forms">Back</button>
 
-        <button [disabled]="submitDisabled" mat-raised-button color="primary" class="" style="float:right" (click)="onFormSubmit()">Submit</button>
-        <button mat-raised-button color="accent" class="" style="float:right" (click)="calculateFees()">Calculate Fees</button>
-
-        </form>
+        <button mat-raised-button color="warn" class="" style="float:right" (click)="print()">Print</button>
 
     </mat-card>
 </div>

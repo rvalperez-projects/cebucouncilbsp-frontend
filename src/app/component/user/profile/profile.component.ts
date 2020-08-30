@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProfileFormGroup } from '../../formGroups/ProfileFormGroup';
+import { ProfileFormGroup } from '../../../formGroups/ProfileFormGroup';
 
 @Component({
   selector: 'app-profile',

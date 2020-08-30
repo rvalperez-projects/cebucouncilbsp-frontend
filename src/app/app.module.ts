@@ -9,20 +9,28 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularMaterialModule } from './angular-material.module';
-import { LoginComponent } from './component/login/login.component';
-import { ProfileComponent } from './component/profile/profile.component';
-import { FormsListComponent } from './component/forms-list/forms-list.component';
-import { FormRegistrationComponent } from './component/form-registration/form-registration.component';
-import { UsersListComponent } from './component/users-list/users-list.component';
-import { PaymentComponent } from './component/payment/payment.component';
-import { LeftMenuComponent } from './component/left-menu/left-menu.component';
-import { ErrorDialog } from './component/dialog/error-dialog.component';
-import { HttpErrorInterceptor } from './utils/http-interceptor.utils';
-import { AurFormViewComponent } from './component/aur-form-view/aur-form-view.component';
-import { AurFormUpdateComponent } from './component/aur-form-update/aur-form-update.component';
+
+// Common Components
+import { LoginComponent } from './component/common-components/login/login.component';
+import { PaymentComponent } from './component/common-components/payment/payment.component';
+import { ErrorDialog } from './component/common-components/dialog/error-dialog.component';
+import { HomeComponent } from './component/common-components/home/home.component';
+
+// User Components
+import { ProfileComponent } from './component/user/profile/profile.component';
+import { UsersListComponent } from './component/user/users-list/users-list.component';
+import { SignUpComponent } from './component/user/sign-up/sign-up.component';
+
+// Forms AUR
+import { FormsListComponent } from './component/forms-aur/forms-list/forms-list.component';
+import { FormRegistrationComponent } from './component/forms-aur/form-registration/form-registration.component';
+import { AurFormViewComponent } from './component/forms-aur/aur-form-view/aur-form-view.component';
+import { AurFormUpdateComponent } from './component/forms-aur/aur-form-update/aur-form-update.component';
+
+// Utils Components
 import { MatSpinnerOverlayComponent } from './utils/mat-spinner-overlay/mat-spinner-overlay.component';
-import { SignUpComponent } from './component/sign-up/sign-up.component';
-import { HomeComponent } from './component/home/home.component';
+import { HttpErrorInterceptor } from './utils/http-interceptor.utils';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +41,6 @@ import { HomeComponent } from './component/home/home.component';
     FormRegistrationComponent,
     UsersListComponent,
     PaymentComponent,
-    LeftMenuComponent,
     ErrorDialog,
     AurFormViewComponent,
     AurFormUpdateComponent,

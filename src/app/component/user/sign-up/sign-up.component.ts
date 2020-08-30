@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
-import { SignUpService } from '../../service/sign-up.service';
-import { ProfileFormGroup } from '../../formGroups/ProfileFormGroup';
-import { ProfileLabels, AreaDistrictsInterface } from '../../constant/Constants';
-import { ProfileFormMessages } from '../../constant/Messages';
-import { CouncilDialog } from '../dialog/create-dialog-util';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { AreaDistrictsInterface, ProfileLabels } from '../../../constant/Constants';
+import { ProfileFormMessages } from '../../../constant/Messages';
+import { ProfileFormGroup } from '../../../formGroups/ProfileFormGroup';
+import { SignUpService } from '../../../service/sign-up.service';
+import { CouncilDialog } from '../../common-components/dialog/create-dialog-util';
 
 @Component({
   selector: 'app-sign-up',

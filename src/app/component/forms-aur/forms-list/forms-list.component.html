@@ -1,4 +1,4 @@
-<div class="formsList-wrapper" fxLayout="row" fxLayoutAlign="center start" *ngIf="route.children.length === 0">
+<div class="formsList-wrapper" fxLayout="column" fxLayoutAlign.gt-sm="start center" fxLayoutAlign.lt-md="start start" *ngIf="route.children.length === 0">
     
     <mat-card class="box">
         <form class="form" [formGroup]="aurFormListFormGroup.form">
