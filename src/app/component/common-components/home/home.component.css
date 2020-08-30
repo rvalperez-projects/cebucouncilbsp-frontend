@@ -1,5 +1,5 @@
 .box{position:relative;top:80px;width:100%;max-width:1000px;min-height:650px;padding:30px 40px 30px 40px;background:#fff;margin-bottom:50px;}
-.home-wrapper {min-height:800px;margin-bottom:50px;}
+.home-wrapper {min-height:100vh;margin-bottom:50px;}
 
 .home-wrapper mat-card-header {text-align:left;width:100%;display:block;}
 .home-wrapper mat-card-header mat-card-header-text {margin:0px;}
