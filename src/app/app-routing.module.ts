@@ -36,29 +36,27 @@ const routes: Routes = [
     path: 'forms', 
     component: FormsListComponent, 
     canActivate: [AuthorizeGuard],
-    children: [
-      { 
-        path: 'new', 
-        component: FormRegistrationComponent, 
-        canActivate: [AuthorizeGuard],
-        data: { 
-          roles : [Roles.GENERAL_USER] 
-        }
-      },
-      { 
-        path: 'view', 
-        component: AurFormViewComponent, 
-        canActivate: [AuthorizeGuard] 
-      },
-      { 
-        path: 'update', 
-        component: AurFormUpdateComponent, 
-        canActivate: [AuthorizeGuard],
-        data: { 
-          roles : [Roles.COUNCIL, Roles.ADMIN] 
-        } 
-      }
-    ]
+  },
+  { 
+    path: 'forms/new', 
+    component: FormRegistrationComponent, 
+    canActivate: [AuthorizeGuard],
+    data: { 
+      roles : [Roles.GENERAL_USER] 
+    }
+  },
+  { 
+    path: 'forms/view', 
+    component: AurFormViewComponent, 
+    canActivate: [AuthorizeGuard] 
+  },
+  { 
+    path: 'forms/update', 
+    component: AurFormUpdateComponent, 
+    canActivate: [AuthorizeGuard],
+    data: { 
+      roles : [Roles.COUNCIL, Roles.ADMIN] 
+    } 
   },
   { 
     path: 

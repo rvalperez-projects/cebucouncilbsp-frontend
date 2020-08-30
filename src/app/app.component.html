@@ -26,7 +26,7 @@
 
 <!-- Side Navigation Toolbar -->
 <mat-sidenav-container fullscreen>
-    <mat-sidenav #sidenav [mode]="'push'">
+    <mat-sidenav #sidenav [mode]="'push'" fixedInViewport="true">
         <mat-nav-list>
             <mat-list-item></mat-list-item>
             <button mat-list-item [routerLink]="'/home'" class="shadow">Home</button>
@@ -34,8 +34,11 @@
             <button mat-list-item [matMenuTriggerFor]="usersMenu" class="shadow">Users&nbsp;<mat-icon fxFlex fxLayoutAlign="flex-end center">keyboard_arrow_down</mat-icon></button>
         </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content>
+
+    <!-- Main Content -->
+    <mat-sidenav-content fxLayout="column">
         <router-outlet></router-outlet>
+        <app-footer fxFlexOffset="auto"></app-footer>
     </mat-sidenav-content>
 </mat-sidenav-container>
 
@@ -54,6 +57,4 @@
         <span>Logout</span>
     </button>
 </mat-menu>
-
-<!-- <router-outlet></router-outlet> -->
 
