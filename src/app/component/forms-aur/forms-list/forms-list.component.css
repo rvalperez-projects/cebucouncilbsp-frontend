@@ -22,8 +22,7 @@
 .formsList-wrapper table.forms-list th {
   padding-left:10px;
   padding-right:10px;
-  border-style:solid;
-  border-width:0.5px;
+  border:0.5px solid !important;
   font-weight:bold;
   font-size:13px;
   color:black;
@@ -32,6 +31,4 @@
 .formsList-wrapper table.forms-list tr {height:40px;}
 .formsList-wrapper table.forms-list tr:hover {background-color: #9580b9 !important;cursor:pointer;}
 .formsList-wrapper table.forms-list tr:nth-child(even) {background-color: #f2f2f2;}
-.formsList-wrapper table.forms-list td {padding-left:10px;padding-right:10px;border-style:solid;border-width:0.5px;white-space:nowrap;}
-.formsList-wrapper table.forms-list tr td:nth-child(7) {text-align:center;}
-.formsList-wrapper table.forms-list tr td:nth-child(7) mat-icon:hover {cursor:pointer;color: rgb(255, 215, 64);}
+.formsList-wrapper table.forms-list td {padding-left:10px;padding-right:10px;border:0.5px solid !important;white-space:nowrap;}

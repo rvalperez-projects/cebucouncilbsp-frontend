@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { AppComponent } from 'src/app/app.component';
 import { FormStatus } from '../../../constant/Enums';
 import { AURFormMessages } from '../../../constant/Messages';
@@ -36,7 +36,6 @@ export class AurFormUpdateComponent implements OnInit {
   errorMessages: Array<string>;
 
   constructor(
-    private route: ActivatedRoute,
     private header: AppComponent,
     public  router: Router,
     private service : AURFormUpdateService,
@@ -50,25 +49,29 @@ export class AurFormUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.header.initLoggedInUser();
-    
     this.loading = true;
-    // this.aurFormObj.formId = Number.parseInt(this.route.snapshot.paramMap.get("id"));
-    this.aurFormObj.formId = history.state.formId;
-    this.service.initializeAUR(this.aurFormObj, this.registrationFee).subscribe(() => {
-      this.loading = false;
-      this.enableMembershipCertNo();
-      this.aubFormGroup.formId.setValue(this.aurFormObj.formId);
-      this.aubFormGroup.unitNumber.setValue(this.aurFormObj.unitNumber);
-      this.aubFormGroup.sectionCode.setValue(this.aurFormObj.sectionCode);
-      this.aubFormGroup.officialReceiptNo.setValue(this.aurFormObj.officialReceiptNo);
-      this.aubFormGroup.officialReceiptDate.setValue(this.aurFormObj.officialReceiptDate);
-      this.aubFormGroup.unitRegistrationNo.setValue(this.aurFormObj.unitRegistrationNo);
-    });
 
-    // Set required fields
-    this.aubFormGroup.officialReceiptNo.setValidators(Validators.required);
-    this.aubFormGroup.officialReceiptDate.setValidators(Validators.required);
-    this.aubFormGroup.unitRegistrationNo.setValidators(Validators.required);
+    // Route back to forms if no formId is retrieved
+    if (!history.state.formId) {
+      this.router.navigateByUrl("/forms");
+    } else {
+      this.aurFormObj.formId = history.state.formId;
+      this.service.initializeAUR(this.aurFormObj, this.registrationFee).subscribe(() => {
+        this.loading = false;
+        this.enableMembershipCertNo();
+        this.aubFormGroup.formId.setValue(this.aurFormObj.formId);
+        this.aubFormGroup.unitNumber.setValue(this.aurFormObj.unitNumber);
+        this.aubFormGroup.sectionCode.setValue(this.aurFormObj.sectionCode);
+        this.aubFormGroup.officialReceiptNo.setValue(this.aurFormObj.officialReceiptNo);
+        this.aubFormGroup.officialReceiptDate.setValue(this.aurFormObj.officialReceiptDate);
+        this.aubFormGroup.unitRegistrationNo.setValue(this.aurFormObj.unitRegistrationNo);
+      });
+
+      // Set required fields
+      this.aubFormGroup.officialReceiptNo.setValidators(Validators.required);
+      this.aubFormGroup.officialReceiptDate.setValidators(Validators.required);
+      this.aubFormGroup.unitRegistrationNo.setValidators(Validators.required);
+    }
   }
   /**
    * Submit the AUR Form for update of required fields.

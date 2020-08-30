@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { Router } from "@angular/router";
 import { AppComponent } from 'src/app/app.component';
 import { RosterHeaderLabels } from '../../../constant/RosterHeaderLabels';
 import { AURFormGroup } from '../../../formGroups/AURFormGroup';
@@ -29,7 +29,7 @@ export class AurFormViewComponent implements OnInit {
   registrationFee: RegistrationFees;
 
   constructor(
-    private route: ActivatedRoute,
+    public  router: Router,
     private service : AURFormViewService,
     private header: AppComponent,
     public aubFormGroup: AURFormGroup ) {
@@ -39,14 +39,18 @@ export class AurFormViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.header.initLoggedInUser();
-    
+    this.header.initLoggedInUser();    
     this.loading = true;
-    // this.aurFormObj.formId = Number.parseInt(this.route.snapshot.paramMap.get("id"));
-    this.aurFormObj.formId = history.state.formId;
-    this.service.initializeAUR(this.aurFormObj, this.registrationFee).subscribe(() => {
-      this.loading = false;
-    });
+    
+    // Route back to forms if no formId is retrieved
+    if (!history.state.formId) {
+      this.router.navigateByUrl("/forms");
+    } else {
+      this.aurFormObj.formId = history.state.formId;
+      this.service.initializeAUR(this.aurFormObj, this.registrationFee).subscribe(() => {
+        this.loading = false;
+      });
+    }
   }
 
   print() {

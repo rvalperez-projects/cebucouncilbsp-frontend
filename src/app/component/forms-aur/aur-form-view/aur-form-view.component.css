@@ -1,4 +1,4 @@
-.box {position:relative;top:80px;width:8.5in;background:#fff;max-width:1100px;font-family: Arial, Helvetica, sans-serif;}
+.box {position:relative;top:80px;min-width:8.5in;max-width:8.5in;background:#fff;font-family: Arial, Helvetica, sans-serif;}
 
 .formDisplay-wrapper {height:100%;}
 
@@ -14,7 +14,7 @@ table tr.table-header td {text-align:center;border-color: black;border-left-styl
 table tr.table-header .roster {font-family:"Arial Black";border-bottom-style:none;}
 
 table tr.table-row {line-height:25px;}
-table tr.table-row td {text-align:center;padding:0px;height:80%;white-space:nowrap;}
+table tr.table-row td {text-align:center;padding:0px;height:80%;white-space:nowrap;border:0.5px solid !important;}
 table tr.table-row td:nth-Child(1) {padding-left:0px;text-align:left;}
 table tr.table-row td:nth-Child(2) {padding-left:10px;text-align:left;}
 
