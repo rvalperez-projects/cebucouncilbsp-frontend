@@ -8,4 +8,4 @@
 ::ng-deep .home-wrapper mat-card-header .mat-card-header-text {margin:0px !important;font-family:Verdana, Geneva, Tahoma, sans-serif !important;font-weight:bold !important;}
 ::ng-deep .home-wrapper mat-card-header .mat-card-header-text mat-card-title {font-family:Verdana, Geneva, Tahoma, sans-serif !important;font-weight:bold !important;}
 
-.home-wrapper .payment-logo {max-width:50px;max-height:50px;float:left;margin-top:15px;margin-right:15px;}
+.home-wrapper .payment-logo {max-width:60px;max-height:60px;float:left;margin-top:15px;margin-right:15px;}
