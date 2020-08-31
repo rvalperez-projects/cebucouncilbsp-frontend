@@ -2,7 +2,7 @@
     
     <mat-progress-bar mode="buffer" *ngIf="loading" fxLayoutAlign="center center"></mat-progress-bar>
 
-    <mat-card class="box" *ngIf="!loading">
+    <div class="box" *ngIf="!loading">
         <div class="text-center">
             <div class="font-bold">BOY SCOUTS OF THE PHILIPPINES</div>
             <div>181 Natividad Almeda-Lopez Street, Ermita, 1000 Manila</div>
@@ -42,11 +42,11 @@
             </tr>
             <!--ISCOM Member Roster -->
             <tr>
-                <td>ISCOM:</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                <td style="padding-left:5px;">ISCOM:</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
             </tr>
             <tbody formArrayName="iscomMembersList">
             <tr class="table-row" *ngFor="let label of iSComPositions; let i = index" [formGroupName]="i">
-                <td>{{label.title}}</td>
+                <td style="padding-left:5px;">{{label.title}}</td>
                 <td><ng-container *ngIf="aurFormObj.iscomMembersList[i].surname; else blankName">
                         {{aurFormObj.iscomMembersList[i].surname}},&nbsp;
                         {{aurFormObj.iscomMembersList[i].givenName}},&nbsp;
@@ -105,7 +105,7 @@
                     <td colspan="2" style="height:2px;"></td><td></td><td></td><td></td><td></td><td></td><td></td>
                 </ng-container>
                 <ng-template #notBlank>
-                    <td style="border-right-style:none;">
+                    <td style="border-right-style:none;padding-left:5px;">
                         <b *ngIf="i > 6; else officerBlock">{{unitMember.title}}</b>
                         <ng-template #officerBlock>{{unitMember.title}}</ng-template>
                     </td>
@@ -327,5 +327,5 @@
         <button mat-raised-button color="primary" class="" style="float:right" (click)="processAURForm()">Process</button>
         <button mat-raised-button color="accent" class="" style="float:right" (click)="populateMembershipCertNo()">Populate Nos.</button>
 
-    </mat-card>
+    </div>
 </div>

@@ -1,20 +1,16 @@
 <div class="home-wrapper" fxLayout="column" fxLayoutAlign.gt-sm="start center" fxLayoutAlign.lt-md="start start">
     
-    <mat-card class="box">
-        <mat-card-header>
-            <mat-card-title>Welcome to the Cebu Council BSP Web Portal!</mat-card-title>
-        </mat-card-header>
+    <h1>Welcome to the Cebu Council BSP Web Portal!</h1>
 
-        <mat-grid-list [cols]="breakpoint" gutterSize="10px" (window:resize)="onResize($event)" rowHeight="2:1">
-            <mat-grid-tile class="shadow">
-                <mat-grid-tile-header>Latest Updates</mat-grid-tile-header>
-                <mat-grid-tile-footer></mat-grid-tile-footer>
-            </mat-grid-tile>
-            <mat-grid-tile class="shadow">
-                <mat-grid-tile-header></mat-grid-tile-header>
-                <mat-grid-tile-footer></mat-grid-tile-footer>
-            </mat-grid-tile>
-        </mat-grid-list>
+    <mat-grid-list [cols]="breakpoint" gutterSize="10px" (window:resize)="onResize($event)">
+        <mat-grid-tile class="shadow">
+            <mat-grid-tile-header>Latest Updates</mat-grid-tile-header>
+            <p>Test</p>
+        </mat-grid-tile>
+        <mat-grid-tile class="shadow">
+            <mat-grid-tile-header></mat-grid-tile-header>
+            <p>Test</p>
+        </mat-grid-tile>
+    </mat-grid-list>
 
-    </mat-card>
 </div>

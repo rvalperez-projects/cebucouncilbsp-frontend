@@ -1,5 +1,5 @@
 <div class="formReg-wrapper" fxLayout="column" fxLayoutAlign.gt-sm="start center" fxLayoutAlign.lt-md="start start">    
-    <mat-card class="box">
+    <div class="box">
         <div class="text-center">
             <div class="font-bold">BOY SCOUTS OF THE PHILIPPINES</div>
             <div>181 Natividad Almeda-Lopez Street, Ermita, 1000 Manila</div>
@@ -39,11 +39,11 @@
             </tr>
             <!--ISCOM Member Roster -->
             <tr>
-                <td>ISCOM:</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                <td style="padding-left:5px;">ISCOM:</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
             </tr>
             <tbody formArrayName="iscomMembersList">
             <tr *ngFor="let label of iSComPositions; let isComMember = index" [formGroupName]="isComMember">
-                <td>{{label.title}}</td>
+                <td style="padding-left:5px;">{{label.title}}</td>
                 <td><input type="text" formControlName="surname" class="name" (focus)="disableSubmit()" maxlength="32">, 
                     <input type="text" formControlName="givenName" class="name" (focus)="disableSubmit()" maxlength="32">&nbsp;
                     <input type="text" formControlName="middleInitial" class="mi" (focus)="disableSubmit()" maxlength="1">
@@ -97,7 +97,7 @@
                     <td colspan="2" style="height:2px;"></td><td></td><td></td><td></td><td></td><td></td><td></td>
                 </ng-container>
                 <ng-template #notBlank>
-                    <td style="border-right-style:none;">
+                    <td style="border-right-style:none;padding-left:5px;">
                         <b *ngIf="unitNum > 6; else officerBlock">{{unitMember.title}}</b>
                         <ng-template #officerBlock>{{unitMember.title}}</ng-template>
                     </td>
@@ -313,5 +313,5 @@
 
         </form>
 
-    </mat-card>
+    </div>
 </div>
