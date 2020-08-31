@@ -1,6 +1,5 @@
-.box {position:relative;top:80px;min-width:8.5in;max-width:8.5in;background:#fff;font-family: Arial, Helvetica, sans-serif;margin-bottom:50px;}
-
-.formReg-wrapper {min-height:100vh;margin-bottom:50px;}
+.formReg-wrapper {min-height:100vh;width:100%;margin-top:85px;overflow-x:auto;overflow-y:auto;}
+.formReg-wrapper .box {min-width:8.5in;max-width:8.5in;background:#fff;padding:20px 20px 20px 20px;margin-bottom:20px;}
 
 .formReg-wrapper .text-center {text-align:center;}
 .formReg-wrapper .text-right {text-align:right;}
