@@ -2,7 +2,7 @@
 
 .footer1 {color:white;background-color:#003000;}
 .footer2 {color:white;background-color:black;max-height:100px;}
-.footer2 span {padding-left:15px;font-size:smaller;font-family:monospace}
+.footer2 span {padding-left:15px;font-size:smaller;font-family:m}
 
 mat-grid-tile mat-grid-tile-header {max-height:30px;font-weight:bold;background-color:#003000;}
 mat-list-base mat-list-item {max-height:30px;}

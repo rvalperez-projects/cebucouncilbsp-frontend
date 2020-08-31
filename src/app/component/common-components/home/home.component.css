@@ -1,7 +1,11 @@
-.home-wrapper {min-height:100vh;width:100%;background:#fff;padding:100px 40px 30px 40px;}
+.home-wrapper {min-height:100vh;width:100%;background:#fff;padding:0px 0px 30px 0px;margin-top:64px;}
 
-.home-wrapper h1 {font-family:"Arial Black";}
+.home-wrapper .banner.mat-card-image {width:100%;margin: 0px !important;}
+.home-wrapper .short-info {min-height:30px;max-height:80px;color:white;background-color: rgb(103, 58, 183);text-align:center;margin-top: -5px;margin-bottom:10px;}
+.home-wrapper .short-info span {font-size:small;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;padding:0px 10px 0px 10px;}
 
-.home-wrapper mat-grid-tile {border:0.5px solid;}
-.home-wrapper mat-grid-tile-footer {border:0.5px solid;}
-.home-wrapper mat-grid-tile-header {border:0.5px solid;background-color: rgb(255, 215, 64); color:black;font-weight:bold;}
+.home-wrapper mat-card.steps {width:100%;max-width:90%;height:100%;min-height:290px;}
+::ng-deep .home-wrapper mat-card-header .mat-card-header-text {margin:0px !important;font-family:Verdana, Geneva, Tahoma, sans-serif !important;font-weight:bold !important;}
+::ng-deep .home-wrapper mat-card-header .mat-card-header-text mat-card-title {font-family:Verdana, Geneva, Tahoma, sans-serif !important;font-weight:bold !important;}
+
+.home-wrapper .payment-logo {max-width:50px;max-height:50px;float:left;margin-top:15px;margin-right:15px;}
