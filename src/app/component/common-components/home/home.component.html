@@ -1,16 +1,80 @@
-<div class="home-wrapper" fxLayout="column" fxLayoutAlign.gt-sm="start center" fxLayoutAlign.lt-md="start start">
+<div class="home-wrapper">
     
-    <h1>Welcome to the Cebu Council BSP Web Portal!</h1>
-
-    <mat-grid-list [cols]="breakpoint" gutterSize="10px" (window:resize)="onResize($event)">
-        <mat-grid-tile class="shadow">
-            <mat-grid-tile-header>Latest Updates</mat-grid-tile-header>
-            <p>Test</p>
-        </mat-grid-tile>
-        <mat-grid-tile class="shadow">
-            <mat-grid-tile-header></mat-grid-tile-header>
-            <p>Test</p>
-        </mat-grid-tile>
-    </mat-grid-list>
-
+    <img class="banner" mat-card-image 
+        src="../../../../assets/home/banner-bsp-webpage.png" 
+        alt="Welcome to the Cebu Council BSP Web Portal!">
+    <div class="short-info" fxLayout="column" fxLayoutAlign="center center">
+        <span>Follow the instructions below to register your unit.</span>
+    </div>
+    <div fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutAlign="space-evenly start">
+        <mat-card class="steps">
+            <mat-card-header>
+                <mat-card-title>Step 1</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>Click "Forms" from the Menu and select "Application for Unit Registration".</p>
+                <img mat-card-image 
+                    src="../../../../assets/home/menu-forms.png" 
+                    alt="Click 'Forms' from the Navigation Bar.">
+                <img mat-card-image 
+                    src="../../../../assets/home/menu-aur-form.png" 
+                    alt="Select 'Application for Unit Registration'.">
+            </mat-card-content>
+        </mat-card>
+        <mat-card class="steps">
+            <mat-card-header>
+                <mat-card-title>Step 2</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>Select the "New" button.</p>
+                <img mat-card-image 
+                    src="../../../../assets/home/button-reg-form.png" 
+                    alt="Select the 'New' button.">
+            </mat-card-content>
+        </mat-card>
+        <mat-card class="steps">
+            <mat-card-header>
+                <mat-card-title>Step 3</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>Fill in the necessary details.</p>
+                <img mat-card-image 
+                    src="../../../../assets/home/form-aur.PNG" 
+                    alt="Application for Unit Registration Form">
+            </mat-card-content>
+        </mat-card>
+        <mat-card class="steps">
+            <mat-card-header>
+                <mat-card-title>Payment Methods</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <table>
+                <tr><td><img class="payment-logo"
+                        src="../../../../assets/home/logo-landbank.png" 
+                        alt="Landbank">
+                    </td>
+                    <td>{{landbankAccount}}</td>
+                </tr>
+                <tr><td><img class="payment-logo"
+                        src="../../../../assets/home/logo-bpi.jpg" 
+                        alt="BPI">
+                    </td>
+                    <td>{{bpiAccount}}</td>
+                </tr>
+                <tr><td><img class="payment-logo"
+                        src="../../../../assets/home/logo-gcash.png" 
+                        alt="GCash">
+                    </td>
+                    <td>{{gcashAccount}}</td>
+                </tr>
+                <tr><td><img class="payment-logo"
+                        src="../../../../assets/home/logo-paymaya.png" 
+                        alt="Paymaya">
+                    </td>
+                    <td>{{paymayaAccount}}</td>
+                </tr>
+                </table>
+            </mat-card-content>
+        </mat-card>
+    </div>
 </div>

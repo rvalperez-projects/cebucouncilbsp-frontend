@@ -1,7 +1,13 @@
 .footer-wrapper {height:100%;width:100%;}
 
-.footer1 {
-    color:white;
-    background-color:#003000;
-    border: 1px solid;
-}
+.footer1 {color:white;background-color:#003000;}
+.footer2 {color:white;background-color:black;max-height:100px;}
+.footer2 span {padding-left:15px;font-size:smaller;font-family:m}
+
+mat-grid-tile mat-grid-tile-header {max-height:30px;font-weight:bold;background-color:#003000;}
+mat-list-base mat-list-item {max-height:30px;}
+mat-grid-tile .footer-content {margin-top:25px;padding-left:15px;padding-right:10px;font-size:smaller;color:white;}
+mat-grid-tile .footer-content ul {padding-left:15px;margin:0px;}
+mat-grid-tile .footer-content a {color:white;text-decoration:none;}
+mat-grid-tile .footer-content a:hover {text-decoration:underline;}
+
