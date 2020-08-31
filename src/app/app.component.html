@@ -43,12 +43,12 @@
 </mat-sidenav-container>
 
 <mat-menu #formsMenu="matMenu">
-    <button mat-menu-item [routerLink]="'/forms'">
+    <button mat-menu-item [routerLink]="'/forms'" (click)="sidenav.close()">
         <span>Application for Unit Registration</span>
     </button>
 </mat-menu>
 <mat-menu #usersMenu="matMenu">
-    <button mat-menu-item [routerLink]="'/users'">
+    <button mat-menu-item [routerLink]="'/users'" (click)="sidenav.close()">
         <span>Users List</span>
     </button>
 </mat-menu>

@@ -1,26 +1,33 @@
 <div class="footer-wrapper" fxLayout="column" fxLayoutAlign="end stretch">
-    <div class="footer1">
-        
-        <mat-grid-list [cols]="breakpoint" gutterSize="40px" (window:resize)="onResize($event)" rowHeight="100px">
+    
+    <div class="footer1">        
+        <mat-grid-list [cols]="breakpoint" gutterSize="50px" (window:resize)="onResize($event)" rowHeight="100px">
             <mat-grid-tile>
-                <mat-grid-tile-header>ABOUT US</mat-grid-tile-header>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ullamcorper imperdiet augue, vitae faucibus eros ultrices vitae. Sed pulvinar lectus ante, a efficitur ex sodales eget. In hac habitasse platea dictumst. Nunc dignissim iaculis lorem, tempor ornare mi semper non. Phasellus fermentum ante non posuere imperdiet.</p>
+                <mat-grid-tile-header>ABOUT THIS</mat-grid-tile-header>
+                <div class="footer-content" fxFlex fxLayout="column" fxLayoutAlign="start start">
+                    <p>This Web Portal is designed to allow Unit Leaders of the whole Cebu Council a means to process Unit Registration despite the pandemic.</p>
+                </div>
             </mat-grid-tile>
             <mat-grid-tile>
                 <mat-grid-tile-header>LINKS</mat-grid-tile-header>
-                <mat-list role = "list">
-                    <mat-list-item role = "listitem">Link 1</mat-list-item>
-                    <mat-list-item role = "listitem">Link 2</mat-list-item>
-                 </mat-list>
+                <div class="footer-content" fxFlex fxLayout="column" fxLayoutAlign="start start">
+                    <ul><li><a href="https://www.facebook.com/cebucouncilbsp">Cebu Council BSP - FB Page</a></li>
+                        <li><a href="https://www.facebook.com/boyscoutsPH/">Boy Scouts of the Philippines - FB Page</a></li>
+                        <li><a href="http://scouts.org.ph/">Boy Scouts of the Philippines - Web Page</a></li>
+                    </ul>
+                </div>
             </mat-grid-tile><mat-grid-tile>
                 <mat-grid-tile-header>CONTACT US</mat-grid-tile-header>
-                <mat-list role = "list">
-                    <mat-list-item role = "listitem">Address 1</mat-list-item>
-                    <mat-list-item role = "listitem">Address 2</mat-list-item>
-                    <mat-list-item role = "listitem">Address 3</mat-list-item>
-                 </mat-list>
+                <div class="footer-content" fxFlex fxLayout="column" fxLayoutAlign="start start">
+                    <span>Natalio Bacalso Avenue Corner Tres de Abril Street</span>
+                    <span>Cebu City, Philippines</span>
+                    <span>Call (032) 261 1402</span>
+                </div>
             </mat-grid-tile>
         </mat-grid-list>
+    </div>
 
+    <div class="footer2">
+        <span>Copyright © 2020 Cebu Council - Boy Scouts of the Philippines</span>
     </div>
 </div>
