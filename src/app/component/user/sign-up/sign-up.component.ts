@@ -47,9 +47,10 @@ export class SignUpComponent implements OnInit {
   }
 
   register() {
-    this.profileFormGroup.area.setValue(this.selectedDistrict.area);
-    this.profileFormGroup.district.setValue(this.selectedDistrict.district);
     if (!this.hasErrors()) {
+      this.profileFormGroup.area.setValue(this.selectedDistrict.area);
+      this.profileFormGroup.district.setValue(this.selectedDistrict.district);
+
       this.service.registerUser(this.profileFormGroup).subscribe(() => {
         let messages = [ProfileFormMessages.WELCOME_MESSAGE_1, ProfileFormMessages.WELCOME_MESSAGE_2];
         this.councilDialog.openDialog(ProfileFormMessages.SUBMISSION_SUCCESSFUL, messages);

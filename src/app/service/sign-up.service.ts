@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { CouncilDialog } from '../component/common-components/dialog/create-dialog-util';
 import { AreaDistrictsInterface } from '../constant/Constants';
+import { ProfileFormMessages } from '../constant/Messages';
 import { ResourceURL } from '../constant/ResourceURL';
 import { ProfileFormGroup } from '../formGroups/ProfileFormGroup';
 import { BaseResponse } from '../model/base-response.model';
@@ -12,7 +14,8 @@ import { BaseResponse } from '../model/base-response.model';
 })
 export class SignUpService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private councilDialog: CouncilDialog) { }
 
   public getDistricts(): Observable<AreaDistrictsInterface[]> {
     return this.http.get<BaseResponse>(ResourceURL.HOST + ResourceURL.AREA_DISTRICTS)
@@ -30,6 +33,12 @@ export class SignUpService {
       .pipe(
         map(data => {
           return data.result;
+        }),
+        catchError(error => {
+          if (error.status != '500' && error.error) {
+            this.councilDialog.openDialog(ProfileFormMessages.SUBMISSION_ERROR, error.error.errorMessages);
+          }
+          return throwError(error);
         })
       );
   }

@@ -14,7 +14,7 @@ import { SearchFormModel } from '../model/search-form.model';
 @Injectable({
   providedIn: 'root'
 })
-export class FormsListService {
+export class AURFormListService {
 
   private role: Roles;
   private institutionId: string;

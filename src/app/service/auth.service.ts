@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { CouncilDialog } from '../component/common-components/dialog/create-dialog-util';
 import { SessionConstant } from '../constant/Constants';
@@ -33,11 +34,10 @@ export class AuthService {
           this.router.navigateByUrl('/home');
         }),
         catchError(error => {
-          if (error.error) {
-            let errorResponse = JSON.parse(error.error);
-            this.councilDialog.openDialog(LoginErrorMessages.INCORRECT_DATA, errorResponse.errorMessages);
+          if (error.status != '500' && error.error) {
+            this.councilDialog.openDialog(LoginErrorMessages.INCORRECT_DATA, error.error.errorMessages);
           }
-          throw error;
+          throw throwError(error);
         })
       );
   }

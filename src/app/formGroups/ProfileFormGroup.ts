@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray, FormControl, Validators, ValidationErrors } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Roles } from '../constant/Enums';
+import { whitespaceOnlyNotAllowed } from '../utils/custom-validators.utils';
 
 @Injectable({
   providedIn: 'root'
@@ -55,19 +56,20 @@ export class ProfileFormGroup {
 
   private createForm() {
     this._profileForm = this.formBuild.group({
-      username: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(8)]],
-      password: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(8)]],
-      confirmPassword: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(8)]],
-      surname: [null, [Validators.required]],
-      givenName: [null, [Validators.required]],
-      middleInitial: [null],
-      mobileNumber: [null],
-      emailAddress: [null, [Validators.required, Validators.email]],
-      institutionName: [null, [Validators.required]],
-      address: [null, [Validators.required]],
+      username: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(8), whitespaceOnlyNotAllowed]],
+      password: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(8), whitespaceOnlyNotAllowed]],
+      confirmPassword: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(8), whitespaceOnlyNotAllowed]],
+      surname: [null, [Validators.required, whitespaceOnlyNotAllowed]],
+      givenName: [null, [Validators.required, whitespaceOnlyNotAllowed]],
+      middleInitial: [null, [whitespaceOnlyNotAllowed]],
+      mobileNumber: [null, [whitespaceOnlyNotAllowed]],
+      emailAddress: [null, [Validators.required, Validators.email, whitespaceOnlyNotAllowed]],
+      institutionName: [null, [Validators.required, whitespaceOnlyNotAllowed]],
+      address: [null, [Validators.required, whitespaceOnlyNotAllowed]],
       categoryCode: [null, [Validators.required]],
       district: [null, [Validators.required]],
       area: [null, [Validators.required]],
+      contactNumber: [null, [whitespaceOnlyNotAllowed]],
       authorityCode: [Roles.GENERAL_USER]
     });
   }
@@ -81,6 +83,7 @@ export class ProfileFormGroup {
         }
         for (let error in controlErrors) {
             missingFields.push(item);
+            continue;
         }
     }
     if (missingFields.length > 0) {

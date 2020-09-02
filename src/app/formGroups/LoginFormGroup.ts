@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginErrorMessages } from '../constant/Messages';
+import { whitespaceOnlyNotAllowed } from '../utils/custom-validators.utils';
 
 @Injectable({
     providedIn: 'root'
@@ -23,16 +24,16 @@ export class LoginFormGroup {
     }
     private createForm() {
         this._loginForm = this.formBuild.group({
-            username: [null, [Validators.required]],
-            password: [null, [Validators.required]]
+            username: [null, [Validators.required, whitespaceOnlyNotAllowed]],
+            password: [null, [Validators.required, whitespaceOnlyNotAllowed]]
         });
     }
 
     public getErrorMessage(): string {
-        if (this.username.hasError('required')) {
+        if (this.username.errors) {
             return LoginErrorMessages.REQUIRED;
         }
-        if (this.password.hasError('required')) {
+        if (this.password.errors) {
             return LoginErrorMessages.REQUIRED;
         }
     }

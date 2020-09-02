@@ -7,7 +7,7 @@ import { EnumUtil, FormStatus, Roles } from '../../../constant/Enums';
 import { AURFormListFormGroup } from '../../../formGroups/FormListGroup';
 import { FormListSearchResultsModel } from '../../../model/form-list.model';
 import { SearchFormModel } from '../../../model/search-form.model';
-import { FormsListService } from '../../../service/forms-list.service';
+import { AURFormListService } from '../../../service/aur-form-list.service';
 
 @Component({
   selector: 'app-forms-list',
@@ -31,7 +31,7 @@ export class FormsListComponent implements OnInit {
   constructor(
     public  route: ActivatedRoute,
     public  router: Router,
-    private service: FormsListService,
+    private service: AURFormListService,
     private header: AppComponent,
     public aurFormListFormGroup: AURFormListFormGroup
   ) {

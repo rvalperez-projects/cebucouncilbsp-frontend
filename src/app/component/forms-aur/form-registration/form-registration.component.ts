@@ -1,14 +1,15 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from "@angular/router";
 import { AppComponent } from 'src/app/app.component';
 import { SessionConstant } from 'src/app/constant/Constants';
 import { EnumUtil, SectionCode } from 'src/app/constant/Enums';
-import { AURFormMessages, ResponseErrorMessages } from '../../../constant/Messages';
+import { AURFormMessages } from '../../../constant/Messages';
 import { RosterHeaderLabels } from '../../../constant/RosterHeaderLabels';
 import { AURFormGroup } from '../../../formGroups/AURFormGroup';
 import { AURFormRegistration, RegistrationFees } from '../../../model/aur-form-registration.model';
 import { UnitNumberModel } from '../../../model/entities.model';
-import { FormRegistrationService } from '../../../service/form-registration.service';
+import { FormRegistrationService } from '../../../service/aur-form-registration.service';
 import { CouncilDialog } from '../../common-components/dialog/create-dialog-util';
 
 @Component({
@@ -41,6 +42,7 @@ export class FormRegistrationComponent implements OnInit {
   circlePositions: Array<string>;
 
   constructor(
+    public  router: Router,
     private elementRef : ElementRef, 
     private service : FormRegistrationService,
     private councilDialog: CouncilDialog, 
@@ -98,13 +100,15 @@ export class FormRegistrationComponent implements OnInit {
   onFormSubmit() {
     if(!this.hasErrors()) {
       this.service.submitAURForm(this.aurFormObj).subscribe(
-        () => {
+        (responseFormId) => {
           let messages = [AURFormMessages.SUBMISSION_SUCCESSFUL_TEXT];
           this.councilDialog.openDialog(AURFormMessages.SUBMISSION_SUCCESSFUL_TITLE, messages);
+          
+          // Route to AUR Forms List
+          this.router.navigateByUrl('/forms');
         },
         error => {
-          let messages = [ResponseErrorMessages.CONTACT_ADMIN];
-          this.councilDialog.openDialog(AURFormMessages.SUBMISSION_FAILED, messages);
+          this.disableSubmit();
         }
       );
     }
