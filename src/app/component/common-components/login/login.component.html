@@ -9,12 +9,12 @@
 
       <mat-card-content>
         <mat-form-field class="full-width">
-          <input matInput placeholder="Username" formControlName="username">
+          <input matInput placeholder="Username" formControlName="username" maxlength="8">
           <mat-error *ngIf="loginFormGroup.form.controls['username.invalid']">{{validate()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
-          <input matInput placeholder="Password" formControlName="password">
+          <input matInput placeholder="Password" formControlName="password" maxlength="8">
           <mat-error *ngIf="loginFormGroup.form.controls['password.invalid']">{{validate()}}</mat-error>
         </mat-form-field>
       </mat-card-content>

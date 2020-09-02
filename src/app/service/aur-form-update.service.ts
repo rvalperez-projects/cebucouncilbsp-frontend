@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { CouncilDialog } from '../component/common-components/dialog/create-dialog-util';
+import { AURFormMessages } from '../constant/Messages';
 import { ResourceURL } from '../constant/ResourceURL';
 import { RosterHeaderLabels } from '../constant/RosterHeaderLabels';
 import { AURFormRegistration, ISComMemberDetails, RegistrationFees, UnitMemberDetails } from '../model/aur-form-registration.model';
@@ -15,7 +17,8 @@ export class AURFormUpdateService {
   private formId: number;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private councilDialog: CouncilDialog
     ) { 
     
   }
@@ -116,6 +119,12 @@ export class AURFormUpdateService {
       .pipe(
         map(data => {
           return data.result;
+        }),
+        catchError(error => {
+          if (error.status != '500' && error.error) {
+            this.councilDialog.openDialog(AURFormMessages.PROCESSING_FAILED, error.error.errorMessages);
+          }
+          return throwError(error);
         })
       );
   }
@@ -125,7 +134,13 @@ export class AURFormUpdateService {
      return this.http.get<BaseResponse>(ResourceURL.HOST + 
         ResourceURL.FORM_DISPLAY.replace("{formId}", formId.toString()))
         .pipe(
-          map(data => data)
+          map(data => data),
+          catchError(error => {
+            if (error.status != '500' && error.error) {
+              this.councilDialog.openDialog(AURFormMessages.RETRIEVAL_FAILED, error.error.errorMessages);
+            }
+            return throwError(error);
+          })
         );
   }
 

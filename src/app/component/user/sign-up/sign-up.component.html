@@ -1,4 +1,4 @@
-<div class="profile-wrapper overlay" fxLayout="row" fxLayoutAlign="center center">
+<div class="profile-wrapper overlay" fxLayout="row" fxLayoutAlign="center start">
     <mat-card class="box">
   
       <form class="form" [formGroup]="profileFormGroup.form">
@@ -115,7 +115,7 @@
             <tr><td></td>
                 <td>Contact Number</td>
                 <td><mat-form-field class="full-width" class="full-width" appearance="outline" [floatLabel]="'never'">
-                    <input matInput placeholder="Telephone / Mobile Number" maxlength="32">
+                    <input matInput formControlName="contactNumber" placeholder="Telephone / Mobile Number" maxlength="32">
                   </mat-form-field></td>
             </tr>
         </table>

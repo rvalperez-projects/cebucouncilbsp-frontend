@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { CouncilDialog } from '../component/common-components/dialog/create-dialog-util';
+import { AURFormMessages } from '../constant/Messages';
 import { ResourceURL } from '../constant/ResourceURL';
 import { AURFormGroup } from '../formGroups/AURFormGroup';
 import { AURFormRegistration, ISComMemberDetails, RegistrationFees, UnitMemberDetails } from '../model/aur-form-registration.model';
@@ -14,10 +16,9 @@ import { InstitutionModel } from '../model/entities.model';
 export class FormRegistrationService {
 
   constructor(
-    private http: HttpClient
-  ) { 
-    
-  }
+    private http: HttpClient,
+    private councilDialog: CouncilDialog
+  ) {}
 
   public initializeAUR(aurFormObj: AURFormRegistration, aurForm: AURFormGroup) {
     // Initialize AUR Form DTO
@@ -129,7 +130,13 @@ export class FormRegistrationService {
   public submitAURForm(aurFormObj: AURFormRegistration): Observable<BaseResponse> {
     return this.http.post<BaseResponse>(ResourceURL.HOST + ResourceURL.FORM_SUBMIT, JSON.stringify(aurFormObj))
       .pipe(
+        map(data => {
+          return data.result.formId;
+        }),
         catchError(error => {
+          if (error.status != '500' && error.error) {
+            this.councilDialog.openDialog(AURFormMessages.SUBMISSION_FAILED, error.error.errorMessages);
+          }
           return throwError(error);
         })
       );
@@ -142,6 +149,12 @@ export class FormRegistrationService {
           map(data => {
             let institution = data.result as InstitutionModel;
             return institution;
+          }),
+          catchError(error => {
+            if (error.status != '500' && error.error) {
+              this.councilDialog.openDialog(AURFormMessages.SUBMISSION_FAILED, error.error.errorMessages);
+            }
+            return throwError(error);
           })
         );
   }
@@ -152,6 +165,12 @@ export class FormRegistrationService {
         .pipe(
           map(data => {
             return data.result;
+          }),
+          catchError(error => {
+            if (error.status != '500' && error.error) {
+              this.councilDialog.openDialog(AURFormMessages.SUBMISSION_FAILED, error.error.errorMessages);
+            }
+            return throwError(error);
           })
         );
   }

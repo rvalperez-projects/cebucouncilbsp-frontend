@@ -53,6 +53,12 @@ export class AurFormViewComponent implements OnInit {
     }
   }
 
+  deleteAURForm() {
+    this.service.deleteAURForm(this.aurFormObj.formId).subscribe(() => {
+      this.router.navigate(['forms']);
+    });
+  }
+
   print() {
     
   }

@@ -49,10 +49,9 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                     location.reload(true);
                 }
                 
-                // if (error.error) {
-                //     let errorResponse = JSON.parse(error.error);
-                //     this.councilDialog.openDialog(LoginErrorMessages.INCORRECT_DATA, errorResponse.errorMessages);
-                // }
+                if (error.status == '500' && error.error) {
+                    this.councilDialog.openDialog(ResponseErrorMessages.INTERNAL_SERVER_ERROR, [ResponseErrorMessages.CONTACT_ADMIN]);
+                }
                 return throwError(error);
             }),
             finalize(() => {

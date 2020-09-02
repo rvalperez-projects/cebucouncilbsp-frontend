@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { CouncilDialog } from '../component/common-components/dialog/create-dialog-util';
+import { AURFormMessages } from '../constant/Messages';
 import { ResourceURL } from '../constant/ResourceURL';
 import { RosterHeaderLabels } from '../constant/RosterHeaderLabels';
 import { AURFormRegistration, ISComMemberDetails, RegistrationFees, UnitMemberDetails } from '../model/aur-form-registration.model';
@@ -15,7 +17,8 @@ export class AURFormViewService {
   private formId: number;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private councilDialog: CouncilDialog
     ) { 
     
   }
@@ -115,7 +118,31 @@ export class AURFormViewService {
      return this.http.get<BaseResponse>(ResourceURL.HOST + 
         ResourceURL.FORM_DISPLAY.replace("{formId}", formId.toString()))
         .pipe(
-          map(data => data)
+          map(data => data),
+          catchError(error => {
+            if (error.status != '500' && error.error) {
+              this.councilDialog.openDialog(AURFormMessages.RETRIEVAL_FAILED, error.error.errorMessages);
+            }
+            return throwError(error);
+          })
+        );
+  }
+
+  public deleteAURForm(formId: number) : Observable<BaseResponse>{
+
+     return this.http.delete<BaseResponse>(ResourceURL.HOST + 
+        ResourceURL.FORM_DELETE.replace("{formId}", formId.toString()))
+        .pipe(
+          map(data => {
+            this.councilDialog.openDialog(AURFormMessages.DELETION_SUCCESSFUL, [AURFormMessages.DELETION_SUCCESSFUL_MESSAGE]);
+            return data;
+          }),
+          catchError(error => {
+            if (error.status != '500' && error.error) {
+              this.councilDialog.openDialog(AURFormMessages.DELETION_FAILED, error.error.errorMessages);
+            }
+            return throwError(error);
+          })
         );
   }
 

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray, FormControl, Validators, ValidationErrors } from '@angular/forms';
-import { RosterHeaderLabels } from '../constant/RosterHeaderLabels';
-import { AURFormMessages } from '../constant/Messages';
-import { FormStatus } from '../constant/Enums';
+import { FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { SessionConstant } from '../constant/Constants';
+import { FormStatus } from '../constant/Enums';
+import { RosterHeaderLabels } from '../constant/RosterHeaderLabels';
+import { whitespaceOnlyNotAllowed } from '../utils/custom-validators.utils';
 
 @Injectable({
     providedIn: 'root'
@@ -63,13 +63,13 @@ export class AURFormGroup {
         this._aurForm = this.formBuild.group({
             formId: [null],
             institutionId: [institutionId, [Validators.required]],
-            unitRegistrationNo: [null],
+            unitRegistrationNo: [null, [whitespaceOnlyNotAllowed]],
             unitNumber: [null, [Validators.required]],
             charterFlag: [false, [Validators.required]],
             sectionCode: [null, [Validators.required]],
             statusCode: [FormStatus.SUBMITTED],
             dateApplied: [now, [Validators.required]],
-            officialReceiptNo: [null],
+            officialReceiptNo: [null, [whitespaceOnlyNotAllowed]],
             officialReceiptDate: [null],
             expirationDate: [expiryDate, [Validators.required]],
             iscomMembersList: this.formBuild.array([]),
@@ -87,15 +87,15 @@ export class AURFormGroup {
                     iSComId: [null],
                     formId: [null],
                     positionCode: [i, [Validators.required]],
-                    surname: [null, [Validators.required]],
-                    givenName: [null, [Validators.required]],
-                    middleInitial: [null, [Validators.required]],
+                    surname: [null, [Validators.required, whitespaceOnlyNotAllowed]],
+                    givenName: [null, [Validators.required, whitespaceOnlyNotAllowed]],
+                    middleInitial: [null, [Validators.required, whitespaceOnlyNotAllowed]],
                     signature: [{value: null, disabled: true}, []],
                     age: [null, [Validators.required, Validators.min(18)]],
-                    membershipCertNo: [{value: null, disabled: true}, []],
+                    membershipCertNo: [{value: null, disabled: true}, [whitespaceOnlyNotAllowed]],
                     highestTrainingCode: [null],
                     tenure: [null, [Validators.required]],
-                    religion: [null, [Validators.required]]
+                    religion: [null]
                 })
             );
         }
@@ -110,36 +110,21 @@ export class AURFormGroup {
                     memberId: [null],
                     formId: [null],
                     positionCode: [i, [Validators.required]],
-                    surname: [null, [Validators.required]],
-                    givenName: [null, [Validators.required]],
-                    middleInitial: [null, [Validators.required]],
+                    surname: [null, [Validators.required, whitespaceOnlyNotAllowed]],
+                    givenName: [null, [Validators.required, whitespaceOnlyNotAllowed]],
+                    middleInitial: [null, [Validators.required, whitespaceOnlyNotAllowed]],
                     registrationStatusCode: [null, [Validators.required]],
                     age: [null, [Validators.required]],
-                    membershipCertNo: [{value: null, disabled: true}, []],
+                    membershipCertNo: [{value: null, disabled: true}, [whitespaceOnlyNotAllowed]],
                     highestBadgeCode: [null],
                     tenure: [null, [Validators.required]],
-                    religion: [null, [Validators.required]]
+                    religion: [null]
                 })
             );
         }
     }
 
     checkInputData(errorMessages: Array<string>) {
-
-        let missingFields = new Array<string>();
-        for (let item in this._aurForm.controls) {
-            let controlErrors: ValidationErrors = this._aurForm.controls[item].errors;
-            if (!controlErrors) {
-                continue;
-            }
-            for (let error in controlErrors) {
-                // All Validators are Required only.
-                missingFields.push(item);
-            }
-        }
-        if (missingFields.length > 0) {
-            errorMessages.push("Missing required fields:\n[" + missingFields.join(", ") + "]");
-        }
 
         // Get ISCom Members Errors
         for (let formGroup in this.iscomMembersList.value) {
@@ -186,13 +171,20 @@ export class AURFormGroup {
                 errorMessages.push("Sctr. " + surname + ":\n[" + missingFields.join(", ") + "]");
             }
         }
-
-        // Check Unit Number and Section Code
-        if (!this.unitNumber.value) {
-            errorMessages.push(AURFormMessages.UNIT_NUMBER_NOT_SET);
+        
+        let missingFields = new Array<string>();
+        for (let item in this._aurForm.controls) {
+            let controlErrors: ValidationErrors = this._aurForm.controls[item].errors;
+            if (!controlErrors) {
+                continue;
+            }
+            for (let error in controlErrors) {
+                // All Validators are Required only.
+                missingFields.push(item);
+            }
         }
-        if (!this.sectionCode.value) {
-            errorMessages.push(AURFormMessages.SECTION_CODE_NOT_SET);
+        if (missingFields.length > 0) {
+            errorMessages.push("Missing required fields:\n[" + missingFields.join(", ") + "]");
         }
     }
 

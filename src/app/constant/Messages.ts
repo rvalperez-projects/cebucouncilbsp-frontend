@@ -9,14 +9,15 @@ export abstract class AURFormMessages {
     static UNIT_NUMBER_NOT_SET = "Unit Number not set.";
     static SECTION_CODE_NOT_SET = "Please select any of the following: \n\tLangkay / Kawan / Troop / Outfit / Circle.";
 
+    static SUBMISSION_FAILED = "Submission Failed";
     static SUBMISSION_SUCCESSFUL_TITLE = "Submission Successful";
     static SUBMISSION_SUCCESSFUL_TEXT = "Application for Unit Registration Form submission has been successful."
 
+    static PROCESSING_FAILED = "Processing AUR Form Failed";
     static PROCESSING_SUCCESSFUL_TITLE = "AUR Update Successful";
     static PROCESSING_SUCCESSFUL_TEXT = "Application for Unit Registration update has been successful."
     
-    static SUBMISSION_FAILED = "Submission Failed";
-
+    static RETRIEVAL_FAILED = "AUR Form Details Retrieval Failed";
     static GENERAL_INSTRUCTIONS_TITLE = "General Instructions";
     static GENERAL_INSTRUCTIONS_1 = "Please set [Unit Number] and [Scouting Section] values first (found below) to disable unnecessary input fields.";
     static GENERAL_INSTRUCTIONS_2 = "When filling out the form is complete, please click on [Calculate Fees] button to calculate total amount to be paid.";
@@ -27,6 +28,10 @@ export abstract class AURFormMessages {
     static UNIT_REGISTRATION_NO_BLANK = "Unit Registration No. not updated.";
 
     static MISSING_MEMBERSHIP_CERT_NO = " missing [Membership Cert. No.].";
+
+    static DELETION_FAILED = "AUR Form Deletion Failed";
+    static DELETION_SUCCESSFUL = "AUR Form Deletion Successful";
+    static DELETION_SUCCESSFUL_MESSAGE = "Redirecting you back to the AUR Forms List page.";
 }
 
 export abstract class ProfileFormMessages {
@@ -50,6 +55,7 @@ export abstract class ResponseErrorMessages {
 
     static ACCESS_FORBIDDEN = "Access Forbidden";
     static REDIRECT_LOGIN = "Redirecting to Login screen.";
+    static INTERNAL_SERVER_ERROR = "Internal Server Error";
     static CONTACT_ADMIN = "Please contact Systems Administrator.";
     static NOT_ENOUGH_RIGHTS = "User does not have enough privileges to view this page.";
 }
