@@ -53,8 +53,13 @@
     </button>
 </mat-menu>
 <mat-menu #logout="matMenu">
+    <button mat-menu-item (click)="openProfile()">
+        <span>Profile</span>
+    </button>
     <button mat-menu-item (click)="processLogout()">
         <span>Logout</span>
     </button>
 </mat-menu>
+
+<app-profile *ngIf="isProfileClicked" (close)="isProfileClicked = false"></app-profile>
 

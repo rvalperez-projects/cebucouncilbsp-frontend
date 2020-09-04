@@ -8,6 +8,7 @@ import { ProfileFormMessages } from '../constant/Messages';
 import { ResourceURL } from '../constant/ResourceURL';
 import { ProfileFormGroup } from '../formGroups/ProfileFormGroup';
 import { BaseResponse } from '../model/base-response.model';
+import { ProfileInfo } from '../model/user-registration.model';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,25 @@ export class SignUpService {
         catchError(error => {
           if (error.status != '500' && error.error) {
             this.councilDialog.openDialog(ProfileFormMessages.SUBMISSION_ERROR, error.error.errorMessages);
+          }
+          return throwError(error);
+        })
+      );
+  }
+
+  public getUserDetails(userId) {
+    return this.http.get<BaseResponse>(ResourceURL.HOST + ResourceURL.USER_ID.replace("{userId}", userId))
+      .pipe(
+        map(data => {
+          let profileInfo = null;
+          if (data.result) {
+            profileInfo = data.result as ProfileInfo;
+          }
+          return profileInfo;
+        }),
+        catchError(error => {
+          if (error.status != '500' && error.error) {
+            this.councilDialog.openDialog(ProfileFormMessages.RETRIEVAL_FAILED, error.error.errorMessages);
           }
           return throwError(error);
         })

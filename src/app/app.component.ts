@@ -1,7 +1,7 @@
-import { Component, ChangeDetectorRef, AfterContentChecked } from '@angular/core';
+import { AfterContentChecked, ChangeDetectorRef, Component } from '@angular/core';
 import { AuthService } from '../app/service/auth.service';
-import { SessionConstant } from './constant/Constants';
 import { MatSpinnerOverlayComponent } from '../app/utils/mat-spinner-overlay/mat-spinner-overlay.component';
+import { SessionConstant } from './constant/Constants';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +12,8 @@ export class AppComponent implements AfterContentChecked  {
 
   // Toolbar
   private loggedInUser: string;
+
+  isProfileClicked: boolean;
 
   constructor(
     private authService: AuthService,
@@ -24,6 +26,11 @@ export class AppComponent implements AfterContentChecked  {
   }
 
   ngAfterContentChecked() {
+    this.cdRef.detectChanges();
+  }
+
+  openProfile() {
+    this.isProfileClicked = true;
     this.cdRef.detectChanges();
   }
 
