@@ -10,7 +10,7 @@
         </div>
         <div *ngIf="isLoggedIn" fxShow="true" fxHide.lt-md>
             <a mat-button [matMenuTriggerFor]="formsMenu">Forms&nbsp;<mat-icon>keyboard_arrow_down</mat-icon></a>
-            <a mat-button [matMenuTriggerFor]="usersMenu">Users&nbsp;<mat-icon>keyboard_arrow_down</mat-icon></a>
+            <a mat-button [matMenuTriggerFor]="usersMenu" *ngIf="isNotGeneralUser">Users&nbsp;<mat-icon>keyboard_arrow_down</mat-icon></a>
         </div>
         <div *ngIf="isLoggedIn" fxFlex fxLayoutAlign="flex-end center">
             <button mat-icon-button [matMenuTriggerFor]="logout">
@@ -49,7 +49,7 @@
 </mat-menu>
 <mat-menu #usersMenu="matMenu">
     <button mat-menu-item [routerLink]="'/users'" (click)="sidenav.close()">
-        <span>Users List</span>
+        <span>User List</span>
     </button>
 </mat-menu>
 <mat-menu #logout="matMenu">
@@ -61,5 +61,5 @@
     </button>
 </mat-menu>
 
-<app-profile *ngIf="isProfileClicked" (close)="isProfileClicked = false"></app-profile>
+<app-profile [inputUserId]="userId" *ngIf="isProfileClicked" (close)="isProfileClicked = false"></app-profile>
 

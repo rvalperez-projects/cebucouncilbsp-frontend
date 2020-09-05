@@ -1,8 +1,9 @@
 import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { AreaDistrictsInterface, ProfileLabels } from '../../../constant/Constants';
+import { ProfileLabels } from 'src/app/constant/Constants';
+import { AreaDistrictsModel } from 'src/app/model/user-registration.model';
 import { ProfileFormMessages } from '../../../constant/Messages';
 import { ProfileFormGroup } from '../../../formGroups/ProfileFormGroup';
-import { SignUpService } from '../../../service/sign-up.service';
+import { UserService } from '../../../service/user.service';
 import { CouncilDialog } from '../../common-components/dialog/create-dialog-util';
 
 @Component({
@@ -18,13 +19,13 @@ export class SignUpComponent implements OnInit {
   // Declare object
   profileValidator: ProfileFormGroup;
 
-  selectedDistrict: AreaDistrictsInterface;
+  selectedDistrict: AreaDistrictsModel;
   passwordHide = true;
   confirmPasswordHide = true;
   
   // Combo box values
   Categories: any = ProfileLabels.categories;
-  AreaDistricts: AreaDistrictsInterface[];
+  AreaDistricts: AreaDistrictsModel[];
 
   // Error Messages
   errorMessages: Array<string>;
@@ -32,15 +33,14 @@ export class SignUpComponent implements OnInit {
   constructor(
     public profileFormGroup: ProfileFormGroup,
     private councilDialog: CouncilDialog, 
-    private service: SignUpService) { 
+    private service: UserService) { 
       this.AreaDistricts = [];
   }
 
   ngOnInit(): void {
-    console.log()
-    this.service.getDistricts().subscribe((areaDistricts: AreaDistrictsInterface[]) => {
+    this.service.getDistricts().subscribe((areaDistricts: AreaDistrictsModel[]) => {
       for (let item of areaDistricts) {
-        let areaDistrict: AreaDistrictsInterface = {area: item.area, district: item.district }
+        let areaDistrict: AreaDistrictsModel = {area: item.area, district: item.district }
         this.AreaDistricts.push(areaDistrict);
       }
     });

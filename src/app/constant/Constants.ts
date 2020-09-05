@@ -1,3 +1,5 @@
+import { AreaDistrictsModel } from '../model/user-registration.model';
+
 export class ProfileLabels {
 
     public static categories: InstitutionCategoryInterface[] = [
@@ -9,17 +11,12 @@ export class ProfileLabels {
         {code: '05', text: 'Community'},
     ];
 
-    public static areaDistricts: AreaDistrictsInterface[] = [];
+    public static areaDistricts: AreaDistrictsModel[] = [];
 }
 
 interface InstitutionCategoryInterface {
     code: string,
     text: string
-}
-
-export interface AreaDistrictsInterface {
-    area: string,
-    district: string
 }
 
 export abstract class SessionConstant {
