@@ -4,10 +4,11 @@ import { AppComponent } from 'src/app/app.component';
 import { InstitutionModel } from 'src/app/model/entities.model';
 import { SessionConstant } from '../../../constant/Constants';
 import { EnumUtil, FormStatus, Roles } from '../../../constant/Enums';
-import { AURFormListFormGroup } from '../../../formGroups/FormListGroup';
+import { SearchFormGroup } from '../../../formGroups/FormListGroup';
 import { FormListSearchResultsModel } from '../../../model/form-list.model';
 import { SearchFormModel } from '../../../model/search-form.model';
 import { AURFormListService } from '../../../service/aur-form-list.service';
+import { SearchService } from '../../../service/search.service';
 
 @Component({
   selector: 'app-forms-list',
@@ -32,8 +33,9 @@ export class FormsListComponent implements OnInit {
     public  route: ActivatedRoute,
     public  router: Router,
     private service: AURFormListService,
+    private searchService: SearchService,
     private header: AppComponent,
-    public aurFormListFormGroup: AURFormListFormGroup
+    public searchFormGroup: SearchFormGroup
   ) {
     this.searchFormData = new SearchFormModel();
     this.dataSource = new Array<FormListSearchResultsModel>();
@@ -52,7 +54,7 @@ export class FormsListComponent implements OnInit {
     this.role = EnumUtil.getEnumValueByValue(Roles, this.roleCode);
 
     // Populate Search Boxes
-     this.service.initializeSearchBoxes().subscribe((result: any) => {
+     this.searchService.initializeSearchBoxes().subscribe((result: any) => {
        
        switch(this.role) {
         case Roles.GENERAL_USER: 
@@ -61,9 +63,9 @@ export class FormsListComponent implements OnInit {
           this.searchFormData.areaList = [institution.area];
           this.searchFormData.districtList = [institution.district];
     
-          this.aurFormListFormGroup.area.setValue(institution.area);
-          this.aurFormListFormGroup.district.setValue(institution.district);
-          this.aurFormListFormGroup.institutionId.setValue(institution.institutionId);
+          this.searchFormGroup.area.setValue(institution.area);
+          this.searchFormGroup.district.setValue(institution.district);
+          this.searchFormGroup.institutionId.setValue(institution.institutionId);
           break;
         case Roles.COUNCIL:
         case Roles.ADMIN:
@@ -71,28 +73,28 @@ export class FormsListComponent implements OnInit {
           let area: string = Object.keys(mapResult)[0];
           let district: string = Object.keys(mapResult[area])[0];
 
-          this.aurFormListFormGroup.area.setValue(area);
-          this.aurFormListFormGroup.district.setValue(district);
-          this.aurFormListFormGroup.institutionId.setValue('');
-          this.service.populateSearchBoxes(this.searchFormData, area, district);
+          this.searchFormGroup.area.setValue(area);
+          this.searchFormGroup.district.setValue(district);
+          this.searchFormGroup.institutionId.setValue('');
+          this.searchService.populateSearchBoxes(this.searchFormData, area, district);
           break;
        }
      });
   }
 
   repopulateInstitutions() {
-    this.service.populateSearchBoxes(this.searchFormData, 
-      this.aurFormListFormGroup.area.value, 
-      this.aurFormListFormGroup.district.value);
-    this.aurFormListFormGroup.institutionId.setValue(null);
+    this.searchService.populateSearchBoxes(this.searchFormData, 
+      this.searchFormGroup.area.value, 
+      this.searchFormGroup.district.value);
+    this.searchFormGroup.institutionId.setValue(null);
   }
 
   repopulateDistrictAndInstitutions() {
-    this.service.populateSearchBoxes(this.searchFormData, 
-      this.aurFormListFormGroup.area.value, 
+    this.searchService.populateSearchBoxes(this.searchFormData, 
+      this.searchFormGroup.area.value, 
       null);
-      this.aurFormListFormGroup.district.setValue(null);
-      this.aurFormListFormGroup.institutionId.setValue(null);
+      this.searchFormGroup.district.setValue(null);
+      this.searchFormGroup.institutionId.setValue(null);
   }
 
   processAURForm(formId: any, status: string) {
@@ -109,7 +111,7 @@ export class FormsListComponent implements OnInit {
   }
 
   searchAURForms() {
-    this.service.searchAURForm(this.aurFormListFormGroup).subscribe((data: Array<FormListSearchResultsModel>) => {
+    this.service.searchAURForm(this.searchFormGroup).subscribe((data: Array<FormListSearchResultsModel>) => {
       this.dataSource = data;
     });
   }

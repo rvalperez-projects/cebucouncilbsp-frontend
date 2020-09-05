@@ -4,7 +4,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 @Injectable({
     providedIn: 'root'
 })
-export class AURFormListFormGroup {
+export class SearchFormGroup {
 
     private _aurFormListForm: FormGroup;
 

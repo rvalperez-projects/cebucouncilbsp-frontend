@@ -1,7 +1,8 @@
-import { Component, ChangeDetectorRef, AfterContentChecked } from '@angular/core';
+import { AfterContentChecked, ChangeDetectorRef, Component } from '@angular/core';
 import { AuthService } from '../app/service/auth.service';
-import { SessionConstant } from './constant/Constants';
 import { MatSpinnerOverlayComponent } from '../app/utils/mat-spinner-overlay/mat-spinner-overlay.component';
+import { SessionConstant } from './constant/Constants';
+import { Roles } from './constant/Enums';
 
 @Component({
   selector: 'app-root',
@@ -11,19 +12,31 @@ import { MatSpinnerOverlayComponent } from '../app/utils/mat-spinner-overlay/mat
 export class AppComponent implements AfterContentChecked  {
 
   // Toolbar
+  userId: number;
   private loggedInUser: string;
+
+  isProfileClicked: boolean;
+  isNotGeneralUser: boolean;
 
   constructor(
     private authService: AuthService,
     public spinner: MatSpinnerOverlayComponent,
     private cdRef: ChangeDetectorRef) {
+      this.isNotGeneralUser = false;
   }
 
   initLoggedInUser() {
+    this.userId = window.sessionStorage[SessionConstant.USER_ID_KEY];
     this.loggedInUser = "Sctr. " + window.sessionStorage[SessionConstant.USER_GIVEN_NAME];
+    this.isNotGeneralUser = window.sessionStorage[SessionConstant.USER_ROLE_CODE_KEY] != Roles.GENERAL_USER;
   }
 
   ngAfterContentChecked() {
+    this.cdRef.detectChanges();
+  }
+
+  openProfile() {
+    this.isProfileClicked = true;
     this.cdRef.detectChanges();
   }
 

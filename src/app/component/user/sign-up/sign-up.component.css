@@ -6,7 +6,9 @@
 .profile-wrapper .btn-block {width:80%;text-align:center;}
 
 .profile-wrapper table td h1 {text-align:left;margin:0px;}
-.profile-wrapper input {font-family:Arial, Helvetica, sans-serif}
+.profile-wrapper input {font-family:Arial, Helvetica, sans-serif;color: rgb(103, 58, 183);}
+.profile-wrapper textarea {color: rgb(103, 58, 183);}
+.profile-wrapper .mat-select-value {color: rgb(103, 58, 183);}
 
 .profile-wrapper .mat-form-field-wrapper {padding-bottom:0px !important;}
 .profile-wrapper .mat-form-field-flex {padding-top:0px !important;}

@@ -36,6 +36,7 @@ export abstract class AURFormMessages {
 
 export abstract class ProfileFormMessages {
     
+    static RETRIEVAL_FAILED = "User Details Retrieval Failed";
     static SUBMISSION_SUCCESSFUL = "Submission Successful";
     static WELCOME_MESSAGE_1 = "Welcome to the Cebu Council BSP Portal.";
     static WELCOME_MESSAGE_2 = "Login to register your unit.";
