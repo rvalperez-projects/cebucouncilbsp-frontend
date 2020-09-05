@@ -34,3 +34,9 @@ mat-sidenav-content {
 
 .header-title {padding-left:6px !important;padding-right:6px !important;}
 .logo {max-height:40px;max-width:35px;float:left;}
+
+@media print {
+  mat-toolbar, app-footer {
+    display:none;
+  }
+}

@@ -60,6 +60,6 @@ export class AurFormViewComponent implements OnInit {
   }
 
   print() {
-    
+    window.print();
   }
 }
