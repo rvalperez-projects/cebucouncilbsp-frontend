@@ -35,7 +35,6 @@
 .aurForm-wrapper span.sectionCodes {text-decoration:none;color:black;}
 .aurForm-wrapper span.sectionCodes:hover, .aurForm-wrapper span.sectionCodes:active {font-weight:bold;text-decoration:underline;cursor: pointer;}
 
-@page {size: 13in 8.5in;margin-left:0.5in;margin-right:0.5in;margin-bottom: 1.5in;}
 @media print {
     .aurForm-wrapper {width:100%;}
     .aurForm-wrapper .box {min-width:7.45in;max-width:7.45in;max-height:12.5in;background:#fff;padding:0px;margin:0px;}
