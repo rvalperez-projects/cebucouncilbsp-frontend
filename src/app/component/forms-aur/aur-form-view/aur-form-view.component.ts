@@ -9,7 +9,7 @@ import { AURFormViewService } from '../../../service/aur-form-view.service';
 @Component({
   selector: 'app-aur-form-view',
   templateUrl: './aur-form-view.component.html',
-  styleUrls: ['./aur-form-view.component.css']
+  styleUrls: ['../aur-form.component.css']
 })
 export class AurFormViewComponent implements OnInit {
 
@@ -39,7 +39,7 @@ export class AurFormViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.header.initLoggedInUser();    
+    this.header.initLoggedInUser();
     this.loading = true;
     
     // Route back to forms if no formId is retrieved
@@ -62,4 +62,6 @@ export class AurFormViewComponent implements OnInit {
   print() {
     window.print();
   }
+
+  
 }

@@ -15,8 +15,7 @@ import { CouncilDialog } from '../../common-components/dialog/create-dialog-util
 @Component({
   selector: 'app-form-registration',
   templateUrl: './form-registration.component.html',
-  styleUrls: ['./form-registration.component.css'],
-  providers:  [ FormRegistrationService, AURFormGroup ]
+  styleUrls: ['../aur-form.component.css']
 })
 export class FormRegistrationComponent implements OnInit {
 

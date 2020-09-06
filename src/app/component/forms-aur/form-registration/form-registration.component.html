@@ -1,4 +1,4 @@
-<div class="formReg-wrapper" fxLayout="column" fxLayoutAlign.gt-sm="start center" fxLayoutAlign.lt-md="start start">    
+<div class="aurForm-wrapper" fxLayout="column" fxLayoutAlign.gt-sm="start center" fxLayoutAlign.lt-md="start start">    
     <div class="box">
         <div class="text-center">
             <div class="font-bold">BOY SCOUTS OF THE PHILIPPINES</div>
@@ -7,7 +7,7 @@
         </div>
 
         <form [formGroup]="aubFormGroup.form">
-        <table cellspacing="0">
+        <table id="iscom-table" cellspacing="0">
             <colgroup>
                 <col style="width: 18%;"><!--Position-->
                 <col style="width: 33%;"><!--Name-->
@@ -38,13 +38,13 @@
                 <td>Scouting</td>
             </tr>
             <!--ISCOM Member Roster -->
-            <tr>
-                <td style="padding-left:5px;">ISCOM:</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            <tr id="iscom-tr" class="table-row">
+                <td>ISCOM:</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
             </tr>
             <tbody formArrayName="iscomMembersList">
-            <tr *ngFor="let label of iSComPositions; let isComMember = index" [formGroupName]="isComMember">
-                <td style="padding-left:5px;">{{label.title}}</td>
-                <td><input type="text" formControlName="surname" class="name" (focus)="disableSubmit()" maxlength="32">, 
+            <tr class="table-row" *ngFor="let label of iSComPositions; let isComMember = index" [formGroupName]="isComMember">
+                <td>{{label.title}}</td>
+                <td style="padding-left:0px;"><input type="text" formControlName="surname" class="name" (focus)="disableSubmit()" maxlength="32"><span id="comma">, </span>
                     <input type="text" formControlName="givenName" class="name" (focus)="disableSubmit()" maxlength="32">&nbsp;
                     <input type="text" formControlName="middleInitial" class="mi" (focus)="disableSubmit()" maxlength="1">
                 </td>
@@ -61,7 +61,7 @@
         </table>
 
         <!--Unit Members-->
-        <table cellspacing="0">
+        <table id="unitMembers-table" cellspacing="0">
             <colgroup>
                 <col style="width: 18%;"><!--Position-->
                 <col style="width: 33%;"><!--Name-->
@@ -72,6 +72,7 @@
                 <col style="width: 7%;"><!--Tenure in Scouting-->
                 <col style="width: 8%;"><!--Religion-->
             </colgroup>
+            
             <!--Members Header Row 1-->
             <tr class="table-header">
                 <td colspan="2" class="roster">ROSTER OF SCOUT MEMBERSHIP</td>
@@ -92,17 +93,17 @@
             </tr>
             <tbody formArrayName="unitMembersList">
             <!--Unit Members -->
-            <tr *ngFor="let unitMember of memberPositions; let unitNum = index" [formGroupName]="unitNum">
+            <tr class="table-row" *ngFor="let unitMember of memberPositions; let unitNum = index" [formGroupName]="unitNum">
                 <ng-container *ngIf="unitMember.code == 'x'; else notBlank">
-                    <td colspan="2" style="height:2px;"></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td style="height:2px;" colspan="2"></td><td></td><td></td><td></td><td></td><td></td><td></td>
                 </ng-container>
                 <ng-template #notBlank>
-                    <td style="border-right-style:none;padding-left:5px;">
+                    <td style="border-right-style:none !important;">
                         <b *ngIf="unitNum > 6; else officerBlock">{{unitMember.title}}</b>
                         <ng-template #officerBlock>{{unitMember.title}}</ng-template>
                     </td>
-                    <td style="border-left-style:none;">             
-                        <input type="text" formControlName="surname" class="name" (focus)="disableSubmit()" maxlength="32">, 
+                    <td style="border-left-style:none !important;padding-left:0px;">
+                        <input type="text" formControlName="surname" class="name" (focus)="disableSubmit()" maxlength="32"><span id="comma">, </span>
                         <input type="text" formControlName="givenName" class="name" (focus)="disableSubmit()" maxlength="32">&nbsp;
                         <input type="text" formControlName="middleInitial" class="mi" (focus)="disableSubmit()" maxlength="1">
                     </td>
@@ -123,7 +124,7 @@
         <div class="text-center">
             Registration Status: N – New; RR – Reregistering.
         </div>
-        <table class="registration" cellspacing="0">
+        <table class="aurForm" cellspacing="0">
             <colgroup>
                 <col style="width: 50%;">
                 <col style="width: 50%;">
@@ -271,14 +272,14 @@
                 </td>
             </tr>
         </table>
-        <table class="registration" cellspacing="0">
+        <table class="aurForm" cellspacing="0">
             <table class="summary" cellspacing="0">
                 <tr>
-                    <td style="width: 15%;">Sponsoring Institution</td>
-                    <td style="width: 30%;" class="bottom-underline">{{aurFormObj.institutionName}}</td>
+                    <td style="width: 18%;">Sponsoring Institution</td>
+                    <td style="width: 35%;" class="bottom-underline">{{aurFormObj.institutionName}}</td>
                     <td style="width: 5%;">  District</td>
-                    <td style="width: 20%;" class="bottom-underline">{{aurFormObj.district}}</td>
-                    <td style="width: 10%;">  AUR No.</td>
+                    <td style="width: 15%;" class="bottom-underline">{{aurFormObj.district}}</td>
+                    <td style="width: 7%;">  AUR No.</td>
                     <td style="width: 20%;" class="bottom-underline">{{aurFormObj.unitRegistrationNo}}</td>
                 </tr>
             </table>
