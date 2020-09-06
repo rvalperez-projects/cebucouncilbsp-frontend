@@ -1,16 +1,16 @@
-<div class="formDisplay-wrapper" fxLayout="column" fxLayoutAlign.gt-sm="start center" fxLayoutAlign.lt-md="start start">    
+<div class="aurForm-wrapper" fxLayout="column" fxLayoutAlign.gt-sm="start center" fxLayoutAlign.lt-md="start start">    
     
     <div class="box" *ngIf="!loading">
         <div class="text-center">
-            <div class="font-bold">BOY SCOUTS OF THE PHILIPPINES</div>
-            <div>181 Natividad Almeda-Lopez Street, Ermita, 1000 Manila</div>
-            <div class="font-emphasize">APPLICATION FOR UNIT REGISTRATION (AUR)</div>
+            <div class="form-headers font-bold">BOY SCOUTS OF THE PHILIPPINES</div>
+            <div class="form-header">181 Natividad Almeda-Lopez Street, Ermita, 1000 Manila</div>
+            <div class="form-header font-emphasize">APPLICATION FOR UNIT REGISTRATION (AUR)</div>
         </div>
 
-        <table cellspacing="0">
-            <colgroup>
-                <col style="width: 18%;"><!--Position-->
-                <col style="width: 33%;"><!--Name-->
+        <table id="iscom-table" cellspacing="0">
+            <colgroup style="width: 100%">
+                <col style="width: 20%;"><!--Position-->
+                <col style="width: 31%;"><!--Name-->
                 <col style="width: 9%;"><!--Signature-->
                 <col style="width: 5%;"><!--Age-->
                 <col style="width: 10%;"><!--Membership Cert. No.-->
@@ -38,11 +38,11 @@
                 <td>Scouting</td>
             </tr>
             <!--ISCOM Member Roster -->
-            <tr>
-                <td style="padding-left:5px;">ISCOM:</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            <tr id="iscom-tr" class="table-row">
+                <td>ISCOM:</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
             </tr>
             <tr class="table-row" *ngFor="let label of iSComPositions; let i = index">
-                <td style="padding-left:5px;">{{label.title}}</td>
+                <td>{{label.title}}</td>
                 <td><ng-container *ngIf="aurFormObj.iscomMembersList[i].surname; else blankName">
                         {{aurFormObj.iscomMembersList[i].surname}},&nbsp;
                         {{aurFormObj.iscomMembersList[i].givenName}},&nbsp;
@@ -60,10 +60,10 @@
         </table>
 
         <!--Unit Members-->
-        <table cellspacing="0">
-            <colgroup>
-                <col style="width: 18%;"><!--Position-->
-                <col style="width: 33%;"><!--Name-->
+        <table id="unitMembers-table" cellspacing="0">
+            <colgroup style="width: 100%">
+                <col style="width: 20%;"><!--Position-->
+                <col style="width: 31%;"><!--Name-->
                 <col style="width: 9%;"><!--Registration Status-->
                 <col style="width: 5%;"><!--Age-->
                 <col style="width: 10%;"><!--Membership Cert. No.-->
@@ -71,6 +71,7 @@
                 <col style="width: 7%;"><!--Tenure in Scouting-->
                 <col style="width: 8%;"><!--Religion-->
             </colgroup>
+            
             <!--Members Header Row 1-->
             <tr class="table-header">
                 <td colspan="2" class="roster">ROSTER OF SCOUT MEMBERSHIP</td>
@@ -92,14 +93,14 @@
             <!--Unit Members -->
             <tr class="table-row" *ngFor="let unitMember of memberPositions; let i = index">
                 <ng-container *ngIf="unitMember.code == 'x'; else notBlank">
-                    <td colspan="2" style="height:2px;"></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td style="height:2px;" colspan="2"></td><td></td><td></td><td></td><td></td><td></td><td></td>
                 </ng-container>
                 <ng-template #notBlank>
-                    <td style="border-right-style:none;padding-left:5px;">
+                    <td style="border-right-style:none !important;">
                         <b *ngIf="i > 6; else officerBlock">{{unitMember.title}}</b>
                         <ng-template #officerBlock>{{unitMember.title}}</ng-template>
                     </td>
-                    <td style="border-left-style:none;"><span *ngIf="aurFormObj.unitMembersList[i].surname; else blankName">
+                    <td style="border-left-style:none !important;"><span *ngIf="aurFormObj.unitMembersList[i].surname; else blankName">
                             {{aurFormObj.unitMembersList[i].surname}},&nbsp;
                             {{aurFormObj.unitMembersList[i].givenName}},&nbsp;
                             {{aurFormObj.unitMembersList[i].middleInitial}}
@@ -124,7 +125,7 @@
                 <col style="width: 50%;">
             </colgroup>
             <tr>
-                <td rowspan="2" class="text-center font-emphasize" style="border-right-width:3pt;">REGISTRATION FEES<br>
+                <td rowspan="2" class="text-center font-emphasize" style="border-right-width:2pt;">REGISTRATION FEES<br>
                     <table class="summary" cellspacing="0">
                         <colgroup>
                             <col style="width: 10%;">
@@ -185,15 +186,13 @@
                         </tr>
                     </table>
                     <table class="summary" cellspacing="0">
-                        <tr>
-                            <td style="width: 25%;" class="font-condensed">Expiration of Unit Registration</td>
-                            <td style="width: 22%;" class="bottom-underline"></td>
+                        <tr><td style="width: 48%;" colspan="2">Expiration of Unit Registration</td>
                             <td style="width: 6%;">  Date</td>
                             <td style="width: 18%;" class="bottom-underline">{{aurFormObj.expirationDate | date:'yyyy/MM/dd'}}</td>
                         </tr>
                     </table>
                 </td>
-                <td class="text-center font-emphasize" style="border-bottom-width:3pt;">LOCAL COUNCIL OFFICE ACTION
+                <td class="text-center font-emphasize" style="border-bottom-width:2pt;">LOCAL COUNCIL OFFICE ACTION
                     <table class="summary" cellspacing="0">
                         <colgroup>
                             <col style="width: 20%;">
@@ -270,11 +269,11 @@
         <table class="aurForm" cellspacing="0">
             <table class="summary" cellspacing="0">
                 <tr>
-                    <td style="width: 15%;">Sponsoring Institution</td>
-                    <td style="width: 30%;" class="bottom-underline">{{aurFormObj.institutionName}}</td>
+                    <td style="width: 18%;">Sponsoring Institution</td>
+                    <td style="width: 35%;" class="bottom-underline">{{aurFormObj.institutionName}}</td>
                     <td style="width: 5%;">  District</td>
-                    <td style="width: 20%;" class="bottom-underline">{{aurFormObj.district}}</td>
-                    <td style="width: 10%;">  AUR No.</td>
+                    <td style="width: 15%;" class="bottom-underline">{{aurFormObj.district}}</td>
+                    <td style="width: 7%;">  AUR No.</td>
                     <td style="width: 20%;" class="bottom-underline">{{aurFormObj.unitRegistrationNo}}</td>
                 </tr>
             </table>

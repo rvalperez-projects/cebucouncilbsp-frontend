@@ -13,7 +13,7 @@ import { CouncilDialog } from '../../common-components/dialog/create-dialog-util
 @Component({
   selector: 'app-aur-form-update',
   templateUrl: './aur-form-update.component.html',
-  styleUrls: ['./aur-form-update.component.css']
+  styleUrls: ['../aur-form.component.css']
 })
 export class AurFormUpdateComponent implements OnInit {
 

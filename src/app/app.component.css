@@ -25,7 +25,7 @@ mat-sidenav mat-nav-list button.mat-list-item {font-size:small;border: 0.5px sol
 mat-sidenav mat-nav-list button.mat-list-item:hover {background-color: #9580b9;color: white !important;}
 
 mat-sidenav-content {
-  background-image:url(https://scontent.fceb2-2.fna.fbcdn.net/v/t1.0-9/116720094_1334730020205534_329732359687626176_n.png?_nc_cat=111&_nc_sid=8024bb&_nc_ohc=Gy7k3T1lQ9sAX-8OmAk&_nc_ht=scontent.fceb2-2.fna&oh=671e3fa8813603773458f50227431fa1&oe=5F532BBE);
+  background-image:url(../assets/background-scout-heroes.png);
   background-position-y:60px;
   background-size:cover;
   background-repeat:no-repeat;
@@ -34,3 +34,9 @@ mat-sidenav-content {
 
 .header-title {padding-left:6px !important;padding-right:6px !important;}
 .logo {max-height:40px;max-width:35px;float:left;}
+
+@media print {
+  mat-toolbar, app-footer {
+    display:none;
+  }
+}

@@ -23,6 +23,7 @@ export class AppComponent implements AfterContentChecked  {
     public spinner: MatSpinnerOverlayComponent,
     private cdRef: ChangeDetectorRef) {
       this.isNotGeneralUser = false;
+      this.setPrintEvent();
   }
 
   initLoggedInUser() {
@@ -46,5 +47,17 @@ export class AppComponent implements AfterContentChecked  {
 
   get isLoggedIn(): boolean {
     return window.sessionStorage[SessionConstant.LOGIN_TOKEN_KEY];
+  }
+
+  private setPrintEvent() {
+    let beforePrint = function() {
+    };
+
+    let afterPrint = function() {
+        location.reload(true);
+    };
+
+    window.onbeforeprint = beforePrint;
+    window.onafterprint = afterPrint;
   }
 }
