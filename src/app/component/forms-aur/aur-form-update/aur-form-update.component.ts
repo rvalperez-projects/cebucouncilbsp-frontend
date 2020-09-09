@@ -158,7 +158,9 @@ export class AurFormUpdateComponent implements OnInit {
       this.errorMessages.push(AURFormMessages.OFFICIAL_RECEIPT_NO_BLANK);
     }
     if (this.aubFormGroup.officialReceiptDate.value) {
-      if (new Date(this.aubFormGroup.officialReceiptDate.value) > new Date()) {
+      let inputOfficialReceiptDate = new Date(this.aubFormGroup.officialReceiptDate.value);
+      inputOfficialReceiptDate.setHours(0,0,0,0);
+      if (inputOfficialReceiptDate > new Date()) {
         this.errorMessages.push(AURFormMessages.OFFICIAL_RECEIPT_DATE_FUTURE);
       } else {
         this.aurFormObj.officialReceiptDate = this.aubFormGroup.officialReceiptDate.value;

@@ -63,6 +63,7 @@ export class FormRegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.header.initLoggedInUser();
+    this.disableSubmit();
     
     // Initialize Input Fields
     let institutionId = window.sessionStorage[SessionConstant.USER_INSTITUTION_ID_KEY];
@@ -89,36 +90,46 @@ export class FormRegistrationComponent implements OnInit {
   }
 
   calculateFees() {
+    if(this.hasErrors()) {
+      this.disableSubmit();
+      return;
+    }
     this.service.populateAurFormObj(this.aurFormObj, this.aubFormGroup);
     this.service.calculateFees(this.aurFormObj, this.registrationFee);
-    if (this.registrationFee.totalAmount > 0) {
+    
+    // Check Total Amount
+    if (this.registrationFee.totalAmount <= 0) {
+      this.councilDialog.openDialog(AURFormMessages.SUBMISSION_ERROR, [AURFormMessages.REGISTRATION_FEE_NOT_CALCULATED]);
+      this.disableSubmit();
+    } else {
       this.submitDisabled = false;
     }
   }
 
   onFormSubmit() {
-    if(!this.hasErrors()) {
-      this.service.submitAURForm(this.aurFormObj).subscribe(
-        (responseFormId) => {
-          let messages = [AURFormMessages.SUBMISSION_SUCCESSFUL_TEXT];
-          this.councilDialog.openDialog(AURFormMessages.SUBMISSION_SUCCESSFUL_TITLE, messages);
-          
-          // Route to AUR Forms List
-          this.router.navigateByUrl('/forms');
-        },
-        error => {
-          this.disableSubmit();
-        }
-      );
+    if(this.hasErrors()) {
+      this.disableSubmit();
+      return;
     }
+    this.service.submitAURForm(this.aurFormObj).subscribe(
+      (responseFormId) => {
+        let messages = [];
+        messages.push(AURFormMessages.SUBMISSION_SUCCESSFUL_TEXT_1);
+        messages.push(AURFormMessages.SUBMISSION_SUCCESSFUL_TEXT_2);
+        this.councilDialog.openDialog(AURFormMessages.SUBMISSION_SUCCESSFUL_TITLE, messages);
+        
+        // Route to AUR Forms List
+        this.aubFormGroup.form.reset();
+        this.router.navigateByUrl('/forms');
+      },
+      error => {
+        this.disableSubmit();
+      }
+    );
   }
 
   private hasErrors(): boolean {
     this.errorMessages = [];
-    // Check Total Amount
-    if (this.registrationFee.totalAmount == 0) {
-      this.errorMessages.push(AURFormMessages.REGISTRATION_FEE_NOT_CALCULATED);
-    }
     
     // Check Input Data
     this.aubFormGroup.checkInputData(this.errorMessages);

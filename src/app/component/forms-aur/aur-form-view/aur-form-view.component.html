@@ -300,9 +300,14 @@
 
         <br>
         <button id="submitBtnId" mat-raised-button color="basic" class="" style="float:left" routerLink="/forms">Back</button>
-
-        <button mat-raised-button color="warn" class="" style="float:right" (click)="print()">Print</button>
+        
+        <button mat-raised-button color="warn" class="" style="float:right" (click)="print()" *ngIf="hidePrintButton()">Print</button>
         <button mat-raised-button color="accent" class="" style="float:right" (click)="deleteAURForm()">Delete</button>
+        <button mat-raised-button color="basic" style="float:right" (click)="fileInput.click()" [disabled]="isPaid">
+            <span>Upload Payment</span>
+            <input #fileInput type="file" accept="image/png, image/jpeg"
+                (change)="onFileInput($event.target.files, aurFormObj.formId)" style="display:none;" />
+        </button>
 
     </div>
 </div>

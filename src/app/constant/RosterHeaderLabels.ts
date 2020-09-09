@@ -36,7 +36,7 @@ export abstract class RosterHeaderLabels {
         {code: "07", title: "7."},{code: "07", title: "8."}
     ];
 
-    public static registrationStatusCode: Array<string> = ["N","RR"];
+    public static registrationStatusCode: Array<string> = ["RR","N"];
 
     public static highestTraining: Map<string, string> = new Map([
         ["", ""],

@@ -27,7 +27,6 @@ export class FormsListComponent implements OnInit {
 
   // User role
   private roleCode: string;
-  private role: string;
 
   constructor(
     public  route: ActivatedRoute,
@@ -51,12 +50,11 @@ export class FormsListComponent implements OnInit {
     }); 
     
     this.roleCode = window.sessionStorage.getItem(SessionConstant.USER_ROLE_CODE_KEY);
-    this.role = EnumUtil.getEnumValueByValue(Roles, this.roleCode);
 
     // Populate Search Boxes
      this.searchService.initializeSearchBoxes().subscribe((result: any) => {
        
-       switch(this.role) {
+       switch(this.roleCode) {
         case Roles.GENERAL_USER: 
           let institution = result as InstitutionModel;
           this.searchFormData.institutionMap.set(institution.institutionId, institution.institutionName);
@@ -103,7 +101,7 @@ export class FormsListComponent implements OnInit {
       return;
     }
 
-    if (this.roleCode != Roles.GENERAL_USER && status == EnumUtil.getEnumTextByValue(FormStatus, FormStatus.SUBMITTED)) {
+    if (this.roleCode != Roles.GENERAL_USER && status == EnumUtil.getEnumTextByValue(FormStatus, FormStatus.PAID)) {
       this.updateAURForm(formId);
     } else {
       this.viewAURForm(formId);

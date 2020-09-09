@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AppComponent } from 'src/app/app.component';
+import { FormStatus } from 'src/app/constant/Enums';
+import { AURFormMessages } from 'src/app/constant/Messages';
 import { RosterHeaderLabels } from '../../../constant/RosterHeaderLabels';
 import { AURFormGroup } from '../../../formGroups/AURFormGroup';
 import { AURFormRegistration, RegistrationFees } from '../../../model/aur-form-registration.model';
 import { AURFormViewService } from '../../../service/aur-form-view.service';
+import { CouncilDialog } from '../../common-components/dialog/create-dialog-util';
 
 @Component({
   selector: 'app-aur-form-view',
@@ -16,6 +19,7 @@ export class AurFormViewComponent implements OnInit {
   // Declare object
   aurFormObj: AURFormRegistration;
   loading: boolean;
+  isPaid: boolean;
   
   // Declare labels
   iSComPositions = RosterHeaderLabels.iSComPositions;
@@ -32,6 +36,7 @@ export class AurFormViewComponent implements OnInit {
     public  router: Router,
     private service : AURFormViewService,
     private header: AppComponent,
+    private councilDialog: CouncilDialog, 
     public aubFormGroup: AURFormGroup ) {
 
     this.aurFormObj = new AURFormRegistration();
@@ -49,6 +54,7 @@ export class AurFormViewComponent implements OnInit {
       this.aurFormObj.formId = history.state.formId;
       this.service.initializeAUR(this.aurFormObj, this.registrationFee).subscribe(() => {
         this.loading = false;
+        this.isPaid = this.aurFormObj.statusCode != FormStatus.SUBMITTED.valueOf();
       });
     }
   }
@@ -61,6 +67,41 @@ export class AurFormViewComponent implements OnInit {
 
   print() {
     window.print();
+  }
+
+  hidePrintButton() {
+    let result: boolean = true;
+    if (window.innerWidth <= 599) {
+      result = false;
+    }
+    return result;
+  }
+
+  onFileInput(files, formId) {
+    if (!files && !files[0]) {
+      return;
+    }
+    let paymentFile: File = files[0];
+
+    let filesize = ((paymentFile.size/1024)/1024).toFixed(2); // MB
+    if (Number.parseFloat(filesize) > 5) {
+      this.councilDialog.openDialog(AURFormMessages.UPLOAD_PAYMENT_TITLE, 
+        [AURFormMessages.UPLOAD_PAYMENT_FILESIZE_EXCEEDED
+          .replace('<filename>', paymentFile.name).replace('<filesize>', filesize)]);
+      return;
+    }
+
+    this.councilDialog.openConfirmDialog(AURFormMessages.UPLOAD_PAYMENT_TITLE, AURFormMessages.UPLOAD_PAYMENT_CONFIRM
+      .replace('<filename>', paymentFile.name).replace('<filesize>', filesize))
+      .subscribe(confirmResult => {
+        if (confirmResult) { 
+          this.service.uploadPaymentProof(paymentFile, formId).subscribe((data) => {
+            this.aurFormObj.statusCode = FormStatus.PAID.valueOf();
+            this.isPaid = true;
+            this.router.navigate(['forms']);
+          });
+        }
+      });
   }
 
   

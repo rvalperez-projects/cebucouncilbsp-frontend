@@ -14,6 +14,7 @@ export abstract class ResourceURL {
     static FORM_DISPLAY = "/form/{formId}";
     static FORM_SEARCH = "/form/search";
     static FORM_UPDATE = "/form/update";
+    static FORM_UPLOAD_PAYMENT = "/form/payment";
     static FORM_DELETE = "/form/delete/{formId}";
     static INSTITUTION_ALL = "/institution/all";
     static INSTITUTION_ID = "/institution/{institutionId}";

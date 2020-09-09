@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ConfirmDialog } from './component/common-components/dialog/confirm-dialog.component';
 import { ErrorDialog } from './component/common-components/dialog/error-dialog.component';
 import { FooterComponent } from './component/common-components/footer/footer.component';
 import { HomeComponent } from './component/common-components/home/home.component';
@@ -38,7 +39,8 @@ import { MatSpinnerOverlayComponent } from './utils/mat-spinner-overlay/mat-spin
     MatSpinnerOverlayComponent,
     SignUpComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    ConfirmDialog
   ],
   imports: [
     BrowserModule,

@@ -39,6 +39,9 @@ export class AURFormGroup {
     get dateApplied() {
         return this._aurForm.get('dateApplied') as FormControl;
     }
+    get expirationDate() {
+        return this._aurForm.get('expirationDate') as FormControl;
+    }
     get officialReceiptNo() {
         return this._aurForm.get('officialReceiptNo') as FormControl;
     }
@@ -59,7 +62,9 @@ export class AURFormGroup {
     private createForm() {
         let institutionId = window.sessionStorage.getItem(SessionConstant.USER_INSTITUTION_ID_KEY); 
         let now = new Date();
-        let expiryDate: Date = new Date(new Date(now.getFullYear() + 1).getDate() - 1);
+        let expiryDate = new Date();
+        expiryDate.setFullYear(expiryDate.getFullYear() + 1);
+        expiryDate.setDate(expiryDate.getDate() - 1);
         this._aurForm = this.formBuild.group({
             formId: [null],
             institutionId: [institutionId, [Validators.required]],
