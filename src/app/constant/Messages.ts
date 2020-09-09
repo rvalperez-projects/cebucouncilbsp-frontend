@@ -11,7 +11,8 @@ export abstract class AURFormMessages {
 
     static SUBMISSION_FAILED = "Submission Failed";
     static SUBMISSION_SUCCESSFUL_TITLE = "Submission Successful";
-    static SUBMISSION_SUCCESSFUL_TEXT = "Application for Unit Registration Form submission has been successful."
+    static SUBMISSION_SUCCESSFUL_TEXT_1 = "Application for Unit Registration Form submission has been successful."
+    static SUBMISSION_SUCCESSFUL_TEXT_2 = "Confirmation Receipt has been set to your email. Please check."
 
     static PROCESSING_FAILED = "Processing AUR Form Failed";
     static PROCESSING_SUCCESSFUL_TITLE = "AUR Update Successful";
@@ -32,6 +33,11 @@ export abstract class AURFormMessages {
     static DELETION_FAILED = "AUR Form Deletion Failed";
     static DELETION_SUCCESSFUL = "AUR Form Deletion Successful";
     static DELETION_SUCCESSFUL_MESSAGE = "Redirecting you back to the AUR Forms List page.";
+
+    static UPLOAD_PAYMENT_TITLE = "AUR Form Proof of Payment";
+    static UPLOAD_PAYMENT_MESSAGE = "[<filename>] successfully uploaded.";
+    static UPLOAD_PAYMENT_CONFIRM = "[<filename>] (<filesize> MB) is selected. Proceed to upload?";
+    static UPLOAD_PAYMENT_FILESIZE_EXCEEDED = "[<filename>] is <filesize> MB. Please select a file less than 5 MB.";
 }
 
 export abstract class ProfileFormMessages {

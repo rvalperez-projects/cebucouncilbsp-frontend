@@ -5,6 +5,7 @@ export enum Roles {
 }
 export enum FormStatus {
     SUBMITTED = "00",
+    PAID = "01",
     PROCESSED = "02"
 }
 export enum SectionCode {

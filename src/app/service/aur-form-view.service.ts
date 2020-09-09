@@ -115,35 +115,53 @@ export class AURFormViewService {
 
   private retrieveAURFormDetails(formId: number) : Observable<BaseResponse>{
 
-     return this.http.get<BaseResponse>(ResourceURL.HOST + 
-        ResourceURL.FORM_DISPLAY.replace("{formId}", formId.toString()))
-        .pipe(
-          map(data => data),
-          catchError(error => {
-            if (error.status != '500' && error.error) {
-              this.councilDialog.openDialog(AURFormMessages.RETRIEVAL_FAILED, error.error.errorMessages);
-            }
-            return throwError(error);
-          })
-        );
+    return this.http.get<BaseResponse>(ResourceURL.HOST + 
+      ResourceURL.FORM_DISPLAY.replace("{formId}", formId.toString()))
+      .pipe(
+        map(data => data),
+        catchError(error => {
+          if (error.status != '500' && error.error) {
+            this.councilDialog.openDialog(AURFormMessages.RETRIEVAL_FAILED, error.error.errorMessages);
+          }
+          return throwError(error);
+        })
+      );
   }
 
   public deleteAURForm(formId: number) : Observable<BaseResponse>{
 
-     return this.http.delete<BaseResponse>(ResourceURL.HOST + 
-        ResourceURL.FORM_DELETE.replace("{formId}", formId.toString()))
-        .pipe(
-          map(data => {
-            this.councilDialog.openDialog(AURFormMessages.DELETION_SUCCESSFUL, [AURFormMessages.DELETION_SUCCESSFUL_MESSAGE]);
-            return data;
-          }),
-          catchError(error => {
-            if (error.status != '500' && error.error) {
-              this.councilDialog.openDialog(AURFormMessages.DELETION_FAILED, error.error.errorMessages);
-            }
-            return throwError(error);
-          })
-        );
+    return this.http.delete<BaseResponse>(ResourceURL.HOST + 
+      ResourceURL.FORM_DELETE.replace("{formId}", formId.toString()))
+      .pipe(
+        map(data => {
+          this.councilDialog.openDialog(AURFormMessages.DELETION_SUCCESSFUL, [AURFormMessages.DELETION_SUCCESSFUL_MESSAGE]);
+          return data;
+        }),
+        catchError(error => {
+          if (error.status != '500' && error.error) {
+            this.councilDialog.openDialog(AURFormMessages.DELETION_FAILED, error.error.errorMessages);
+          }
+          return throwError(error);
+        })
+      );
+  }
+
+  public uploadPaymentProof(paymentFile: File, formId: number) : Observable<BaseResponse>{
+    const formData: FormData = new FormData();
+    formData.append('paymentFile', paymentFile);
+    formData.append('formId', formId.toString());
+    
+    return this.http.post<BaseResponse>(ResourceURL.HOST + ResourceURL.FORM_UPLOAD_PAYMENT, formData)
+      .pipe(
+        map(data => {
+          this.councilDialog.openDialog(AURFormMessages.UPLOAD_PAYMENT_TITLE, 
+            [AURFormMessages.UPLOAD_PAYMENT_MESSAGE.replace("<filename>", paymentFile.name)]);
+          return data;
+        }),
+        catchError(error => {
+          return throwError(error);
+        })
+      );
   }
 
   private getAllPositionCodes(list: Iterable<any>) {

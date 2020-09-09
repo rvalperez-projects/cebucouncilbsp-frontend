@@ -28,6 +28,7 @@ export class FormRegistrationService {
     aurFormObj.sectionCode = aurForm.sectionCode.value;
     aurFormObj.statusCode = aurForm.statusCode.value;
     aurFormObj.dateApplied = aurForm.dateApplied.value;
+    aurFormObj.expirationDate = aurForm.expirationDate.value;
     aurFormObj.officialReceiptNo = null;
     aurFormObj.officialReceiptDate = null;
 
@@ -37,10 +38,6 @@ export class FormRegistrationService {
       aurFormObj.district = institution.district;
     })
     aurFormObj.council = "Cebu Council";
-
-    let expirationDate = new Date();
-    expirationDate.setFullYear(expirationDate.getFullYear() + 1)
-    aurFormObj.expirationDate = expirationDate;
   }
 
   public populateAurFormObj(aurFormObj: AURFormRegistration, aurForm: AURFormGroup) {

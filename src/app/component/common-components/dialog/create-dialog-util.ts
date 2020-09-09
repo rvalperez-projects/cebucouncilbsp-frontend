@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialog } from './confirm-dialog.component';
 import { ErrorDialog } from './error-dialog.component';
 
 @Injectable({
@@ -26,5 +27,20 @@ export class CouncilDialog {
                 console.log(`Dialog result: ${result}`);
             }
         });
+    }
+
+    public openConfirmDialog(title: string, message: string) {
+        let result: boolean = null;
+        const dialogRef = this.dialog.open(ConfirmDialog, {
+            width: "500px",
+            role: "dialog",
+            data: {
+                title: title,
+                message: message
+            }
+        });
+
+        // Return Observable
+        return dialogRef.afterClosed();
     }
 }

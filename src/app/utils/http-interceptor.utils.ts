@@ -5,6 +5,7 @@ import { catchError, finalize } from 'rxjs/operators';
 import { CouncilDialog } from '../component/common-components/dialog/create-dialog-util';
 import { SessionConstant } from '../constant/Constants';
 import { ResponseErrorMessages } from '../constant/Messages';
+import { ResourceURL } from '../constant/ResourceURL';
 import { AuthService } from '../service/auth.service';
 import { MatSpinnerOverlayComponent } from '../utils/mat-spinner-overlay/mat-spinner-overlay.component';
 
@@ -21,21 +22,32 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        request = request.clone({
-            setHeaders: {
-                'Authorization': `Bearer ${window.sessionStorage.getItem(SessionConstant.LOGIN_TOKEN_KEY)}`,
-                'Content-Type': 'application/json'
-            },
-            'responseType': 'json'
-        });
-
-        // Change response type on Login
+        if (request.url.includes(ResourceURL.FORM_UPLOAD_PAYMENT)) {
+            // No Content Type Set for File Upload
+            request = request.clone({
+                setHeaders: {
+                    'Authorization': `Bearer ${window.sessionStorage.getItem(SessionConstant.LOGIN_TOKEN_KEY)}`
+                },
+                'responseType': 'json'
+            });
+        } else {
+            request = request.clone({
+                setHeaders: {
+                    'Authorization': `Bearer ${window.sessionStorage.getItem(SessionConstant.LOGIN_TOKEN_KEY)}`,
+                    'Content-Type': 'application/json'
+                },
+                'responseType': 'json'
+            });
+        }
+        
         if (request.url.includes('login')) {
+            // Change response type on Login
             request = request.clone({
                 'responseType': 'text'
             });
         }
-        this.spinner.isLoading = true;        
+        
+        this.spinner.isLoading = true;
 
         return next.handle(request).pipe(
             catchError(error => {
