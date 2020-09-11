@@ -60,8 +60,13 @@ export class AurFormViewComponent implements OnInit {
   }
 
   deleteAURForm() {
-    this.service.deleteAURForm(this.aurFormObj.formId).subscribe(() => {
-      this.router.navigate(['forms']);
+    this.councilDialog.openConfirmDialog(AURFormMessages.DELETION_CONFIRMATION_TITLE, AURFormMessages.DELETION_CONFIRMATION_MESSAGE)
+      .subscribe(confirmResult => {
+        if (confirmResult) {
+          this.service.deleteAURForm(this.aurFormObj.formId).subscribe(() => {
+            this.router.navigate(['forms']);
+          });
+        }
     });
   }
 

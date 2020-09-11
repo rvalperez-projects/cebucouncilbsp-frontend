@@ -9,11 +9,15 @@ export abstract class AURFormMessages {
     static UNIT_NUMBER_NOT_SET = "Unit Number not set.";
     static SECTION_CODE_NOT_SET = "Please select any of the following: \n\tLangkay / Kawan / Troop / Outfit / Circle.";
 
+    static SUBMISSION_CONFIRMATION_TITLE = "AUR Form Submission";
+    static SUBMISSION_CONFIRMATION_MESSAGE = "Inputted AUR Form will be submitted. Please confirm.";
     static SUBMISSION_FAILED = "Submission Failed";
     static SUBMISSION_SUCCESSFUL_TITLE = "Submission Successful";
     static SUBMISSION_SUCCESSFUL_TEXT_1 = "Application for Unit Registration Form submission has been successful."
-    static SUBMISSION_SUCCESSFUL_TEXT_2 = "Confirmation Receipt has been set to your email. Please check."
+    static SUBMISSION_SUCCESSFUL_TEXT_2 = "Confirmation Receipt has been sent to your email. Please check."
 
+    static PROCESSING_CONFIRMATION_TITLE = "Process AUR Form";
+    static PROCESSING_CONFIRMATION_MESSAGE = "Selected AUR Form will be submitted for processing. Please confirm.";
     static PROCESSING_FAILED = "Processing AUR Form Failed";
     static PROCESSING_SUCCESSFUL_TITLE = "AUR Update Successful";
     static PROCESSING_SUCCESSFUL_TEXT = "Application for Unit Registration update has been successful."
@@ -33,6 +37,8 @@ export abstract class AURFormMessages {
     static DELETION_FAILED = "AUR Form Deletion Failed";
     static DELETION_SUCCESSFUL = "AUR Form Deletion Successful";
     static DELETION_SUCCESSFUL_MESSAGE = "Redirecting you back to the AUR Forms List page.";
+    static DELETION_CONFIRMATION_TITLE = "AUR Form Deletion";
+    static DELETION_CONFIRMATION_MESSAGE = "Selected AUR Form will be deleted. Please confirm.";
 
     static UPLOAD_PAYMENT_TITLE = "AUR Form Proof of Payment";
     static UPLOAD_PAYMENT_MESSAGE = "[<filename>] successfully uploaded.";

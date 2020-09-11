@@ -79,15 +79,22 @@ export class AurFormUpdateComponent implements OnInit {
   public processAURForm() {
     // Check required input fields
     this.setRequiredInfo();
-    if (!this.hasErrors()) {
-      this.aurFormObj.statusCode = FormStatus.PROCESSED;
-      this.service.updateAURForm(this.aurFormObj).subscribe(() => {
-        this.councilDialog.openDialog(AURFormMessages.PROCESSING_SUCCESSFUL_TITLE, [AURFormMessages.PROCESSING_SUCCESSFUL_TEXT]);
-
-        // Route to AUR Form View
-        this.router.navigateByUrl('/forms/view', {state:{formId:this.aurFormObj.formId}});
-      });
+    if (this.hasErrors()) {
+      return;
     }
+
+    this.councilDialog.openConfirmDialog(AURFormMessages.PROCESSING_CONFIRMATION_TITLE, AURFormMessages.PROCESSING_CONFIRMATION_MESSAGE)
+      .subscribe(confirmResult => {
+        if (confirmResult) {
+          this.aurFormObj.statusCode = FormStatus.PROCESSED;
+          this.service.updateAURForm(this.aurFormObj).subscribe(() => {
+            this.councilDialog.openDialog(AURFormMessages.PROCESSING_SUCCESSFUL_TITLE, [AURFormMessages.PROCESSING_SUCCESSFUL_TEXT]);
+
+            // Route to AUR Form View
+            this.router.navigateByUrl('/forms/view', {state:{formId:this.aurFormObj.formId}});
+          });
+        }
+      });
   }
 
   /**
