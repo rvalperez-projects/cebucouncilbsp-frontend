@@ -1,3 +1,5 @@
+import { UnitNumberModel } from './entities.model';
+
 export class SearchFormModel {
     areaList: Array<string>;
     districtList: Array<string>;
@@ -18,4 +20,9 @@ export class SearchFormModel {
         this.name = '';
     }
     
+}
+
+export class UnitNumberSearchResult {
+    institutionUnitNumbers: UnitNumberModel[]; 
+    availableUnitNumbers: UnitNumberModel[];
 }

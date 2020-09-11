@@ -97,8 +97,7 @@
           <tr><td></td>
               <td>Category</td>
               <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
-                  <mat-select formControlName="categoryCode" required>
-                      <mat-option [value]="" selected [disabled]="true" *ngIf="isAllowedToUpdate()">Select one category</mat-option>
+                  <mat-select formControlName="categoryCode" required placeholder="Institution Category">
                       <mat-option [value]="category.code" *ngFor="let category of Categories">{{category.text}}</mat-option>
                   </mat-select>
                 </mat-form-field></td>
@@ -106,8 +105,7 @@
           <tr><td></td>
               <td>Area / District</td>
               <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
-                  <mat-select [(value)]="selectedDistrict" formControlName="district" required>
-                      <mat-option [value]="" selected [disabled]="true" *ngIf="isAllowedToUpdate()">Select Area & District</mat-option>
+                  <mat-select [(value)]="selectedDistrict" formControlName="district" required placeholder="Area & District">
                       <mat-option [value]="item" *ngFor="let item of AreaDistricts">Area {{item.area}} : {{item.district}}</mat-option>
                   </mat-select>
                 </mat-form-field></td>

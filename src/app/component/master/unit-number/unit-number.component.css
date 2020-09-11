@@ -1,0 +1,22 @@
+.results-wrapper {min-height:100vh;max-height:700px;width:100%;padding-top:100px;background:#fff;overflow-x:auto;overflow-y:auto;}
+.results-wrapper .mainContent {min-width:90%;padding:0px 40px 30px 40px;}
+
+.results-wrapper .form{min-width:100%;max-width:500px;width:100%;}
+.results-wrapper .full-width {width:70%;padding-left:20px;padding-right:20px;}
+.results-wrapper .btn-block {width:100%;}
+.results-wrapper .one-digit {width:30%;}
+
+.results-wrapper h1 {font-family:"Arial Black";}
+.results-wrapper table.search-table {width:100%;}
+.results-wrapper table.search-table tr {line-height:30px;}
+.results-wrapper table.search-table td {padding-left:10px;padding-right:10px;}
+.results-wrapper table.search-table mat-select {border-style:solid;border-width:1px;height:25px;padding-left:5px;padding-top:5px;padding-bottom:5px;}
+.results-wrapper table.search-table mat-label {padding-right:10px;font-weight:bold;}
+.results-wrapper table.search-table td:last-child .searchBtn {position:relative;bottom:0px;}
+
+.results-wrapper div.responsive-table {overflow-y:scroll;max-height:fit-content;}
+.results-wrapper div.unitNumbersDiv .col1, .col3 {padding:20px;}
+.results-wrapper div.unitNumbersDiv .col2 {padding-left:50px;}
+.results-wrapper div.unitNumbersDiv select {border-style:solid;border-width:1px;width:200px;height:250px;padding-left:5px;padding-top:5px;padding-bottom:5px;}
+.results-wrapper div.unitNumbersDiv select option {height:20px;padding-left:5px;padding-top:3px;}
+.results-wrapper div.unitNumbersDiv mat-label {padding:10px;font-weight:bold;vertical-align:top;}

@@ -1,0 +1,58 @@
+<div class="results-wrapper" fxLayout="column" fxLayoutAlign.gt-sm="start center" fxLayoutAlign.lt-md="start start">
+    
+    <div class="mainContent">
+        <h1>Unit Numbers Master</h1>
+        <form class="form" [formGroup]="searchFormGroup.form">
+            <br>
+            <table class="search-table" cellspacing="0">
+                <tr><td style="width: 20%;">
+                        <mat-label>Area</mat-label>
+                        <mat-select class="shadow" formControlName="area" (selectionChange)="repopulateDistrictAndInstitutions()">
+                            <mat-option [value]="area" *ngFor="let area of searchFormData.areaList">{{area}}</mat-option>
+                        </mat-select>
+                    </td>
+                    <td style="width: 20%;">
+                        <mat-label>District</mat-label>
+                        <mat-select class="shadow" formControlName="district" (selectionChange)="repopulateInstitutions()">
+                            <mat-option [value]="district" *ngFor="let district of searchFormData.districtList">{{district}}</mat-option>
+                        </mat-select>
+                    </td>
+                    <td style="width: 60%;">
+                        <mat-label>Institution</mat-label>
+                        <mat-select class="shadow" formControlName="institutionId">
+                            <mat-option [value]="institution.key" *ngFor="let institution of searchFormData.institutionMap | keyvalue">{{institution.value}}</mat-option>
+                        </mat-select>
+                    </td>
+                </tr>
+                <tr style="line-height:60px;"><td></td><td></td>
+                    <td style="text-align:right;">
+                        <a mat-button mat-raised-button color="accent" (click)="searchUnitNumbers()">Search</a>&nbsp;&nbsp;
+                        <a mat-button mat-raised-button color="primary" (click)="createNewUnitNumber()">New</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <div class="unitNumbersDiv" fxLayout="row" fxLayoutAlign="center center">
+            <span class="col1">
+                <mat-label>Unit Numbers</mat-label>
+                <select [(ngModel)]="selectedInstitutionUnitNumbers" class="shadow unitNumbersClass" multiple>
+                    <option *ngFor="let unitNo of institutionUnitNumbers">{{unitNo}}</option>
+                </select>
+            </span>
+            <span class="col2">
+                <a mat-button mat-raised-button color="basic" (click)="addUnitNumber()">
+                    <mat-icon>keyboard_arrow_left</mat-icon></a><br/><br/>
+                <a mat-button mat-raised-button color="basic" (click)="removeUnitNumber()">
+                    <mat-icon>keyboard_arrow_right</mat-icon></a>
+            </span>
+            <span class="col3">
+                <mat-label>Available</mat-label>
+                <select [(ngModel)]="selectedAvailableUnitNumbers" class="shadow unitNumbersClass" multiple>
+                    <option *ngFor="let unitNo of availableUnitNumbers">{{unitNo}}</option>
+                </select>
+            </span>
+        </div>
+
+    </div>
+</div>
