@@ -7,6 +7,7 @@ import { AurFormUpdateComponent } from './component/forms-aur/aur-form-update/au
 import { AurFormViewComponent } from './component/forms-aur/aur-form-view/aur-form-view.component';
 import { FormRegistrationComponent } from './component/forms-aur/form-registration/form-registration.component';
 import { FormsListComponent } from './component/forms-aur/forms-list/forms-list.component';
+import { UnitNumberComponent } from './component/master/unit-number/unit-number.component';
 import { ProfileComponent } from './component/user/profile/profile.component';
 import { UsersListComponent } from './component/user/users-list/users-list.component';
 import { Roles } from './constant/Enums';
@@ -62,6 +63,14 @@ const routes: Routes = [
     path: 
     'users', 
     component: UsersListComponent, 
+    canActivate: [AuthorizeGuard],
+    data: { 
+      roles : [Roles.COUNCIL, Roles.ADMIN] 
+    } 
+  },
+  { 
+    path: 'unitNumbers', 
+    component: UnitNumberComponent, 
     canActivate: [AuthorizeGuard],
     data: { 
       roles : [Roles.COUNCIL, Roles.ADMIN] 

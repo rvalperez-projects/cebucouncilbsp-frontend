@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>New Unit Number</h1>
+
+<div mat-dialog-content class="mat-typography">
+    <div class="inputs"><mat-label>Scouting Section</mat-label><br/>
+        <select [(ngModel)]="sectionCodeInput" class="shadow" (change)="appendPrefix()" focus>
+            <option [value]="sectionCode.code" *ngFor="let sectionCode of sectionCodes">{{sectionCode.text}}</option>
+        </select>
+    </div>
+    <div class="inputs"><mat-label>Unit Number</mat-label>
+        <input class="shadow" matInput [(ngModel)]="unitNumberInput" placeholder="" required minlength="2" maxlength="5">
+    </div>    
+</div>
+
+<div mat-dialog-actions >
+    <button mat-raised-button color="primary" (click)="confirm()">Confirm</button>
+    <button mat-raised-button color="warn" (click)="close()">Cancel</button>
+</div>

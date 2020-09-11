@@ -66,3 +66,12 @@ export abstract class ResponseErrorMessages {
     static CONTACT_ADMIN = "Please contact Systems Administrator.";
     static NOT_ENOUGH_RIGHTS = "User does not have enough privileges to view this page.";
 }
+
+export abstract class MasterMessages {
+    
+    static INCOMPLETE_DATA = "Incomplete Data";
+    static ALL_SEARCH_VALUES_REQUIRED = "Please provide a value for all search conditions.";
+
+    static UNIT_NO_PROCESS_FAILED = "Unit Number Process Failed";
+    static UNIT_NO_STILL_USED = "Unit Number still used. Can only be removed if not used after 2 years.";
+}

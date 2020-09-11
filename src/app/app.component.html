@@ -11,6 +11,7 @@
         <div *ngIf="isLoggedIn" fxShow="true" fxHide.lt-md>
             <a mat-button [matMenuTriggerFor]="formsMenu">Forms&nbsp;<mat-icon>keyboard_arrow_down</mat-icon></a>
             <a mat-button [matMenuTriggerFor]="usersMenu" *ngIf="isNotGeneralUser">Users&nbsp;<mat-icon>keyboard_arrow_down</mat-icon></a>
+            <a mat-button [matMenuTriggerFor]="masterScreens" *ngIf="isNotGeneralUser">Master&nbsp;<mat-icon>keyboard_arrow_down</mat-icon></a>
         </div>
         <div *ngIf="isLoggedIn" fxFlex fxLayoutAlign="flex-end center">
             <button mat-icon-button [matMenuTriggerFor]="logout">
@@ -32,6 +33,7 @@
             <button mat-list-item [routerLink]="'/home'" class="shadow">Home</button>
             <button mat-list-item [matMenuTriggerFor]="formsMenu" class="shadow">Forms&nbsp;<mat-icon fxFlex fxLayoutAlign="flex-end center">keyboard_arrow_down</mat-icon></button>
             <button mat-list-item [matMenuTriggerFor]="usersMenu" class="shadow">Users&nbsp;<mat-icon fxFlex fxLayoutAlign="flex-end center">keyboard_arrow_down</mat-icon></button>
+            <button mat-list-item [matMenuTriggerFor]="masterScreens" class="shadow">Master&nbsp;<mat-icon fxFlex fxLayoutAlign="flex-end center">keyboard_arrow_down</mat-icon></button>
         </mat-nav-list>
     </mat-sidenav>
 
@@ -50,6 +52,11 @@
 <mat-menu #usersMenu="matMenu">
     <button mat-menu-item [routerLink]="'/users'" (click)="sidenav.close()">
         <span>User List</span>
+    </button>
+</mat-menu>
+<mat-menu #masterScreens="matMenu">
+    <button mat-menu-item [routerLink]="'/unitNumbers'" (click)="sidenav.close()">
+        <span>Unit Numbers</span>
     </button>
 </mat-menu>
 <mat-menu #logout="matMenu">

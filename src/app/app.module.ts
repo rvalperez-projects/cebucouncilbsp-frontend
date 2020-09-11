@@ -23,6 +23,8 @@ import { SignUpComponent } from './component/user/sign-up/sign-up.component';
 import { UsersListComponent } from './component/user/users-list/users-list.component';
 import { HttpErrorInterceptor } from './utils/http-interceptor.utils';
 import { MatSpinnerOverlayComponent } from './utils/mat-spinner-overlay/mat-spinner-overlay.component';
+import { UnitNumberComponent } from './component/master/unit-number/unit-number.component';
+import { NewUnitNumberComponent } from './component/master/unit-number/new-unit-number/new-unit-number.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { MatSpinnerOverlayComponent } from './utils/mat-spinner-overlay/mat-spin
     SignUpComponent,
     HomeComponent,
     FooterComponent,
-    ConfirmDialog
+    ConfirmDialog,
+    UnitNumberComponent,
+    NewUnitNumberComponent
   ],
   imports: [
     BrowserModule,
