@@ -11,17 +11,17 @@ export class HomeComponent implements OnInit {
   // Grid Columns
   breakpoint: number;
 
-  landbankAccount: string;
-  bpiAccount: string;
-  gcashAccount: string;
-  paymayaAccount: string;
+  landbankAccountName: string;
+  landbankAccountNumber: string;
+  remittanceAccountName: string;
+  remittanceAccountNumber: string;
 
   constructor(
     private header: AppComponent) { 
-      this.landbankAccount = "xxxx-xxxx-xxxx";
-      this.bpiAccount = "xxxx-xxxx-xxxx";
-      this.gcashAccount = "xxxx-xxxx-xxxx";
-      this.paymayaAccount = "xxxx-xxxx-xxxx";
+      this.landbankAccountName = "Cebu Council Boy Scouts of the Philippines";
+      this.landbankAccountNumber = "1041-4821-14";
+      this.remittanceAccountName = "Rachel Ann Lapiña";
+      this.remittanceAccountNumber = "0927-216-7560";
   }
 
   ngOnInit(): void {
