@@ -9,7 +9,7 @@
     <div fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutAlign="space-evenly start">
         <mat-card class="steps">
             <mat-card-header>
-                <mat-card-title>Step 1</mat-card-title>
+                <mat-card-title class="bold-text">Step 1</mat-card-title>
             </mat-card-header>
             <mat-card-content>
                 <p>Click "Forms" from the Menu and select "Application for Unit Registration".</p>
@@ -23,7 +23,7 @@
         </mat-card>
         <mat-card class="steps">
             <mat-card-header>
-                <mat-card-title>Step 2</mat-card-title>
+                <mat-card-title class="bold-text">Step 2</mat-card-title>
             </mat-card-header>
             <mat-card-content>
                 <p>Select the "New" button.</p>
@@ -34,7 +34,7 @@
         </mat-card>
         <mat-card class="steps">
             <mat-card-header>
-                <mat-card-title>Step 3</mat-card-title>
+                <mat-card-title class="bold-text">Step 3</mat-card-title>
             </mat-card-header>
             <mat-card-content>
                 <p>Fill in the necessary details.</p>
@@ -45,35 +45,39 @@
         </mat-card>
         <mat-card class="steps">
             <mat-card-header>
-                <mat-card-title>Step 4</mat-card-title>
+                <mat-card-title class="bold-text">Step 4</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <p>Proceed to payment using any of the following payment methods:</p>
-                <table>
-                <tr><td><img class="payment-logo"
-                        src="../../../../assets/home/logo-landbank.png" 
-                        alt="Landbank">
-                    </td>
-                    <td>{{landbankAccount}}</td>
-                </tr>
-                <tr><td><img class="payment-logo"
-                        src="../../../../assets/home/logo-bpi.jpg" 
-                        alt="BPI">
-                    </td>
-                    <td>{{bpiAccount}}</td>
-                </tr>
-                <tr><td><img class="payment-logo"
-                        src="../../../../assets/home/logo-gcash.png" 
-                        alt="GCash">
-                    </td>
-                    <td>{{gcashAccount}}</td>
-                </tr>
-                <tr><td><img class="payment-logo"
-                        src="../../../../assets/home/logo-paymaya.png" 
-                        alt="Paymaya">
-                    </td>
-                    <td>{{paymayaAccount}}</td>
-                </tr>
+                <p>Payment method options:</p>
+                <table cellspacing="1">
+                    <colgroup>
+                        <col style="width: 20%;"/>
+                        <col style="width: 20%;"/>
+                        <col style="width: 60%;"/>
+                    </colgroup>
+                       <tr><td colspan="3" class="bold-text">1) Bank Transfer</td></tr>
+                       <tr><td><img class="payment-logo" style="width:95px;" 
+                            src="../../../../assets/home/logo-landbank.png" alt="Landbank"/></td>
+                       <td colspan="2">
+                           <div>Account Name: </div>
+                           <div class="payment-details" style="font-stretch:condensed;">{{landbankAccountName}}</div>
+                        <div>Account Number: <span class="payment-details">{{landbankAccountNumber}}</span></div>
+                       </td>
+                   </tr>
+                      <tr><td colspan="3" class="bold-text">2) Money Remittance Centers</td></tr>
+                   <tr><td><img class="payment-logo" src="../../../../assets/home/logo-gcash.png" alt="GCash"/></td>
+                       <td><img class="payment-logo" src="../../../../assets/home/logo-palawan.jpg" alt="Palawan"/></td>
+                        <td rowspan="2">
+                            <div>Account Name: </div>
+                            <div class="payment-details">{{remittanceAccountName}}</div>
+                            <div class="payment-details-2">BSP Cebu Council Representative</div>
+                            <div>Account Number: </div>
+                            <div class="payment-details">{{remittanceAccountNumber}}</div>
+                       </td>
+                   </tr>
+                   <tr><td><img class="payment-logo" src="../../../../assets/home/logo-rd-padala.png" alt="RD Padala"/></td>
+                       <td><img class="payment-logo" src="../../../../assets/home/logo-m-lhuillier.png" alt="M Lhullier"/></td>
+                   </tr>
                 </table>
             </mat-card-content>
         </mat-card>
