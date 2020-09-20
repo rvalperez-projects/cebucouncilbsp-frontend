@@ -54,10 +54,11 @@ export abstract class ProfileFormMessages {
     
     static RETRIEVAL_FAILED = "User Details Retrieval Failed";
     static SUBMISSION_SUCCESSFUL = "Submission Successful";
-    static WELCOME_MESSAGE_1 = "Welcome to the Cebu Council BSP Web Portal.";
-    static WELCOME_MESSAGE_2 = "Login to register your unit.";
     static SUBMISSION_ERROR = "Incomplete Data";
     static INVALID_EMAIL_FORMAT = "Please enter a valid email address.";
+    
+    static WELCOME_MESSAGE_1 = "Welcome to the Cebu Council BSP Web Portal.";
+    static WELCOME_MESSAGE_2 = "Registration details are sent to your email. Please verify.";
 }
 
 export abstract class LoginErrorMessages {
