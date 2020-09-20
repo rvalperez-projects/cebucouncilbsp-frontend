@@ -62,9 +62,6 @@ export class AURFormGroup {
     private createForm() {
         let institutionId = window.sessionStorage.getItem(SessionConstant.USER_INSTITUTION_ID_KEY); 
         let now = new Date();
-        let expiryDate = new Date();
-        expiryDate.setFullYear(expiryDate.getFullYear() + 1);
-        expiryDate.setDate(expiryDate.getDate() - 1);
         this._aurForm = this.formBuild.group({
             formId: [null],
             institutionId: [institutionId, [Validators.required]],
@@ -76,7 +73,7 @@ export class AURFormGroup {
             dateApplied: [now, [Validators.required]],
             officialReceiptNo: [null, [whitespaceOnlyNotAllowed]],
             officialReceiptDate: [null],
-            expirationDate: [expiryDate, [Validators.required]],
+            expirationDate: [null, [Validators.required]],
             iscomMembersList: this.formBuild.array([]),
             unitMembersList: this.formBuild.array([])
         });
@@ -99,7 +96,7 @@ export class AURFormGroup {
                     age: [null, [Validators.required, Validators.min(18)]],
                     membershipCertNo: [{value: null, disabled: true}, [whitespaceOnlyNotAllowed]],
                     highestTrainingCode: [null],
-                    tenure: [null, [Validators.required]],
+                    tenure: [null, []],
                     religion: [null]
                 })
             );
@@ -122,7 +119,7 @@ export class AURFormGroup {
                     age: [null, [Validators.required]],
                     membershipCertNo: [{value: null, disabled: true}, [whitespaceOnlyNotAllowed]],
                     highestBadgeCode: [null],
-                    tenure: [null, [Validators.required]],
+                    tenure: [null, []],
                     religion: [null]
                 })
             );

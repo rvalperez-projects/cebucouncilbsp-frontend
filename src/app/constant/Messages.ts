@@ -25,7 +25,8 @@ export abstract class AURFormMessages {
     static RETRIEVAL_FAILED = "AUR Form Details Retrieval Failed";
     static GENERAL_INSTRUCTIONS_TITLE = "General Instructions";
     static GENERAL_INSTRUCTIONS_1 = "Please set [Unit Number] and [Scouting Section] values first (found below) to disable unnecessary input fields.";
-    static GENERAL_INSTRUCTIONS_2 = "When filling out the form is complete, please click on [Calculate Fees] button to calculate total amount to be paid.";
+    static GENERAL_INSTRUCTIONS_2 = "If you wish to register a specific Unit Number to your institution, please send a request to BSP Cebu Council via FB Page.";
+    static GENERAL_INSTRUCTIONS_3 = "When filling out the form is complete, please click on [Calculate Fees] button to calculate total amount to be paid.";
 
     static OFFICIAL_RECEIPT_NO_BLANK = "Official Receipt No. not updated.";
     static OFFICIAL_RECEIPT_DATE_BLANK = "Official Receipt Date not updated.";

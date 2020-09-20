@@ -14,6 +14,7 @@ export class NewUnitNumberComponent {
   // Input
   unitNumberInput: string;
   sectionCodeInput: string;
+  sectionTextInput: string;
 
   sectionCodes: any;
 
@@ -28,7 +29,7 @@ export class NewUnitNumberComponent {
       this.close();
     } else {
       let unitNumberModel = new UnitNumberModel();
-      unitNumberModel.unitNumber = this.unitNumberInput.toUpperCase();
+      unitNumberModel.unitNumber = this.sectionTextInput.concat(this.unitNumberInput.trim());
       unitNumberModel.sectionCode = this.sectionCodeInput;
       this.dialogRef.close(unitNumberModel);
     }
@@ -41,11 +42,11 @@ export class NewUnitNumberComponent {
 
   appendPrefix() {
     switch (this.sectionCodeInput) {
-      case SectionCode.LANGKAY: this.unitNumberInput = "L-"; break;
-      case SectionCode.KAWAN: this.unitNumberInput = "K-"; break;
-      case SectionCode.TROOP: this.unitNumberInput = "T-"; break;
-      case SectionCode.OUTFIT: this.unitNumberInput = "S-"; break;
-      case SectionCode.CIRCLE: this.unitNumberInput = "R-"; break;
+      case SectionCode.LANGKAY: this.sectionTextInput = "KID-"; break;
+      case SectionCode.KAWAN: this.sectionTextInput = "K-"; break;
+      case SectionCode.TROOP: this.sectionTextInput = "T-"; break;
+      case SectionCode.OUTFIT: this.sectionTextInput = "S-"; break;
+      case SectionCode.CIRCLE: this.sectionTextInput = "R-"; break;
     }
   }
 
