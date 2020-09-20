@@ -202,9 +202,9 @@
                         </colgroup>
                         <tr>
                             <td>Processed:</td>
-                            <td class="bottom-underline"></td>
+                            <td class="bottom-underline actionOfficers">{{aurFormObj.councilRegistrationOfficer}}</td>
                             <td></td>
-                            <td class="bottom-underline"></td>
+                            <td class="bottom-underline actionOfficers">{{aurFormObj.councilProcessedDate | date:'yyyy/MM/dd HH:mm'}}</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -215,9 +215,9 @@
                         <tr><td></td><td></td><td></td><td></td></tr>
                         <tr>
                             <td>Approved:</td>
-                            <td class="bottom-underline"></td>
+                            <td class="bottom-underline actionOfficers">{{aurFormObj.councilScoutExecutive}}</td>
                             <td></td>
-                            <td class="bottom-underline"></td>
+                            <td class="bottom-underline actionOfficers">{{aurFormObj.councilApprovedDate | date:'yyyy/MM/dd'}}</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -239,9 +239,9 @@
                         </colgroup>
                         <tr>
                             <td>Processed:</td>
-                            <td class="bottom-underline"></td>
+                            <td class="bottom-underline actionOfficers">{{aurFormObj.regionalRegistrationOfficer}}</td>
                             <td></td>
-                            <td class="bottom-underline"></td>
+                            <td class="bottom-underline actionOfficers">{{aurFormObj.regionalProcessedDate | date:'yyyy/MM/dd HH:mm'}}</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -252,9 +252,9 @@
                         <tr><td></td><td></td><td></td><td></td></tr>
                         <tr>
                             <td>Confirmed:</td>
-                            <td class="bottom-underline"></td>
+                            <td class="bottom-underline actionOfficers">{{aurFormObj.regionalScoutExecutive}}</td>
                             <td></td>
-                            <td class="bottom-underline"></td>
+                            <td class="bottom-underline actionOfficers">{{aurFormObj.regionalApprovedDate | date:'yyyy/MM/dd'}}</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -274,7 +274,7 @@
                     <td style="width: 5%;">  District</td>
                     <td style="width: 15%;" class="bottom-underline">{{aurFormObj.district}}</td>
                     <td style="width: 7%;">  AUR No.</td>
-                    <td style="width: 20%;" class="bottom-underline">{{aurFormObj.unitRegistrationNo}}</td>
+                    <td style="width: 20%;" class="bottom-underline aurNumber">{{aurFormObj.unitRegistrationNo}}</td>
                 </tr>
             </table>
             <table class="summary" cellspacing="0">
@@ -301,9 +301,9 @@
         <br>
         <button id="submitBtnId" mat-raised-button color="basic" class="" style="float:left" routerLink="/forms">Back</button>
         
-        <button mat-raised-button color="warn" class="" style="float:right" (click)="print()" *ngIf="hidePrintButton()">Print</button>
-        <button mat-raised-button color="accent" class="" style="float:right" (click)="deleteAURForm()" [disabled]="isProcessed">Delete</button>
-        <button mat-raised-button color="basic" style="float:right" (click)="fileInput.click()" [disabled]="isPaid">
+        <button mat-raised-button color="accent" class="" style="float:right" (click)="print()" *ngIf="hidePrintButton()">Print</button>
+        <button mat-raised-button color="warn" class="" style="float:right" (click)="deleteAURForm()" [disabled]="isPaid">Delete</button>
+        <button mat-raised-button color="primary" style="float:right" (click)="fileInput.click()" [disabled]="isPaid">
             <span>Upload Payment</span>
             <input #fileInput type="file" accept="image/png, image/jpeg"
                 (change)="onFileInput($event.target.files, aurFormObj.formId)" style="display:none;" />

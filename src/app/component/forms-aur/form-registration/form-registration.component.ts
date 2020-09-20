@@ -59,11 +59,11 @@ export class FormRegistrationComponent implements OnInit {
       RosterHeaderLabels.memberPositions[2].code, 
       RosterHeaderLabels.memberPositions[3].code
     ];
+    this.disableSubmit();
   }
 
   ngOnInit(): void {
     this.header.initLoggedInUser();
-    this.disableSubmit();
     
     // Initialize Input Fields
     let institutionId = window.sessionStorage[SessionConstant.USER_INSTITUTION_ID_KEY];

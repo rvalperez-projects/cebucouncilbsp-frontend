@@ -73,7 +73,15 @@ export class AURFormGroup {
             dateApplied: [now, [Validators.required]],
             officialReceiptNo: [null, [whitespaceOnlyNotAllowed]],
             officialReceiptDate: [null],
-            expirationDate: [null, [Validators.required]],
+            expirationDate: [null],
+            councilRegistrationOfficer: [null],
+            councilProcessedDate: [null],
+            councilScoutExecutive: [null],
+            councilApprovedDate: [null],
+            regionalRegistrationOfficer: [null],
+            regionalProcessedDate: [null],
+            regionalScoutExecutive: [null],
+            regionalApprovedDate: [null],
             iscomMembersList: this.formBuild.array([]),
             unitMembersList: this.formBuild.array([])
         });

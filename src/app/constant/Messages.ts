@@ -45,6 +45,9 @@ export abstract class AURFormMessages {
     static UPLOAD_PAYMENT_MESSAGE = "[<filename>] successfully uploaded.";
     static UPLOAD_PAYMENT_CONFIRM = "[<filename>] (<filesize> MB) is selected. Proceed to upload?";
     static UPLOAD_PAYMENT_FILESIZE_EXCEEDED = "[<filename>] is <filesize> MB. Please select a file less than 5 MB.";
+
+    static PRINT_TITLE = "AUR Form Printing";
+    static PRINT_CONFIRMATION = "Please set Paper Size to Legal (8.5in x 14in) or Long (8.5in x 13in) and remove Headers and Footers.";
 }
 
 export abstract class ProfileFormMessages {

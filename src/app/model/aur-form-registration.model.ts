@@ -16,6 +16,14 @@ export class AURFormRegistration extends BaseModel {
     officialReceiptDate: Date;
     expirationDate: Date;
     statusCode: string;
+    councilRegistrationOfficer: string;
+    councilProcessedDate: Date;
+    councilScoutExecutive: string;
+    councilApprovedDate: Date;
+    regionalRegistrationOfficer: string;
+    regionalProcessedDate: Date;
+    regionalScoutExecutive: string;
+    regionalApprovedDate: Date;
     iscomMembersList: Array<ISComMemberDetails>;
     unitMembersList: Array<UnitMemberDetails>;
 

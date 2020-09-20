@@ -221,9 +221,9 @@
                         </colgroup>
                         <tr>
                             <td>Processed:</td>
-                            <td class="bottom-underline"></td>
+                            <td class="bottom-underline">{{aurFormObj.councilRegistrationOfficer}}</td>
                             <td></td>
-                            <td class="bottom-underline"></td>
+                            <td class="bottom-underline">{{aurFormObj.councilProcessedDate}}</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -234,9 +234,9 @@
                         <tr><td></td><td></td><td></td><td></td></tr>
                         <tr>
                             <td>Approved:</td>
-                            <td class="bottom-underline"></td>
+                            <td class="bottom-underline">{{aurFormObj.councilScoutExecutive}}</td>
                             <td></td>
-                            <td class="bottom-underline"></td>
+                            <td class="bottom-underline">{{aurFormObj.councilApprovedDate}}</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -258,9 +258,9 @@
                         </colgroup>
                         <tr>
                             <td>Processed:</td>
-                            <td class="bottom-underline"></td>
+                            <td class="bottom-underline">{{aurFormObj.regionalRegistrationOfficer}}</td>
                             <td></td>
-                            <td class="bottom-underline"></td>
+                            <td class="bottom-underline">{{aurFormObj.regionalProcessedDate}}</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -271,9 +271,9 @@
                         <tr><td></td><td></td><td></td><td></td></tr>
                         <tr>
                             <td>Confirmed:</td>
-                            <td class="bottom-underline"></td>
+                            <td class="bottom-underline">{{aurFormObj.regionalScoutExecutive}}</td>
                             <td></td>
-                            <td class="bottom-underline"></td>
+                            <td class="bottom-underline">{{aurFormObj.regionalApprovedDate}}</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -294,7 +294,7 @@
                     <td style="width: 15%;" class="bottom-underline">{{aurFormObj.district}}</td>
                     <td style="width: 7%;">  AUR No.</td>
                     <td style="width: 20%;" class="bottom-underline">
-                        <input type="text" formControlName="unitRegistrationNo" class="" maxlength="10" value="{{aurFormObj.unitRegistrationNo}}">
+                        <input type="text" formControlName="unitRegistrationNo" class="aurNumber" maxlength="10" value="{{aurFormObj.unitRegistrationNo}}">
                     </td>
                 </tr>
             </table>

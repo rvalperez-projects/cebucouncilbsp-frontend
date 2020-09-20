@@ -20,7 +20,6 @@ export class AurFormViewComponent implements OnInit {
   aurFormObj: AURFormRegistration;
   loading: boolean;
   isPaid: boolean;
-  isProcessed: boolean;
   
   // Declare labels
   iSComPositions = RosterHeaderLabels.iSComPositions;
@@ -56,7 +55,6 @@ export class AurFormViewComponent implements OnInit {
       this.service.initializeAUR(this.aurFormObj, this.registrationFee).subscribe(() => {
         this.loading = false;
         this.isPaid = this.aurFormObj.statusCode != FormStatus.SUBMITTED.valueOf();
-        this.isProcessed = this.aurFormObj.statusCode == FormStatus.PROCESSED.valueOf();
       });
     }
   }
@@ -73,7 +71,12 @@ export class AurFormViewComponent implements OnInit {
   }
 
   print() {
-    window.print();
+    this.councilDialog.openConfirmDialog(AURFormMessages.PRINT_TITLE, AURFormMessages.PRINT_CONFIRMATION)
+      .subscribe(confirmResult => {
+        if (confirmResult) {
+          window.print();
+        }
+    });
   }
 
   hidePrintButton() {

@@ -45,6 +45,16 @@ export class AURFormViewService {
         aurFormObj.expirationDate = result.expirationDate;
         aurFormObj.charterFlag = result.charterFlag;
         aurFormObj.statusCode = result.statusCode;
+        
+        aurFormObj.councilRegistrationOfficer = result.councilRegistrationOfficer;
+        aurFormObj.councilProcessedDate = result.councilProcessedDate;
+        aurFormObj.councilScoutExecutive = result.councilScoutExecutive;
+        aurFormObj.councilApprovedDate = result.councilApprovedDate;
+        
+        aurFormObj.regionalRegistrationOfficer = result.regionalRegistrationOfficer;
+        aurFormObj.regionalProcessedDate = result.regionalProcessedDate;
+        aurFormObj.regionalScoutExecutive = result.regionalScoutExecutive;
+        aurFormObj.regionalApprovedDate = result.regionalApprovedDate;
 
         this.populateAurFormObj(aurFormObj, result);
         this.calculateFees(aurFormObj, registrationFee);
