@@ -59,11 +59,11 @@ export class FormRegistrationComponent implements OnInit {
       RosterHeaderLabels.memberPositions[2].code, 
       RosterHeaderLabels.memberPositions[3].code
     ];
+    this.disableSubmit();
   }
 
   ngOnInit(): void {
     this.header.initLoggedInUser();
-    this.disableSubmit();
     
     // Initialize Input Fields
     let institutionId = window.sessionStorage[SessionConstant.USER_INSTITUTION_ID_KEY];
@@ -85,7 +85,8 @@ export class FormRegistrationComponent implements OnInit {
     });
 
     // Show General Instructiosn
-    let messages = [AURFormMessages.GENERAL_INSTRUCTIONS_1, AURFormMessages.GENERAL_INSTRUCTIONS_2]
+    let messages = [AURFormMessages.GENERAL_INSTRUCTIONS_1, 
+      AURFormMessages.GENERAL_INSTRUCTIONS_2, AURFormMessages.GENERAL_INSTRUCTIONS_3];
     this.councilDialog.openDialog(AURFormMessages.GENERAL_INSTRUCTIONS_TITLE, messages);
   }
 
@@ -151,8 +152,9 @@ export class FormRegistrationComponent implements OnInit {
     if (selectedUnitNumber.length > 0) {
       this.aubFormGroup.unitNumber.setValue(selectedUnitNumber);
       let sectionElement: any;
-      switch(selectedUnitNumber.charAt(0)) {
-        case "L": sectionElement = this.elementRef.nativeElement.querySelector(`#Langkay`);
+      let sectionText = selectedUnitNumber.split("-")[0];
+      switch(sectionText) {
+        case "KID": sectionElement = this.elementRef.nativeElement.querySelector(`#Langkay`);
                   sectionElement.style = "text-decoration:underline;font-weight:bold;";
                   this.aubFormGroup.sectionCode.setValue(SectionCode.LANGKAY);
                   break;

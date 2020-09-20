@@ -7,8 +7,10 @@
         </select>
     </div>
     <div class="inputs"><mat-label>Unit Number</mat-label>
-        <input class="shadow" matInput [(ngModel)]="unitNumberInput" placeholder="" required minlength="2" maxlength="5">
-    </div>    
+        <div><input class="shadow sectionText" [(ngModel)]="sectionTextInput" [disabled]="true">
+            <input class="shadow unitNumber" matInput [(ngModel)]="unitNumberInput" placeholder="" required minlength="2" maxlength="3">
+        </div>
+    </div>
 </div>
 
 <div mat-dialog-actions >

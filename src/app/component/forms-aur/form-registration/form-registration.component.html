@@ -27,7 +27,8 @@
                 <td rowspan="2">Age</td>
                 <td style="border-bottom-style:none;">Membership</td>
                 <td style="border-bottom-style:none;">Highest Sct.</td>
-                <td style="border-bottom-style:none;">Tenure in</td>
+                <td style="border-bottom-style:none;" 
+                    matTooltip="Number of Years in Scouting">Tenure in</td>
                 <td rowspan="2">Religion</td>
             </tr>
             <!--ISCOM Header Row 2-->
@@ -54,7 +55,7 @@
                 <td><select formControlName="highestTrainingCode" class="" (focus)="disableSubmit()">
                     <option *ngFor="let trainingMap of highestTrainingBox | keyvalue" [value]="trainingMap.key">{{trainingMap.value}}</option>
                 </select></td>
-                <td><input type="number" formControlName="tenure" class="" min="0" (focus)="disableSubmit()"></td>
+                <td><input type="number" formControlName="tenure" class="" min="0" (focus)="disableSubmit()" matTooltip="Number of Years in Scouting"></td>
                 <td><input type="text" formControlName="religion" class="" (focus)="disableSubmit()" maxlength="32"></td>
             </tr>
             </tbody>
@@ -76,11 +77,13 @@
             <!--Members Header Row 1-->
             <tr class="table-header">
                 <td colspan="2" class="roster">ROSTER OF SCOUT MEMBERSHIP</td>
-                <td style="border-bottom-style:none;">Registration</td>
+                <td style="border-bottom-style:none;" 
+                    matTooltip=" N – New; RR – Reregistering">Registration</td>
                 <td rowspan="2">Age</td>
                 <td style="border-bottom-style:none;">Membership</td>
                 <td style="border-bottom-style:none;">Highest Badge</td>
-                <td style="border-bottom-style:none;">Tenure in</td>
+                <td style="border-bottom-style:none;" 
+                matTooltip="Number of Years in Scouting">Tenure in</td>
                 <td rowspan="2">Religion</td>
             </tr>
             <!--Members Header Row 2-->
@@ -107,7 +110,7 @@
                         <input type="text" formControlName="givenName" class="name" (focus)="disableSubmit()" maxlength="32">&nbsp;
                         <input type="text" formControlName="middleInitial" class="mi" (focus)="disableSubmit()" maxlength="1">
                     </td>
-                    <td><select formControlName="registrationStatusCode" class="" (focus)="disableSubmit()">
+                    <td><select formControlName="registrationStatusCode" class="" (focus)="disableSubmit()" matTooltip=" N – New; RR – Reregistering">
                         <option *ngFor="let statusCode of registrationStatusBox" [value]="statusCode">{{statusCode}}</option>
                     </select></td>
                     <td><input type="number" formControlName="age" class="" min="0" (focus)="disableSubmit()" max="80"></td>
@@ -115,7 +118,7 @@
                     <td><select formControlName="highestBadgeCode" class="" (focus)="disableSubmit()">
                         <option *ngFor="let badgeMap of highestBadgeBox | keyvalue" [value]="badgeMap.key">{{badgeMap.value}}</option>
                     </select></td>
-                    <td><input type="number" formControlName="tenure" class="" min="0" (focus)="disableSubmit()"></td>
+                    <td><input type="number" formControlName="tenure" class="" min="0" (focus)="disableSubmit()" matTooltip="Number of Years in Scouting"></td>
                     <td><input type="text" formControlName="religion" class="" (focus)="disableSubmit()" maxlength="32"></td>
                 </ng-template>
             </tr>
@@ -190,9 +193,7 @@
                         </tr>
                     </table>
                     <table class="summary" cellspacing="0">
-                        <tr>
-                            <td style="width: 25%;" class="font-condensed">Expiration of Unit Registration</td>
-                            <td style="width: 22%;" class="bottom-underline"></td>
+                        <tr><td style="width: 48%;" colspan="2">Expiration of Unit Registration</td>
                             <td style="width: 6%;">  Date</td>
                             <td style="width: 18%;" class="bottom-underline">{{aurFormObj.expirationDate | date:'yyyy/MM/dd'}}</td>
                         </tr>
@@ -289,16 +290,17 @@
                     <td style="width: 15%;" class="bottom-underline">{{aurFormObj.council}}</td>
                     <td style="width: 6%;">  Unit No.</td>
                     <td style="width: 15%;" class="bottom-underline">
-                        <select formControlName="unitNumber" class="" (change)="onUnitNumberChange($event.target.value)">
+                        <select formControlName="unitNumber" class="" (change)="onUnitNumberChange($event.target.value)"
+                            matTooltip="KID-: Langkay; K-: Kawan; T-: Troop; S-: Outfit; R-: Circle;">
                             <option *ngFor="let unitNumberOption of unitNumbersBox" [value]="unitNumberOption">{{unitNumberOption}}</option>
                         </select>
                     </td>
                     <td style="width: 21%;" class="font-condensed">  (
-                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Langkay">Langkay</span> /
-                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Kawan">Kawan</span> /
-                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Troop">Troop</span> /
-                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Outfit">Outfit</span> /
-                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Circle">Circle</span>
+                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Langkay" matTooltip="Langkay: Kindergarten">Langkay</span> /
+                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Kawan" matTooltip="Kawan: Grades 1-3">Kawan</span> /
+                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Troop" matTooltip="Troop: Grades 4-6">Troop</span> /
+                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Outfit" matTooltip="Outfit: JHS">Outfit</span> /
+                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Circle" matTooltip="Rover: SHS-College">Circle</span>
                     )</td>
                     <td style="width: 10%;">Date Applied: </td>
                     <td style="width: 12%;" class="bottom-underline">{{aurFormObj.dateApplied | date:'yyyy/MM/dd'}}</td>

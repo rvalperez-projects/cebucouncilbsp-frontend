@@ -25,7 +25,8 @@ export abstract class AURFormMessages {
     static RETRIEVAL_FAILED = "AUR Form Details Retrieval Failed";
     static GENERAL_INSTRUCTIONS_TITLE = "General Instructions";
     static GENERAL_INSTRUCTIONS_1 = "Please set [Unit Number] and [Scouting Section] values first (found below) to disable unnecessary input fields.";
-    static GENERAL_INSTRUCTIONS_2 = "When filling out the form is complete, please click on [Calculate Fees] button to calculate total amount to be paid.";
+    static GENERAL_INSTRUCTIONS_2 = "If you wish to register a specific Unit Number to your institution, please send a request to BSP Cebu Council via FB Page.";
+    static GENERAL_INSTRUCTIONS_3 = "When filling out the form is complete, please click on [Calculate Fees] button to calculate total amount to be paid.";
 
     static OFFICIAL_RECEIPT_NO_BLANK = "Official Receipt No. not updated.";
     static OFFICIAL_RECEIPT_DATE_BLANK = "Official Receipt Date not updated.";
@@ -44,16 +45,20 @@ export abstract class AURFormMessages {
     static UPLOAD_PAYMENT_MESSAGE = "[<filename>] successfully uploaded.";
     static UPLOAD_PAYMENT_CONFIRM = "[<filename>] (<filesize> MB) is selected. Proceed to upload?";
     static UPLOAD_PAYMENT_FILESIZE_EXCEEDED = "[<filename>] is <filesize> MB. Please select a file less than 5 MB.";
+
+    static PRINT_TITLE = "AUR Form Printing";
+    static PRINT_CONFIRMATION = "Please set Paper Size to Legal (8.5in x 14in) or Long (8.5in x 13in) and remove Headers and Footers.";
 }
 
 export abstract class ProfileFormMessages {
     
     static RETRIEVAL_FAILED = "User Details Retrieval Failed";
     static SUBMISSION_SUCCESSFUL = "Submission Successful";
-    static WELCOME_MESSAGE_1 = "Welcome to the Cebu Council BSP Web Portal.";
-    static WELCOME_MESSAGE_2 = "Login to register your unit.";
     static SUBMISSION_ERROR = "Incomplete Data";
     static INVALID_EMAIL_FORMAT = "Please enter a valid email address.";
+    
+    static WELCOME_MESSAGE_1 = "Welcome to the Cebu Council BSP Web Portal.";
+    static WELCOME_MESSAGE_2 = "Registration details are sent to your email. Please verify.";
 }
 
 export abstract class LoginErrorMessages {

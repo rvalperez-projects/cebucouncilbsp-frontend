@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
@@ -18,13 +19,13 @@ import { AurFormUpdateComponent } from './component/forms-aur/aur-form-update/au
 import { AurFormViewComponent } from './component/forms-aur/aur-form-view/aur-form-view.component';
 import { FormRegistrationComponent } from './component/forms-aur/form-registration/form-registration.component';
 import { FormsListComponent } from './component/forms-aur/forms-list/forms-list.component';
+import { NewUnitNumberComponent } from './component/master/unit-number/new-unit-number/new-unit-number.component';
+import { UnitNumberComponent } from './component/master/unit-number/unit-number.component';
 import { ProfileComponent } from './component/user/profile/profile.component';
 import { SignUpComponent } from './component/user/sign-up/sign-up.component';
 import { UsersListComponent } from './component/user/users-list/users-list.component';
 import { HttpErrorInterceptor } from './utils/http-interceptor.utils';
 import { MatSpinnerOverlayComponent } from './utils/mat-spinner-overlay/mat-spinner-overlay.component';
-import { UnitNumberComponent } from './component/master/unit-number/unit-number.component';
-import { NewUnitNumberComponent } from './component/master/unit-number/new-unit-number/new-unit-number.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { NewUnitNumberComponent } from './component/master/unit-number/new-unit-
     AngularMaterialModule,
     FlexLayoutModule, 
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule
   ],
   providers: [
     {
