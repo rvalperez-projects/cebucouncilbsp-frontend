@@ -88,4 +88,24 @@ export class UserService {
         })
       );
   }
+
+  public updateUser(profileForm: ProfileFormGroup) {
+    let body = JSON.stringify(profileForm.form.getRawValue());
+    return this.http.put<BaseResponse>(ResourceURL.HOST + ResourceURL.USER_UPDATE, body)
+      .pipe(
+        map(data => {
+          let profileInfo = null;
+          if (data.result) {
+            profileInfo = data.result as ProfileInfo;
+          }
+          return profileInfo;
+        }),
+        catchError(error => {
+          if (error.status != '500' && error.error) {
+            this.councilDialog.openDialog(ProfileFormMessages.SUBMISSION_ERROR, error.error.errorMessages);
+          }
+          return throwError(error);
+        })
+      );
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { ProfileLabels } from 'src/app/constant/Constants';
+import { ProfileLabels, SessionConstant } from 'src/app/constant/Constants';
+import { Roles } from 'src/app/constant/Enums';
 import { AreaDistrictsModel } from 'src/app/model/user-registration.model';
 import { ProfileFormMessages } from '../../../constant/Messages';
 import { ProfileFormGroup } from '../../../formGroups/ProfileFormGroup';
@@ -9,7 +10,7 @@ import { CouncilDialog } from '../../common-components/dialog/create-dialog-util
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css'],
+  styleUrls: ['../profile.component.css'],
   encapsulation : ViewEncapsulation.None
 })
 export class SignUpComponent implements OnInit {
@@ -22,9 +23,11 @@ export class SignUpComponent implements OnInit {
   selectedDistrict: AreaDistrictsModel;
   passwordHide = true;
   confirmPasswordHide = true;
+  showUserRoleField = false;
   
   // Combo box values
   Categories: any = ProfileLabels.categories;
+  UserRoles: any = ProfileLabels.userRoles;
   AreaDistricts: AreaDistrictsModel[];
 
   // Error Messages
@@ -44,18 +47,37 @@ export class SignUpComponent implements OnInit {
         this.AreaDistricts.push(areaDistrict);
       }
     });
+    let userRole = window.sessionStorage[SessionConstant.USER_ROLE_CODE_KEY];
+    if (userRole && userRole != Roles.GENERAL_USER) {
+      this.showUserRoleField = true;
+    }
   }
 
   register() {
-    this.profileFormGroup.area.setValue(this.selectedDistrict.area);
-    this.profileFormGroup.district.setValue(this.selectedDistrict.district);
+    // Set the Required Area and District Fields
+    let selectedArea = null;
+    let selectedDistrict = null;
+    let successMessages = [];
+    if (this.profileFormGroup.authorityCode.value != Roles.GENERAL_USER) {
+      selectedArea = "Council";
+      selectedDistrict = selectedArea;
+      successMessages = [ProfileFormMessages.REGISTRATION_SUCCESSFUL_MESSAGE];
+    } else {
+      selectedArea = this.selectedDistrict.area;
+      selectedDistrict = this.selectedDistrict.district;
+      successMessages = [ProfileFormMessages.WELCOME_MESSAGE_1, ProfileFormMessages.WELCOME_MESSAGE_2];
+    }
+    this.profileFormGroup.area.setValue(selectedArea);
+    this.profileFormGroup.district.setValue(selectedDistrict);
+
+    // Check Errors
     if (this.hasErrors()) {
       return;
     }
 
+    // Call Service
     this.service.registerUser(this.profileFormGroup).subscribe(() => {
-      let messages = [ProfileFormMessages.WELCOME_MESSAGE_1, ProfileFormMessages.WELCOME_MESSAGE_2];
-      this.councilDialog.openDialog(ProfileFormMessages.SUBMISSION_SUCCESSFUL, messages);
+      this.councilDialog.openDialog(ProfileFormMessages.SUBMISSION_SUCCESSFUL, successMessages);
       this.closeSignUp();
     });
   }
@@ -63,6 +85,14 @@ export class SignUpComponent implements OnInit {
   private hasErrors(): boolean {    
     // Check Input Data
     this.errorMessages = [];
+    
+    // Check Password Match
+    if (this.profileFormGroup.password.value && 
+        this.profileFormGroup.password.value != this.profileFormGroup.confirmPassword.value) {
+      this.errorMessages.push(ProfileFormMessages.PASSWORDS_NOT_MATCH);
+    }
+
+    // Check Individual Fields
     this.profileFormGroup.getErrorMessage(this.errorMessages);
     if (this.errorMessages.length > 0) {      
       this.councilDialog.openDialog(ProfileFormMessages.SUBMISSION_ERROR, this.errorMessages);
@@ -73,6 +103,29 @@ export class SignUpComponent implements OnInit {
 
   closeSignUp() {
     this.close.emit(null);
+  }
+
+  toggleFields() {
+    if (this.profileFormGroup.authorityCode.value != Roles.GENERAL_USER) {
+      this.profileFormGroup.institutionName.disable();
+      this.profileFormGroup.address.disable();
+      this.profileFormGroup.categoryCode.disable();
+      this.profileFormGroup.district.disable();
+      this.profileFormGroup.contactNumber.disable();
+
+      this.profileFormGroup.institutionName.setValue(null);
+      this.profileFormGroup.address.setValue(null);
+      this.profileFormGroup.categoryCode.setValue(null);
+      this.profileFormGroup.district.setValue(null);
+      this.profileFormGroup.area.setValue(null);
+      this.profileFormGroup.contactNumber.setValue(null);
+    } else {
+      this.profileFormGroup.institutionName.enable();
+      this.profileFormGroup.address.enable();
+      this.profileFormGroup.categoryCode.enable();
+      this.profileFormGroup.district.enable();
+      this.profileFormGroup.contactNumber.enable();
+    }
   }
 
 }

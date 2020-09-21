@@ -66,6 +66,9 @@ export class ProfileFormGroup {
   get contactNumber(): FormControl {
     return this._profileForm.controls['contactNumber'] as FormControl;
   }
+  get authorityCode(): FormControl {
+    return this._profileForm.controls['authorityCode'] as FormControl;
+  }
 
   private createForm() {
     this._profileForm = this.formBuild.group({

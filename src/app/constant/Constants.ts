@@ -11,6 +11,11 @@ export class ProfileLabels {
         {code: '05', text: 'Community'}
     ];
 
+    public static userRoles: Mapper[] = [
+        {code: '00', text: 'General User'},
+        {code: '01', text: 'Council'}
+    ];
+
     public static areaDistricts: AreaDistrictsModel[] = [];
 }
 
