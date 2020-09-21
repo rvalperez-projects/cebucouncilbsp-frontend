@@ -85,6 +85,14 @@ export class SignUpComponent implements OnInit {
   private hasErrors(): boolean {    
     // Check Input Data
     this.errorMessages = [];
+    
+    // Check Password Match
+    if (this.profileFormGroup.password.value && 
+        this.profileFormGroup.password.value != this.profileFormGroup.confirmPassword.value) {
+      this.errorMessages.push(ProfileFormMessages.PASSWORDS_NOT_MATCH);
+    }
+
+    // Check Individual Fields
     this.profileFormGroup.getErrorMessage(this.errorMessages);
     if (this.errorMessages.length > 0) {      
       this.councilDialog.openDialog(ProfileFormMessages.SUBMISSION_ERROR, this.errorMessages);

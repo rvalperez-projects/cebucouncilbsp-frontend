@@ -58,6 +58,7 @@ export abstract class ProfileFormMessages {
     static UPDATE_SUCCESSFUL_MESSAGE = "User Update Successful. Please verify updated details in your registered email.";
     static SUBMISSION_ERROR = "Incomplete Data";
     static INVALID_EMAIL_FORMAT = "Please enter a valid email address.";
+    static PASSWORDS_NOT_MATCH = "Inputted Passwords do not match.";
     
     static WELCOME_MESSAGE_1 = "Welcome to the Cebu Council BSP Web Portal.";
     static WELCOME_MESSAGE_2 = "Registration details are sent to your email. Please verify.";
