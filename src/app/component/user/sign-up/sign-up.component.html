@@ -82,6 +82,14 @@
                 <td><br><mat-icon>school</mat-icon></td>
                 <td colspan="2"><br><h1>Scouting Participation</h1></td>
             </tr>
+            <tr *ngIf="showUserRoleField"><td></td>
+                <td>User Category</td>
+                <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
+                  <mat-select formControlName="authorityCode" required placeholder="Select one category" (selectionChange)="toggleFields()">
+                      <mat-option [value]="role.code" *ngFor="let role of UserRoles">{{role.text}}</mat-option>
+                  </mat-select>
+                </mat-form-field></td>
+            </tr>
             <tr><td></td>
                 <td>Sponsoring Institution</td>
                 <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">

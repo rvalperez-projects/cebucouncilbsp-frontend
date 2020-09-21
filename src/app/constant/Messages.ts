@@ -54,6 +54,8 @@ export abstract class ProfileFormMessages {
     
     static RETRIEVAL_FAILED = "User Details Retrieval Failed";
     static SUBMISSION_SUCCESSFUL = "Submission Successful";
+    static REGISTRATION_SUCCESSFUL_MESSAGE = "User Registration Successful";
+    static UPDATE_SUCCESSFUL_MESSAGE = "User Update Successful. Please verify updated details in your registered email.";
     static SUBMISSION_ERROR = "Incomplete Data";
     static INVALID_EMAIL_FORMAT = "Please enter a valid email address.";
     

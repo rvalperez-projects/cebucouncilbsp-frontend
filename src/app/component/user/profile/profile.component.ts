@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { AreaDistrictsModel, ProfileInfo } from 'src/app/model/user-registration.model';
 import { ProfileLabels, SessionConstant } from '../../../constant/Constants';
@@ -12,7 +11,7 @@ import { CouncilDialog } from '../../common-components/dialog/create-dialog-util
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css'],
+  styleUrls: ['../profile.component.css'],
   providers:  [ ProfileFormGroup ],
   encapsulation : ViewEncapsulation.None
 })
@@ -53,55 +52,63 @@ export class ProfileComponent implements OnInit {
       // Set Area / District combo box value
       let userAreaDistrict: AreaDistrictsModel = {area: profileInfo.area, district: profileInfo.district };
       
-      // Disable fields if NOT allowed to update
-      if (!this.isAllowedToUpdate()) {
-        for (let ctrl in this.profileFormGroup.form.controls) {
-          let control = this.profileFormGroup.form.controls[ctrl] as FormControl;
-          control.disable();
-        }
-        // Push only one AreaDistrict item
-        this.AreaDistricts.push(userAreaDistrict);
-        this.profileFormGroup.district.setValue(userAreaDistrict);
-      } else {
-
-        if (profileInfo.authorityCode == Roles.GENERAL_USER) {
-          // Get ALL Area and District combo items
-          this.service.getDistricts().pipe(
-            map((areaDistricts: AreaDistrictsModel[]) => {
-              let userAreaDistrict: AreaDistrictsModel = null;
-              for (let item of areaDistricts) {
-                let areaDistrict = new AreaDistrictsModel(item.area, item.district);
-                this.AreaDistricts.push(areaDistrict);
-                if (!userAreaDistrict && areaDistrict.area == profileInfo.area && areaDistrict.district == profileInfo.district) {
-                  userAreaDistrict = areaDistrict;
-                }
+      if (profileInfo.authorityCode == Roles.GENERAL_USER) {
+        // Get ALL Area and District combo items
+        this.service.getDistricts().pipe(
+          map((areaDistricts: AreaDistrictsModel[]) => {
+            let userAreaDistrict: AreaDistrictsModel = null;
+            for (let item of areaDistricts) {
+              let areaDistrict = new AreaDistrictsModel(item.area, item.district);
+              this.AreaDistricts.push(areaDistrict);
+              if (!userAreaDistrict && areaDistrict.area == profileInfo.area && areaDistrict.district == profileInfo.district) {
+                userAreaDistrict = areaDistrict;
               }
-              return userAreaDistrict;
-            })
-          ).subscribe((userAreaDistrict: AreaDistrictsModel) => {
-            // Set initial value
-            this.profileFormGroup.district.setValue(userAreaDistrict);
-          });
-        } else {
-          this.profileFormGroup.categoryCode.disable();
-          this.profileFormGroup.district.disable();
-        }
+            }
+            return userAreaDistrict;
+          })
+        ).subscribe((userAreaDistrict: AreaDistrictsModel) => {
+          // Set initial value
+          this.profileFormGroup.district.setValue(userAreaDistrict);
+        });
+      } else {
+        this.profileFormGroup.categoryCode.disable();
+        this.profileFormGroup.district.disable();
       }
     });
   }
 
   update() {
-    this.profileFormGroup.area.setValue(this.selectedDistrict.area);
-    this.profileFormGroup.district.setValue(this.selectedDistrict.district);
+    // Set dummy password if password is NOT set
+    if (!this.profileFormGroup.password.value) {
+      this.profileFormGroup.password.setValue('x----x');
+      this.profileFormGroup.confirmPassword.setValue('x----x');
+    }
+    
+    // Set Area and District
+    if (this.profileFormGroup.authorityCode.value == Roles.GENERAL_USER) {
+      this.profileFormGroup.area.setValue(this.profileFormGroup.district.value.area);
+      this.profileFormGroup.district.setValue(this.profileFormGroup.district.value.district);
+    } else {
+      this.profileFormGroup.area.setValue("Council");
+      this.profileFormGroup.district.setValue("Council");
+    }
     if (this.hasErrors()) {
       return;
     }
 
-    // this.service.registerUser(this.profileFormGroup).subscribe(() => {
-    //   let messages = [ProfileFormMessages.WELCOME_MESSAGE_1, ProfileFormMessages.WELCOME_MESSAGE_2];
-    //   this.councilDialog.openDialog(ProfileFormMessages.SUBMISSION_SUCCESSFUL, messages);
-    //   this.closeWindow();
-    // });
+    // Call Update User Service
+    this.service.updateUser(this.profileFormGroup).subscribe((updatedProfile: ProfileInfo) => {
+      window.sessionStorage[SessionConstant.USER_INSTITUTION_ID_KEY] = updatedProfile.institutionId;
+      this.closeWindow();
+
+      // Reload page if signed in is a General User
+      this.councilDialog.openConfirmDialog(ProfileFormMessages.SUBMISSION_SUCCESSFUL, 
+        ProfileFormMessages.UPDATE_SUCCESSFUL_MESSAGE).subscribe((ok) => {
+        if (ok && Roles.GENERAL_USER == window.sessionStorage[SessionConstant.USER_ROLE_CODE_KEY]) {
+          location.reload();
+        }
+      });
+    });
   }
 
   private hasErrors(): boolean {    
@@ -117,9 +124,5 @@ export class ProfileComponent implements OnInit {
 
   closeWindow() {
     this.close.emit(null);
-  }
-
-  isAllowedToUpdate() {
-    return window.sessionStorage[SessionConstant.USER_ROLE_CODE_KEY] != Roles.GENERAL_USER;
   }
 }

@@ -27,7 +27,7 @@
               <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
                   <input matInput #password formControlName="password" [type]="passwordHide ? 'password' : 'text'"
                       placeholder="6-8 characters" required minlength="6" maxlength="8">
-                  <button *ngIf="isAllowedToUpdate()" mat-icon-button matSuffix (click)="passwordHide = !passwordHide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="passwordHide">
+                  <button mat-icon-button matSuffix (click)="passwordHide = !passwordHide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="passwordHide">
                     <mat-icon>{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
                   </button>
                 </mat-form-field>
@@ -38,7 +38,7 @@
               <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
                   <input matInput #confirmPassword formControlName="confirmPassword" [type]="confirmPasswordHide ? 'password' : 'text'"
                       placeholder="6-8 characters" required minlength="6" maxlength="8">
-                  <button *ngIf="isAllowedToUpdate()" mat-icon-button matSuffix (click)="confirmPasswordHide = !confirmPasswordHide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="confirmPasswordHide">
+                  <button mat-icon-button matSuffix (click)="confirmPasswordHide = !confirmPasswordHide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="confirmPasswordHide">
                     <mat-icon>{{confirmPasswordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
                   </button>
                 </mat-form-field>
@@ -121,10 +121,10 @@
       <br>
       <table class="full-width">
           <tr>
-            <!-- <td *ngIf="isAllowedToUpdate()" style="text-align:center;"><button mat-raised-button color="primary" class="btn-block" (click)="update()">Update</button></td> -->
             <td style="text-align:center;">
-              <!-- <button [ngClass]="{'buttonAt75percent':!isAllowedToUpdate()}"  -->
-              <button style="width: 65%;"
+              <button mat-raised-button color="primary" class="btn-block" (click)="update()">Update</button></td>
+            <td style="text-align:center;">
+              <button class="buttonAt75percent" 
                 mat-raised-button class="btn-block" color="warn" (click)="closeWindow()">Close</button></td>
           </tr>
       </table>

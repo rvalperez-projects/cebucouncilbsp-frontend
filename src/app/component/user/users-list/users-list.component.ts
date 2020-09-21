@@ -19,8 +19,10 @@ export class UsersListComponent implements OnInit, AfterContentChecked {
   // Set table data
   dataSource: Array<ProfileInfo>;
   displayedColumns: string[] = ['district', 'institutionName', 'name', 'mobileNumber', 'emailAddress'];
+  readonly COUNCIL: string = "Council";
 
   isProfileClicked: boolean;
+  isSignUpClicked: boolean;
   selectedUserId: number;
 
   constructor(
@@ -50,6 +52,7 @@ export class UsersListComponent implements OnInit, AfterContentChecked {
       this.searchFormGroup.district.setValue(district);
       this.searchFormGroup.institutionId.setValue('');
       this.searchService.populateSearchBoxes(this.searchFormData, area, district);
+      this.addCouncilToAreaBox();
      });
   }
   
@@ -62,14 +65,23 @@ export class UsersListComponent implements OnInit, AfterContentChecked {
       this.searchFormGroup.area.value, 
       this.searchFormGroup.district.value);
     this.searchFormGroup.institutionId.setValue(null);
+    this.addCouncilToAreaBox();
   }
 
   repopulateDistrictAndInstitutions() {
-    this.searchService.populateSearchBoxes(this.searchFormData, 
-      this.searchFormGroup.area.value, 
-      null);
+    if (this.COUNCIL == this.searchFormGroup.area.value) {
+      this.searchFormData.districtList = [];
+      this.searchFormData.institutionMap.clear();
       this.searchFormGroup.district.setValue(null);
       this.searchFormGroup.institutionId.setValue(null);
+      return;
+    }
+    
+    this.searchService.populateSearchBoxes(
+      this.searchFormData, this.searchFormGroup.area.value, null);
+    this.searchFormGroup.district.setValue(null);
+    this.searchFormGroup.institutionId.setValue(null);
+    this.addCouncilToAreaBox();
   }
 
   searchUsers() {
@@ -82,6 +94,15 @@ export class UsersListComponent implements OnInit, AfterContentChecked {
     this.isProfileClicked = true;
     this.selectedUserId = userId;
     this.cdRef.detectChanges();
+  }
+
+  createNewUser() {
+    this.isSignUpClicked = true;
+    this.cdRef.detectChanges();
+  }
+
+  addCouncilToAreaBox() {
+    this.searchFormData.areaList.push(this.COUNCIL);
   }
 
 }

@@ -11,6 +11,7 @@ export abstract class ResourceURL {
     
     static USER_ID = "/user/{userId}";
     static USER_SEARCH = "/user/search";
+    static USER_UPDATE = "/user/update";
 
     static FORM_SUBMIT = "/form/submit";
     static FORM_DISPLAY = "/form/{formId}";
