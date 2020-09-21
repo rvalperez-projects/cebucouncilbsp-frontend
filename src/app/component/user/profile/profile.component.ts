@@ -98,6 +98,7 @@ export class ProfileComponent implements OnInit {
 
     // Call Update User Service
     this.service.updateUser(this.profileFormGroup).subscribe((updatedProfile: ProfileInfo) => {
+      window.sessionStorage[SessionConstant.USER_GIVEN_NAME] = updatedProfile.givenName;
       window.sessionStorage[SessionConstant.USER_INSTITUTION_ID_KEY] = updatedProfile.institutionId;
       this.closeWindow();
 
