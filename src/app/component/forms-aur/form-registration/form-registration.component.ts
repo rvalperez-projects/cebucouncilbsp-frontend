@@ -2,8 +2,8 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from "@angular/router";
 import { AppComponent } from 'src/app/app.component';
-import { SessionConstant } from 'src/app/constant/Constants';
-import { EnumUtil, SectionCode } from 'src/app/constant/Enums';
+import { ScoutingSections, SessionConstant } from 'src/app/constant/Constants';
+import { EnumUtil, InstitutionCategory, SectionCode } from 'src/app/constant/Enums';
 import { AURFormMessages } from '../../../constant/Messages';
 import { RosterHeaderLabels } from '../../../constant/RosterHeaderLabels';
 import { AURFormGroup } from '../../../formGroups/AURFormGroup';
@@ -21,6 +21,7 @@ export class FormRegistrationComponent implements OnInit {
 
   // Declare object
   aurFormObj: AURFormRegistration;
+  private allowedSections: string[];
 
   // Declare labels
   iSComPositions = RosterHeaderLabels.iSComPositions;
@@ -39,6 +40,7 @@ export class FormRegistrationComponent implements OnInit {
   errorMessages: Array<string>;
   submitDisabled: boolean;
   circlePositions: Array<string>;
+  canBeSelected: boolean;
 
   constructor(
     public  router: Router,
@@ -59,6 +61,7 @@ export class FormRegistrationComponent implements OnInit {
       RosterHeaderLabels.memberPositions[2].code, 
       RosterHeaderLabels.memberPositions[3].code
     ];
+    this.canBeSelected = true;
     this.disableSubmit();
   }
 
@@ -82,6 +85,7 @@ export class FormRegistrationComponent implements OnInit {
       } else {
         this.disableNotCircleInputs();
       }
+      this.setAllowedSectionByInstitutionCategory();
     });
 
     // Show General Instructiosn
@@ -188,8 +192,18 @@ export class FormRegistrationComponent implements OnInit {
   }
 
   setSectionCode(selectedSection: string) {
+    // If selected Unit Number is "New"
     if (this.aubFormGroup.unitNumber.value == 'New') {
       this.resetSectionStyles();
+      
+      // Disallow Section if not appropriate for user's institution 
+      if (!this.allowedSections.includes(selectedSection)) {
+        this.councilDialog.openDialog(AURFormMessages.INVALID_PROCESS, [AURFormMessages.INVALID_SECTION_CODE]);
+        this.disableSubmit();
+        return;
+      }
+
+      // Set Section Code
       RosterHeaderLabels.sectionCodes.forEach((value: string, key: string) => {
         if (value == selectedSection) {
           this.aubFormGroup.sectionCode.setValue(key);
@@ -203,9 +217,8 @@ export class FormRegistrationComponent implements OnInit {
       }
       this.refreshHighestBadges(this.aubFormGroup.sectionCode.value);
     } else {
-      this.errorMessages = [];
-      this.errorMessages.push(AURFormMessages.SECTION_CODE_NOT_NEW);
-      this.councilDialog.openDialog(AURFormMessages.INVALID_PROCESS, this.errorMessages);
+      this.councilDialog.openDialog(AURFormMessages.INVALID_PROCESS, [AURFormMessages.SECTION_CODE_NOT_NEW]);
+      this.disableSubmit();
     }
   }
 
@@ -297,4 +310,31 @@ export class FormRegistrationComponent implements OnInit {
     }
    }
 
+   private setAllowedSectionByInstitutionCategory() {
+    this.allowedSections = [];
+    switch (this.aurFormObj.institutionCategory) {
+      case InstitutionCategory.PRESCHOOL:
+        this.allowedSections.push(ScoutingSections.categories[0].text); 
+        break;
+      case InstitutionCategory.PRIMARY:
+        this.allowedSections.push(ScoutingSections.categories[0].text, 
+          ScoutingSections.categories[1].text,
+          ScoutingSections.categories[2].text); 
+        break;
+      case InstitutionCategory.SECONDARY:
+        this.allowedSections.push(ScoutingSections.categories[3].text,); 
+        break;
+      case InstitutionCategory.SENIOR_HIGH:
+      case InstitutionCategory.COLLEGE:
+        this.allowedSections.push(ScoutingSections.categories[4].text); 
+        break;
+      case InstitutionCategory.COMMUNITY:
+        this.allowedSections.push(ScoutingSections.categories[0].text,
+          ScoutingSections.categories[1].text,
+          ScoutingSections.categories[2].text,
+          ScoutingSections.categories[3].text,
+          ScoutingSections.categories[4].text); 
+        break;
+    }
+   }
 }
