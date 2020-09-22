@@ -35,7 +35,7 @@ export class AuthService {
         }),
         catchError(error => {
           if (error.status != '500' && error.error) {
-            this.councilDialog.openDialog(LoginErrorMessages.INCORRECT_DATA, error.error.errorMessages);
+            this.councilDialog.openDialog(LoginErrorMessages.INCORRECT_DATA, JSON.parse(error.error).errorMessages);
           }
           throw throwError(error);
         })

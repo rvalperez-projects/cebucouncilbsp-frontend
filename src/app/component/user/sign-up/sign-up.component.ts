@@ -28,7 +28,9 @@ export class SignUpComponent implements OnInit {
   // Combo box values
   Categories: any = ProfileLabels.categories;
   UserRoles: any = ProfileLabels.userRoles;
-  AreaDistricts: AreaDistrictsModel[];
+  Districts: string[];
+  Areas: string[];
+  private areaDistricts: AreaDistrictsModel[];
 
   // Error Messages
   errorMessages: Array<string>;
@@ -37,14 +39,18 @@ export class SignUpComponent implements OnInit {
     public profileFormGroup: ProfileFormGroup,
     private councilDialog: CouncilDialog, 
     private service: UserService) { 
-      this.AreaDistricts = [];
+      this.Districts = [];
+      this.Areas = [];
+      this.areaDistricts = [];
   }
 
   ngOnInit(): void {
     this.service.getDistricts().subscribe((areaDistricts: AreaDistrictsModel[]) => {
       for (let item of areaDistricts) {
         let areaDistrict: AreaDistrictsModel = {area: item.area, district: item.district }
-        this.AreaDistricts.push(areaDistrict);
+        this.areaDistricts.push(areaDistrict);
+        this.Districts.push(item.district);
+        this.Areas.push(item.area);
       }
     });
     let userRole = window.sessionStorage[SessionConstant.USER_ROLE_CODE_KEY];
@@ -63,8 +69,8 @@ export class SignUpComponent implements OnInit {
       selectedDistrict = selectedArea;
       successMessages = [ProfileFormMessages.REGISTRATION_SUCCESSFUL_MESSAGE];
     } else {
-      selectedArea = this.selectedDistrict.area;
-      selectedDistrict = this.selectedDistrict.district;
+      selectedArea = this.profileFormGroup.area.value;
+      selectedDistrict = this.profileFormGroup.district.value;
       successMessages = [ProfileFormMessages.WELCOME_MESSAGE_1, ProfileFormMessages.WELCOME_MESSAGE_2];
     }
     this.profileFormGroup.area.setValue(selectedArea);
@@ -125,6 +131,16 @@ export class SignUpComponent implements OnInit {
       this.profileFormGroup.categoryCode.enable();
       this.profileFormGroup.district.enable();
       this.profileFormGroup.contactNumber.enable();
+    }
+  }
+
+  selectArea() {
+    let selectedDistrict = this.profileFormGroup.district.value;
+    for (let item of this.areaDistricts) {
+      if (item.district == selectedDistrict) {
+        this.profileFormGroup.area.setValue(item.area);
+        break;
+      }
     }
   }
 

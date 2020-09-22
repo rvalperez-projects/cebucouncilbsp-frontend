@@ -54,7 +54,7 @@ export class AppComponent implements AfterContentChecked  {
     };
 
     let afterPrint = function() {
-        location.reload(true);
+        location.reload();
     };
 
     window.onbeforeprint = beforePrint;

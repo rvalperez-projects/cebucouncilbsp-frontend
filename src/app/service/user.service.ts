@@ -37,7 +37,7 @@ export class UserService {
         }),
         catchError(error => {
           if (error.status != '500' && error.error) {
-            this.councilDialog.openDialog(ProfileFormMessages.SUBMISSION_ERROR, error.error.errorMessages);
+            this.councilDialog.openDialog(ProfileFormMessages.SUBMISSION_ERROR, JSON.parse(error.error).errorMessages);
           }
           return throwError(error);
         })
@@ -56,7 +56,7 @@ export class UserService {
         }),
         catchError(error => {
           if (error.status != '500' && error.error) {
-            this.councilDialog.openDialog(ProfileFormMessages.RETRIEVAL_FAILED, error.error.errorMessages);
+            this.councilDialog.openDialog(ProfileFormMessages.RETRIEVAL_FAILED, JSON.parse(error.error).errorMessages);
           }
           return throwError(error);
         })
@@ -102,7 +102,7 @@ export class UserService {
         }),
         catchError(error => {
           if (error.status != '500' && error.error) {
-            this.councilDialog.openDialog(ProfileFormMessages.SUBMISSION_ERROR, error.error.errorMessages);
+            this.councilDialog.openDialog(ProfileFormMessages.SUBMISSION_ERROR, JSON.parse(error.error).errorMessages);
           }
           return throwError(error);
         })

@@ -122,7 +122,7 @@ export class AURFormUpdateService {
         }),
         catchError(error => {
           if (error.status != '500' && error.error) {
-            this.councilDialog.openDialog(AURFormMessages.PROCESSING_FAILED, error.error.errorMessages);
+            this.councilDialog.openDialog(AURFormMessages.PROCESSING_FAILED, JSON.parse(error.error).errorMessages);
           }
           return throwError(error);
         })
@@ -137,7 +137,7 @@ export class AURFormUpdateService {
           map(data => data),
           catchError(error => {
             if (error.status != '500' && error.error) {
-              this.councilDialog.openDialog(AURFormMessages.RETRIEVAL_FAILED, error.error.errorMessages);
+              this.councilDialog.openDialog(AURFormMessages.RETRIEVAL_FAILED, JSON.parse(error.error).errorMessages);
             }
             return throwError(error);
           })
