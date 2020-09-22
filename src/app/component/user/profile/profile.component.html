@@ -105,10 +105,18 @@
                 </mat-form-field></td>
           </tr>
           <tr><td></td>
-              <td>Area / District</td>
+              <td>District</td>
               <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
-                  <mat-select [(value)]="selectedDistrict" formControlName="district" required placeholder="Area & District">
-                      <mat-option [value]="item" *ngFor="let item of AreaDistricts">Area {{item.area}} : {{item.district}}</mat-option>
+                  <mat-select formControlName="district" required placeholder="District" (selectionChange)="selectArea()">
+                      <mat-option [value]="item" *ngFor="let item of Districts">{{item}}</mat-option>
+                  </mat-select>
+                </mat-form-field></td>
+          </tr>
+          <tr><td></td>
+              <td>Area</td>
+              <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
+                  <mat-select formControlName="area" required placeholder="Area">
+                      <mat-option [value]="item" *ngFor="let item of Areas">Area {{item}}</mat-option>
                   </mat-select>
                 </mat-form-field></td>
           </tr>

@@ -86,7 +86,7 @@ export class ProfileFormGroup {
       address: [null, [Validators.required, whitespaceOnlyNotAllowed]],
       categoryCode: [null, [Validators.required]],
       district: [null, [Validators.required]],
-      area: [null, [Validators.required]],
+      area: [{value: null, disabled: true}, [Validators.required]],
       contactNumber: [null, [whitespaceOnlyNotAllowed]],
       authorityCode: [Roles.GENERAL_USER]
     });

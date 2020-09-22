@@ -132,7 +132,7 @@ export class FormRegistrationService {
         }),
         catchError(error => {
           if (error.status != '500' && error.error) {
-            this.councilDialog.openDialog(AURFormMessages.SUBMISSION_FAILED, error.error.errorMessages);
+            this.councilDialog.openDialog(AURFormMessages.SUBMISSION_FAILED, JSON.parse(error.error).errorMessages);
           }
           return throwError(error);
         })
@@ -149,7 +149,7 @@ export class FormRegistrationService {
           }),
           catchError(error => {
             if (error.status != '500' && error.error) {
-              this.councilDialog.openDialog(AURFormMessages.SUBMISSION_FAILED, error.error.errorMessages);
+              this.councilDialog.openDialog(AURFormMessages.SUBMISSION_FAILED, JSON.parse(error.error).errorMessages);
             }
             return throwError(error);
           })
@@ -165,7 +165,7 @@ export class FormRegistrationService {
           }),
           catchError(error => {
             if (error.status != '500' && error.error) {
-              this.councilDialog.openDialog(AURFormMessages.SUBMISSION_FAILED, error.error.errorMessages);
+              this.councilDialog.openDialog(AURFormMessages.SUBMISSION_FAILED, JSON.parse(error.error).errorMessages);
             }
             return throwError(error);
           })

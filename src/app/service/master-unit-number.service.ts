@@ -36,7 +36,7 @@ export class MasterUnitNumberService {
         }),
         catchError(error => {
           if (error.status != '500' && error.error) {
-            this.councilDialog.openDialog(MasterMessages.UNIT_NO_PROCESS_FAILED, error.error.errorMessages);
+            this.councilDialog.openDialog(MasterMessages.UNIT_NO_PROCESS_FAILED, JSON.parse(error.error).errorMessages);
           }
           return throwError(error);
         })
@@ -52,7 +52,7 @@ export class MasterUnitNumberService {
         }),
         catchError(error => {
           if (error.status != '500' && error.error) {
-            this.councilDialog.openDialog(MasterMessages.UNIT_NO_PROCESS_FAILED, error.error.errorMessages);
+            this.councilDialog.openDialog(MasterMessages.UNIT_NO_PROCESS_FAILED, JSON.parse(error.error).errorMessages);
           }
           return throwError(error);
         })

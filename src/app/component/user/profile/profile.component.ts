@@ -23,13 +23,14 @@ export class ProfileComponent implements OnInit {
   // Declare object
   profileValidator: ProfileFormGroup;
 
-  selectedDistrict: AreaDistrictsModel;
   passwordHide = true;
   confirmPasswordHide = true;
   
   // Combo box values
   Categories: any = ProfileLabels.categories;
-  AreaDistricts: AreaDistrictsModel[];
+  Districts: string[];
+  Areas: string[];
+  private areaDistricts: AreaDistrictsModel[];
 
   // Error Messages
   errorMessages: Array<string>;
@@ -38,7 +39,9 @@ export class ProfileComponent implements OnInit {
     public profileFormGroup: ProfileFormGroup,
     private councilDialog: CouncilDialog, 
     private service: UserService) { 
-      this.AreaDistricts = [];
+      this.Districts = [];
+      this.Areas = [];
+      this.areaDistricts = [];
   }
 
   ngOnInit(): void {
@@ -49,30 +52,33 @@ export class ProfileComponent implements OnInit {
       // Set values
       this.profileFormGroup.patchValues(profileInfo);
 
-      // Set Area / District combo box value
-      let userAreaDistrict: AreaDistrictsModel = {area: profileInfo.area, district: profileInfo.district };
-      
       if (profileInfo.authorityCode == Roles.GENERAL_USER) {
         // Get ALL Area and District combo items
         this.service.getDistricts().pipe(
           map((areaDistricts: AreaDistrictsModel[]) => {
+            this.areaDistricts = areaDistricts;
+
+            // Get initial value
             let userAreaDistrict: AreaDistrictsModel = null;
             for (let item of areaDistricts) {
-              let areaDistrict = new AreaDistrictsModel(item.area, item.district);
-              this.AreaDistricts.push(areaDistrict);
-              if (!userAreaDistrict && areaDistrict.area == profileInfo.area && areaDistrict.district == profileInfo.district) {
-                userAreaDistrict = areaDistrict;
+              this.Districts.push(item.district);
+              this.Areas.push(item.area);
+              if (!userAreaDistrict && 
+                  item.area == profileInfo.area && item.district == profileInfo.district) {
+                userAreaDistrict = new AreaDistrictsModel(item.area, item.district);
               }
             }
             return userAreaDistrict;
           })
         ).subscribe((userAreaDistrict: AreaDistrictsModel) => {
           // Set initial value
-          this.profileFormGroup.district.setValue(userAreaDistrict);
+          this.profileFormGroup.district.setValue(userAreaDistrict.district);
+          this.profileFormGroup.area.setValue(userAreaDistrict.area);
         });
       } else {
         this.profileFormGroup.categoryCode.disable();
         this.profileFormGroup.district.disable();
+        this.profileFormGroup.area.disable();
       }
     });
   }
@@ -85,10 +91,7 @@ export class ProfileComponent implements OnInit {
     }
     
     // Set Area and District
-    if (this.profileFormGroup.authorityCode.value == Roles.GENERAL_USER) {
-      this.profileFormGroup.area.setValue(this.profileFormGroup.district.value.area);
-      this.profileFormGroup.district.setValue(this.profileFormGroup.district.value.district);
-    } else {
+    if (this.profileFormGroup.authorityCode.value != Roles.GENERAL_USER) {
       this.profileFormGroup.area.setValue("Council");
       this.profileFormGroup.district.setValue("Council");
     }
@@ -134,4 +137,15 @@ export class ProfileComponent implements OnInit {
   closeWindow() {
     this.close.emit(null);
   }
+
+  selectArea() {
+    let selectedDistrict = this.profileFormGroup.district.value;
+    for (let item of this.areaDistricts) {
+      if (item.district == selectedDistrict) {
+        this.profileFormGroup.area.setValue(item.area);
+        break;
+      }
+    }
+  }
+
 }

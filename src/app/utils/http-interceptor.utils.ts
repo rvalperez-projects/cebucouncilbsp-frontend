@@ -58,7 +58,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                     let message: Array<string> = [ResponseErrorMessages.REDIRECT_LOGIN];
                     this.councilDialog.openDialog(ResponseErrorMessages.ACCESS_FORBIDDEN, message);
                     this.authService.logout();
-                    location.reload(true);
+                    location.reload();
                 }
                 
                 if (error.status == '500' && error.error) {
