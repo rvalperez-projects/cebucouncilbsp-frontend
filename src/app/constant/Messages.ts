@@ -3,11 +3,12 @@ export abstract class AURFormMessages {
     static INVALID_PROCESS = "Invalid Process";
     static SUBMISSION_ERROR = "Incomplete Data";
     static INCOMPLETE_DATA = "There are missing or incomplete required data. Please review.";
-    static SECTION_CODE_NOT_NEW = "Section Category can only be set when Unit No. [New] is selected.";
     static REGISTRATION_FEE_NOT_CALCULATED = "Please calculate total Registration Fees first. ";
 
     static UNIT_NUMBER_NOT_SET = "Unit Number not set.";
     static SECTION_CODE_NOT_SET = "Please select any of the following: \n\tLangkay / Kawan / Troop / Outfit / Circle.";
+    static SECTION_CODE_NOT_NEW = "Section category can only be set when Unit No. [New] is selected.";
+    static INVALID_SECTION_CODE = "Selected Section category is invalid for the user's registered institution.";
 
     static SUBMISSION_CONFIRMATION_TITLE = "AUR Form Submission";
     static SUBMISSION_CONFIRMATION_MESSAGE = "Inputted AUR Form will be submitted. Please confirm.";

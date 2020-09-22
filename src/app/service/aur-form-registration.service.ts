@@ -36,6 +36,7 @@ export class FormRegistrationService {
     this.getInstitutionById(aurForm.institutionId.value).subscribe((institution: InstitutionModel) => {
       aurFormObj.institutionName = institution.institutionName;
       aurFormObj.district = institution.district;
+      aurFormObj.institutionCategory = institution.categoryCode;
     })
     aurFormObj.council = "Cebu Council";
   }

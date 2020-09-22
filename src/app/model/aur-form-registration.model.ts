@@ -4,6 +4,7 @@ export class AURFormRegistration extends BaseModel {
     formId: number;
     institutionId: number;
     institutionName: string;
+    institutionCategory: string;
     district: string;
     area: string;
     council: string;
