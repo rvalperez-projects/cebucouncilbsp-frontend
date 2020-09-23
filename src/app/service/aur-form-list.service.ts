@@ -32,6 +32,7 @@ export class AURFormListService {
             let data = new FormListSearchResultsModel();
             data.formId = obj.formId;
             data.aurNumber = obj.unitRegistrationNo;
+            data.unitNumber = obj.unitNumber;
             data.institution = obj.institutionName;
             data.district = obj.district;
             data.dateApplied = obj.dateApplied;

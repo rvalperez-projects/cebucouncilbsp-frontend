@@ -1,7 +1,10 @@
 import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { ProfileLabels, SessionConstant } from 'src/app/constant/Constants';
 import { Roles } from 'src/app/constant/Enums';
+import { InstitutionModel } from 'src/app/model/entities.model';
+import { SearchFormModel } from 'src/app/model/search-form.model';
 import { AreaDistrictsModel } from 'src/app/model/user-registration.model';
+import { SearchService } from 'src/app/service/search.service';
 import { ProfileFormMessages } from '../../../constant/Messages';
 import { ProfileFormGroup } from '../../../formGroups/ProfileFormGroup';
 import { UserService } from '../../../service/user.service';
@@ -24,35 +27,41 @@ export class SignUpComponent implements OnInit {
   passwordHide = true;
   confirmPasswordHide = true;
   showUserRoleField = false;
+  isNewInstitution = false;
+  isGeneralUser = true;
   
   // Combo box values
+  searchFormData: SearchFormModel;
   Categories: any = ProfileLabels.categories;
   UserRoles: any = ProfileLabels.userRoles;
-  Districts: string[];
-  Areas: string[];
-  private areaDistricts: AreaDistrictsModel[];
+  private newInstitution: InstitutionModel;
 
   // Error Messages
   errorMessages: Array<string>;
   
   constructor(
+    private councilDialog: CouncilDialog,
     public profileFormGroup: ProfileFormGroup,
-    private councilDialog: CouncilDialog, 
+    private searchService: SearchService,
     private service: UserService) { 
-      this.Districts = [];
-      this.Areas = [];
-      this.areaDistricts = [];
+      this.searchFormData = new SearchFormModel();
+      this.newInstitution = new InstitutionModel("New");
   }
 
   ngOnInit(): void {
-    this.service.getDistricts().subscribe((areaDistricts: AreaDistrictsModel[]) => {
-      for (let item of areaDistricts) {
-        let areaDistrict: AreaDistrictsModel = {area: item.area, district: item.district }
-        this.areaDistricts.push(areaDistrict);
-        this.Districts.push(item.district);
-        this.Areas.push(item.area);
-      }
+    
+    this.searchService.initializeSearchBoxes().subscribe((result: any) => {
+      let mapResult = result as Map<string, Map<string, Map<number, string>>>;
+      let area: string = Object.keys(mapResult)[0];
+      let district: string = Object.keys(mapResult[area])[0];
+
+      this.profileFormGroup.area.setValue(area);
+      this.profileFormGroup.district.setValue(district);
+      this.profileFormGroup.institutionId.setValue('');
+      this.searchService.populateSearchBoxes(this.searchFormData, area, district);
+      this.searchFormData.institutionMap.set(-1, this.newInstitution);
     });
+
     let userRole = window.sessionStorage[SessionConstant.USER_ROLE_CODE_KEY];
     if (userRole && userRole != Roles.GENERAL_USER) {
       this.showUserRoleField = true;
@@ -113,19 +122,18 @@ export class SignUpComponent implements OnInit {
 
   toggleFields() {
     if (this.profileFormGroup.authorityCode.value != Roles.GENERAL_USER) {
-      this.profileFormGroup.institutionName.disable();
+      this.isGeneralUser = false;
       this.profileFormGroup.address.disable();
-      this.profileFormGroup.categoryCode.disable();
-      this.profileFormGroup.district.disable();
       this.profileFormGroup.contactNumber.disable();
 
-      this.profileFormGroup.institutionName.setValue(null);
+      this.profileFormGroup.area.setValue("Council");
+      this.profileFormGroup.district.setValue("Council");
+      this.profileFormGroup.institutionName.setValue("Council");
       this.profileFormGroup.address.setValue(null);
       this.profileFormGroup.categoryCode.setValue(null);
-      this.profileFormGroup.district.setValue(null);
-      this.profileFormGroup.area.setValue(null);
       this.profileFormGroup.contactNumber.setValue(null);
     } else {
+      this.isGeneralUser = true;
       this.profileFormGroup.institutionName.enable();
       this.profileFormGroup.address.enable();
       this.profileFormGroup.categoryCode.enable();
@@ -134,13 +142,41 @@ export class SignUpComponent implements OnInit {
     }
   }
 
-  selectArea() {
-    let selectedDistrict = this.profileFormGroup.district.value;
-    for (let item of this.areaDistricts) {
-      if (item.district == selectedDistrict) {
-        this.profileFormGroup.area.setValue(item.area);
-        break;
-      }
+  repopulateInstitutions() {
+    this.searchService.populateSearchBoxes(this.searchFormData, 
+      this.profileFormGroup.area.value, 
+      this.profileFormGroup.district.value);
+    this.profileFormGroup.institutionId.setValue(null);
+    this.searchFormData.institutionMap.set(-1, this.newInstitution);
+  }
+
+  repopulateDistrictAndInstitutions() {
+    this.searchService.populateSearchBoxes(this.searchFormData, 
+      this.profileFormGroup.area.value, 
+      null);
+      this.profileFormGroup.district.setValue(null);
+      this.profileFormGroup.institutionId.setValue(null);
+      this.searchFormData.institutionMap.set(-1, this.newInstitution);
+  }
+
+  selectedOtherInstitution() {
+    if (this.profileFormGroup.institutionId.value == -1) {
+      this.isNewInstitution = true;
+
+      // Enable Fields
+      this.profileFormGroup.institutionName.setValue(null);
+      this.profileFormGroup.address.setValue(null);
+      this.profileFormGroup.categoryCode.setValue(null);
+      this.profileFormGroup.contactNumber.setValue(null);
+    } else {
+      this.isNewInstitution = false;
+
+      // Set values from selected institution
+      let institution: InstitutionModel = this.searchFormData.institutionMap.get(this.profileFormGroup.institutionId.value);
+      this.profileFormGroup.institutionName.setValue(institution.institutionName);
+      this.profileFormGroup.address.setValue(institution.address);
+      this.profileFormGroup.categoryCode.setValue(institution.categoryCode);
+      this.profileFormGroup.contactNumber.setValue(institution.contactNumber);
     }
   }
 

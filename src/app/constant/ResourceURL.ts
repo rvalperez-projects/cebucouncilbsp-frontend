@@ -8,6 +8,7 @@ export abstract class ResourceURL {
     static LOGOUT = "/auth/logout";
     static SIGN_UP = "/auth/sign-up";
     static AREA_DISTRICTS = "/auth/areaDistricts";
+    static AREA_DISTRICTS_INSTITUTIONS = "/auth/area/districts/institutions";
     
     static USER_ID = "/user/{userId}";
     static USER_SEARCH = "/user/search";
@@ -25,7 +26,6 @@ export abstract class ResourceURL {
     static INSTITUTION_UNIT_NUMBERS = "/institution/unitNumbers/{institutionId}";
 
     static AREA_ALL = "/area/all";
-    static AREA_DISTRICTS_INSTITUTIONS = "/area/districts/institutions";
     static AREA_CODE = "/area/{areaCode}";
 
     static UNIT_NUMBER_ALL = "/unitNumber/all";

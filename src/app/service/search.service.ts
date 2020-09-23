@@ -27,9 +27,15 @@ export class SearchService {
   public initializeSearchBoxes(): Observable<any> {
 
     // Get info from session
-    let roleCode = window.sessionStorage.getItem(SessionConstant.USER_ROLE_CODE_KEY);
-    this.role = EnumUtil.getEnumValueByValue(Roles, roleCode);
     this.institutionId = window.sessionStorage.getItem(SessionConstant.USER_INSTITUTION_ID_KEY);
+    let roleCode = window.sessionStorage.getItem(SessionConstant.USER_ROLE_CODE_KEY);
+
+    // If roleCode is not yet set (ex: Sign Up page), allow all results
+    if (!roleCode) {
+      this.role = Roles.COUNCIL;
+    } else {
+      this.role = EnumUtil.getEnumValueByValue(Roles, roleCode);
+    }
 
     // Determine API to call
     switch(this.role) {
@@ -58,7 +64,7 @@ export class SearchService {
 
     let areas: Array<string> = [];
     let districts: Array<string> = [];
-    let institutionMap = new Map<number, string>();
+    let institutionMap = new Map<number, InstitutionModel>();
 
     for (let area of Object.keys(this.boxValues)) {
       areas.push(area);

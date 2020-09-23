@@ -23,7 +23,7 @@ export class FormsListComponent implements OnInit {
 
   // Set table data
   dataSource: Array<FormListSearchResultsModel>;
-  displayedColumns: string[] = ['dateApplied', 'district', 'institution', 'aurNumber', 'status', 'lastUpdatedDate'];
+  displayedColumns: string[] = ['dateApplied', 'district', 'institution', 'unitNumber', 'aurNumber', 'status', 'lastUpdatedDate'];
 
   // User role
   private roleCode: string;
@@ -57,7 +57,7 @@ export class FormsListComponent implements OnInit {
        switch(this.roleCode) {
         case Roles.GENERAL_USER: 
           let institution = result as InstitutionModel;
-          this.searchFormData.institutionMap.set(institution.institutionId, institution.institutionName);
+          this.searchFormData.institutionMap.set(institution.institutionId, institution);
           this.searchFormData.areaList = [institution.area];
           this.searchFormData.districtList = [institution.district];
     
