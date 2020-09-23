@@ -160,6 +160,7 @@ export class SignUpComponent implements OnInit {
   }
 
   selectedOtherInstitution() {
+    // New Institution
     if (this.profileFormGroup.institutionId.value == -1) {
       this.isNewInstitution = true;
 
@@ -168,8 +169,18 @@ export class SignUpComponent implements OnInit {
       this.profileFormGroup.address.setValue(null);
       this.profileFormGroup.categoryCode.setValue(null);
       this.profileFormGroup.contactNumber.setValue(null);
+    
+      // Enable fields for new institutions
+      this.profileFormGroup.address.enable();
+      this.profileFormGroup.categoryCode.enable();
+      this.profileFormGroup.contactNumber.enable();
     } else {
       this.isNewInstitution = false;
+
+      // Disable fields of existing institutions
+      this.profileFormGroup.address.disable();
+      this.profileFormGroup.categoryCode.disable();
+      this.profileFormGroup.contactNumber.disable();
 
       // Set values from selected institution
       let institution: InstitutionModel = this.searchFormData.institutionMap.get(this.profileFormGroup.institutionId.value);
