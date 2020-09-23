@@ -14,6 +14,11 @@ export class InstitutionModel extends BaseModel {
     area: string;
     categoryCode: string;
     unitNumbers: Array<string>;
+
+    constructor(institutionName: string) {
+        super();
+        this.institutionName = institutionName;
+    }
 }
 
 export class AreaModel extends BaseModel {

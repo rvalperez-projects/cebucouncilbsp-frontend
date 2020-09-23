@@ -91,9 +91,11 @@ export class UsersListComponent implements OnInit, AfterContentChecked {
   }
 
   openProfile(userId) {
-    this.isProfileClicked = true;
-    this.selectedUserId = userId;
-    this.cdRef.detectChanges();
+    if (userId) {
+      this.isProfileClicked = true;
+      this.selectedUserId = userId;
+      this.cdRef.detectChanges();
+    }
   }
 
   createNewUser() {

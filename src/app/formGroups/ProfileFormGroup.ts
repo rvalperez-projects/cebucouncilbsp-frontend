@@ -83,10 +83,10 @@ export class ProfileFormGroup {
       emailAddress: [null, [Validators.required, Validators.email, whitespaceOnlyNotAllowed]],
       institutionId: [null],
       institutionName: [null, [Validators.required, whitespaceOnlyNotAllowed]],
-      address: [null, [Validators.required, whitespaceOnlyNotAllowed]],
+      address: [null, [whitespaceOnlyNotAllowed]],
       categoryCode: [null, [Validators.required]],
       district: [null, [Validators.required]],
-      area: [{value: null, disabled: true}, [Validators.required]],
+      area: [null, [Validators.required]],
       contactNumber: [null, [whitespaceOnlyNotAllowed]],
       authorityCode: [Roles.GENERAL_USER]
     });

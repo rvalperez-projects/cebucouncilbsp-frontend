@@ -78,7 +78,7 @@
               </mat-form-field></td>
             </tr>
             <!--Scouting Participation-->
-            <tr style>
+            <tr>
                 <td><br><mat-icon>school</mat-icon></td>
                 <td colspan="2"><br><h1>Scouting Participation</h1></td>
             </tr>
@@ -90,21 +90,45 @@
                   </mat-select>
                 </mat-form-field></td>
             </tr>
-            <tr><td></td>
+            <tr *ngIf="isGeneralUser"><td></td>
+                <td>Area</td>
+                <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
+                    <mat-select formControlName="area" required placeholder="Area" (selectionChange)="repopulateDistrictAndInstitutions()">
+                        <mat-option [value]="area" *ngFor="let area of searchFormData.areaList">{{area}}</mat-option>
+                    </mat-select>
+                  </mat-form-field></td>
+            </tr>
+            <tr *ngIf="isGeneralUser"><td></td>
+                <td>District</td>
+                <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
+                    <mat-select formControlName="district" required placeholder="District" (selectionChange)="repopulateInstitutions()">
+                        <mat-option [value]="district" *ngFor="let district of searchFormData.districtList">{{district}}</mat-option>
+                    </mat-select>
+                  </mat-form-field></td>
+            </tr>
+            <tr *ngIf="isGeneralUser"><td></td>
                 <td>Sponsoring Institution</td>
+                <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
+                    <mat-select formControlName="institutionId" required placeholder="Select your institution" (selectionChange)="selectedOtherInstitution()">
+                        <mat-option [value]="institution.key" *ngFor="let institution of searchFormData.institutionMap | keyvalue">{{institution.value.institutionName}}</mat-option>
+                    </mat-select>
+                  </mat-form-field></td>
+            </tr>
+            <tr *ngIf="isNewInstitution">
+                <td></td><td></td>
                 <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
                   <input matInput formControlName="institutionName" 
                     matTooltip="For schools with multiple departments, input School name and Department name (Ex: 'University of Cebu (Elementary)' or 'University of Cebu (JHS)')"
                     placeholder="Name of School / Organization" required maxlength="64">
                 </mat-form-field></td>
             </tr>
-            <tr><td></td>
+            <tr *ngIf="isGeneralUser"><td></td>
                 <td>Address</td>
                 <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
                     <textarea matInput formControlName="address" placeholder="Full Address" required maxlength="256"></textarea>
                 </mat-form-field></td>
             </tr>
-            <tr><td></td>
+            <tr *ngIf="isGeneralUser"><td></td>
                 <td>Category</td>
                 <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
                     <mat-select formControlName="categoryCode" required placeholder="Select one category">
@@ -112,23 +136,7 @@
                     </mat-select>
                   </mat-form-field></td>
             </tr>
-            <tr><td></td>
-                <td>District</td>
-                <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
-                    <mat-select formControlName="district" required placeholder="District" (selectionChange)="selectArea()">
-                        <mat-option [value]="item" *ngFor="let item of Districts">{{item}}</mat-option>
-                    </mat-select>
-                  </mat-form-field></td>
-            </tr>
-            <tr><td></td>
-                <td>Area</td>
-                <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
-                    <mat-select formControlName="area" required placeholder="Area">
-                        <mat-option [value]="item" *ngFor="let item of Areas">Area {{item}}</mat-option>
-                    </mat-select>
-                  </mat-form-field></td>
-            </tr>
-            <tr><td></td>
+            <tr *ngIf="isGeneralUser"><td></td>
                 <td>Contact Number</td>
                 <td><mat-form-field class="full-width" class="full-width" appearance="outline" [floatLabel]="'never'">
                     <input matInput formControlName="contactNumber" placeholder="Telephone / Mobile Number" maxlength="32">

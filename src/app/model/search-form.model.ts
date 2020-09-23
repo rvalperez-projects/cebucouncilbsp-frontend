@@ -1,15 +1,15 @@
-import { UnitNumberModel } from './entities.model';
+import { InstitutionModel, UnitNumberModel } from './entities.model';
 
 export class SearchFormModel {
     areaList: Array<string>;
     districtList: Array<string>;
-    institutionMap: Map<number, string>;
+    institutionMap: Map<number, InstitutionModel>;
     name: string;
 
     constructor() {
         this.areaList = new Array<string>();
         this.districtList = new Array<string>();
-        this.institutionMap = new Map<number, string>();
+        this.institutionMap = new Map<number, InstitutionModel>();
         this.name = '';
     }
 
