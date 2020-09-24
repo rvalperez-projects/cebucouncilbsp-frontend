@@ -174,7 +174,7 @@ export class FormRegistrationComponent implements OnInit {
                   sectionElement.style = "text-decoration:underline;font-weight:bold;";
                   this.aubFormGroup.sectionCode.setValue(SectionCode.OUTFIT);
                   break;
-        case "R": sectionElement = this.elementRef.nativeElement.querySelector(`#Circle`);
+        case "RS": sectionElement = this.elementRef.nativeElement.querySelector(`#Circle`);
                   sectionElement.style = "text-decoration:underline;font-weight:bold;";
                   this.aubFormGroup.sectionCode.setValue(SectionCode.CIRCLE);
                   break;

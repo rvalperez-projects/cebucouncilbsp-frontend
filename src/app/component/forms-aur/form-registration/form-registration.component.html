@@ -291,7 +291,7 @@
                     <td style="width: 6%;">  Unit No.</td>
                     <td style="width: 15%;" class="bottom-underline">
                         <select formControlName="unitNumber" class="" (change)="onUnitNumberChange($event.target.value)"
-                            matTooltip="KID-: Langkay; K-: Kawan; T-: Troop; S-: Outfit; R-: Circle;">
+                            matTooltip="KID-: Langkay; K-: Kawan; T-: Troop; S-: Outfit; RS-: Circle;">
                             <option *ngFor="let unitNumberOption of unitNumbersBox" [value]="unitNumberOption">{{unitNumberOption}}</option>
                         </select>
                     </td>

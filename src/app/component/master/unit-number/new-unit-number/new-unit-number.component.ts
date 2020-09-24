@@ -46,7 +46,7 @@ export class NewUnitNumberComponent {
       case SectionCode.KAWAN: this.sectionTextInput = "K-"; break;
       case SectionCode.TROOP: this.sectionTextInput = "T-"; break;
       case SectionCode.OUTFIT: this.sectionTextInput = "S-"; break;
-      case SectionCode.CIRCLE: this.sectionTextInput = "R-"; break;
+      case SectionCode.CIRCLE: this.sectionTextInput = "RS-"; break;
     }
   }
 
