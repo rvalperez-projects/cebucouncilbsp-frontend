@@ -20,7 +20,7 @@
                     <td style="width: 60%;">
                         <mat-label>Institution</mat-label>
                         <mat-select class="shadow" formControlName="institutionId">
-                            <mat-option [value]="institution.key" *ngFor="let institution of searchFormData.institutionMap | keyvalue">{{institution.value}}</mat-option>
+                            <mat-option [value]="institution.key" *ngFor="let institution of searchFormData.institutionMap | keyvalue">{{institution.value.institutionName}}</mat-option>
                         </mat-select>
                     </td>
                 </tr>
