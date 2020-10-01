@@ -1,6 +1,7 @@
 import { AfterContentChecked, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
 import { SearchFormGroup } from 'src/app/formGroups/FormListGroup';
+import { InstitutionModel } from 'src/app/model/entities.model';
 import { SearchFormModel } from 'src/app/model/search-form.model';
 import { ProfileInfo } from 'src/app/model/user-registration.model';
 import { SearchService } from 'src/app/service/search.service';
@@ -45,13 +46,14 @@ export class UsersListComponent implements OnInit, AfterContentChecked {
      this.searchService.initializeSearchBoxes().subscribe((result: any) => {
        
       let mapResult = result as Map<string, Map<string, Map<number, string>>>;
-      let area: string = Object.keys(mapResult)[0];
-      let district: string = Object.keys(mapResult[area])[0];
+      let area: string = Array.from(mapResult.keys())[0];
+      let district: string = Array.from(mapResult.get(area).keys())[0];
 
       this.searchFormGroup.area.setValue(area);
       this.searchFormGroup.district.setValue(district);
       this.searchFormGroup.institutionId.setValue('');
-      this.searchService.populateSearchBoxes(this.searchFormData, area, district);
+      this.searchService.populateAreaDistrictBoxes(this.searchFormData, area);
+      this.repopulateInstitutions();
       this.addCouncilToAreaBox();
      });
   }
@@ -61,11 +63,16 @@ export class UsersListComponent implements OnInit, AfterContentChecked {
   }
 
   repopulateInstitutions() {
-    this.searchService.populateSearchBoxes(this.searchFormData, 
-      this.searchFormGroup.area.value, 
-      this.searchFormGroup.district.value);
-    this.searchFormGroup.institutionId.setValue(null);
-    this.addCouncilToAreaBox();
+    this.searchService.getInstitutionsByAreaAndDistrict(
+      this.searchFormGroup.area.value, this.searchFormGroup.district.value
+    ).subscribe((institutions: Array<InstitutionModel>) => {
+      let institutionMap = new Map<number, InstitutionModel>();
+      for (let institution of institutions) {
+        institutionMap.set(institution.institutionId, institution);
+      }
+      this.searchService.populateInstitutionBoxes(this.searchFormData, institutionMap);
+      this.searchFormGroup.institutionId.setValue(institutions[0].institutionId);
+    });
   }
 
   repopulateDistrictAndInstitutions() {
@@ -77,8 +84,9 @@ export class UsersListComponent implements OnInit, AfterContentChecked {
       return;
     }
     
-    this.searchService.populateSearchBoxes(
-      this.searchFormData, this.searchFormGroup.area.value, null);
+    this.searchService.populateAreaDistrictBoxes(
+      this.searchFormData, this.searchFormGroup.area.value
+    );
     this.searchFormGroup.district.setValue(null);
     this.searchFormGroup.institutionId.setValue(null);
     this.addCouncilToAreaBox();

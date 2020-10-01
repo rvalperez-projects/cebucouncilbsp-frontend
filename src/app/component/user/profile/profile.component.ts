@@ -60,7 +60,8 @@ export class ProfileComponent implements OnInit {
 
         if (userRole != Roles.GENERAL_USER && profileInfo.authorityCode == Roles.GENERAL_USER) {
           // Get ALL Area and District combo items
-          this.searchService.populateSearchBoxes(this.searchFormData, profileInfo.area, profileInfo.district);
+          this.searchService.populateAreaDistrictBoxes(this.searchFormData, profileInfo.area);
+          this.repopulateInstitutions();
           this.searchFormData.institutionMap.set(-1, this.newInstitution);
           
           // Enable Fields
@@ -149,20 +150,25 @@ export class ProfileComponent implements OnInit {
   }
 
   repopulateInstitutions() {
-    this.searchService.populateSearchBoxes(this.searchFormData, 
-      this.profileFormGroup.area.value, 
-      this.profileFormGroup.district.value);
-    this.profileFormGroup.institutionId.setValue(null);
-    this.searchFormData.institutionMap.set(-1, this.newInstitution);
+    this.searchService.getInstitutionsByAreaAndDistrict(
+      this.profileFormGroup.area.value, this.profileFormGroup.district.value
+    ).subscribe((institutions: Array<InstitutionModel>) => {
+      let institutionMap = new Map<number, InstitutionModel>();
+      for (let institution of institutions) {
+        institutionMap.set(institution.institutionId, institution);
+      }
+      this.searchService.populateInstitutionBoxes(this.searchFormData, institutionMap);
+      this.profileFormGroup.institutionId.setValue(institutions[0].institutionId);
+    });
   }
 
   repopulateDistrictAndInstitutions() {
-    this.searchService.populateSearchBoxes(this.searchFormData, 
-      this.profileFormGroup.area.value, 
-      null);
-      this.profileFormGroup.district.setValue(null);
-      this.profileFormGroup.institutionId.setValue(null);
-      this.searchFormData.institutionMap.set(-1, this.newInstitution);
+    this.searchService.populateAreaDistrictBoxes(
+      this.searchFormData, this.profileFormGroup.area.value
+    );
+    this.profileFormGroup.district.setValue(null);
+    this.profileFormGroup.institutionId.setValue(null);
+    this.searchFormData.institutionMap.set(-1, this.newInstitution);
   }
 
   selectedOtherInstitution() {
