@@ -68,31 +68,38 @@ export class FormsListComponent implements OnInit {
         case Roles.COUNCIL:
         case Roles.ADMIN:
           let mapResult = result as Map<string, Map<string, Map<number, string>>>;
-          let area: string = Object.keys(mapResult)[0];
-          let district: string = Object.keys(mapResult[area])[0];
+          let area: string = Array.from(mapResult.keys())[0];
+          let district: string = Array.from(mapResult.get(area).keys())[0];
 
           this.searchFormGroup.area.setValue(area);
           this.searchFormGroup.district.setValue(district);
           this.searchFormGroup.institutionId.setValue('');
-          this.searchService.populateSearchBoxes(this.searchFormData, area, district);
+          this.searchService.populateAreaDistrictBoxes(this.searchFormData, area);
+          this.repopulateInstitutions();
           break;
        }
      });
   }
 
   repopulateInstitutions() {
-    this.searchService.populateSearchBoxes(this.searchFormData, 
-      this.searchFormGroup.area.value, 
-      this.searchFormGroup.district.value);
-    this.searchFormGroup.institutionId.setValue(null);
+    this.searchService.getInstitutionsByAreaAndDistrict(
+      this.searchFormGroup.area.value, this.searchFormGroup.district.value
+    ).subscribe((institutions: Array<InstitutionModel>) => {
+      let institutionMap = new Map<number, InstitutionModel>();
+      for (let institution of institutions) {
+        institutionMap.set(institution.institutionId, institution);
+      }
+      this.searchService.populateInstitutionBoxes(this.searchFormData, institutionMap);
+      this.searchFormGroup.institutionId.setValue(institutions[0].institutionId);
+    });
   }
 
   repopulateDistrictAndInstitutions() {
-    this.searchService.populateSearchBoxes(this.searchFormData, 
-      this.searchFormGroup.area.value, 
-      null);
-      this.searchFormGroup.district.setValue(null);
-      this.searchFormGroup.institutionId.setValue(null);
+    this.searchService.populateAreaDistrictBoxes(
+      this.searchFormData, this.searchFormGroup.area.value, 
+    );
+    this.searchFormGroup.district.setValue(null);
+    this.searchFormGroup.institutionId.setValue(null);
   }
 
   processAURForm(formId: any, status: string) {

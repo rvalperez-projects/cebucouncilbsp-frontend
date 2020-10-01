@@ -40,23 +40,29 @@ export class SearchService {
     // Determine API to call
     switch(this.role) {
       case Roles.GENERAL_USER: 
-        return this.populateInstitutionBox().pipe(
+        return this.getInstitution().pipe(
           map((institution: InstitutionModel) => {
             return institution;
           })
         );
       case Roles.COUNCIL:
       case Roles.ADMIN:
-        return this.populateAreaDistrictInstitutionBoxes().pipe(
-          map((result: Map<string, Map<string, Map<number, string>>>) => {
-            this.boxValues = result;
-            return result;
+        return this.getAreasAndDistricts().pipe(
+          map((result: Map<string, Array<string>>) => {            
+            for (let area of Object.keys(result)) {
+              let districtMap = new Map<string, Map<number, string>>();
+              for (let district of result[area]) {
+                districtMap.set(district, new Map<number, string>());
+              }
+              this.boxValues.set(area, districtMap);
+            }
+            return this.boxValues;
           })
         );
     }
   }
 
-  public populateSearchBoxes(searchFormModel: SearchFormModel, areaInput: string, districtInput: string) {
+  public populateAreaDistrictBoxes(searchFormModel: SearchFormModel, areaInput: string) {
 
     if (this.role == Roles.GENERAL_USER) {
       return;
@@ -64,27 +70,30 @@ export class SearchService {
 
     let areas: Array<string> = [];
     let districts: Array<string> = [];
-    let institutionMap = new Map<number, InstitutionModel>();
 
-    for (let area of Object.keys(this.boxValues)) {
+    for (let area of Array.from(this.boxValues.keys())) {
       areas.push(area);
     }
-    for (let district of Object.keys(this.boxValues[areaInput])) {
+    for (let district of Array.from(this.boxValues.get(areaInput).keys())) {
       districts.push(district);
     }
-    if (!districtInput) {
-      districtInput = districts[0];
-    }
-    let institutions = this.boxValues[areaInput][districtInput];
-    for (let institution of Object.keys(institutions)) {
-      institutionMap.set(Number.parseInt(institution), institutions[institution]);
-    }
-    searchFormModel.institutionMap = institutionMap;
     searchFormModel.areaList = areas;
     searchFormModel.districtList = districts;
   }
 
-  private populateInstitutionBox(): Observable<InstitutionModel> {
+  public populateInstitutionBoxes(searchFormModel: SearchFormModel, institutions: Map<number, InstitutionModel>) {
+
+    if (this.role == Roles.GENERAL_USER) {
+      return;
+    }
+    let institutionMap = new Map<number, InstitutionModel>();
+    for (let institution of institutions.values()) {
+      institutionMap.set(institution.institutionId, institution);
+    }
+    searchFormModel.institutionMap = institutionMap;
+  }
+
+  private getInstitution(): Observable<InstitutionModel> {
     return this.http.get<BaseResponse>(ResourceURL.HOST + 
       ResourceURL.INSTITUTION_ID.replace('{institutionId}', this.institutionId))
       .pipe(
@@ -94,9 +103,19 @@ export class SearchService {
       );
   }
 
-  private populateAreaDistrictInstitutionBoxes(): Observable<Map<string, Map<string, Map<number, string>>>> {
+  public getInstitutionsByAreaAndDistrict(area: string, district: string): Observable<Array<InstitutionModel>> {
+    return this.http.get<BaseResponse>(ResourceURL.HOST + 
+      ResourceURL.AREA_DISTRICTS_INSTITUTIONS.replace('{area}', area).replace('{district}', district))
+      .pipe(
+        map(data => {
+          return data.result;
+        })
+      );
+  }
+
+  private getAreasAndDistricts(): Observable<Map<string, Array<string>>> {
       // Call API
-    return this.http.get<BaseResponse>(ResourceURL.HOST + ResourceURL.AREA_DISTRICTS_INSTITUTIONS)
+    return this.http.get<BaseResponse>(ResourceURL.HOST + ResourceURL.AREA_DISTRICTS)
       .pipe(
         map((data) => {
           return data.result;

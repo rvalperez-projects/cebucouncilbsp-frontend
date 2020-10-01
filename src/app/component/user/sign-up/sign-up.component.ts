@@ -50,16 +50,16 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.searchService.initializeSearchBoxes().subscribe((result: any) => {
-      let mapResult = result as Map<string, Map<string, Map<number, string>>>;
-      let area: string = Object.keys(mapResult)[0];
-      let district: string = Object.keys(mapResult[area])[0];
+    this.searchService.initializeSearchBoxes().subscribe((result: Map<string, Map<string, Map<number, InstitutionModel>>>) => {
+      let area: string = Array.from(result.keys())[0];
+      let district: string = Array.from(result.get(area).keys())[0];
 
       this.profileFormGroup.area.setValue(area);
       this.profileFormGroup.district.setValue(district);
-      this.profileFormGroup.institutionId.setValue('');
-      this.searchService.populateSearchBoxes(this.searchFormData, area, district);
-      this.searchFormData.institutionMap.set(-1, this.newInstitution);
+      this.profileFormGroup.institutionId.setValue(-1);
+
+      this.searchService.populateAreaDistrictBoxes(this.searchFormData, area);
+      this.repopulateInstitutions();
     });
 
     let userRole = window.sessionStorage[SessionConstant.USER_ROLE_CODE_KEY];
@@ -143,20 +143,26 @@ export class SignUpComponent implements OnInit {
   }
 
   repopulateInstitutions() {
-    this.searchService.populateSearchBoxes(this.searchFormData, 
-      this.profileFormGroup.area.value, 
-      this.profileFormGroup.district.value);
-    this.profileFormGroup.institutionId.setValue(null);
-    this.searchFormData.institutionMap.set(-1, this.newInstitution);
+    this.searchService.getInstitutionsByAreaAndDistrict(
+      this.profileFormGroup.area.value, this.profileFormGroup.district.value
+    ).subscribe((institutions: Array<InstitutionModel>) => {
+      let institutionMap = new Map<number, InstitutionModel>();
+      for (let institution of institutions) {
+        institutionMap.set(institution.institutionId, institution);
+      }
+      this.searchService.populateInstitutionBoxes(this.searchFormData, institutionMap);
+      this.profileFormGroup.institutionId.setValue(institutions[0].institutionId);
+    });
   }
 
   repopulateDistrictAndInstitutions() {
-    this.searchService.populateSearchBoxes(this.searchFormData, 
-      this.profileFormGroup.area.value, 
-      null);
-      this.profileFormGroup.district.setValue(null);
-      this.profileFormGroup.institutionId.setValue(null);
-      this.searchFormData.institutionMap.set(-1, this.newInstitution);
+    this.searchService.populateAreaDistrictBoxes(
+      this.searchFormData, 
+      this.profileFormGroup.area.value
+    );
+    this.profileFormGroup.district.setValue(null);
+    this.profileFormGroup.institutionId.setValue(null);
+    this.searchFormData.institutionMap.clear();
   }
 
   selectedOtherInstitution() {
