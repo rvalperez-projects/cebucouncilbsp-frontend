@@ -179,7 +179,10 @@ export class FormRegistrationComponent implements OnInit {
                   sectionElement.style = "text-decoration:underline;font-weight:bold;";
                   this.aubFormGroup.sectionCode.setValue(SectionCode.CIRCLE);
                   break;
-        default:  this.aubFormGroup.sectionCode.setValue(null);
+        default:  
+          this.councilDialog.openDialog(AURFormMessages.UNIT_NUMBER_NEW_TITLE, 
+            [AURFormMessages.UNIT_NUMBER_NEW_MESSAGE, AURFormMessages.SECTION_CODE_NOT_SET]);
+          this.aubFormGroup.sectionCode.setValue(null);
       }
 
       let sectionCode = this.aubFormGroup.sectionCode.value;
