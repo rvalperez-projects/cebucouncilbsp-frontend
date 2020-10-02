@@ -70,7 +70,7 @@ export class ProfileFormGroup {
     return this._profileForm.controls['authorityCode'] as FormControl;
   }
 
-  private createForm() {
+  public createForm() {
     this._profileForm = this.formBuild.group({
       userId: [null],
       username: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(8), whitespaceOnlyNotAllowed]],

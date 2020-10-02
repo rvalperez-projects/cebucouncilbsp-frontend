@@ -110,7 +110,7 @@
                 <td>Sponsoring Institution</td>
                 <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
                     <mat-select formControlName="institutionId" required placeholder="Select your institution" (selectionChange)="selectedOtherInstitution()">
-                        <mat-option [value]="institution.key" *ngFor="let institution of searchFormData.institutionMap | keyvalue">{{institution.value.institutionName}}</mat-option>
+                        <mat-option [value]="institution.key" *ngFor="let institution of searchFormData.institutionMap | keyvalue: asIsOrder">{{institution.value.institutionName}}</mat-option>
                     </mat-select>
                   </mat-form-field></td>
             </tr>
@@ -125,7 +125,7 @@
             <tr *ngIf="isGeneralUser"><td></td>
                 <td>Address</td>
                 <td><mat-form-field class="full-width" appearance="outline" [floatLabel]="'never'">
-                    <textarea matInput formControlName="address" placeholder="Full Address" required maxlength="256"></textarea>
+                    <textarea matInput formControlName="address" placeholder="Full Address" maxlength="256"></textarea>
                 </mat-form-field></td>
             </tr>
             <tr *ngIf="isGeneralUser"><td></td>

@@ -49,6 +49,7 @@ export class SignUpComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.profileFormGroup.createForm();
     
     this.searchService.initializeSearchBoxes().subscribe((result: Map<string, Map<string, Map<number, InstitutionModel>>>) => {
       let area: string = Array.from(result.keys())[0];
@@ -77,6 +78,7 @@ export class SignUpComponent implements OnInit {
       selectedArea = "Council";
       selectedDistrict = selectedArea;
       successMessages = [ProfileFormMessages.REGISTRATION_SUCCESSFUL_MESSAGE];
+      this.profileFormGroup.institutionId.setValue(0);
     } else {
       selectedArea = this.profileFormGroup.area.value;
       selectedDistrict = this.profileFormGroup.district.value;
@@ -130,7 +132,7 @@ export class SignUpComponent implements OnInit {
       this.profileFormGroup.district.setValue("Council");
       this.profileFormGroup.institutionName.setValue("Council");
       this.profileFormGroup.address.setValue(null);
-      this.profileFormGroup.categoryCode.setValue(null);
+      this.profileFormGroup.categoryCode.setValue("Council");
       this.profileFormGroup.contactNumber.setValue(null);
     } else {
       this.isGeneralUser = true;
@@ -146,12 +148,13 @@ export class SignUpComponent implements OnInit {
     this.searchService.getInstitutionsByAreaAndDistrict(
       this.profileFormGroup.area.value, this.profileFormGroup.district.value
     ).subscribe((institutions: Array<InstitutionModel>) => {
-      let institutionMap = new Map<number, InstitutionModel>();
+      this.searchFormData.institutionMap.clear();
+      this.searchFormData.institutionMap.set(-1, this.newInstitution);
       for (let institution of institutions) {
-        institutionMap.set(institution.institutionId, institution);
+        this.searchFormData.institutionMap.set(institution.institutionId, institution);
       }
-      this.searchService.populateInstitutionBoxes(this.searchFormData, institutionMap);
       this.profileFormGroup.institutionId.setValue(institutions[0].institutionId);
+      this.selectedOtherInstitution();
     });
   }
 
@@ -161,7 +164,7 @@ export class SignUpComponent implements OnInit {
       this.profileFormGroup.area.value
     );
     this.profileFormGroup.district.setValue(null);
-    this.profileFormGroup.institutionId.setValue(null);
+    this.profileFormGroup.institutionId.setValue(-1);
     this.searchFormData.institutionMap.clear();
   }
 
@@ -190,6 +193,7 @@ export class SignUpComponent implements OnInit {
 
       // Set values from selected institution
       let institution: InstitutionModel = this.searchFormData.institutionMap.get(this.profileFormGroup.institutionId.value);
+      this.profileFormGroup.institutionId.setValue(institution.institutionId);
       this.profileFormGroup.institutionName.setValue(institution.institutionName);
       this.profileFormGroup.address.setValue(institution.address);
       this.profileFormGroup.categoryCode.setValue(institution.categoryCode);
@@ -197,4 +201,7 @@ export class SignUpComponent implements OnInit {
     }
   }
 
+  asIsOrder(a, b) {
+    return 1;
+  }
 }

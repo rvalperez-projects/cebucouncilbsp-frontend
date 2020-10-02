@@ -58,37 +58,21 @@ export class ProfileComponent implements OnInit {
       // Set Combo Boxes
       this.searchService.initializeSearchBoxes().subscribe((result: any) => {
 
+        this.profileFormGroup.area.setValue(profileInfo.area);
+        this.profileFormGroup.district.setValue(profileInfo.district);
+        this.profileFormGroup.institutionId.setValue(profileInfo.institutionId);
+
+        // Set visible Area and District combo items
         if (userRole != Roles.GENERAL_USER && profileInfo.authorityCode == Roles.GENERAL_USER) {
-          // Get ALL Area and District combo items
           this.searchService.populateAreaDistrictBoxes(this.searchFormData, profileInfo.area);
-          this.repopulateInstitutions();
-          this.searchFormData.institutionMap.set(-1, this.newInstitution);
-          
-          // Enable Fields
-          this.profileFormGroup.area.enable();
-          this.profileFormGroup.district.enable();
-          this.profileFormGroup.institutionId.enable();
-          this.profileFormGroup.address.enable();
-          this.profileFormGroup.categoryCode.enable();
-          this.profileFormGroup.contactNumber.enable();
         } else {
           this.searchFormData.areaList.push(profileInfo.area);
           this.searchFormData.districtList.push(profileInfo.district);
-          this.searchFormData.institutionMap.set(profileInfo.institutionId, new InstitutionModel(profileInfo.institutionName));
-          
-          // Disable Fields
-          this.profileFormGroup.area.disable();
-          this.profileFormGroup.district.disable();
-          this.profileFormGroup.institutionId.disable();
-          this.profileFormGroup.address.disable();
-          this.profileFormGroup.categoryCode.disable();
-          this.profileFormGroup.contactNumber.disable();
         }
         
         // Set values
         this.profileFormGroup.patchValues(profileInfo);
-        this.profileFormGroup.institutionId.setValue(profileInfo.institutionId);
-        this.profileFormGroup.institutionName.setValue(profileInfo.institutionName);
+        this.repopulateInstitutions();
       });
     });
   }
@@ -153,12 +137,12 @@ export class ProfileComponent implements OnInit {
     this.searchService.getInstitutionsByAreaAndDistrict(
       this.profileFormGroup.area.value, this.profileFormGroup.district.value
     ).subscribe((institutions: Array<InstitutionModel>) => {
-      let institutionMap = new Map<number, InstitutionModel>();
+      this.searchFormData.institutionMap.clear();
+      this.searchFormData.institutionMap.set(-1, this.newInstitution);
       for (let institution of institutions) {
-        institutionMap.set(institution.institutionId, institution);
+        this.searchFormData.institutionMap.set(institution.institutionId, institution);
       }
-      this.searchService.populateInstitutionBoxes(this.searchFormData, institutionMap);
-      this.profileFormGroup.institutionId.setValue(institutions[0].institutionId);
+      this.selectedOtherInstitution();
     });
   }
 
@@ -167,11 +151,12 @@ export class ProfileComponent implements OnInit {
       this.searchFormData, this.profileFormGroup.area.value
     );
     this.profileFormGroup.district.setValue(null);
-    this.profileFormGroup.institutionId.setValue(null);
+    this.profileFormGroup.institutionId.setValue(-1);
     this.searchFormData.institutionMap.set(-1, this.newInstitution);
   }
 
   selectedOtherInstitution() {
+    // New Institution
     if (this.profileFormGroup.institutionId.value == -1) {
       this.isNewInstitution = true;
 
@@ -180,16 +165,31 @@ export class ProfileComponent implements OnInit {
       this.profileFormGroup.address.setValue(null);
       this.profileFormGroup.categoryCode.setValue(null);
       this.profileFormGroup.contactNumber.setValue(null);
+    
+      // Enable fields for new institutions
+      this.profileFormGroup.address.enable();
+      this.profileFormGroup.categoryCode.enable();
+      this.profileFormGroup.contactNumber.enable();
     } else {
       this.isNewInstitution = false;
 
+      // Disable fields of existing institutions
+      this.profileFormGroup.address.disable();
+      this.profileFormGroup.categoryCode.disable();
+      this.profileFormGroup.contactNumber.disable();
+
       // Set values from selected institution
-      let institution: InstitutionModel = this.searchFormData.institutionMap.get(this.profileFormGroup.institutionId.value);
-      this.profileFormGroup.institutionName.setValue(institution.institutionName);
-      this.profileFormGroup.address.setValue(institution.address);
-      this.profileFormGroup.categoryCode.setValue(institution.categoryCode);
-      this.profileFormGroup.contactNumber.setValue(institution.contactNumber);
+      if (this.profileFormGroup.authorityCode.value == Roles.GENERAL_USER) {
+        let institution: InstitutionModel = this.searchFormData.institutionMap.get(this.profileFormGroup.institutionId.value);
+        this.profileFormGroup.institutionName.setValue(institution.institutionName);
+        this.profileFormGroup.address.setValue(institution.address);
+        this.profileFormGroup.categoryCode.setValue(institution.categoryCode);
+        this.profileFormGroup.contactNumber.setValue(institution.contactNumber);
+      }
     }
   }
 
+  asIsOrder(a, b) {
+    return 1;
+  }
 }

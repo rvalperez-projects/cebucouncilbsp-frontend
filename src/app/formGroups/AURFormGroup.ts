@@ -59,7 +59,7 @@ export class AURFormGroup {
         this.createForm();
     }
 
-    private createForm() {
+    public createForm() {
         let institutionId = window.sessionStorage.getItem(SessionConstant.USER_INSTITUTION_ID_KEY); 
         let now = new Date();
         this._aurForm = this.formBuild.group({
