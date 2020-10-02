@@ -55,7 +55,17 @@ export class ProfileComponent implements OnInit {
     this.service.getUserDetails(userId).subscribe((profileInfo : ProfileInfo) => {
       this.isGeneralUser = profileInfo.authorityCode == Roles.GENERAL_USER;
       
-      // Set Combo Boxes
+      // Disallow update for COUNCIL / ADMIN accounts
+      if (userRole != Roles.GENERAL_USER && profileInfo.authorityCode != Roles.GENERAL_USER) {
+        // Set values
+        this.searchFormData.areaList.push(profileInfo.area);
+        this.profileFormGroup.patchValues(profileInfo);
+        this.profileFormGroup.area.disable();
+        this.profileFormGroup.address.disable();
+        this.profileFormGroup.contactNumber.disable();
+        return;
+      }
+      
       this.searchService.initializeSearchBoxes().subscribe((result: any) => {
 
         this.profileFormGroup.area.setValue(profileInfo.area);
@@ -65,9 +75,15 @@ export class ProfileComponent implements OnInit {
         // Set visible Area and District combo items
         if (userRole != Roles.GENERAL_USER && profileInfo.authorityCode == Roles.GENERAL_USER) {
           this.searchService.populateAreaDistrictBoxes(this.searchFormData, profileInfo.area);
+          this.profileFormGroup.area.enable();
+          this.profileFormGroup.district.enable();
+          this.profileFormGroup.institutionId.enable();
         } else {
           this.searchFormData.areaList.push(profileInfo.area);
           this.searchFormData.districtList.push(profileInfo.district);
+          this.profileFormGroup.area.disable();
+          this.profileFormGroup.district.disable();
+          this.profileFormGroup.institutionId.disable();
         }
         
         // Set values
