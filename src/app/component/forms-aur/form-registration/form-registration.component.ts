@@ -69,6 +69,7 @@ export class FormRegistrationComponent implements OnInit {
     this.header.initLoggedInUser();
     
     // Initialize Input Fields
+    this.aubFormGroup.createForm();
     let institutionId = window.sessionStorage[SessionConstant.USER_INSTITUTION_ID_KEY];
     this.aubFormGroup.institutionId.setValue(institutionId);
     this.service.initializeAUR(this.aurFormObj, this.aubFormGroup);

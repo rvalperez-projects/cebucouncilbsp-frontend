@@ -321,7 +321,7 @@
         </form>
 
         <br>
-        <button id="submitBtnId" mat-raised-button color="basic" class="" style="float:left" routerLink="/forms">Back</button>
+        <button id="submitBtnId" mat-raised-button color="basic" class="" style="float:left" (click)="back()">Back</button>
         <button mat-raised-button color="primary" class="" style="float:right" (click)="processAURForm()">Process</button>
         <button mat-raised-button color="accent" class="" style="float:right" (click)="populateMembershipCertNo()">Populate Nos.</button>
 

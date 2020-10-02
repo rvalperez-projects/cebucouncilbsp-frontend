@@ -68,8 +68,18 @@ export class FormsListComponent implements OnInit {
         case Roles.COUNCIL:
         case Roles.ADMIN:
           let mapResult = result as Map<string, Map<string, Map<number, string>>>;
-          let area: string = Array.from(mapResult.keys())[0];
-          let district: string = Array.from(mapResult.get(area).keys())[0];
+          
+          let area: string = null;
+          let district: string = null;
+
+          // If Forms List transitioned from AUR View / Update
+          if (history.state.area && history.state.district) {
+            area = history.state.area;
+            district = history.state.district;
+          } else {
+            area = Array.from(mapResult.keys())[0];
+            district = Array.from(mapResult.get(area).keys())[0];
+          }
 
           this.searchFormGroup.area.setValue(area);
           this.searchFormGroup.district.setValue(district);
@@ -85,12 +95,10 @@ export class FormsListComponent implements OnInit {
     this.searchService.getInstitutionsByAreaAndDistrict(
       this.searchFormGroup.area.value, this.searchFormGroup.district.value
     ).subscribe((institutions: Array<InstitutionModel>) => {
-      let institutionMap = new Map<number, InstitutionModel>();
+      this.searchFormData.institutionMap.clear();
       for (let institution of institutions) {
-        institutionMap.set(institution.institutionId, institution);
+        this.searchFormData.institutionMap.set(institution.institutionId, institution);
       }
-      this.searchService.populateInstitutionBoxes(this.searchFormData, institutionMap);
-      this.searchFormGroup.institutionId.setValue(institutions[0].institutionId);
     });
   }
 
@@ -133,5 +141,9 @@ export class FormsListComponent implements OnInit {
     if (id) {
       this.router.navigateByUrl('/forms/update', {state:{formId:id}});
     }
+  }
+
+  asIsOrder(a, b) {
+    return 1;
   }
 }

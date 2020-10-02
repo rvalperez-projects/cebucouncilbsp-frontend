@@ -39,6 +39,7 @@ export class AURFormViewService {
         aurFormObj.officialReceiptDate = result.officialReceiptDate;
 
         aurFormObj.institutionName = result.institutionName;
+        aurFormObj.area = result.area;
         aurFormObj.district = result.district;
         aurFormObj.council = "Cebu Council";
 

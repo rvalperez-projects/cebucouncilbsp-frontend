@@ -62,11 +62,10 @@ export class UnitNumberComponent implements OnInit {
     this.searchService.getInstitutionsByAreaAndDistrict(
       this.searchFormGroup.area.value, this.searchFormGroup.district.value
     ).subscribe((institutions: Array<InstitutionModel>) => {
-      let institutionMap = new Map<number, InstitutionModel>();
+      this.searchFormData.institutionMap.clear();
       for (let institution of institutions) {
-        institutionMap.set(institution.institutionId, institution);
+        this.searchFormData.institutionMap.set(institution.institutionId, institution);
       }
-      this.searchService.populateInstitutionBoxes(this.searchFormData, institutionMap);
       this.searchFormGroup.institutionId.setValue(institutions[0].institutionId);
     });
   }
@@ -161,4 +160,7 @@ export class UnitNumberComponent implements OnInit {
     return result;
   }
 
+  asIsOrder(a, b) {
+    return 1;
+  }
 }

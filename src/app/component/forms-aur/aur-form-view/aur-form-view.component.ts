@@ -114,5 +114,7 @@ export class AurFormViewComponent implements OnInit {
       });
   }
 
-  
+  public back() {
+    this.router.navigateByUrl('/forms', {state:{area:this.aurFormObj.area, district:this.aurFormObj.district}});
+  }
 }

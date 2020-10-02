@@ -81,18 +81,6 @@ export class SearchService {
     searchFormModel.districtList = districts;
   }
 
-  public populateInstitutionBoxes(searchFormModel: SearchFormModel, institutions: Map<number, InstitutionModel>) {
-
-    if (this.role == Roles.GENERAL_USER) {
-      return;
-    }
-    let institutionMap = new Map<number, InstitutionModel>();
-    for (let institution of institutions.values()) {
-      institutionMap.set(institution.institutionId, institution);
-    }
-    searchFormModel.institutionMap = institutionMap;
-  }
-
   private getInstitution(): Observable<InstitutionModel> {
     return this.http.get<BaseResponse>(ResourceURL.HOST + 
       ResourceURL.INSTITUTION_ID.replace('{institutionId}', this.institutionId))
