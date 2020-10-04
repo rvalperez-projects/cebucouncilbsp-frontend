@@ -104,7 +104,9 @@ export class ProfileComponent implements OnInit {
     if (this.profileFormGroup.authorityCode.value != Roles.GENERAL_USER) {
       this.profileFormGroup.area.setValue("Council");
       this.profileFormGroup.district.setValue("Council");
+      this.profileFormGroup.institutionId.setValue(-1);
       this.profileFormGroup.institutionName.setValue("Council");
+      this.profileFormGroup.categoryCode.setValue("Council");
     }
     if (this.hasErrors()) {
       return;
