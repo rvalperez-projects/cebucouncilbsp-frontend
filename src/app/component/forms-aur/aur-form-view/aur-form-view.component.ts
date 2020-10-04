@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AppComponent } from 'src/app/app.component';
-import { FormStatus } from 'src/app/constant/Enums';
+import { SessionConstant } from 'src/app/constant/Constants';
+import { FormStatus, Roles } from 'src/app/constant/Enums';
 import { AURFormMessages } from 'src/app/constant/Messages';
 import { RosterHeaderLabels } from '../../../constant/RosterHeaderLabels';
 import { AURFormGroup } from '../../../formGroups/AURFormGroup';
@@ -20,6 +21,7 @@ export class AurFormViewComponent implements OnInit {
   aurFormObj: AURFormRegistration;
   loading: boolean;
   isPaid: boolean;
+  isGeneralUser: boolean;
   
   // Declare labels
   iSComPositions = RosterHeaderLabels.iSComPositions;
@@ -41,6 +43,7 @@ export class AurFormViewComponent implements OnInit {
 
     this.aurFormObj = new AURFormRegistration();
     this.registrationFee = new RegistrationFees();
+    this.isGeneralUser = window.sessionStorage[SessionConstant.USER_ROLE_CODE_KEY] == Roles.GENERAL_USER;
   }
 
   ngOnInit(): void {

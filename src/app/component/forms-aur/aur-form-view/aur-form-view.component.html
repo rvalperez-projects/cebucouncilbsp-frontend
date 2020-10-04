@@ -303,7 +303,7 @@
         
         <button mat-raised-button color="accent" class="" style="float:right" (click)="print()" *ngIf="hidePrintButton()">Print</button>
         <button mat-raised-button color="warn" class="" style="float:right" (click)="deleteAURForm()" [disabled]="isPaid">Delete</button>
-        <button mat-raised-button color="primary" style="float:right" (click)="fileInput.click()" [disabled]="isPaid">
+        <button mat-raised-button color="primary" style="float:right" (click)="fileInput.click()" [disabled]="isPaid" *ngIf="isGeneralUser">
             <span>Upload Payment</span>
             <input #fileInput type="file" accept="image/png, image/jpeg"
                 (change)="onFileInput($event.target.files, aurFormObj.formId)" style="display:none;" />
