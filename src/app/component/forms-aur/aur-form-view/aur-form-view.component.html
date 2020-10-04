@@ -44,9 +44,9 @@
             <tr class="table-row" *ngFor="let label of iSComPositions; let i = index">
                 <td>{{label.title}}</td>
                 <td><ng-container *ngIf="aurFormObj.iscomMembersList[i].surname; else blankName">
-                        {{aurFormObj.iscomMembersList[i].surname}},&nbsp;
-                        {{aurFormObj.iscomMembersList[i].givenName}},&nbsp;
-                        {{aurFormObj.iscomMembersList[i].middleInitial}}
+                        {{aurFormObj.iscomMembersList[i].surname | titlecase}},&nbsp;
+                        {{aurFormObj.iscomMembersList[i].givenName | titlecase}},&nbsp;
+                        {{aurFormObj.iscomMembersList[i].middleInitial | uppercase}}
                     </ng-container>
                     <ng-template #blankName></ng-template>
                 </td>
@@ -101,9 +101,9 @@
                         <ng-template #officerBlock>{{unitMember.title}}</ng-template>
                     </td>
                     <td style="border-left-style:none !important;"><span *ngIf="aurFormObj.unitMembersList[i].surname; else blankName">
-                            {{aurFormObj.unitMembersList[i].surname}},&nbsp;
-                            {{aurFormObj.unitMembersList[i].givenName}},&nbsp;
-                            {{aurFormObj.unitMembersList[i].middleInitial}}
+                            {{aurFormObj.unitMembersList[i].surname | titlecase}},&nbsp;
+                            {{aurFormObj.unitMembersList[i].givenName | titlecase}},&nbsp;
+                            {{aurFormObj.unitMembersList[i].middleInitial | uppercase}}
                         </span>
                         <ng-template #blankName></ng-template>
                     </td>
@@ -202,7 +202,7 @@
                         </colgroup>
                         <tr>
                             <td>Processed:</td>
-                            <td class="bottom-underline actionOfficers">{{aurFormObj.councilRegistrationOfficer}}</td>
+                            <td class="bottom-underline actionOfficers">{{aurFormObj.councilRegistrationOfficer | titlecase}}</td>
                             <td></td>
                             <td class="bottom-underline actionOfficers">{{aurFormObj.councilProcessedDate | date:'yyyy/MM/dd HH:mm'}}</td>
                         </tr>
@@ -215,7 +215,7 @@
                         <tr><td></td><td></td><td></td><td></td></tr>
                         <tr>
                             <td>Approved:</td>
-                            <td class="bottom-underline actionOfficers">{{aurFormObj.councilScoutExecutive}}</td>
+                            <td class="bottom-underline actionOfficers">{{aurFormObj.councilScoutExecutive | titlecase}}</td>
                             <td></td>
                             <td class="bottom-underline actionOfficers">{{aurFormObj.councilApprovedDate | date:'yyyy/MM/dd'}}</td>
                         </tr>
@@ -239,7 +239,7 @@
                         </colgroup>
                         <tr>
                             <td>Processed:</td>
-                            <td class="bottom-underline actionOfficers">{{aurFormObj.regionalRegistrationOfficer}}</td>
+                            <td class="bottom-underline actionOfficers">{{aurFormObj.regionalRegistrationOfficer | titlecase}}</td>
                             <td></td>
                             <td class="bottom-underline actionOfficers">{{aurFormObj.regionalProcessedDate | date:'yyyy/MM/dd HH:mm'}}</td>
                         </tr>
@@ -252,7 +252,7 @@
                         <tr><td></td><td></td><td></td><td></td></tr>
                         <tr>
                             <td>Confirmed:</td>
-                            <td class="bottom-underline actionOfficers">{{aurFormObj.regionalScoutExecutive}}</td>
+                            <td class="bottom-underline actionOfficers">{{aurFormObj.regionalScoutExecutive | titlecase}}</td>
                             <td></td>
                             <td class="bottom-underline actionOfficers">{{aurFormObj.regionalApprovedDate | date:'yyyy/MM/dd'}}</td>
                         </tr>

@@ -1,0 +1,1282 @@
+{
+  "id": "49897c5b-d320-4f91-b8e5-f7e06958c91e",
+  "version": "2.0",
+  "name": "cebucouncilbsp",
+  "url": "http://localhost:4200",
+  "tests": [{
+    "id": "5eea0c11-c299-41c9-a85e-26bda84f8ce0",
+    "name": "AUR Registration",
+    "commands": [{
+      "id": "e9eda828-ad41-478c-af3c-32b4654f8492",
+      "comment": "",
+      "command": "open",
+      "target": "/login",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "49ead46e-3d27-4171-a337-b98cbe3b17b4",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1296x696",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "07f995b5-0af3-4f0f-9411-e4d81e06365e",
+      "comment": "",
+      "command": "click",
+      "target": "id=mat-input-0",
+      "targets": [
+        ["id=mat-input-0", "id"],
+        ["css=#mat-input-0", "css:finder"],
+        ["xpath=//input[@id='mat-input-0']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1da91c57-4dc1-4730-b793-2ba3ece40254",
+      "comment": "",
+      "command": "type",
+      "target": "id=mat-input-0",
+      "targets": [
+        ["id=mat-input-0", "id"],
+        ["css=#mat-input-0", "css:finder"],
+        ["xpath=//input[@id='mat-input-0']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "user1111"
+    }, {
+      "id": "a9286dc4-1104-42bf-9c8d-53c1fff7d024",
+      "comment": "",
+      "command": "click",
+      "target": "id=mat-input-1",
+      "targets": [
+        ["id=mat-input-1", "id"],
+        ["css=#mat-input-1", "css:finder"],
+        ["xpath=//input[@id='mat-input-1']", "xpath:attributes"],
+        ["xpath=//mat-form-field[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1d0724f7-0277-45b9-860b-4c3ce050baf1",
+      "comment": "",
+      "command": "type",
+      "target": "id=mat-input-1",
+      "targets": [
+        ["id=mat-input-1", "id"],
+        ["css=#mat-input-1", "css:finder"],
+        ["xpath=//input[@id='mat-input-1']", "xpath:attributes"],
+        ["xpath=//mat-form-field[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "zzzzzzzz"
+    }, {
+      "id": "2a94516d-1a5e-47e9-814f-15cd409e2017",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//button[contains(.,'Log in')]",
+      "targets": [
+        ["css=.cdk-focused", "css:finder"],
+        ["xpath=//td/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Log in')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a6ae8218-872d-4c9c-9fc5-3509ac8bb9ed",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Forms keyboard_arrow_down",
+      "targets": [
+        ["linkText=Forms keyboard_arrow_down", "linkText"],
+        ["css=.cdk-focused", "css:finder"],
+        ["xpath=//div[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Forms keyboard_arrow_down')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e902bc30-6bba-4e86-ab94-bde6cde054bd",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'Application for Unit Registration')]",
+      "targets": [
+        ["css=.mat-menu-item > span", "css:finder"],
+        ["xpath=//div[@id='mat-menu-panel-0']/div/button/span", "xpath:idRelative"],
+        ["xpath=//div/div/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Application for Unit Registration')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "09cd8d39-b682-4abc-b56b-a688d3f455f6",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'New')]",
+      "targets": [
+        ["css=.mat-primary > .mat-button-wrapper", "css:finder"],
+        ["xpath=//a[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'New')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d69bcbf2-e74a-475d-af33-0f3785ee6564",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'Close')]",
+      "targets": [
+        ["css=.mat-warn > .mat-button-wrapper", "css:finder"],
+        ["xpath=//mat-dialog-container[@id='mat-dialog-0']/error-dialog/div/button/span", "xpath:idRelative"],
+        ["xpath=//error-dialog/div/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Close')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d335409f-757e-4355-b3d9-7631e9825ab4",
+      "comment": "",
+      "command": "mouseDownAt",
+      "target": "css=.mat-drawer-content",
+      "targets": [
+        ["css=.mat-drawer-content", "css:finder"],
+        ["xpath=//mat-sidenav-content", "xpath:position"]
+      ],
+      "value": "1269,98"
+    }, {
+      "id": "83312888-ac51-415d-885b-601bafc3d195",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//td[4]/select",
+      "targets": [
+        ["css=.cdk-focused", "css:finder"],
+        ["xpath=//td[4]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ad0d3d80-70b1-42e7-9d0b-c7f0d187e3a0",
+      "comment": "",
+      "command": "select",
+      "target": "css=.bottom-underline > .mat-tooltip-trigger",
+      "targets": [],
+      "value": "label=New"
+    }, {
+      "id": "27690aa7-b97e-46cc-90bc-dc3ab7003a6f",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "xpath=//span[contains(.,'Close')]",
+      "targets": [
+        ["css=.mat-warn > .mat-button-wrapper", "css:finder"],
+        ["xpath=//mat-dialog-container[@id='mat-dialog-1']/error-dialog/div/button/span", "xpath:idRelative"],
+        ["xpath=//error-dialog/div/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Close')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0f86f905-30ba-4f8c-ad19-e1d820644797",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'Close')]",
+      "targets": [
+        ["css=.mat-warn > .mat-button-wrapper", "css:finder"],
+        ["xpath=//mat-dialog-container[@id='mat-dialog-1']/error-dialog/div/button/span", "xpath:idRelative"],
+        ["xpath=//error-dialog/div/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Close')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b73d8b04-a47f-4f88-85cd-2a617277e6b9",
+      "comment": "",
+      "command": "click",
+      "target": "id=Troop",
+      "targets": [
+        ["id=Troop", "id"],
+        ["css=#Troop", "css:finder"],
+        ["xpath=//span[@id='Troop']", "xpath:attributes"],
+        ["xpath=//span[3]", "xpath:position"],
+        ["xpath=//span[contains(.,'Troop')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c7ef613d-1da0-49a2-a2be-d5573b0c260b",
+      "comment": "",
+      "command": "mouseMoveAt",
+      "target": "xpath=//table[@id='iscom-table']/tbody/tr/td[2]/input",
+      "targets": [
+        ["css=.ng-invalid:nth-child(5) > .table-row:nth-child(1) .name:nth-child(1)", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//table[@id='iscom-table']/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "1269, 0"
+    }, {
+      "id": "cfc9b572-51cf-4d45-ba31-b6ebf8701b38",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//table[@id='iscom-table']/tbody/tr/td[2]/input",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "02db16e9-9d18-4fa4-83c4-68e8d2717053",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='iscom-table']/tbody/tr/td[2]/input",
+      "targets": [
+        ["css=td > .ng-dirty", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//table[@id='iscom-table']/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Adult Leader 1"
+    }, {
+      "id": "354e796f-fa8b-4348-a86a-446e3b7440df",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='iscom-table']/tbody/tr/td[2]/input[2]",
+      "targets": [
+        ["css=.ng-dirty:nth-child(3)", "css:finder"],
+        ["xpath=(//input[@type='text'])[2]", "xpath:attributes"],
+        ["xpath=//table[@id='iscom-table']/tbody/tr/td[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "Test"
+    }, {
+      "id": "8699b77b-1499-417f-9d40-f024fc65aedc",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='iscom-table']/tbody/tr/td[2]/input[3]",
+      "targets": [
+        ["css=.ng-dirty:nth-child(4)", "css:finder"],
+        ["xpath=(//input[@type='text'])[3]", "xpath:attributes"],
+        ["xpath=//table[@id='iscom-table']/tbody/tr/td[2]/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "T"
+    }, {
+      "id": "69ea2fbb-e364-4973-9821-7f40a343b3a4",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "xpath=//table[@id='iscom-table']/tbody/tr/td[4]/input",
+      "targets": [],
+      "value": "18"
+    }, {
+      "id": "7defe050-4a79-4f85-b460-9bd4ce5e2cc2",
+      "comment": "",
+      "command": "select",
+      "target": "xpath=//table[@id='iscom-table']/tbody/tr/td[6]/select",
+      "targets": [
+        ["css=.ng-dirty > td:nth-child(6) > .ng-untouched", "css:finder"],
+        ["xpath=//table[@id='iscom-table']/tbody/tr/td[6]/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "label=BTC"
+    }, {
+      "id": "6116678b-8175-4a11-8fc5-04f321bfe076",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='iscom-table']/tbody/tr/td[7]/input",
+      "targets": [
+        ["css=.cdk-focused", "css:finder"],
+        ["xpath=(//input[@type='number'])[2]", "xpath:attributes"],
+        ["xpath=//table[@id='iscom-table']/tbody/tr/td[7]/input", "xpath:idRelative"],
+        ["xpath=//td[7]/input", "xpath:position"]
+      ],
+      "value": "10"
+    }, {
+      "id": "2ae6c006-3e45-4ef4-87a7-cd3e1a40e0b9",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='iscom-table']/tbody/tr/td[8]/input",
+      "targets": [
+        ["css=td:nth-child(8) > .ng-dirty", "css:finder"],
+        ["xpath=(//input[@type='text'])[6]", "xpath:attributes"],
+        ["xpath=//table[@id='iscom-table']/tbody/tr/td[8]/input", "xpath:idRelative"],
+        ["xpath=//td[8]/input", "xpath:position"]
+      ],
+      "value": "Catholic"
+    }, {
+      "id": "4963e6f5-6f9b-4116-b382-95c9d1e19fef",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='iscom-table']/tbody/tr[4]/td[2]/input",
+      "targets": [
+        ["css=.ng-untouched .ng-dirty", "css:finder"],
+        ["xpath=(//input[@type='text'])[19]", "xpath:attributes"],
+        ["xpath=//table[@id='iscom-table']/tbody/tr[4]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[2]/input", "xpath:position"]
+      ],
+      "value": "Adult Leader 2"
+    }, {
+      "id": "26bcb56c-fb40-4edb-91a6-78a9bbfde16f",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='iscom-table']/tbody/tr[4]/td[2]/input[2]",
+      "targets": [
+        ["css=.ng-dirty > td > .ng-untouched:nth-child(3)", "css:finder"],
+        ["xpath=(//input[@type='text'])[20]", "xpath:attributes"],
+        ["xpath=//table[@id='iscom-table']/tbody/tr[4]/td[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[2]/input[2]", "xpath:position"]
+      ],
+      "value": "Test"
+    }, {
+      "id": "7557e3ba-f1e9-485f-a3bd-33db06ee620e",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='iscom-table']/tbody/tr[4]/td[2]/input[3]",
+      "targets": [
+        ["css=.ng-invalid:nth-child(4) > td > .mi", "css:finder"],
+        ["xpath=(//input[@type='text'])[21]", "xpath:attributes"],
+        ["xpath=//table[@id='iscom-table']/tbody/tr[4]/td[2]/input[3]", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[2]/input[3]", "xpath:position"]
+      ],
+      "value": "T"
+    }, {
+      "id": "359d4269-29a5-4e8a-8a7e-541c85976085",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "xpath=//table[@id='iscom-table']/tbody/tr[4]/td[4]/input",
+      "targets": [
+        ["css=.ng-dirty > td:nth-child(4) > .ng-untouched", "css:finder"],
+        ["xpath=(//input[@type='number'])[7]", "xpath:attributes"],
+        ["xpath=//table[@id='iscom-table']/tbody/tr[4]/td[4]/input", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[4]/input", "xpath:position"]
+      ],
+      "value": "18"
+    }, {
+      "id": "a0eafbaa-f3ce-453d-9596-5c098501992c",
+      "comment": "",
+      "command": "select",
+      "target": "xpath=//table[@id='iscom-table']/tbody/tr[4]/td[6]/select",
+      "targets": [
+        ["css=.ng-invalid:nth-child(4) > td:nth-child(6) > .ng-untouched", "css:finder"],
+        ["xpath=//table[@id='iscom-table']/tbody/tr[4]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[6]/select", "xpath:position"]
+      ],
+      "value": "label=BTC"
+    }, {
+      "id": "f7ed8874-3db8-404f-8fc4-59e5ff40b7f2",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='iscom-table']/tbody/tr[4]/td[7]/input",
+      "targets": [
+        ["css=.cdk-focused", "css:finder"],
+        ["xpath=(//input[@type='number'])[8]", "xpath:attributes"],
+        ["xpath=//table[@id='iscom-table']/tbody/tr[4]/td[7]/input", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[7]/input", "xpath:position"]
+      ],
+      "value": "5"
+    }, {
+      "id": "12718176-8728-47aa-93a7-71b0902794c3",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='iscom-table']/tbody/tr[4]/td[8]/input",
+      "targets": [
+        ["css=.ng-dirty > td:nth-child(8) > .ng-untouched", "css:finder"],
+        ["xpath=(//input[@type='text'])[24]", "xpath:attributes"],
+        ["xpath=//table[@id='iscom-table']/tbody/tr[4]/td[8]/input", "xpath:idRelative"],
+        ["xpath=//tr[4]/td[8]/input", "xpath:position"]
+      ],
+      "value": "Catholic"
+    }, {
+      "id": "95097031-8fcf-48b7-b0dd-97c59e09350c",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='iscom-table']/tbody/tr[5]/td[2]/input",
+      "targets": [
+        ["css=.ng-untouched .ng-dirty", "css:finder"],
+        ["xpath=(//input[@type='text'])[25]", "xpath:attributes"],
+        ["xpath=//table[@id='iscom-table']/tbody/tr[5]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[5]/td[2]/input", "xpath:position"]
+      ],
+      "value": "Adult Leader 3"
+    }, {
+      "id": "b774db06-e9e5-406c-89e6-c1653379764a",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='iscom-table']/tbody/tr[5]/td[2]/input[2]",
+      "targets": [
+        ["css=.ng-dirty > td > .ng-untouched:nth-child(3)", "css:finder"],
+        ["xpath=(//input[@type='text'])[26]", "xpath:attributes"],
+        ["xpath=//table[@id='iscom-table']/tbody/tr[5]/td[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//tr[5]/td[2]/input[2]", "xpath:position"]
+      ],
+      "value": "Test"
+    }, {
+      "id": "29fa5d1d-93e9-4d17-919f-8d76c9697a87",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='iscom-table']/tbody/tr[5]/td[2]/input[3]",
+      "targets": [
+        ["css=.ng-dirty:nth-child(5) > td > .mi", "css:finder"],
+        ["xpath=(//input[@type='text'])[27]", "xpath:attributes"],
+        ["xpath=//table[@id='iscom-table']/tbody/tr[5]/td[2]/input[3]", "xpath:idRelative"],
+        ["xpath=//tr[5]/td[2]/input[3]", "xpath:position"]
+      ],
+      "value": "T"
+    }, {
+      "id": "6de24289-061a-47f9-b4ed-c426c08b09ae",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "xpath=//table[@id='iscom-table']/tbody/tr[5]/td[4]/input",
+      "targets": [
+        ["css=.ng-dirty > td:nth-child(4) > .ng-untouched", "css:finder"],
+        ["xpath=(//input[@type='number'])[9]", "xpath:attributes"],
+        ["xpath=//table[@id='iscom-table']/tbody/tr[5]/td[4]/input", "xpath:idRelative"],
+        ["xpath=//tr[5]/td[4]/input", "xpath:position"]
+      ],
+      "value": "18"
+    }, {
+      "id": "bd0bed8d-f915-4362-a533-878dd2efb0cd",
+      "comment": "",
+      "command": "select",
+      "target": "xpath=//table[@id='iscom-table']/tbody/tr[5]/td[6]/select",
+      "targets": [
+        ["css=.ng-dirty > .table-row:nth-child(5) > td:nth-child(6) > .ng-untouched", "css:finder"],
+        ["xpath=//table[@id='iscom-table']/tbody/tr[5]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[5]/td[6]/select", "xpath:position"]
+      ],
+      "value": "label=BTC"
+    }, {
+      "id": "22d8cec1-4fe9-4f0a-b649-2f09bd125a94",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='iscom-table']/tbody/tr[5]/td[7]/input",
+      "targets": [
+        ["css=.cdk-focused", "css:finder"],
+        ["xpath=(//input[@type='number'])[10]", "xpath:attributes"],
+        ["xpath=//table[@id='iscom-table']/tbody/tr[5]/td[7]/input", "xpath:idRelative"],
+        ["xpath=//tr[5]/td[7]/input", "xpath:position"]
+      ],
+      "value": "5"
+    }, {
+      "id": "08e4e971-9eb6-4d5f-b556-71da37a0e75c",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='iscom-table']/tbody/tr[5]/td[8]/input",
+      "targets": [
+        ["css=.ng-dirty > td:nth-child(8) > .ng-untouched", "css:finder"],
+        ["xpath=(//input[@type='text'])[30]", "xpath:attributes"],
+        ["xpath=//table[@id='iscom-table']/tbody/tr[5]/td[8]/input", "xpath:idRelative"],
+        ["xpath=//tr[5]/td[8]/input", "xpath:position"]
+      ],
+      "value": "Catholic"
+    }, {
+      "id": "9db49f78-be8d-4edd-b243-f721d5018c4c",
+      "comment": "",
+      "command": "mouseDownAt",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr/td[2]/input",
+      "targets": [],
+      "value": "1269, 300"
+    }, {
+      "id": "48a839a8-3e8a-47e3-a926-4633298b8a78",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr/td[2]/input",
+      "targets": [
+        ["css=.ng-star-inserted > .ng-dirty", "css:finder"],
+        ["xpath=(//input[@type='text'])[43]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr/td[2]/input", "xpath:idRelative"],
+        ["xpath=//table[2]/tbody/tr/td[2]/input", "xpath:position"]
+      ],
+      "value": "Scout 1"
+    }, {
+      "id": "c9502598-d388-4947-a809-c6400ddae091",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr/td[2]/input[2]",
+      "targets": [
+        ["css=.ng-star-inserted > .ng-dirty:nth-child(3)", "css:finder"],
+        ["xpath=(//input[@type='text'])[44]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr/td[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//table[2]/tbody/tr/td[2]/input[2]", "xpath:position"]
+      ],
+      "value": "Test"
+    }, {
+      "id": "a049bc5a-b256-40a1-b192-9daa8b539c87",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr/td[2]/input[3]",
+      "targets": [
+        ["css=.ng-star-inserted > .ng-dirty:nth-child(4)", "css:finder"],
+        ["xpath=(//input[@type='text'])[45]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr/td[2]/input[3]", "xpath:idRelative"],
+        ["xpath=//table[2]/tbody/tr/td[2]/input[3]", "xpath:position"]
+      ],
+      "value": "T"
+    }, {
+      "id": "9879e738-dc30-41f0-a25c-e670e6e5d77c",
+      "comment": "",
+      "command": "select",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr/td[3]/select",
+      "targets": [
+        ["css=.cdk-focused", "css:finder"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr/td[3]/select", "xpath:idRelative"],
+        ["xpath=//td[3]/select", "xpath:position"]
+      ],
+      "value": "label=RR"
+    }, {
+      "id": "e52b0d5d-c9d3-448b-a7dd-d2abf5211923",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr/td[4]/input",
+      "targets": [
+        ["css=.ng-star-inserted:nth-child(4) > .ng-dirty", "css:finder"],
+        ["xpath=(//input[@type='number'])[15]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr/td[4]/input", "xpath:idRelative"],
+        ["xpath=//table[2]/tbody/tr/td[4]/input", "xpath:position"]
+      ],
+      "value": "12"
+    }, {
+      "id": "c87ccb9b-448a-45b6-bd04-c1f7579da9e6",
+      "comment": "",
+      "command": "select",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr/td[6]/select",
+      "targets": [
+        ["css=.ng-star-inserted:nth-child(6) > .ng-touched", "css:finder"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr/td[6]/select", "xpath:idRelative"],
+        ["xpath=//table[2]/tbody/tr/td[6]/select", "xpath:position"]
+      ],
+      "value": "label=First Class"
+    }, {
+      "id": "8646cb70-36a5-444c-9899-169746f25c9a",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[5]/td[2]/input",
+      "targets": [
+        ["css=.ng-invalid > .ng-star-inserted > .ng-dirty:nth-child(1)", "css:finder"],
+        ["xpath=(//input[@type='text'])[63]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[5]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//table[2]/tbody/tr[5]/td[2]/input", "xpath:position"]
+      ],
+      "value": "Scout 2"
+    }, {
+      "id": "6c66d47e-8b8a-4753-a406-59ead02ce42f",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[5]/td[2]/input[2]",
+      "targets": [
+        ["css=.ng-invalid > .ng-star-inserted > .ng-dirty:nth-child(3)", "css:finder"],
+        ["xpath=(//input[@type='text'])[64]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[5]/td[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//table[2]/tbody/tr[5]/td[2]/input[2]", "xpath:position"]
+      ],
+      "value": "Test"
+    }, {
+      "id": "fccf9f90-9c3e-488d-ac27-e65fdc5a5084",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[5]/td[2]/input[3]",
+      "targets": [
+        ["css=.table-row:nth-child(5) > .ng-star-inserted > .mi", "css:finder"],
+        ["xpath=(//input[@type='text'])[65]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[5]/td[2]/input[3]", "xpath:idRelative"],
+        ["xpath=//table[2]/tbody/tr[5]/td[2]/input[3]", "xpath:position"]
+      ],
+      "value": "T"
+    }, {
+      "id": "7e0ad9d5-1953-49b6-9971-660d08d59204",
+      "comment": "",
+      "command": "select",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[5]/td[3]/select",
+      "targets": [
+        ["css=.cdk-focused", "css:finder"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[8]/td[3]/select", "xpath:idRelative"],
+        ["xpath=//tr[8]/td[3]/select", "xpath:position"]
+      ],
+      "value": "label=RR"
+    }, {
+      "id": "f86e742c-62eb-4a4e-86b4-f8c5a7ffde9a",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[5]/td[4]/input",
+      "targets": [
+        ["css=.table-row:nth-child(8) > .ng-star-inserted:nth-child(4) > .ng-untouched", "css:finder"],
+        ["xpath=(//input[@type='number'])[29]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[8]/td[4]/input", "xpath:idRelative"],
+        ["xpath=//tr[8]/td[4]/input", "xpath:position"]
+      ],
+      "value": "12"
+    }, {
+      "id": "9e7da774-a632-435b-88f8-3500941f72c6",
+      "comment": "",
+      "command": "select",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[5]/td[6]/select",
+      "targets": [
+        ["css=.ng-dirty > .ng-star-inserted:nth-child(6) > .ng-untouched", "css:finder"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[5]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//table[2]/tbody/tr[5]/td[6]/select", "xpath:position"]
+      ],
+      "value": "label=First Class"
+    }, {
+      "id": "d73b0f77-a0cd-4f05-a56c-cd8b698d74a5",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[5]/td[7]/input",
+      "targets": [
+        ["css=.cdk-mouse-focused", "css:finder"],
+        ["xpath=(//input[@type='number'])[24]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[5]/td[7]/input", "xpath:idRelative"],
+        ["xpath=//table[2]/tbody/tr[5]/td[7]/input", "xpath:position"]
+      ],
+      "value": "5"
+    }, {
+      "id": "854aef8b-4308-41cd-8f8a-539db5aab6ba",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[5]/td[8]/input",
+      "targets": [
+        ["css=.table-row:nth-child(5) > .ng-star-inserted:nth-child(8) > .ng-untouched", "css:finder"],
+        ["xpath=(//input[@type='text'])[67]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[5]/td[8]/input", "xpath:idRelative"],
+        ["xpath=//table[2]/tbody/tr[5]/td[8]/input", "xpath:position"]
+      ],
+      "value": "Catholic"
+    }, {
+      "id": "accb4a5a-3dd6-4ba9-9e02-e784e47e3ad7",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[8]/td[2]/input",
+      "targets": [
+        ["css=.ng-untouched .ng-dirty", "css:finder"],
+        ["xpath=(//input[@type='text'])[78]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[8]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[8]/td[2]/input", "xpath:position"]
+      ],
+      "value": "Scout 3"
+    }, {
+      "id": "3c58d15b-db8e-4da0-ac27-450e054bf606",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[8]/td[2]/input[2]",
+      "targets": [
+        ["css=.ng-dirty > .ng-star-inserted > .ng-untouched:nth-child(3)", "css:finder"],
+        ["xpath=(//input[@type='text'])[79]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[8]/td[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//tr[8]/td[2]/input[2]", "xpath:position"]
+      ],
+      "value": "Test"
+    }, {
+      "id": "18c9861a-70db-4456-9fe7-dba41ee9467d",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[8]/td[2]/input[3]",
+      "targets": [
+        ["css=.table-row:nth-child(8) .mi", "css:finder"],
+        ["xpath=(//input[@type='text'])[80]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[8]/td[2]/input[3]", "xpath:idRelative"],
+        ["xpath=//tr[8]/td[2]/input[3]", "xpath:position"]
+      ],
+      "value": "T"
+    }, {
+      "id": "9091a9be-faa0-4468-8219-715884b61d9e",
+      "comment": "",
+      "command": "select",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[8]/td[3]/select",
+      "targets": [
+        ["css=.table-row:nth-child(8) > .ng-star-inserted:nth-child(4) > .ng-dirty", "css:finder"],
+        ["xpath=(//input[@type='number'])[29]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[8]/td[4]/input", "xpath:idRelative"],
+        ["xpath=//tr[8]/td[4]/input", "xpath:position"]
+      ],
+      "value": "label=RR"
+    }, {
+      "id": "1e026c5b-059c-4528-bc92-a4629da9f4ab",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[8]/td[4]/input",
+      "targets": [
+        ["css=.ng-star-inserted:nth-child(4) > .ng-dirty", "css:finder"],
+        ["xpath=(//input[@type='number'])[29]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[8]/td[4]/input", "xpath:idRelative"],
+        ["xpath=//tr[8]/td[4]/input", "xpath:position"]
+      ],
+      "value": "12"
+    }, {
+      "id": "969a192a-9321-4217-8c80-e3a158a24136",
+      "comment": "",
+      "command": "select",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[8]/td[6]/select",
+      "targets": [
+        ["css=.table-row:nth-child(8) > .ng-star-inserted:nth-child(6) > .ng-valid", "css:finder"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[8]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[8]/td[6]/select", "xpath:position"]
+      ],
+      "value": "label=Second Class"
+    }, {
+      "id": "c78c3177-0922-4d1d-9eaf-a50471ccb404",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[8]/td[7]/input",
+      "targets": [
+        ["css=.cdk-mouse-focused", "css:finder"],
+        ["xpath=(//input[@type='number'])[30]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[8]/td[7]/input", "xpath:idRelative"],
+        ["xpath=//tr[8]/td[7]/input", "xpath:position"]
+      ],
+      "value": "2"
+    }, {
+      "id": "4eef0b17-b2ae-4260-9174-ed337a33efb5",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[8]/td[8]/input",
+      "targets": [
+        ["css=.ng-valid > .ng-star-inserted:nth-child(8) > .ng-valid", "css:finder"],
+        ["xpath=(//input[@type='text'])[82]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[8]/td[8]/input", "xpath:idRelative"],
+        ["xpath=//tr[8]/td[8]/input", "xpath:position"]
+      ],
+      "value": "Catholic"
+    }, {
+      "id": "9d49aa51-3786-4364-aa15-70b7e35f6a00",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[9]/td[2]/input",
+      "targets": [
+        ["css=.ng-untouched .ng-dirty", "css:finder"],
+        ["xpath=(//input[@type='text'])[83]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[9]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[9]/td[2]/input", "xpath:position"]
+      ],
+      "value": "Scout 4"
+    }, {
+      "id": "6cc31613-a5ed-4c4c-9aea-cc4259dd288e",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[9]/td[2]/input[2]",
+      "targets": [
+        ["css=.ng-dirty > .ng-star-inserted > .ng-untouched:nth-child(3)", "css:finder"],
+        ["xpath=(//input[@type='text'])[84]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[9]/td[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//tr[9]/td[2]/input[2]", "xpath:position"]
+      ],
+      "value": "Test"
+    }, {
+      "id": "1d625625-89cc-4064-b5d5-9aeb102925cf",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[9]/td[2]/input[3]",
+      "targets": [
+        ["css=.table-row:nth-child(9) .mi", "css:finder"],
+        ["xpath=(//input[@type='text'])[85]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[9]/td[2]/input[3]", "xpath:idRelative"],
+        ["xpath=//tr[9]/td[2]/input[3]", "xpath:position"]
+      ],
+      "value": "T"
+    }, {
+      "id": "1695f505-ef0a-4642-adc9-077b72281fcd",
+      "comment": "",
+      "command": "select",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[9]/td[3]/select",
+      "targets": [
+        ["css=.cdk-mouse-focused", "css:finder"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[9]/td[3]/select", "xpath:idRelative"],
+        ["xpath=//tr[9]/td[3]/select", "xpath:position"]
+      ],
+      "value": "label=N"
+    }, {
+      "id": "093ba4a9-9fcd-427c-aba0-7fec77882c5e",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[9]/td[4]/input",
+      "targets": [
+        ["css=.table-row:nth-child(9) > .ng-star-inserted:nth-child(4) > .ng-untouched", "css:finder"],
+        ["xpath=(//input[@type='number'])[31]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[9]/td[4]/input", "xpath:idRelative"],
+        ["xpath=//tr[9]/td[4]/input", "xpath:position"]
+      ],
+      "value": "12"
+    }, {
+      "id": "071ed7a8-e926-4cd8-b108-7ac14d6ae9ae",
+      "comment": "",
+      "command": "select",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[9]/td[6]/select",
+      "targets": [
+        ["css=.table-row:nth-child(9) > .ng-star-inserted:nth-child(6) > .ng-valid", "css:finder"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[9]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[9]/td[6]/select", "xpath:position"]
+      ],
+      "value": "label=Membership"
+    }, {
+      "id": "0e91f61b-d74f-4431-b34f-819066821f49",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[9]/td[7]/input",
+      "targets": [
+        ["css=.cdk-mouse-focused", "css:finder"],
+        ["xpath=(//input[@type='number'])[32]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[9]/td[7]/input", "xpath:idRelative"],
+        ["xpath=//tr[9]/td[7]/input", "xpath:position"]
+      ],
+      "value": "0"
+    }, {
+      "id": "4ae270fa-e0d5-43a6-a530-3fce58204567",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[9]/td[8]/input",
+      "targets": [
+        ["css=.table-row:nth-child(9) > .ng-star-inserted:nth-child(8) > .ng-untouched", "css:finder"],
+        ["xpath=(//input[@type='text'])[87]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[9]/td[8]/input", "xpath:idRelative"],
+        ["xpath=//tr[9]/td[8]/input", "xpath:position"]
+      ],
+      "value": "Catholic"
+    }, {
+      "id": "ba8a16cc-befc-4066-95da-eed867d6ced5",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[10]/td[2]/input",
+      "targets": [
+        ["css=.ng-untouched .ng-dirty", "css:finder"],
+        ["xpath=(//input[@type='text'])[88]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[10]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[10]/td[2]/input", "xpath:position"]
+      ],
+      "value": "Scout 5"
+    }, {
+      "id": "633a60c7-27c0-4b43-af34-2be74a281843",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[10]/td[2]/input[2]",
+      "targets": [
+        ["css=.ng-dirty > .ng-star-inserted > .ng-untouched:nth-child(3)", "css:finder"],
+        ["xpath=(//input[@type='text'])[89]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[10]/td[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//tr[10]/td[2]/input[2]", "xpath:position"]
+      ],
+      "value": "Test"
+    }, {
+      "id": "ecfa64ae-7f83-45c3-bfd0-7c9830c529d4",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[10]/td[2]/input[3]",
+      "targets": [
+        ["css=.table-row:nth-child(10) .mi", "css:finder"],
+        ["xpath=(//input[@type='text'])[90]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[10]/td[2]/input[3]", "xpath:idRelative"],
+        ["xpath=//tr[10]/td[2]/input[3]", "xpath:position"]
+      ],
+      "value": "T"
+    }, {
+      "id": "64f81ea0-ecb7-4091-b82c-23f733daeb2e",
+      "comment": "",
+      "command": "select",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[10]/td[3]/select",
+      "targets": [
+        ["css=.table-row:nth-child(10) > .ng-star-inserted:nth-child(4) > .ng-dirty", "css:finder"],
+        ["xpath=(//input[@type='number'])[33]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[10]/td[4]/input", "xpath:idRelative"],
+        ["xpath=//tr[10]/td[4]/input", "xpath:position"]
+      ],
+      "value": "label=RR"
+    }, {
+      "id": "46737b1d-5474-418b-88be-0b157e041c63",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[10]/td[4]/input",
+      "targets": [
+        ["css=.table-row:nth-child(10) > .ng-star-inserted:nth-child(4) > .ng-untouched", "css:finder"],
+        ["xpath=(//input[@type='number'])[33]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[10]/td[4]/input", "xpath:idRelative"],
+        ["xpath=//tr[10]/td[4]/input", "xpath:position"]
+      ],
+      "value": "11"
+    }, {
+      "id": "5aed5e55-c6aa-4b15-9535-6740b0f608f7",
+      "comment": "",
+      "command": "select",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[10]/td[6]/select",
+      "targets": [
+        ["css=.table-row:nth-child(10) > .ng-star-inserted:nth-child(6) > .ng-valid", "css:finder"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[10]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[10]/td[6]/select", "xpath:position"]
+      ],
+      "value": "label=Membership"
+    }, {
+      "id": "8dcd9812-6643-43bd-9abb-2bfe8b2d2388",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[10]/td[7]/input",
+      "targets": [
+        ["css=.cdk-mouse-focused", "css:finder"],
+        ["xpath=(//input[@type='number'])[34]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[10]/td[7]/input", "xpath:idRelative"],
+        ["xpath=//tr[10]/td[7]/input", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "aa3f55cf-9031-48fc-9c04-f2df38a43586",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[10]/td[8]/input",
+      "targets": [
+        ["css=.table-row:nth-child(10) > .ng-star-inserted:nth-child(8) > .ng-untouched", "css:finder"],
+        ["xpath=(//input[@type='text'])[92]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[10]/td[8]/input", "xpath:idRelative"],
+        ["xpath=//tr[10]/td[8]/input", "xpath:position"]
+      ],
+      "value": "Islam"
+    }, {
+      "id": "9866a8a5-1cd3-40a3-b1b0-805e2cba811e",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[11]/td[2]/input",
+      "targets": [
+        ["css=.ng-untouched .ng-dirty", "css:finder"],
+        ["xpath=(//input[@type='text'])[93]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[11]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[11]/td[2]/input", "xpath:position"]
+      ],
+      "value": "Scout 6"
+    }, {
+      "id": "d4a0b188-ae6d-4dc9-9cd7-621ad99e934b",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[11]/td[2]/input[2]",
+      "targets": [
+        ["css=.ng-dirty > .ng-star-inserted > .ng-untouched:nth-child(3)", "css:finder"],
+        ["xpath=(//input[@type='text'])[94]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[11]/td[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//tr[11]/td[2]/input[2]", "xpath:position"]
+      ],
+      "value": "Test"
+    }, {
+      "id": "bbc829b8-9adc-4748-80cd-e8eaf4ef4160",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[11]/td[2]/input[3]",
+      "targets": [
+        ["css=.table-row:nth-child(11) .mi", "css:finder"],
+        ["xpath=(//input[@type='text'])[95]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[11]/td[2]/input[3]", "xpath:idRelative"],
+        ["xpath=//tr[11]/td[2]/input[3]", "xpath:position"]
+      ],
+      "value": "T"
+    }, {
+      "id": "2cc3c069-3b13-46ce-81b2-d2bb4e8e923a",
+      "comment": "",
+      "command": "select",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[11]/td[3]/select",
+      "targets": [
+        ["css=.cdk-mouse-focused", "css:finder"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[11]/td[3]/select", "xpath:idRelative"],
+        ["xpath=//tr[11]/td[3]/select", "xpath:position"]
+      ],
+      "value": "label=RR"
+    }, {
+      "id": "d0b94d16-5d78-4df9-b65a-a9c6d5e67f44",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[11]/td[4]/input",
+      "targets": [
+        ["css=.table-row:nth-child(11) > .ng-star-inserted:nth-child(4) > .ng-untouched", "css:finder"],
+        ["xpath=(//input[@type='number'])[35]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[11]/td[4]/input", "xpath:idRelative"],
+        ["xpath=//tr[11]/td[4]/input", "xpath:position"]
+      ],
+      "value": "11"
+    }, {
+      "id": "6bc688bf-b4fa-4bd7-b440-8ecce8dea9a9",
+      "comment": "",
+      "command": "select",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[11]/td[6]/select",
+      "targets": [
+        ["css=.table-row:nth-child(11) > .ng-star-inserted:nth-child(6) > .ng-valid", "css:finder"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[11]/td[6]/select", "xpath:idRelative"],
+        ["xpath=//tr[11]/td[6]/select", "xpath:position"]
+      ],
+      "value": "label=Membership"
+    }, {
+      "id": "0c84f1fe-b582-41a2-bd6a-b6c00f34794d",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[12]/td[2]/input",
+      "targets": [
+        ["css=.ng-untouched .ng-dirty", "css:finder"],
+        ["xpath=(//input[@type='text'])[98]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[12]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[12]/td[2]/input", "xpath:position"]
+      ],
+      "value": "Scout 7"
+    }, {
+      "id": "68e001ee-cef2-4a3b-9fb7-bd8528cf6215",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[12]/td[2]/input[2]",
+      "targets": [
+        ["css=.ng-dirty > .ng-star-inserted > .ng-untouched:nth-child(3)", "css:finder"],
+        ["xpath=(//input[@type='text'])[99]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[12]/td[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//tr[12]/td[2]/input[2]", "xpath:position"]
+      ],
+      "value": "Test"
+    }, {
+      "id": "53dc055a-4d40-49f5-a3b4-3198a5f79ec5",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[12]/td[2]/input[3]",
+      "targets": [
+        ["css=.table-row:nth-child(12) .mi", "css:finder"],
+        ["xpath=(//input[@type='text'])[100]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[12]/td[2]/input[3]", "xpath:idRelative"],
+        ["xpath=//tr[12]/td[2]/input[3]", "xpath:position"]
+      ],
+      "value": "T"
+    }, {
+      "id": "7e2156a9-7d9b-4372-afc1-551a745f615b",
+      "comment": "",
+      "command": "select",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[12]/td[3]/select",
+      "targets": [
+        ["css=.cdk-mouse-focused", "css:finder"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[12]/td[3]/select", "xpath:idRelative"],
+        ["xpath=//tr[12]/td[3]/select", "xpath:position"]
+      ],
+      "value": "label=RR"
+    }, {
+      "id": "2a542411-d234-443f-98d6-ae0315b79704",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[12]/td[4]/input",
+      "targets": [],
+      "value": "11"
+    }, {
+      "id": "3c451c98-12ce-4da8-a6a0-027d4a629809",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[13]/td[2]/input",
+      "targets": [
+        ["css=.ng-untouched .ng-dirty", "css:finder"],
+        ["xpath=(//input[@type='text'])[103]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[13]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[13]/td[2]/input", "xpath:position"]
+      ],
+      "value": "Scout 8"
+    }, {
+      "id": "4798853f-9839-45c5-8e0f-b4cfd3ae01ad",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[13]/td[2]/input[2]",
+      "targets": [
+        ["css=.ng-dirty > .ng-star-inserted > .ng-untouched:nth-child(3)", "css:finder"],
+        ["xpath=(//input[@type='text'])[104]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[13]/td[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//tr[13]/td[2]/input[2]", "xpath:position"]
+      ],
+      "value": "Test"
+    }, {
+      "id": "bdb0a3f8-1c63-48a5-ac21-634abd98015b",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[13]/td[2]/input[3]",
+      "targets": [
+        ["css=.table-row:nth-child(13) .mi", "css:finder"],
+        ["xpath=(//input[@type='text'])[105]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[13]/td[2]/input[3]", "xpath:idRelative"],
+        ["xpath=//tr[13]/td[2]/input[3]", "xpath:position"]
+      ],
+      "value": "T"
+    }, {
+      "id": "3e4b93b3-c4e0-4a46-af14-8ca0801fdac4",
+      "comment": "",
+      "command": "select",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[13]/td[3]/select",
+      "targets": [
+        ["css=.table-row:nth-child(12) > .ng-star-inserted:nth-child(4) > .ng-dirty", "css:finder"],
+        ["xpath=(//input[@type='number'])[37]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[12]/td[4]/input", "xpath:idRelative"],
+        ["xpath=//tr[12]/td[4]/input", "xpath:position"]
+      ],
+      "value": "label=RR"
+    }, {
+      "id": "0c23bc7c-d01e-4618-a866-1f4d47c3b8b7",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[13]/td[4]/input",
+      "targets": [
+        ["css=.table-row:nth-child(13) > .ng-star-inserted:nth-child(4) > .ng-untouched", "css:finder"],
+        ["xpath=(//input[@type='number'])[39]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[13]/td[4]/input", "xpath:idRelative"],
+        ["xpath=//tr[13]/td[4]/input", "xpath:position"]
+      ],
+      "value": "11"
+    }, {
+      "id": "1eb6e197-708f-42ed-b376-9a5184868549",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[14]/td[2]/input",
+      "targets": [
+        ["css=.ng-untouched .ng-dirty", "css:finder"],
+        ["xpath=(//input[@type='text'])[108]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[14]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[14]/td[2]/input", "xpath:position"]
+      ],
+      "value": "Scout 9"
+    }, {
+      "id": "582668af-ec86-4a48-99a0-29d919006e04",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[14]/td[2]/input[2]",
+      "targets": [
+        ["css=.ng-dirty > .ng-star-inserted > .ng-untouched:nth-child(3)", "css:finder"],
+        ["xpath=(//input[@type='text'])[109]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[14]/td[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//tr[14]/td[2]/input[2]", "xpath:position"]
+      ],
+      "value": "Test"
+    }, {
+      "id": "be63cb81-559e-4b68-8a11-011382d05f73",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[14]/td[2]/input[3]",
+      "targets": [
+        ["css=.table-row:nth-child(14) .mi", "css:finder"],
+        ["xpath=(//input[@type='text'])[110]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[14]/td[2]/input[3]", "xpath:idRelative"],
+        ["xpath=//tr[14]/td[2]/input[3]", "xpath:position"]
+      ],
+      "value": "T"
+    }, {
+      "id": "3ef550f1-c4c1-42bc-8c9c-45f482231a47",
+      "comment": "",
+      "command": "select",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[14]/td[3]/select",
+      "targets": [
+        ["css=.table-row:nth-child(14) > .ng-star-inserted:nth-child(4) > .ng-dirty", "css:finder"],
+        ["xpath=(//input[@type='number'])[41]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[14]/td[4]/input", "xpath:idRelative"],
+        ["xpath=//tr[14]/td[4]/input", "xpath:position"]
+      ],
+      "value": "label=RR"
+    }, {
+      "id": "354b929c-d8a2-4c78-b0d8-ce73c7b0b7f8",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[14]/td[4]/input",
+      "targets": [
+        ["css=.table-row:nth-child(14) > .ng-star-inserted:nth-child(4) > .ng-untouched", "css:finder"],
+        ["xpath=(//input[@type='number'])[41]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[14]/td[4]/input", "xpath:idRelative"],
+        ["xpath=//tr[14]/td[4]/input", "xpath:position"]
+      ],
+      "value": "11"
+    }, {
+      "id": "56d4462c-1419-4e5c-8a84-34b1a3010bca",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[15]/td[2]/input",
+      "targets": [
+        ["css=.ng-untouched .ng-dirty", "css:finder"],
+        ["xpath=(//input[@type='text'])[113]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[15]/td[2]/input", "xpath:idRelative"],
+        ["xpath=//tr[15]/td[2]/input", "xpath:position"]
+      ],
+      "value": "Scout 10"
+    }, {
+      "id": "94e0e484-c4fc-4888-a5c5-782f71d9c04c",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[15]/td[2]/input[2]",
+      "targets": [
+        ["css=.ng-dirty > .ng-star-inserted > .ng-untouched:nth-child(3)", "css:finder"],
+        ["xpath=(//input[@type='text'])[114]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[15]/td[2]/input[2]", "xpath:idRelative"],
+        ["xpath=//tr[15]/td[2]/input[2]", "xpath:position"]
+      ],
+      "value": "Test"
+    }, {
+      "id": "e96562f0-223f-46a0-a918-227fa2dd3755",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[15]/td[2]/input[3]",
+      "targets": [
+        ["css=.table-row:nth-child(15) .mi", "css:finder"],
+        ["xpath=(//input[@type='text'])[115]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[15]/td[2]/input[3]", "xpath:idRelative"],
+        ["xpath=//tr[15]/td[2]/input[3]", "xpath:position"]
+      ],
+      "value": "T"
+    }, {
+      "id": "06ba1c9a-92b5-486a-a98d-ff56f88c977f",
+      "comment": "",
+      "command": "select",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[15]/td[3]/select",
+      "targets": [
+        ["css=.table-row:nth-child(15) > .ng-star-inserted:nth-child(4)", "css:finder"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[15]/td[4]", "xpath:idRelative"],
+        ["xpath=//tr[15]/td[4]", "xpath:position"]
+      ],
+      "value": "label=RR"
+    }, {
+      "id": "9d8ffff1-53fa-4e45-b322-1dad8311f934",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "xpath=//table[@id='unitMembers-table']/tbody/tr[15]/td[4]/input",
+      "targets": [
+        ["css=.table-row:nth-child(15) > .ng-star-inserted:nth-child(4) > .ng-untouched", "css:finder"],
+        ["xpath=(//input[@type='number'])[43]", "xpath:attributes"],
+        ["xpath=//table[@id='unitMembers-table']/tbody/tr[15]/td[4]/input", "xpath:idRelative"],
+        ["xpath=//tr[15]/td[4]/input", "xpath:position"]
+      ],
+      "value": "11"
+    }, {
+      "id": "e70e9215-4a2a-4610-b01e-7f9a53938125",
+      "comment": "",
+      "command": "mouseDownAt",
+      "target": "xpath=//td[4]/select",
+      "targets": [
+        ["css=.cdk-mouse-focused", "css:finder"],
+        ["xpath=//td[4]/select", "xpath:position"]
+      ],
+      "value": "1269,98"
+    }, {
+      "id": "00945e29-89d8-44a1-b1cc-778ddf2fa585",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'Calculate Fees')]",
+      "targets": [
+        ["css=.mat-accent > .mat-button-wrapper", "css:finder"],
+        ["xpath=//button[3]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Calculate Fees')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "56331cc7-a291-4564-a3ce-108b8635ef48",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'Submit')]",
+      "targets": [
+        ["css=.mat-primary > .mat-button-wrapper", "css:finder"],
+        ["xpath=//button[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Submit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a9501d5d-d324-43a0-8c0b-1df1223afacc",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//button[contains(.,'Confirm')]",
+      "targets": [
+        ["css=.cdk-focused", "css:finder"],
+        ["xpath=//mat-dialog-container[@id='mat-dialog-5']/app-confirm-dialog/div[2]/button", "xpath:idRelative"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Confirm')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "95d962b0-bdc1-4edd-a9b3-0a027e13f03a",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'Close')]",
+      "targets": [
+        ["css=.mat-warn > .mat-button-wrapper", "css:finder"],
+        ["xpath=//mat-dialog-container[@id='mat-dialog-6']/error-dialog/div/button/span", "xpath:idRelative"],
+        ["xpath=//error-dialog/div/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Close')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "b77e8b20-be25-4460-a783-1487dfd382a6",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["5eea0c11-c299-41c9-a85e-26bda84f8ce0"]
+  }],
+  "urls": ["http://localhost:4200/"],
+  "plugins": []
+}

@@ -48,9 +48,9 @@
             <tr class="table-row" *ngFor="let label of iSComPositions; let i = index" [formGroupName]="i">
                 <td>{{label.title}}</td>
                 <td><ng-container *ngIf="aurFormObj.iscomMembersList[i].surname; else blankName">
-                        {{aurFormObj.iscomMembersList[i].surname}},&nbsp;
-                        {{aurFormObj.iscomMembersList[i].givenName}},&nbsp;
-                        {{aurFormObj.iscomMembersList[i].middleInitial}}
+                        {{aurFormObj.iscomMembersList[i].surname | titlecase}},&nbsp;
+                        {{aurFormObj.iscomMembersList[i].givenName | titlecase}},&nbsp;
+                        {{aurFormObj.iscomMembersList[i].middleInitial | uppercase}}
                     </ng-container>
                     <ng-template #blankName></ng-template>
                 </td>
@@ -63,7 +63,7 @@
                 </td>
                 <td>{{highestTrainingBox.get(aurFormObj.iscomMembersList[i].highestTrainingCode)}}</td>
                 <td>{{aurFormObj.iscomMembersList[i].tenure}}</td>
-                <td>{{aurFormObj.iscomMembersList[i].religion}}</td>
+                <td>{{aurFormObj.iscomMembersList[i].religion | titlecase}}</td>
             </tr>
             </tbody>
         </table>
@@ -111,9 +111,9 @@
                         <ng-template #officerBlock>{{unitMember.title}}</ng-template>
                     </td>
                     <td style="border-left-style:none !important;"><span *ngIf="aurFormObj.unitMembersList[i].surname; else blankName">
-                            {{aurFormObj.unitMembersList[i].surname}},&nbsp;
-                            {{aurFormObj.unitMembersList[i].givenName}},&nbsp;
-                            {{aurFormObj.unitMembersList[i].middleInitial}}
+                            {{aurFormObj.unitMembersList[i].surname | titlecase}},&nbsp;
+                            {{aurFormObj.unitMembersList[i].givenName | titlecase}},&nbsp;
+                            {{aurFormObj.unitMembersList[i].middleInitial | uppercase}}
                         </span>
                         <ng-template #blankName></ng-template>
                     </td>
@@ -126,7 +126,7 @@
                     </td>
                     <td>{{highestBadgeBox.get(aurFormObj.unitMembersList[i].highestBadgeCode)}}</td>
                     <td>{{aurFormObj.unitMembersList[i].tenure}}</td>
-                    <td>{{aurFormObj.unitMembersList[i].religion}}</td>
+                    <td>{{aurFormObj.unitMembersList[i].religion | titlecase}}</td>
                 </ng-template>
             </tr>
             </tbody>
@@ -221,7 +221,7 @@
                         </colgroup>
                         <tr>
                             <td>Processed:</td>
-                            <td class="bottom-underline">{{aurFormObj.councilRegistrationOfficer}}</td>
+                            <td class="bottom-underline">{{aurFormObj.councilRegistrationOfficer | titlecase}}</td>
                             <td></td>
                             <td class="bottom-underline">{{aurFormObj.councilProcessedDate}}</td>
                         </tr>
@@ -234,7 +234,7 @@
                         <tr><td></td><td></td><td></td><td></td></tr>
                         <tr>
                             <td>Approved:</td>
-                            <td class="bottom-underline">{{aurFormObj.councilScoutExecutive}}</td>
+                            <td class="bottom-underline">{{aurFormObj.councilScoutExecutive | titlecase}}</td>
                             <td></td>
                             <td class="bottom-underline">{{aurFormObj.councilApprovedDate}}</td>
                         </tr>
@@ -258,7 +258,7 @@
                         </colgroup>
                         <tr>
                             <td>Processed:</td>
-                            <td class="bottom-underline">{{aurFormObj.regionalRegistrationOfficer}}</td>
+                            <td class="bottom-underline">{{aurFormObj.regionalRegistrationOfficer | titlecase}}</td>
                             <td></td>
                             <td class="bottom-underline">{{aurFormObj.regionalProcessedDate}}</td>
                         </tr>
@@ -271,7 +271,7 @@
                         <tr><td></td><td></td><td></td><td></td></tr>
                         <tr>
                             <td>Confirmed:</td>
-                            <td class="bottom-underline">{{aurFormObj.regionalScoutExecutive}}</td>
+                            <td class="bottom-underline">{{aurFormObj.regionalScoutExecutive | titlecase}}</td>
                             <td></td>
                             <td class="bottom-underline">{{aurFormObj.regionalApprovedDate}}</td>
                         </tr>
