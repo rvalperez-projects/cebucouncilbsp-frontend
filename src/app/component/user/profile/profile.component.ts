@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } fro
 import { InstitutionModel } from 'src/app/model/entities.model';
 import { SearchFormModel } from 'src/app/model/search-form.model';
 import { ProfileInfo } from 'src/app/model/user-registration.model';
+import { AuthService } from 'src/app/service/auth.service';
 import { SearchService } from 'src/app/service/search.service';
 import { ProfileLabels, SessionConstant } from '../../../constant/Constants';
 import { Roles } from '../../../constant/Enums';
@@ -24,6 +25,7 @@ export class ProfileComponent implements OnInit {
 
   // Declare object
   profileValidator: ProfileFormGroup;
+  currentUsername: string;
 
   passwordHide = true;
   confirmPasswordHide = true;
@@ -41,6 +43,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     public profileFormGroup: ProfileFormGroup,
     private councilDialog: CouncilDialog, 
+    private authService: AuthService,
     private searchService: SearchService,
     private service: UserService) { 
       this.searchFormData = new SearchFormModel();
@@ -52,6 +55,7 @@ export class ProfileComponent implements OnInit {
       // Get User details
     let userId = this.inputUserId;
     let userRole = window.sessionStorage[SessionConstant.USER_ROLE_CODE_KEY];
+    
     this.service.getUserDetails(userId).subscribe((profileInfo : ProfileInfo) => {
       this.isGeneralUser = profileInfo.authorityCode == Roles.GENERAL_USER;
       
@@ -88,6 +92,7 @@ export class ProfileComponent implements OnInit {
         
         // Set values
         this.profileFormGroup.patchValues(profileInfo);
+        this.currentUsername = this.profileFormGroup.username.value;
         this.repopulateInstitutions();
       });
     });
@@ -119,12 +124,24 @@ export class ProfileComponent implements OnInit {
       this.closeWindow();
 
       // Reload page if signed in is a General User
-      this.councilDialog.openConfirmDialog(ProfileFormMessages.SUBMISSION_SUCCESSFUL, 
+      this.councilDialog.openConfirmDialog(ProfileFormMessages.PROFILE_UPDATE_SUCCESSFUL, 
         ProfileFormMessages.UPDATE_SUCCESSFUL_MESSAGE).subscribe((ok) => {
-        if (ok && Roles.GENERAL_USER == window.sessionStorage[SessionConstant.USER_ROLE_CODE_KEY]) {
-          location.reload();
+          if (ok) { 
+            // Logout if Username is changed by logged in user
+            let newUsername = this.profileFormGroup.username.value;
+            let loggedInUserId = window.sessionStorage[SessionConstant.USER_ID_KEY];
+            if (loggedInUserId == this.profileFormGroup.userId.value && this.currentUsername != newUsername) {
+              this.councilDialog.openConfirmDialog(ProfileFormMessages.PROFILE_UPDATE_SUCCESSFUL, 
+                ProfileFormMessages.RELOGIN).subscribe((ok) => {
+                  this.authService.logout();
+                });
+            } else if (Roles.GENERAL_USER == window.sessionStorage[SessionConstant.USER_ROLE_CODE_KEY]) {
+              // Else, just reload if current logged in user is General User
+              location.reload();
+            }
+          }
         }
-      });
+      );
     });
   }
 

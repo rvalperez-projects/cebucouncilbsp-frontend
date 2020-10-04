@@ -171,14 +171,14 @@ export class AURFormGroup {
                 if (controlErrors != null) {
                     for (let error in controlErrors) {
                         // All Validators are Required only.
-                        let errorMessage = "Sctr. " + surname + "'s " + property + " is required.";
+                        let errorMessage = "Sct. " + surname + "'s " + property + " is required.";
                         console.info(errorMessage);
                         missingFields.push(property);
                     }
                 }
             }
             if (missingFields.length > 0) {
-                errorMessages.push("Sctr. " + surname + ":\n[" + missingFields.join(", ") + "]");
+                errorMessages.push("Sct. " + surname + ":\n[" + missingFields.join(", ") + "]");
             }
         }
         
