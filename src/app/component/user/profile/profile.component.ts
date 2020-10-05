@@ -101,8 +101,9 @@ export class ProfileComponent implements OnInit {
   update() {
     // Set dummy password if password is NOT set
     if (!this.profileFormGroup.password.value) {
-      this.profileFormGroup.password.setValue('x----x');
-      this.profileFormGroup.confirmPassword.setValue('x----x');
+      this.profileFormGroup.password.setValue('<secret>');
+      this.profileFormGroup.confirmPassword.setValue('<secret>');
+      this.passwordHide = true;
     }
     
     // Set Area and District

@@ -41,6 +41,13 @@ export class LoginComponent implements OnInit  {
     });
   }
 
+  keyPressed(event) {
+    // Enter Key is #13
+    if (event.keyCode === 13) { 
+      this.login();
+    }
+  }
+
   private hasValidationError(): boolean {
     this.errorMessages = [];
     let result = this.loginFormGroup.getErrorMessage();

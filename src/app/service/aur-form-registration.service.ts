@@ -20,7 +20,7 @@ export class FormRegistrationService {
     private councilDialog: CouncilDialog
   ) {}
 
-  public initializeAUR(aurFormObj: AURFormRegistration, aurForm: AURFormGroup) {
+  public initializeAUR(aurFormObj: AURFormRegistration, aurForm: AURFormGroup): Observable<InstitutionModel> {
     // Initialize AUR Form DTO
     aurFormObj.formId = null;
     aurFormObj.unitNumber = aurForm.unitNumber.value;
@@ -33,12 +33,15 @@ export class FormRegistrationService {
     aurFormObj.officialReceiptDate = null;
 
     aurFormObj.institutionId = Number.parseInt(aurForm.institutionId.value);
-    this.getInstitutionById(aurForm.institutionId.value).subscribe((institution: InstitutionModel) => {
-      aurFormObj.institutionName = institution.institutionName;
-      aurFormObj.district = institution.district;
-      aurFormObj.institutionCategory = institution.categoryCode;
-    })
     aurFormObj.council = "Cebu Council";
+    return this.getInstitutionById(aurForm.institutionId.value).pipe(
+      map((institution: InstitutionModel) => {
+        aurFormObj.institutionName = institution.institutionName;
+        aurFormObj.district = institution.district;
+        aurFormObj.institutionCategory = institution.categoryCode;
+        return institution;
+      })
+    );
   }
 
   public populateAurFormObj(aurFormObj: AURFormRegistration, aurForm: AURFormGroup) {
@@ -50,13 +53,7 @@ export class FormRegistrationService {
       // Add only when there is value in Surname
       if (member.surname) {
         let iSComMember = new ISComMemberDetails();
-        if (member.positionCode > 5) {
-          // Asst. Unit Leader
-          iSComMember.positionCode = `05`;
-        } else {
-          // OFFICERS
-          iSComMember.positionCode = `0${member.positionCode}`;
-        }
+        iSComMember.positionCode = member.positionCode;
         iSComMember.surname = member.surname;
         iSComMember.givenName = member.givenName;
         iSComMember.middleInitial = member.middleInitial;
@@ -75,13 +72,7 @@ export class FormRegistrationService {
       // Add only when there is value in Surname
       if (member.surname) {
         let unitMember = new UnitMemberDetails();
-        if (member.positionCode > 8) {
-          // MEMBERS
-          unitMember.positionCode = `09`;
-        } else {
-          // OFFICERS
-          unitMember.positionCode = `0${member.positionCode}`;
-        }
+        unitMember.positionCode = member.positionCode;
         unitMember.surname = member.surname;
         unitMember.givenName = member.givenName;
         unitMember.middleInitial = member.middleInitial;

@@ -5,7 +5,7 @@
       <mat-card-title>Log in</mat-card-title>
     </mat-card-header>
 
-    <form class="input-form" [formGroup]="loginFormGroup.form">
+    <form class="input-form" [formGroup]="loginFormGroup.form" (keydown)="keyPressed($event)">
 
       <mat-card-content>
         <mat-form-field class="full-width">

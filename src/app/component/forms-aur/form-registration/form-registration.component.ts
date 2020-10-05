@@ -8,7 +8,7 @@ import { AURFormMessages } from '../../../constant/Messages';
 import { RosterHeaderLabels } from '../../../constant/RosterHeaderLabels';
 import { AURFormGroup } from '../../../formGroups/AURFormGroup';
 import { AURFormRegistration, RegistrationFees } from '../../../model/aur-form-registration.model';
-import { UnitNumberModel } from '../../../model/entities.model';
+import { InstitutionModel, UnitNumberModel } from '../../../model/entities.model';
 import { FormRegistrationService } from '../../../service/aur-form-registration.service';
 import { CouncilDialog } from '../../common-components/dialog/create-dialog-util';
 
@@ -72,7 +72,9 @@ export class FormRegistrationComponent implements OnInit {
     this.aubFormGroup.createForm();
     let institutionId = window.sessionStorage[SessionConstant.USER_INSTITUTION_ID_KEY];
     this.aubFormGroup.institutionId.setValue(institutionId);
-    this.service.initializeAUR(this.aurFormObj, this.aubFormGroup);
+    this.service.initializeAUR(this.aurFormObj, this.aubFormGroup).subscribe((institution: InstitutionModel) => {
+      this.setAllowedSectionByInstitutionCategory();
+    });
 
     // Initialize Unit Numbers Combo Box
     this.service.getInstitutionUnitNumbers(institutionId).subscribe((unitNumbers: UnitNumberModel[]) => {
@@ -86,13 +88,19 @@ export class FormRegistrationComponent implements OnInit {
       } else {
         this.disableNotCircleInputs();
       }
-      this.setAllowedSectionByInstitutionCategory();
     });
 
     // Show General Instructiosn
     let messages = [AURFormMessages.GENERAL_INSTRUCTIONS_1, 
       AURFormMessages.GENERAL_INSTRUCTIONS_2, AURFormMessages.GENERAL_INSTRUCTIONS_3];
     this.councilDialog.openDialog(AURFormMessages.GENERAL_INSTRUCTIONS_TITLE, messages);
+  }
+
+  keyPressed(event) {
+    // Enter Key is #13
+    if (event.keyCode === 13) { 
+      this.calculateFees();
+    }
   }
 
   calculateFees() {
