@@ -73,6 +73,14 @@ export class AurFormUpdateComponent implements OnInit {
       this.aubFormGroup.unitRegistrationNo.setValidators(Validators.required);
     }
   }
+
+  keyPressed(event) {
+    // Enter Key is #13
+    if (event.keyCode === 13) { 
+      this.processAURForm();
+    }
+  }
+  
   /**
    * Submit the AUR Form for update of required fields.
    */

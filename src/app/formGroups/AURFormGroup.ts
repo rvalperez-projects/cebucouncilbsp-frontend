@@ -96,7 +96,7 @@ export class AURFormGroup {
                 this.formBuild.group({
                     iSComId: [null],
                     formId: [null],
-                    positionCode: [i, [Validators.required]],
+                    positionCode: [RosterHeaderLabels.iSComPositions[i].code, [Validators.required]],
                     surname: [null, [Validators.required, whitespaceOnlyNotAllowed]],
                     givenName: [null, [Validators.required, whitespaceOnlyNotAllowed]],
                     middleInitial: [null, [whitespaceOnlyNotAllowed]],
@@ -119,7 +119,7 @@ export class AURFormGroup {
                 this.formBuild.group({
                     memberId: [null],
                     formId: [null],
-                    positionCode: [i, [Validators.required]],
+                    positionCode: [RosterHeaderLabels.memberPositions[i].code, [Validators.required]],
                     surname: [null, [Validators.required, whitespaceOnlyNotAllowed]],
                     givenName: [null, [Validators.required, whitespaceOnlyNotAllowed]],
                     middleInitial: [null, [whitespaceOnlyNotAllowed]],

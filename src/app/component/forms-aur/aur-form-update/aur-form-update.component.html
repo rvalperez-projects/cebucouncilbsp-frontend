@@ -9,7 +9,7 @@
             <div class="font-emphasize">APPLICATION FOR UNIT REGISTRATION (AUR)</div>
         </div>
 
-        <form [formGroup]="aubFormGroup.form">
+        <form [formGroup]="aubFormGroup.form" (keydown)="keyPressed($event)">
         <table id="iscom-table" cellspacing="0">
             <colgroup>
                 <col style="width: 18%;"><!--Position-->
@@ -49,8 +49,9 @@
                 <td>{{label.title}}</td>
                 <td><ng-container *ngIf="aurFormObj.iscomMembersList[i].surname; else blankName">
                         {{aurFormObj.iscomMembersList[i].surname | titlecase}},&nbsp;
-                        {{aurFormObj.iscomMembersList[i].givenName | titlecase}},&nbsp;
-                        {{aurFormObj.iscomMembersList[i].middleInitial | uppercase}}
+                        {{aurFormObj.iscomMembersList[i].givenName | titlecase}}
+                        <span *ngIf="aurFormObj.iscomMembersList[i].middleInitial">,&nbsp;
+                            {{aurFormObj.iscomMembersList[i].middleInitial | uppercase}}</span>
                     </ng-container>
                     <ng-template #blankName></ng-template>
                 </td>
@@ -112,8 +113,9 @@
                     </td>
                     <td style="border-left-style:none !important;"><span *ngIf="aurFormObj.unitMembersList[i].surname; else blankName">
                             {{aurFormObj.unitMembersList[i].surname | titlecase}},&nbsp;
-                            {{aurFormObj.unitMembersList[i].givenName | titlecase}},&nbsp;
-                            {{aurFormObj.unitMembersList[i].middleInitial | uppercase}}
+                            {{aurFormObj.unitMembersList[i].givenName | titlecase}}
+                            <span *ngIf="aurFormObj.unitMembersList[i].middleInitial">,&nbsp;
+                                {{aurFormObj.unitMembersList[i].middleInitial | uppercase}}</span>
                         </span>
                         <ng-template #blankName></ng-template>
                     </td>

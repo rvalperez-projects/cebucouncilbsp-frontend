@@ -6,7 +6,7 @@
             <div class="font-emphasize">APPLICATION FOR UNIT REGISTRATION (AUR)</div>
         </div>
 
-        <form [formGroup]="aubFormGroup.form">
+        <form [formGroup]="aubFormGroup.form" (keydown)="keyPressed($event)">
         <table id="iscom-table" cellspacing="0">
             <colgroup>
                 <col style="width: 18%;"><!--Position-->
