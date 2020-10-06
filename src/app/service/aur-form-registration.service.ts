@@ -148,12 +148,17 @@ export class FormRegistrationService {
         );
   }
 
-  public getInstitutionUnitNumbers(institutionId: string) {
+  public getInstitutionUnitNumbers(institutionId: string): Observable<string[]> {
     return this.http.get<BaseResponse>(ResourceURL.HOST + 
       ResourceURL.INSTITUTION_UNIT_NUMBERS.replace("{institutionId}", institutionId))
         .pipe(
           map(data => {
-            return data.result;
+            let unitNumberValues: string[] = [];
+            for (let unitNum of data.result) {
+              unitNumberValues.push(unitNum.unitNumber);
+            }
+            unitNumberValues.push("New");
+            return unitNumberValues;
           }),
           catchError(error => {
             if (error.status != '500' && error.error) {

@@ -3,15 +3,8 @@ export abstract class AURFormMessages {
     static INVALID_PROCESS = "Invalid Process";
     static SUBMISSION_ERROR = "Incomplete Data";
     static INCOMPLETE_DATA = "There are missing or incomplete required data. Please review.";
-    static REGISTRATION_FEE_NOT_CALCULATED = "Please calculate total Registration Fees first. ";
-
-    static UNIT_NUMBER_NEW_TITLE = "New Unit Number";
-    static UNIT_NUMBER_NEW_MESSAGE = "A new Unit Number will be assigned to this unit.";
-
-    static UNIT_NUMBER_NOT_SET = "Unit Number not set.";
-    static SECTION_CODE_NOT_SET = "Please select any of the following: \n\tLangkay / Kawan / Troop / Outfit / Circle.";
-    static SECTION_CODE_NOT_NEW = "Section category can only be set when Unit No. [New] is selected.";
-    static INVALID_SECTION_CODE = "Selected Section category is not allowed for the user's registered institution.";
+    static REGISTRATION_FEE_NOT_CALCULATED = "Please input at least one registrant first to calculate total registration fees.";
+    static SECTION_CODE_UNIT_NUMBER_NOT_SET = "Please select both values for Scouting Section and Unit Number.";
 
     static SUBMISSION_CONFIRMATION_TITLE = "AUR Form Submission";
     static SUBMISSION_CONFIRMATION_MESSAGE = "Inputted AUR Form will be submitted. Please confirm.";
@@ -28,9 +21,6 @@ export abstract class AURFormMessages {
     
     static RETRIEVAL_FAILED = "AUR Form Details Retrieval Failed";
     static GENERAL_INSTRUCTIONS_TITLE = "General Instructions";
-    static GENERAL_INSTRUCTIONS_1 = "Please set [Unit Number] and [Scouting Section] values first (found below) to disable unnecessary input fields.";
-    static GENERAL_INSTRUCTIONS_2 = "If you wish to register a specific Unit Number to your institution, please send a request to BSP Cebu Council via FB Page.";
-    static GENERAL_INSTRUCTIONS_3 = "When filling out the form is complete, please click on [Calculate Fees] button to calculate total amount to be paid.";
 
     static OFFICIAL_RECEIPT_NO_BLANK = "Official Receipt No. not updated.";
     static OFFICIAL_RECEIPT_DATE_BLANK = "Official Receipt Date not updated.";

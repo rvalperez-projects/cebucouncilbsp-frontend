@@ -1,0 +1,7 @@
+h1 {margin-bottom:0px;}
+div.inputs {margin-top:15px;}
+ul {padding-left: 20px;}
+select {width:50%;height:35px;padding:5px;border: 1px solid;margin-top:5px;}
+select option {height:25px;padding-left:5px;padding-top:3px;}
+.toolTip {padding-left:15px;}
+.error {color:red;}

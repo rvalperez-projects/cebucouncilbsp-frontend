@@ -17,6 +17,16 @@ export class MasterUnitNumberService {
   constructor(private http: HttpClient,
     private councilDialog: CouncilDialog) { }
 
+  public getUnitNumbersByInstitutionId(institutionId): Observable<UnitNumberModel[]> {
+    return this.http.get<BaseResponse>(ResourceURL.HOST + 
+      ResourceURL.UNIT_NUMBER_INSTITUTION.replace("{institutionId}", institutionId))
+      .pipe(
+        map(data => {
+          return data.result;
+        })
+      );
+  }
+
   public searchUnitNumbers(institutionId): Observable<UnitNumberSearchResult> {
     return this.http.get<BaseResponse>(ResourceURL.HOST + 
       ResourceURL.UNIT_NUMBER_SEARCH.replace("{institutionId}", institutionId))
