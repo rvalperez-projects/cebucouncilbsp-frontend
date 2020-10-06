@@ -35,7 +35,7 @@
 
 .aurForm-wrapper select {width:100%;}
 .aurForm-wrapper span.sectionCodes {text-decoration:none;color:black;}
-.aurForm-wrapper span.sectionCodes:hover, .aurForm-wrapper span.sectionCodes:active {font-weight:bold;text-decoration:underline;cursor: pointer;}
+.aurForm-wrapper span.sectionCodes:hover, .aurForm-wrapper span.sectionCodes:active {cursor: pointer;}
 
 
 @media print {

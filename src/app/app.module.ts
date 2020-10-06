@@ -18,6 +18,7 @@ import { PaymentComponent } from './component/common-components/payment/payment.
 import { AurFormUpdateComponent } from './component/forms-aur/aur-form-update/aur-form-update.component';
 import { AurFormViewComponent } from './component/forms-aur/aur-form-view/aur-form-view.component';
 import { FormRegistrationComponent } from './component/forms-aur/form-registration/form-registration.component';
+import { InputUnitNumberComponent } from './component/forms-aur/form-registration/input-unit-number/input-unit-number.component';
 import { FormsListComponent } from './component/forms-aur/forms-list/forms-list.component';
 import { NewUnitNumberComponent } from './component/master/unit-number/new-unit-number/new-unit-number.component';
 import { UnitNumberComponent } from './component/master/unit-number/unit-number.component';
@@ -45,7 +46,8 @@ import { MatSpinnerOverlayComponent } from './utils/mat-spinner-overlay/mat-spin
     FooterComponent,
     ConfirmDialog,
     UnitNumberComponent,
-    NewUnitNumberComponent
+    NewUnitNumberComponent,
+    InputUnitNumberComponent
   ],
   imports: [
     BrowserModule,

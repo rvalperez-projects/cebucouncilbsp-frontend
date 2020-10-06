@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>General Instructions</h1>
+
+<div mat-dialog-content class="mat-typography">
+    <ul><li>Please set the <b>Scouting Section</b> and <b>Unit Number</b> values first to enable correct input choices in the AUR.</li>
+        <li>If the Unit Number you wish to register is not found in the list, just select <b>New</b> 
+            or send a request to BSP Cebu Council via <a href="https://www.facebook.com/cebucouncilbsp" target="_blank">Facebook</a>.</li>
+    </ul>
+    <div class="inputs"><mat-label>Scouting Section</mat-label><br/>
+        <select [(ngModel)]="sectionCodeInput" class="shadow" (change)="filterUnitNumbers()" focus>
+            <option [value]="sectionCode.code" *ngFor="let sectionCode of sectionCodesBox">{{sectionCode.text}}</option>
+        </select>
+        <span class="toolTip">{{sectionCodeTip}}</span>
+    </div>
+    <div class="inputs"><mat-label>Unit Number</mat-label><br/>
+        <select [(ngModel)]="unitNumberInput" class="shadow">
+            <option [value]="unitNumber" *ngFor="let unitNumber of unitNumbersBox">{{unitNumber}}</option>
+        </select>
+    </div>
+    <span class="error" *ngIf="errorMessage">{{errorMessage}}</span>
+</div>
+
+<div mat-dialog-actions >
+    <button mat-raised-button color="primary" (click)="confirm()">Confirm</button>
+    <button mat-raised-button color="warn" (click)="close()">Cancel</button>
+</div>

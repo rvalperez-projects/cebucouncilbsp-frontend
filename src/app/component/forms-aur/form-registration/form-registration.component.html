@@ -290,17 +290,14 @@
                     <td style="width: 15%;" class="bottom-underline">{{aurFormObj.council}}</td>
                     <td style="width: 6%;">  Unit No.</td>
                     <td style="width: 15%;" class="bottom-underline">
-                        <select formControlName="unitNumber" class="" (change)="onUnitNumberChange($event.target.value)"
-                            matTooltip="KID-: Langkay; K-: Kawan; T-: Troop; S-: Outfit; RS-: Circle;">
-                            <option *ngFor="let unitNumberOption of unitNumbersBox" [value]="unitNumberOption">{{unitNumberOption}}</option>
-                        </select>
+                        {{aurFormObj.unitNumber}}
                     </td>
                     <td style="width: 21%;" class="font-condensed">  (
-                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Langkay" matTooltip="Langkay: Kindergarten">Langkay</span> /
-                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Kawan" matTooltip="Kawan: Grades 1-3">Kawan</span> /
-                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Troop" matTooltip="Troop: Grades 4-6">Troop</span> /
-                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Outfit" matTooltip="Outfit: JHS">Outfit</span> /
-                        <span class="sectionCodes" (click)="setSectionCode($event.target.id)" id="Circle" matTooltip="Rover: SHS-College">Circle</span>
+                        <span class="sectionCodes" id="Langkay" matTooltip="Langkay: Kindergarten">Langkay</span> /
+                        <span class="sectionCodes" id="Kawan" matTooltip="Kawan: Grades 1-3">Kawan</span> /
+                        <span class="sectionCodes" id="Troop" matTooltip="Troop: Grades 4-6">Troop</span> /
+                        <span class="sectionCodes" id="Outfit" matTooltip="Outfit: JHS">Outfit</span> /
+                        <span class="sectionCodes" id="Circle" matTooltip="Rover: SHS-College">Circle</span>
                     )</td>
                     <td style="width: 10%;">Date Applied: </td>
                     <td style="width: 12%;" class="bottom-underline">{{aurFormObj.dateApplied | date:'yyyy/MM/dd'}}</td>
