@@ -2,9 +2,9 @@
     
     <div class="box" *ngIf="!loading">
         <div class="text-center">
-            <div class="form-headers font-bold">BOY SCOUTS OF THE PHILIPPINES</div>
-            <div class="form-header">181 Natividad Almeda-Lopez Street, Ermita, 1000 Manila</div>
-            <div class="form-header font-emphasize">APPLICATION FOR UNIT REGISTRATION (AUR)</div>
+            <div class="hideOnPrint form-header font-bold">BOY SCOUTS OF THE PHILIPPINES</div>
+            <div class="hideOnPrint form-header">181 Natividad Almeda-Lopez Street, Ermita, 1000 Manila</div>
+            <div class="hideOnPrint form-header font-emphasize">APPLICATION FOR UNIT REGISTRATION (AUR)</div>
         </div>
 
         <table id="iscom-table" cellspacing="0">
@@ -20,30 +20,30 @@
             </colgroup>
 
             <!--ISCOM Header Row 1-->
-            <tr class="table-header">
-                <td rowspan="2">Position</td>
-                <td style="border-bottom-style:none;"><b>ADULT LEADERS</b></td>
-                <td rowspan="2">Signature</td>
-                <td rowspan="2">Age</td>
-                <td style="border-bottom-style:none;">Membership</td>
-                <td style="border-bottom-style:none;">Highest Sct.</td>
-                <td style="border-bottom-style:none;">Tenure in</td>
-                <td rowspan="2">Religion</td>
+            <tr class="table-header removeOnPrint">
+                <td class="hideOnPrint" rowspan="2">Position</td>
+                <td class="hideOnPrint" style="border-bottom-style:none;"><b>ADULT LEADERS</b></td>
+                <td class="hideOnPrint" rowspan="2">Signature</td>
+                <td class="hideOnPrint" rowspan="2">Age</td>
+                <td class="hideOnPrint" style="border-bottom-style:none;">Membership</td>
+                <td class="hideOnPrint" style="border-bottom-style:none;">Highest Sct.</td>
+                <td class="hideOnPrint" style="border-bottom-style:none;">Tenure in</td>
+                <td class="hideOnPrint" rowspan="2">Religion</td>
             </tr>
             <!--ISCOM Header Row 2-->
-            <tr class="table-header">
-                <td>PRINT: Surname, Given Name, M.I.</td>
-                <td>Cert. No.</td>
-                <td>Training</td>
-                <td>Scouting</td>
+            <tr class="table-header removeOnPrint">
+                <td class="hideOnPrint">PRINT: Surname, Given Name, M.I.</td>
+                <td class="hideOnPrint">Cert. No.</td>
+                <td class="hideOnPrint">Training</td>
+                <td class="hideOnPrint">Scouting</td>
             </tr>
             <!--ISCOM Member Roster -->
             <tr id="iscom-tr" class="table-row">
-                <td>ISCOM:</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                <td class="add25PaddingTopOnPrint"><span class="hideOnPrint">ISCOM:</span></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
             </tr>
             <tr class="table-row" *ngFor="let label of iSComPositions; let i = index">
-                <td>{{label.title}}</td>
-                <td><ng-container *ngIf="aurFormObj.iscomMembersList[i].surname; else blankName">
+                <td class="hideOnPrint">{{label.title}}</td>
+                <td class="add30PaddingLeftOnPrint"><ng-container *ngIf="aurFormObj.iscomMembersList[i].surname; else blankName">
                         {{aurFormObj.iscomMembersList[i].surname | titlecase}},&nbsp;<!--
                         -->{{aurFormObj.iscomMembersList[i].givenName | titlecase}}<!--
                         --><span *ngIf="aurFormObj.iscomMembersList[i].middleInitial">,&nbsp;<!--
@@ -61,7 +61,7 @@
         </table>
 
         <!--Unit Members-->
-        <table id="unitMembers-table" cellspacing="0">
+        <table id="unitMembers-table" cellspacing="0" class="add40PaddingTopOnPrint">
             <colgroup style="width: 100%">
                 <col style="width: 20%;"><!--Position-->
                 <col style="width: 31%;"><!--Name-->
@@ -74,22 +74,22 @@
             </colgroup>
             
             <!--Members Header Row 1-->
-            <tr class="table-header">
-                <td colspan="2" class="roster">ROSTER OF SCOUT MEMBERSHIP</td>
-                <td style="border-bottom-style:none;">Registration</td>
-                <td rowspan="2">Age</td>
-                <td style="border-bottom-style:none;">Membership</td>
-                <td style="border-bottom-style:none;">Highest Badge</td>
-                <td style="border-bottom-style:none;">Tenure in</td>
-                <td rowspan="2">Religion</td>
+            <tr class="table-header removeOnPrint">
+                <td class="hideOnPrint roster" colspan="2">ROSTER OF SCOUT MEMBERSHIP</td>
+                <td class="hideOnPrint" style="border-bottom-style:none;">Registration</td>
+                <td class="hideOnPrint" rowspan="2">Age</td>
+                <td class="hideOnPrint" style="border-bottom-style:none;">Membership</td>
+                <td class="hideOnPrint" style="border-bottom-style:none;">Highest Badge</td>
+                <td class="hideOnPrint" style="border-bottom-style:none;">Tenure in</td>
+                <td class="hideOnPrint" rowspan="2">Religion</td>
             </tr>
             <!--Members Header Row 2-->
-            <tr class="table-header">
-                <td colspan="2">PRINT: Surname, Given Name, M.I.</td>
-                <td>Status</td>
-                <td>Cert. No.</td>
-                <td>Earned</td>
-                <td>Scouting</td>
+            <tr class="table-header removeOnPrint">
+                <td class="hideOnPrint" colspan="2">PRINT: Surname, Given Name, M.I.</td>
+                <td class="hideOnPrint">Status</td>
+                <td class="hideOnPrint">Cert. No.</td>
+                <td class="hideOnPrint">Earned</td>
+                <td class="hideOnPrint">Scouting</td>
             </tr>
             <!--Unit Members -->
             <tr class="table-row" *ngFor="let unitMember of memberPositions; let i = index">
@@ -97,7 +97,7 @@
                     <td style="height:2px;" colspan="2"></td><td></td><td></td><td></td><td></td><td></td><td></td>
                 </ng-container>
                 <ng-template #notBlank>
-                    <td style="border-right-style:none !important;">
+                    <td class="hideOnPrint" style="border-right-style:none !important;">
                         <b *ngIf="i > 6; else officerBlock">{{unitMember.title}}</b>
                         <ng-template #officerBlock>{{unitMember.title}}</ng-template>
                     </td>
@@ -118,16 +118,17 @@
                 </ng-template>
             </tr>
         </table>
-        <div class="text-center">
+        <div class="hideOnPrint text-center">
             Registration Status: N – New; RR – Reregistering.
         </div>
-        <table class="aurForm" cellspacing="0">
+        <table class="aurForm add45PaddingTopOnPrintks" cellspacing="0">
             <colgroup>
                 <col style="width: 50%;">
                 <col style="width: 50%;">
             </colgroup>
             <tr>
-                <td rowspan="2" class="text-center font-emphasize" style="border-right-width:2pt;">REGISTRATION FEES<br>
+                <td rowspan="2" class="text-center" style="border-right-width:2pt;">
+                    <span class="hideOnPrint font-emphasize">REGISTRATION FEES</span><br>
                     <table class="summary" cellspacing="0">
                         <colgroup>
                             <col style="width: 10%;">
@@ -135,34 +136,37 @@
                             <col style="width: 19%;">
                             <col style="width: 16%;">
                         </colgroup>
+                        <tr class="">
+                            <td colspan="4"></td>
+                        </tr>
                         <tr style="font-family: 'Arial Black';">
                             <td></td>
                             <td></td>
-                            <td style="font-family:'Arial Black';">RATE</td>
-                            <td style="font-family:'Arial Black';">AMOUNT</td>
+                            <td class="hideOnPrint" style="font-family:'Arial Black';">RATE</td>
+                            <td class="hideOnPrint" style="font-family:'Arial Black';">AMOUNT</td>
                         </tr>
                         <tr>
                             <td class="bottom-underline" style="text-align:center;">{{registrationFee.iSCRepsCount}}</td>
-                            <td class="label">Ins’tl Sctng. Representative</td>
-                            <td class="amount">P 100.00</td>
+                            <td class="hideOnPrint label">Ins’tl Sctng. Representative</td>
+                            <td class="hideOnPrint amount">P 100.00</td>
                             <td class="bottom-underline" style="text-align:right;">{{registrationFee.iSCRepsTotal | currency: '': '' }}</td>
                         </tr>
                         <tr>
                             <td class="bottom-underline" style="text-align:center;">{{registrationFee.iSCChairsCount}}</td>
-                            <td class="label">ISC Chair/Coordr/Memb</td>
-                            <td class="amount">100.00</td>
+                            <td class="hideOnPrint label">ISC Chair/Coordr/Memb</td>
+                            <td class="hideOnPrint amount">100.00</td>
                             <td class="bottom-underline" style="text-align:right;">{{registrationFee.iSCChairsTotal | currency: '': '' }}</td>
                         </tr>
                         <tr>
                             <td class="bottom-underline" style="text-align:center;">{{registrationFee.unitLeadersCount}}</td>
-                            <td class="label">Unit Leaders.Asst. ULs/CA/ACA</td>
-                            <td class="amount">60.00</td>
+                            <td class="hideOnPrint label">Unit Leaders.Asst. ULs/CA/ACA</td>
+                            <td class="hideOnPrint amount">60.00</td>
                             <td class="bottom-underline" style="text-align:right;">{{registrationFee.unitLeadersTotal | currency: '': '' }}</td>
                         </tr>
                         <tr>
                             <td class="bottom-underline" style="text-align:center;">{{registrationFee.scoutsCount}}</td>
-                            <td class="label">Scouts</td>
-                            <td class="amount">50.00</td>
+                            <td class="hideOnPrint label">Scouts</td>
+                            <td class="hideOnPrint amount">50.00</td>
                             <td class="bottom-underline" style="text-align:right;">{{registrationFee.scoutsTotal | currency: '': '' }}</td>
                         </tr>
                         <tr>
@@ -170,31 +174,32 @@
                                 <ng-container *ngIf="aurFormObj.charterFlag; else zero">1</ng-container>
                                 <ng-template #zero>0</ng-template>
                             </td>
-                            <td class="label">Institutional Charter Fee</td>
-                            <td class="amount">10.00</td>
+                            <td class="hideOnPrint label">Institutional Charter Fee</td>
+                            <td class="hideOnPrint amount">10.00</td>
                             <td class="bottom-underline" style="text-align:right;">{{registrationFee.iSCCharterFeeTotal | currency: '': '' }}</td>
                         </tr>
                         <tr>
-                            <td class="amount" colspan="2">Total Fees Remitted</td>
-                            <td class="amount">P</td>
+                            <td class="hideOnPrint amount" colspan="2">Total Fees Remitted</td>
+                            <td class="hideOnPrint amount">P</td>
                             <td class="bottom-underline" style="text-align:right;">{{registrationFee.totalAmount | currency: '': '' }}</td>
                         </tr>
                     </table>
                     <table class="summary" cellspacing="0">
-                        <tr><td style="width: 35%;" class="font-condensed">Paid Under O.R. No.</td>
+                        <tr><td style="width: 35%;" class="hideOnPrint font-condensed">Paid Under O.R. No.</td>
                             <td style="width: 35%;" class="bottom-underline">{{aurFormObj.officialReceiptNo}}</td>
-                            <td style="width: 10%;">  Date</td>
+                            <td style="width: 10%;" class="hideOnPrint">  Date</td>
                             <td style="width: 25%;" class="bottom-underline">{{aurFormObj.officialReceiptDate | date:'yyyy/MM/dd'}}</td>
                         </tr>
                     </table>
-                    <table class="summary" cellspacing="0">
-                        <tr><td style="width: 48%;" colspan="2">Expiration of Unit Registration</td>
-                            <td style="width: 6%;">  Date</td>
+                    <table class="summary add10PaddingTopOnPrint" cellspacing="0">
+                        <tr><td style="width: 48%;" class="hideOnPrint" colspan="2">Expiration of Unit Registration</td>
+                            <td style="width: 6%;" class="hideOnPrint">  Date</td>
                             <td style="width: 18%;" class="bottom-underline">{{aurFormObj.expirationDate | date:'yyyy/MM/dd'}}</td>
                         </tr>
                     </table>
                 </td>
-                <td class="text-center font-emphasize" style="border-bottom-width:2pt;">LOCAL COUNCIL OFFICE ACTION
+                <td class="text-center" style="border-bottom-width:2pt;">
+                    <span class="removeOnPrint font-emphasize">LOCAL COUNCIL OFFICE ACTION</span>
                     <table class="summary" cellspacing="0">
                         <colgroup>
                             <col style="width: 20%;">
@@ -203,35 +208,36 @@
                             <col style="width: 30%;">
                         </colgroup>
                         <tr>
-                            <td>Processed:</td>
+                            <td class="hideOnPrint">Processed:</td>
                             <td class="bottom-underline actionOfficers">{{aurFormObj.councilRegistrationOfficer | titlecase}}</td>
                             <td></td>
                             <td class="bottom-underline actionOfficers">{{aurFormObj.councilProcessedDate | date:'yyyy/MM/dd HH:mm'}}</td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td class="text-center">Registration Officer</td>
+                            <td class="hideOnPrint text-center">Registration Officer</td>
                             <td></td>
-                            <td class="text-center">Date & Time</td>
+                            <td class="hideOnPrint text-center">Date & Time</td>
                         </tr>
                         <tr><td></td><td></td><td></td><td></td></tr>
                         <tr>
-                            <td>Approved:</td>
-                            <td class="bottom-underline actionOfficers">{{aurFormObj.councilScoutExecutive | titlecase}}</td>
+                            <td class="hideOnPrint">Approved:</td>
+                            <td class="add10PaddingTopOnPrint bottom-underline actionOfficers">{{aurFormObj.councilScoutExecutive | titlecase}}</td>
                             <td></td>
-                            <td class="bottom-underline actionOfficers">{{aurFormObj.councilApprovedDate | date:'yyyy/MM/dd'}}</td>
+                            <td class="add10PaddingTopOnPrint bottom-underline actionOfficers">{{aurFormObj.councilApprovedDate | date:'yyyy/MM/dd'}}</td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td class="text-center">Council Scout Executive</td>
+                            <td class="hideOnPrint text-center">Council Scout Executive</td>
                             <td></td>
-                            <td class="text-center">Date</td>
+                            <td class="hideOnPrint text-center">Date</td>
                         </tr>
                     </table>
                 </td>
             </tr>
             <tr>
-                <td class="text-center font-emphasize">REGIONAL OFFICE ACTION
+                <td class="text-center">
+                    <span class="removeOnPrint font-emphasize">REGIONAL OFFICE ACTION</span>
                     <table class="summary" cellspacing="0">
                         <colgroup>
                             <col style="width: 20%;">
@@ -240,61 +246,61 @@
                             <col style="width: 30%;">
                         </colgroup>
                         <tr>
-                            <td>Processed:</td>
-                            <td class="bottom-underline actionOfficers">{{aurFormObj.regionalRegistrationOfficer | titlecase}}</td>
+                            <td class="hideOnPrint">Processed:</td>
+                            <td class="hideOnPrint bottom-underline actionOfficers">{{aurFormObj.regionalRegistrationOfficer | titlecase}}</td>
                             <td></td>
-                            <td class="bottom-underline actionOfficers">{{aurFormObj.regionalProcessedDate | date:'yyyy/MM/dd HH:mm'}}</td>
+                            <td class="hideOnPrint bottom-underline actionOfficers">{{aurFormObj.regionalProcessedDate | date:'yyyy/MM/dd HH:mm'}}</td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td class="text-center">Registration Officer</td>
+                            <td class="hideOnPrint text-center">Registration Officer</td>
                             <td></td>
-                            <td class="text-center">Date & Time</td>
+                            <td class="hideOnPrint text-center">Date & Time</td>
                         </tr>
                         <tr><td></td><td></td><td></td><td></td></tr>
                         <tr>
-                            <td>Confirmed:</td>
+                            <td class="hideOnPrint">Confirmed:</td>
                             <td class="bottom-underline actionOfficers">{{aurFormObj.regionalScoutExecutive | titlecase}}</td>
                             <td></td>
                             <td class="bottom-underline actionOfficers">{{aurFormObj.regionalApprovedDate | date:'yyyy/MM/dd'}}</td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td class="text-center">Regional Scout Executive</td>
+                            <td class="hideOnPrint text-center">Regional Scout Executive</td>
                             <td></td>
-                            <td class="text-center">Date</td>
+                            <td class="hideOnPrint text-center">Date</td>
                         </tr>
                     </table>
                 </td>
             </tr>
         </table>
-        <table class="aurForm" cellspacing="0">
+        <table class="aurForm add10PaddingTopOnPrint" cellspacing="0">
             <table class="summary" cellspacing="0">
                 <tr>
-                    <td style="width: 18%;">Sponsoring Institution</td>
+                    <td style="width: 18%;" class="hideOnPrint">Sponsoring Institution</td>
                     <td style="width: 35%;" class="bottom-underline">{{aurFormObj.institutionName}}</td>
-                    <td style="width: 5%;">  District</td>
+                    <td style="width: 5%;" class="hideOnPrint">  District</td>
                     <td style="width: 15%;" class="bottom-underline">{{aurFormObj.district}}</td>
-                    <td style="width: 7%;">  AUR No.</td>
+                    <td style="width: 7%;" class="hideOnPrint">  AUR No.</td>
                     <td style="width: 20%;" class="bottom-underline"><span class="aurNumber">{{aurFormObj.unitRegistrationNo}}</span></td>
                 </tr>
             </table>
             <table class="summary" cellspacing="0">
                 <tr>
-                    <td style="width: 5%;">Council</td>
+                    <td style="width: 5%;" class="hideOnPrint">Council</td>
                     <td style="width: 15%;" class="bottom-underline">{{aurFormObj.council}}</td>
-                    <td style="width: 6%;">  Unit No.</td>
-                    <td style="width: 15%;" class="bottom-underline">
+                    <td style="width: 6%;" class="hideOnPrint">  Unit No.</td>
+                    <td style="width: 15%;" class="bottom-underline add30PaddingLeftOnPrint">
                         {{aurFormObj.unitNumber}}
                     </td>
-                    <td style="width: 21%;" class="font-condensed">  (
+                    <td style="width: 21%;" class="hideOnPrint font-condensed">  (
                         <span [ngClass]="{'highlight':aurFormObj.sectionCode=='00'}" id="Langkay">Langkay</span> /
                         <span [ngClass]="{'highlight':aurFormObj.sectionCode=='01'}" id="Kawan">Kawan</span> /
                         <span [ngClass]="{'highlight':aurFormObj.sectionCode=='02'}" id="Troop">Troop</span> /
                         <span [ngClass]="{'highlight':aurFormObj.sectionCode=='03'}" id="Outfit">Outfit</span> /
                         <span [ngClass]="{'highlight':aurFormObj.sectionCode=='04'}" id="Circle">Circle</span>
                     )</td>
-                    <td style="width: 10%;">Date Applied: </td>
+                    <td style="width: 10%;" class="hideOnPrint">Date Applied: </td>
                     <td style="width: 12%;" class="bottom-underline">{{aurFormObj.dateApplied | date:'yyyy/MM/dd'}}</td>
                 </tr>
             </table>

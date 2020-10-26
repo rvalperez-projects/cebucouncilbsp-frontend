@@ -39,8 +39,20 @@
 
 
 @media print {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    ::-webkit-scrollbar {display: none;}
+    .hideOnPrint {color: transparent !important;}
+    .removeOnPrint {display: none !important;}
+    .add10PaddingTopOnPrint {padding-top: 10px !important;}
+    .add25PaddingTopOnPrint {padding-top: 25px !important;}
+    .add40PaddingTopOnPrint {padding-top: 40px !important;}
+    .add45PaddingTopOnPrint {padding-top: 45px !important;}
+    .add30PaddingLeftOnPrint {padding-left: 30px !important;}
+
     .aurForm-wrapper {width:100%;}
     .aurForm-wrapper .box {min-width:7.45in;max-width:7.45in;max-height:12.5in;background:#fff;padding:0px;margin:0px;}
+    .aurForm-wrapper table {border-color: transparent !important;}
+    .aurForm-wrapper table td {border-color: transparent !important;color:red;}
 
     .aurForm-wrapper .form-header {padding:0px;margin:0px;}
     .aurForm-wrapper .text-center {text-align:center;font-size:12px;}
@@ -62,11 +74,9 @@
     .aurForm-wrapper table tr.table-header td:nth-Child(1) {border-left:0.5px solid;}
     .aurForm-wrapper table tr.table-header:nth-of-type(2) td:nth-Child(1) {border-left:none;}
     
-    .aurForm-wrapper table#iscom-table > tr.table-row > td:nth-child(1) {border-left:0.5px solid;border-right:0.5px solid !important;}
-    .aurForm-wrapper table#iscom-table .roster {height:15px;}
-    .aurForm-wrapper table#unitMembers-table .roster {height:15px;}
+    .aurForm-wrapper table#iscom-table > tr.table-row > td:nth-child(1) {border-left:0.5px solid;border-right:0.5px solid;}
     
-    .aurForm-wrapper table tr.table-row, .aurForm-wrapper table tr#iscom-tr {line-height:14px;}
+    .aurForm-wrapper table tr.table-row, .aurForm-wrapper table tr#iscom-tr {line-height:15px;}
     .aurForm-wrapper table tr.table-row td {text-align:center;padding:0px;height:80%;white-space:nowrap;
         border-top:none;border-left:none;border-right:0.5px solid;border-bottom:0.5px solid;}
     .aurForm-wrapper table tr.table-row td:nth-Child(1) {padding-left:5px;text-align:left;
@@ -74,9 +84,9 @@
     .aurForm-wrapper table tr.table-row td:nth-Child(2) {padding-left:5px;text-align:left;}
     
     .aurForm-wrapper table.aurForm table.summary {table-layout: fixed;text-align:left;font-size:11px;font-style:normal;padding-left:5px;padding-right:5px;border-style:none;}
-    .aurForm-wrapper table.aurForm table.summary tr {line-height:13px;}
+    .aurForm-wrapper table.aurForm table.summary tr {line-height:12px;}
     .aurForm-wrapper table.aurForm table.summary td {margin:0px;border-style:none;}
-    .aurForm-wrapper table.aurForm table.summary .bottom-underline {text-align:left;padding-left:5px;padding-right:5px;border-bottom-style:solid;border-bottom-width:0.25px;}
+    .aurForm-wrapper table.aurForm table.summary .bottom-underline {text-align:left;padding-left:5px;padding-right:10px;border-bottom-style:solid;border-bottom-width:0.25px;}
     .aurForm-wrapper table.aurForm table.summary .label {text-align:left;padding-left:5px;padding-right:5px;}
     .aurForm-wrapper table.aurForm table.summary .amount {text-align:right;padding-left:5px;padding-right:5px;}
     
