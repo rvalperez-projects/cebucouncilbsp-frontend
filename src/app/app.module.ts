@@ -16,6 +16,7 @@ import { HomeComponent } from './component/common-components/home/home.component
 import { LoginComponent } from './component/common-components/login/login.component';
 import { PaymentComponent } from './component/common-components/payment/payment.component';
 import { AurFormUpdateComponent } from './component/forms-aur/aur-form-update/aur-form-update.component';
+import { AurFormViewCouncilComponent } from './component/forms-aur/aur-form-view/aur-form-view-council/aur-form-view-council.component';
 import { AurFormViewComponent } from './component/forms-aur/aur-form-view/aur-form-view.component';
 import { FormRegistrationComponent } from './component/forms-aur/form-registration/form-registration.component';
 import { InputUnitNumberComponent } from './component/forms-aur/form-registration/input-unit-number/input-unit-number.component';
@@ -39,6 +40,7 @@ import { MatSpinnerOverlayComponent } from './utils/mat-spinner-overlay/mat-spin
     PaymentComponent,
     ErrorDialog,
     AurFormViewComponent,
+    AurFormViewCouncilComponent,
     AurFormUpdateComponent,
     MatSpinnerOverlayComponent,
     SignUpComponent,

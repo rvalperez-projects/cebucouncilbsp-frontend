@@ -132,7 +132,11 @@ export class FormsListComponent implements OnInit {
   private viewAURForm(id: any) {
     // Navigate to Form
     if (id) {
-      this.router.navigateByUrl('/forms/view', {state:{formId:id}});
+      if (this.roleCode != Roles.GENERAL_USER) {
+        this.router.navigateByUrl('forms/council/view', {state:{formId:id}});        
+      } else {
+        this.router.navigateByUrl('/forms/view', {state:{formId:id}});
+      }
     }
   }
 
