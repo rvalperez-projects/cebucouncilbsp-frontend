@@ -39,5 +39,7 @@ mat-sidenav-content {
 @media print {
   mat-toolbar, app-footer {
     display:none;
-  }
+  }  
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  ::-webkit-scrollbar {display: none;}
 }
