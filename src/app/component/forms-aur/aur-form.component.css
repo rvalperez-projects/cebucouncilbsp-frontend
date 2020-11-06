@@ -23,7 +23,7 @@
 .aurForm-wrapper table.aurForm table.summary .label {text-align:left;padding-left:10px;padding-right:10px;}
 .aurForm-wrapper table.aurForm table.summary .amount {text-align:right;padding-left:10px;padding-right:10px;}
 .aurForm-wrapper table.aurForm table.summary .actionOfficers {text-align:center !important; font-weight:bold;white-space:nowrap;}
-.aurForm-wrapper table.aurForm table.summary .aurNumber {color:red;font-weight:bold;font-family: 'Courier New', Courier, monospace;}
+.aurForm-wrapper table.aurForm table.summary .aurNumber {font-size:16px;color:red;font-weight:bold;font-family: 'Courier New', Courier, monospace;}
 
 .aurForm-wrapper .highlight {font-weight:bold;text-decoration:underline;}
 

@@ -99,7 +99,7 @@ export class AurFormUpdateComponent implements OnInit {
             this.councilDialog.openDialog(AURFormMessages.PROCESSING_SUCCESSFUL_TITLE, [AURFormMessages.PROCESSING_SUCCESSFUL_TEXT]);
 
             // Route to AUR Form View
-            this.router.navigateByUrl('/forms/view', {state:{formId:this.aurFormObj.formId}});
+            this.router.navigateByUrl('/forms/council/view', {state:{formId:this.aurFormObj.formId}});
           });
         }
       });
