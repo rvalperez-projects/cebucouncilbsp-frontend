@@ -40,4 +40,5 @@ mat-sidenav-content {
   mat-toolbar, app-footer {
     display:none;
   }
+  ::-webkit-scrollbar {display: none;}
 }
