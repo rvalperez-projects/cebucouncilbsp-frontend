@@ -1,6 +1,6 @@
 <div class="aurForm-wrapper" fxLayout="column" fxLayoutAlign.gt-sm="start center" fxLayoutAlign.lt-md="start start">    
     
-    <div class="box" *ngIf="!loading">
+    <div class="box add15PaddingLeftOnPrint" *ngIf="!loading">
         <div class="text-center">
             <div class="hideOnPrint form-header font-bold">BOY SCOUTS OF THE PHILIPPINES</div>
             <div class="hideOnPrint form-header">181 Natividad Almeda-Lopez Street, Ermita, 1000 Manila</div>
@@ -39,11 +39,11 @@
             </tr>
             <!--ISCOM Member Roster -->
             <tr id="iscom-tr" class="table-row">
-                <td class="add25PaddingTopOnPrint"><span class="hideOnPrint">ISCOM:</span></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                <td class="add55PaddingTopOnPrint"><span class="hideOnPrint">ISCOM:</span></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
             </tr>
             <tr class="table-row" *ngFor="let label of iSComPositions; let i = index">
                 <td class="hideOnPrint">{{label.title}}</td>
-                <td class="add30PaddingLeftOnPrint"><ng-container *ngIf="aurFormObj.iscomMembersList[i].surname; else blankName">
+                <td><ng-container *ngIf="aurFormObj.iscomMembersList[i].surname; else blankName">
                         {{aurFormObj.iscomMembersList[i].surname | titlecase}},&nbsp;<!--
                         -->{{aurFormObj.iscomMembersList[i].givenName | titlecase}}<!--
                         --><span *ngIf="aurFormObj.iscomMembersList[i].middleInitial">,&nbsp;<!--
@@ -94,7 +94,7 @@
             <!--Unit Members -->
             <tr class="table-row" *ngFor="let unitMember of memberPositions; let i = index">
                 <ng-container *ngIf="unitMember.code == 'x'; else notBlank">
-                    <td style="height:2px;" colspan="2"></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td style="height:2px;" colspan="2" class="add5PaddingTopOnPrint"></td><td></td><td></td><td></td><td></td><td></td><td></td>
                 </ng-container>
                 <ng-template #notBlank>
                     <td class="hideOnPrint" style="border-right-style:none !important;">
@@ -118,10 +118,10 @@
                 </ng-template>
             </tr>
         </table>
-        <div class="hideOnPrint text-center">
+        <div class="hideOnPrint add20PaddingTopOnPrint text-center">
             Registration Status: N – New; RR – Reregistering.
         </div>
-        <table class="aurForm add45PaddingTopOnPrintks" cellspacing="0">
+        <table class="aurForm" cellspacing="0">
             <colgroup>
                 <col style="width: 50%;">
                 <col style="width: 50%;">
@@ -146,31 +146,31 @@
                             <td class="hideOnPrint" style="font-family:'Arial Black';">AMOUNT</td>
                         </tr>
                         <tr>
-                            <td class="bottom-underline" style="text-align:center;">{{registrationFee.iSCRepsCount}}</td>
+                            <td class="bottom-underline add30PaddingLeftOnPrint" style="text-align:center;">{{registrationFee.iSCRepsCount}}</td>
                             <td class="hideOnPrint label">Ins’tl Sctng. Representative</td>
                             <td class="hideOnPrint amount">P 100.00</td>
                             <td class="bottom-underline" style="text-align:right;">{{registrationFee.iSCRepsTotal | currency: '': '' }}</td>
                         </tr>
                         <tr>
-                            <td class="bottom-underline" style="text-align:center;">{{registrationFee.iSCChairsCount}}</td>
+                            <td class="bottom-underline add30PaddingLeftOnPrint" style="text-align:center;">{{registrationFee.iSCChairsCount}}</td>
                             <td class="hideOnPrint label">ISC Chair/Coordr/Memb</td>
                             <td class="hideOnPrint amount">100.00</td>
                             <td class="bottom-underline" style="text-align:right;">{{registrationFee.iSCChairsTotal | currency: '': '' }}</td>
                         </tr>
                         <tr>
-                            <td class="bottom-underline" style="text-align:center;">{{registrationFee.unitLeadersCount}}</td>
+                            <td class="bottom-underline add30PaddingLeftOnPrint" style="text-align:center;">{{registrationFee.unitLeadersCount}}</td>
                             <td class="hideOnPrint label">Unit Leaders.Asst. ULs/CA/ACA</td>
                             <td class="hideOnPrint amount">60.00</td>
                             <td class="bottom-underline" style="text-align:right;">{{registrationFee.unitLeadersTotal | currency: '': '' }}</td>
                         </tr>
                         <tr>
-                            <td class="bottom-underline" style="text-align:center;">{{registrationFee.scoutsCount}}</td>
+                            <td class="bottom-underline add30PaddingLeftOnPrint" style="text-align:center;">{{registrationFee.scoutsCount}}</td>
                             <td class="hideOnPrint label">Scouts</td>
                             <td class="hideOnPrint amount">50.00</td>
                             <td class="bottom-underline" style="text-align:right;">{{registrationFee.scoutsTotal | currency: '': '' }}</td>
                         </tr>
                         <tr>
-                            <td class="bottom-underline" style="text-align:center;">
+                            <td class="bottom-underline add30PaddingLeftOnPrint" style="text-align:center;">
                                 <ng-container *ngIf="aurFormObj.charterFlag; else zero">1</ng-container>
                                 <ng-template #zero>0</ng-template>
                             </td>
@@ -184,9 +184,9 @@
                             <td class="bottom-underline" style="text-align:right;">{{registrationFee.totalAmount | currency: '': '' }}</td>
                         </tr>
                     </table>
-                    <table class="summary" cellspacing="0">
+                    <table class="summary add15PaddingTopOnPrint" cellspacing="0">
                         <tr><td style="width: 35%;" class="hideOnPrint font-condensed">Paid Under O.R. No.</td>
-                            <td style="width: 35%;" class="bottom-underline">{{aurFormObj.officialReceiptNo}}</td>
+                            <td style="width: 35%;" class="bottom-underline add20PaddingLeftOnPrint">{{aurFormObj.officialReceiptNo}}</td>
                             <td style="width: 10%;" class="hideOnPrint">  Date</td>
                             <td style="width: 25%;" class="bottom-underline">{{aurFormObj.officialReceiptDate | date:'yyyy/MM/dd'}}</td>
                         </tr>
@@ -222,9 +222,9 @@
                         <tr><td></td><td></td><td></td><td></td></tr>
                         <tr>
                             <td class="hideOnPrint">Approved:</td>
-                            <td class="add10PaddingTopOnPrint bottom-underline actionOfficers">{{aurFormObj.councilScoutExecutive | titlecase}}</td>
+                            <td class="bottom-underline actionOfficers add20PaddingTopOnPrint">{{aurFormObj.councilScoutExecutive | titlecase}}</td>
                             <td></td>
-                            <td class="add10PaddingTopOnPrint bottom-underline actionOfficers">{{aurFormObj.councilApprovedDate | date:'yyyy/MM/dd'}}</td>
+                            <td class="bottom-underline actionOfficers add20PaddingTopOnPrint">{{aurFormObj.councilApprovedDate | date:'yyyy/MM/dd'}}</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -274,23 +274,23 @@
                 </td>
             </tr>
         </table>
-        <table class="aurForm add10PaddingTopOnPrint" cellspacing="0">
-            <table class="summary" cellspacing="0">
+        <table class="aurForm" cellspacing="0">
+            <table class="summary add20PaddingTopOnPrint" cellspacing="0">
                 <tr>
                     <td style="width: 18%;" class="hideOnPrint">Sponsoring Institution</td>
-                    <td style="width: 35%;" class="bottom-underline">{{aurFormObj.institutionName}}</td>
+                    <td style="width: 35%;" class="bottom-underline add20PaddingLeftOnPrint">{{aurFormObj.institutionName}}</td>
                     <td style="width: 5%;" class="hideOnPrint">  District</td>
                     <td style="width: 15%;" class="bottom-underline">{{aurFormObj.district}}</td>
                     <td style="width: 7%;" class="hideOnPrint">  AUR No.</td>
                     <td style="width: 20%;" class="bottom-underline"><span class="aurNumber">{{aurFormObj.unitRegistrationNo}}</span></td>
                 </tr>
             </table>
-            <table class="summary" cellspacing="0">
+            <table class="summary add10PaddingTopOnPrint" cellspacing="0">
                 <tr>
                     <td style="width: 5%;" class="hideOnPrint">Council</td>
-                    <td style="width: 15%;" class="bottom-underline">{{aurFormObj.council}}</td>
+                    <td style="width: 15%;" class="bottom-underline add30PaddingLeftOnPrint">{{aurFormObj.council}}</td>
                     <td style="width: 6%;" class="hideOnPrint">  Unit No.</td>
-                    <td style="width: 15%;" class="bottom-underline add30PaddingLeftOnPrint">
+                    <td style="width: 15%;" class="bottom-underline add40PaddingLeftOnPrint">
                         {{aurFormObj.unitNumber}}
                     </td>
                     <td style="width: 21%;" class="hideOnPrint font-condensed">  (

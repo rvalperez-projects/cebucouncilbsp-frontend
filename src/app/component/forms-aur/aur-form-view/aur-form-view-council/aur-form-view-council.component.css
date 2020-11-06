@@ -23,7 +23,7 @@
 .aurForm-wrapper table.aurForm table.summary .label {text-align:left;padding-left:10px;padding-right:10px;}
 .aurForm-wrapper table.aurForm table.summary .amount {text-align:right;padding-left:10px;padding-right:10px;}
 .aurForm-wrapper table.aurForm table.summary .actionOfficers {text-align:center !important; font-weight:bold;white-space:nowrap;}
-.aurForm-wrapper table.aurForm table.summary .aurNumber {color:red;font-weight:bold;font-family: 'Courier New', Courier, monospace;}
+.aurForm-wrapper table.aurForm table.summary .aurNumber {font-size:16px;color:red;font-weight:bold;font-family: 'Courier New', Courier, monospace;}
 
 .aurForm-wrapper .highlight {font-weight:bold;text-decoration:underline;}
 
@@ -43,11 +43,16 @@
     ::-webkit-scrollbar {display: none;}
     .hideOnPrint {color: transparent !important;}
     .removeOnPrint {display: none !important;}
+    .add5PaddingTopOnPrint {padding-top: 5px !important;}
     .add10PaddingTopOnPrint {padding-top: 10px !important;}
-    .add25PaddingTopOnPrint {padding-top: 25px !important;}
+    .add15PaddingTopOnPrint {padding-top: 15px !important;}
+    .add20PaddingTopOnPrint {padding-top: 20px !important;}
     .add40PaddingTopOnPrint {padding-top: 40px !important;}
-    .add45PaddingTopOnPrint {padding-top: 45px !important;}
+    .add55PaddingTopOnPrint {padding-top: 55px !important;}
+    .add15PaddingLeftOnPrint {padding-left: 15px !important;}
+    .add20PaddingLeftOnPrint {padding-left: 20px !important;}
     .add30PaddingLeftOnPrint {padding-left: 30px !important;}
+    .add40PaddingLeftOnPrint {padding-left: 40px !important;}
 
     .aurForm-wrapper {width:100%;}
     .aurForm-wrapper .box {min-width:7.45in;max-width:7.45in;max-height:12.5in;background:#fff;padding:0px;margin:0px;}
@@ -76,7 +81,7 @@
     
     .aurForm-wrapper table#iscom-table > tr.table-row > td:nth-child(1) {border-left:0.5px solid;border-right:0.5px solid;}
     
-    .aurForm-wrapper table tr.table-row, .aurForm-wrapper table tr#iscom-tr {line-height:15px;}
+    .aurForm-wrapper table tr.table-row, .aurForm-wrapper table tr#iscom-tr {line-height:13px;}
     .aurForm-wrapper table tr.table-row td {text-align:center;padding:0px;height:80%;white-space:nowrap;
         border-top:none;border-left:none;border-right:0.5px solid;border-bottom:0.5px solid;}
     .aurForm-wrapper table tr.table-row td:nth-Child(1) {padding-left:5px;text-align:left;
@@ -84,7 +89,7 @@
     .aurForm-wrapper table tr.table-row td:nth-Child(2) {padding-left:5px;text-align:left;}
     
     .aurForm-wrapper table.aurForm table.summary {table-layout: fixed;text-align:left;font-size:11px;font-style:normal;padding-left:5px;padding-right:5px;border-style:none;}
-    .aurForm-wrapper table.aurForm table.summary tr {line-height:12px;}
+    .aurForm-wrapper table.aurForm table.summary tr {line-height:10px;}
     .aurForm-wrapper table.aurForm table.summary td {margin:0px;border-style:none;}
     .aurForm-wrapper table.aurForm table.summary .bottom-underline {text-align:left;padding-left:5px;padding-right:10px;border-bottom-style:solid;border-bottom-width:0.25px;}
     .aurForm-wrapper table.aurForm table.summary .label {text-align:left;padding-left:5px;padding-right:5px;}
