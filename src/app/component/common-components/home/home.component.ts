@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private header: AppComponent) { 
       this.landbankAccountName = "Cebu Council Boy Scouts of the Philippines";
-      this.landbankAccountNumber = "1041-4821-14";
+      this.landbankAccountNumber = "0141-4821-14";
       this.remittanceAccountName = "Rachel Ann Lapiña";
       this.remittanceAccountNumber = "0927-216-7560";
   }
